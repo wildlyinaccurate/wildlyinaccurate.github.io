@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<header class="post-header">
+    {% if page.featured_image %}
+        <img class="header__featured-image" src="{{ page.featured_image }}">
+    {% endif %}
+
+    <div class="container">
+        <h1 class="post-header__title">{{ page.title }}</h1>
+        <p class="post-header__meta">
+            {{ page.date | date: "%b %-d, %Y" }}
+
+            {% if page.author.display_name %}
+                • by {{ page.author.display_name }}
+            {% endif %}
+
+            {% if page.meta %}
+                • {{ page.meta }}
+            {% endif %}
+        </p>
+    </div>
+</header>
+
+<div class="content">
+    <div class="container">
+        {{ content }}
+    </div>
+</div>

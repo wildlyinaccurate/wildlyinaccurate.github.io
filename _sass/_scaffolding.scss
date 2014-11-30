@@ -1,0 +1,7 @@
+img {
+  @include img-responsive;
+}
+
+a {
+    @include transition-duration(0.4s);
+}

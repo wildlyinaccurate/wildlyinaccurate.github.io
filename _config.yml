@@ -1,0 +1,14 @@
+title: Wildly Inaccurate
+description: Guides &amp; opinions about programming and the state of the web.
+
+baseurl:
+url: https://wildlyinaccurate.com
+permalink: /:title
+
+email: joseph@wildlyinaccurate.com
+twitter_username: Joseph_Wynn
+github_username:  wildlyinaccurate
+
+sass:
+    style: compressed
+markdown: kramdown

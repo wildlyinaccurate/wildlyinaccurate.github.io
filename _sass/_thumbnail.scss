@@ -1,0 +1,13 @@
+.thumbnail {
+    margin: 20px 0;
+}
+
+.thumbnail__image {
+    margin: 0 auto;
+}
+
+.thumbnail__caption {
+    color: lighten($text-color, 20%);
+    padding: $thumbnail-caption-padding;
+    text-align: center;
+}

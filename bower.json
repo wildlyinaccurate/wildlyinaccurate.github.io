@@ -1,0 +1,9 @@
+{
+  "name": "blag",
+  "authors": [
+    "Joseph Wynn <joseph@wildlyinaccurate.com>"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "3.3.1"
+  }
+}

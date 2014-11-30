@@ -1,0 +1,31 @@
+.post-header {
+    height: 300px;
+    margin-bottom: $navbar-margin-bottom;
+    overflow: hidden;
+    position: relative;
+}
+
+.post-header__featured-image {
+    filter: blur(3px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.post-header__title {
+    color: $color-primary-contrast;
+    margin-top: 100px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: $screen-md-min) {
+    .post-header {
+        height: 450px;
+    }
+
+    .post-header__title {
+        margin-top: 150px;
+    }
+}

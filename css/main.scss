@@ -1,0 +1,27 @@
+----
+# Only the main Sass file needs front matter (the dashes are enough)
+----
+
+$color-primary:             #8e44ad;
+$color-primary-contrast:    #ffffff;
+$link-color:                $color-primary;
+$font-family-sans-serif:    "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base:            18px;
+$font-size-h1:              floor(($font-size-base * 3));
+
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+
+$navbar-padding-vertical:   $navbar-padding-vertical * 1.5;
+$navbar-padding-horizontal: $navbar-padding-horizontal * 1.5;
+
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/type";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
+
+@import "scaffolding";
+@import "navbar";
+@import "post-header";
+@import "thumbnail";
