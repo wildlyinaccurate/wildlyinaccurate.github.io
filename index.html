@@ -9,20 +9,18 @@ layout: default
 </header>
 
 <section class="posts-index">
-    <div class="container">
 
-        {% for post in site.posts %}
-            <article class="post">
-                <span class="post__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    {% for post in site.posts %}
+        <article class="post-summary">
+            <span class="post-summary__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-                <h2>
-                    <a class="post__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                </h2>
-            </article>
+            <h3>
+                <a class="post-summary__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h3>
+        </article>
 
-        {% endfor %}
+    {% endfor %}
 
-        <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-    </div>
 </section>
