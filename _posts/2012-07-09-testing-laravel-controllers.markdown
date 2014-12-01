@@ -15,8 +15,11 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>There are a two main things that tripped me up while I was writing functional tests for my Laravel controllers: POST requests, and session state.</p>
-<p>Laravel's Controller class has the <code>call()</code> method, which essentially makes a GET request to a controller method. In order to make POST requests, it's necessary to inject some extra parameters into the <code>HttpFoundation</code> components. To make this easier, I created a <code>ControllerTestCase</code> class with convenient <code>get()</code> and <code>post()</code> methods:<!--more--></p>
+
+There are a two main things that tripped me up while I was writing functional tests for my Laravel controllers: POST requests, and session state.
+
+Laravel's Controller class has the `call()` method, which essentially makes a GET request to a controller method. In order to make POST requests, it's necessary to inject some extra parameters into the `HttpFoundation` components. To make this easier, I created a `ControllerTestCase` class with convenient `get()` and `post()` methods:<!--more-->
+
 <pre class="highlight-php">abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
 {
 
@@ -54,8 +57,11 @@ author: Joseph Wynn
     }
 
 }</pre>
-<p>Note that each POST request must be "cleaned" so that the POST data from previous requests isn't retained (thanks <a href="https://wildlyinaccurate.com/testing-laravel-controllers/comment-page-1#comment-4153">wahyudinata</a> for this tip!).</p>
-<p>This makes it easy to write functional tests for Laravel controllers, for example checking the session for errors after a POST request:</p>
+
+Note that each POST request must be "cleaned" so that the POST data from previous requests isn't retained (thanks [wahyudinata](https://wildlyinaccurate.com/testing-laravel-controllers/comment-page-1#comment-4153) for this tip!).
+
+This makes it easy to write functional tests for Laravel controllers, for example checking the session for errors after a POST request:
+
 <pre class="highlight-php">require_once('ControllerTestCase.php');
 
 class AccountControllerTest extends ControllerTestCase
@@ -85,7 +91,9 @@ class AccountControllerTest extends ControllerTestCase
     }
 
 }</pre>
-<p>But here is where the session state tripped me up. In <code>testSignupWithValidData</code>, the Laravel session state from <code>testSignupWithNoData</code> is retained and the test fails. To get around this, I simply reload the session before each test, in a <code>setUp</code> method in <code>ControllerTestCase</code>:</p>
+
+But here is where the session state tripped me up. In `testSignupWithValidData`, the Laravel session state from `testSignupWithNoData` is retained and the test fails. To get around this, I simply reload the session before each test, in a `setUp` method in `ControllerTestCase`:
+
 <pre class="highlight-php">abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
 {
 
@@ -97,4 +105,5 @@ class AccountControllerTest extends ControllerTestCase
     }
 
 }</pre>
-<p>And that's it! A fairly simple <code>ControllerTestCase</code> class which solves the POST request and session state problems. See this Gist for <a href="https://gist.github.com/3079291">the full code with comments</a>.</p>
+
+And that's it! A fairly simple `ControllerTestCase` class which solves the POST request and session state problems. See this Gist for [the full code with comments](https://gist.github.com/3079291).

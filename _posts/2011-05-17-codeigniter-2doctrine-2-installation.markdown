@@ -15,10 +15,11 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>If you want a quick way of getting Doctrine 2 working with CodeIgniter 2, you can download a pre-configured installation <a href="https://github.com/wildlyinaccurate/CodeIgniter-2-with-Doctrine-2">from my GitHub repository</a>. There are currently three branches available:</p>
-<ul>
-<li><strong>master</strong> - the latest stable versions of CodeIgniter and Doctrine.</li>
-<li><strong>develop</strong> - the latest development versions of CodeIgniter and Doctrine. Not recommended for production use.</li>
-<li><strong>doctrine-2.1 </strong>- the latest stable version of CodeIgniter, and the latest stable 2.1.X version of Doctrine. This branch is provided as a way of keeping Doctrine 2.1 applications up to date without breaking backwards compatibility.</li>
-</ul>
-<p>For more information, read my post on <a title="Integrating Doctrine 2 with CodeIgniter 2" href="https://wildlyinaccurate.com/integrating-doctrine-2-with-codeigniter-2/">integrating Doctrine 2 with CodeIgniter 2</a></p>
+
+If you want a quick way of getting Doctrine 2 working with CodeIgniter 2, you can download a pre-configured installation [from my GitHub repository](https://github.com/wildlyinaccurate/CodeIgniter-2-with-Doctrine-2). There are currently three branches available:
+
+*   **master** - the latest stable versions of CodeIgniter and Doctrine.
+*   **develop** - the latest development versions of CodeIgniter and Doctrine. Not recommended for production use.
+*   **doctrine-2.1 **- the latest stable version of CodeIgniter, and the latest stable 2.1.X version of Doctrine. This branch is provided as a way of keeping Doctrine 2.1 applications up to date without breaking backwards compatibility.
+
+For more information, read my post on [integrating Doctrine 2 with CodeIgniter 2](https://wildlyinaccurate.com/integrating-doctrine-2-with-codeigniter-2/ "Integrating Doctrine 2 with CodeIgniter 2")

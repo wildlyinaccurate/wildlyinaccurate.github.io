@@ -13,6 +13,9 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>Most Bower packages will be fetched using a git:// URL, which connects on port 9418. This can be problematic if you're behind a firewall which blocks this port.</p>
-<p>You can get around this quite easily by telling Git to always use https:// instead of git://:</p>
+
+Most Bower packages will be fetched using a git:// URL, which connects on port 9418. This can be problematic if you're behind a firewall which blocks this port.
+
+You can get around this quite easily by telling Git to always use https:// instead of git://:
+
 <pre class="no-highlight">git config --global url.https://.insteadOf git://</pre>

@@ -14,7 +14,9 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>Using Node.js* you can run a simple "HTTP status as a service" server. This can be useful for quickly checking whether your application handles various status codes.</p>
+
+Using Node.js* you can run a simple "HTTP status as a service" server. This can be useful for quickly checking whether your application handles various status codes.
+
 <pre class="highlight-javascript">var http = require('http');
 
 http.createServer(function (request, response) {
@@ -27,7 +29,9 @@ http.createServer(function (request, response) {
   response.writeHead(status, { 'Content-Type': 'text/plain' });
   response.end(http.STATUS_CODES[status]);
 }).listen(process.env.PORT || 5000);</pre>
-<p>This will create a server on port 5000, or any port that you specify in the <code>PORT</code> environment variable. It will respond to <code>/{CODE}</code> and return the HTTP status that corresponds to <code>{CODE}</code>. Here's a couple of examples:</p>
+
+This will create a server on port 5000, or any port that you specify in the `PORT` environment variable. It will respond to `/{CODE}` and return the HTTP status that corresponds to `{CODE}`. Here's a couple of examples:
+
 <pre class="no-highlight">$ curl -i http://127.0.0.1:5000/500
 HTTP/1.1 500 Internal Server Error
 Content-Type: text/plain
@@ -44,5 +48,7 @@ Connection: keep-alive
 Transfer-Encoding: chunked
 
 Not Found%</pre>
-<p>This is a really simple example, and could easily be extended to let you specify a <code>Location</code> header value for 30X responses.</p>
-<p><small>*Well, you could use anything really. I'm just using Node.js since JavaScript is my language of choice.</small></p>
+
+This is a really simple example, and could easily be extended to let you specify a `Location` header value for 30X responses.
+
+<small>*Well, you could use anything really. I'm just using Node.js since JavaScript is my language of choice.</small>

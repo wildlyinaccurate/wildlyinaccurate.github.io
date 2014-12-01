@@ -13,12 +13,19 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>I came across this recently while I was developing a module for PyroCMS. Some of the PyroCMS tables contain ENUM columns, which Doctrine doesn't support. You would think that this wouldn't be an issue since these tables are not mapped, but apparently when Doctrine builds the schema it includes all tables in the database - even if they are not mapped. This has been <a href="http://www.doctrine-project.org/jira/browse/DDC-1273">reported as an issue</a>, but the Doctrine team has given it a low priority.</p>
-<p>The symptom? When using the SchemaTool to create, update, or drop the schema; an exception is thrown:</p>
-<pre class="no-highlight"><strong>Fatal error</strong>: Uncaught exception 'Doctrine\DBAL\DBALException' with message 'Unknown database type enum requested, Doctrine\DBAL\Platforms\MySqlPlatform may not support it.'</pre>
-<p>Thankfully, the fix is very easy. There is even a <a href="http://www.doctrine-project.org/docs/orm/2.1/en/cookbook/mysql-enums.html">Doctrine Cookbook article</a> about it. All you have to do is register the ENUM type as a Doctrine varchar (string):</p>
+
+I came across this recently while I was developing a module for PyroCMS. Some of the PyroCMS tables contain ENUM columns, which Doctrine doesn't support. You would think that this wouldn't be an issue since these tables are not mapped, but apparently when Doctrine builds the schema it includes all tables in the database - even if they are not mapped. This has been [reported as an issue](http://www.doctrine-project.org/jira/browse/DDC-1273), but the Doctrine team has given it a low priority.
+
+The symptom? When using the SchemaTool to create, update, or drop the schema; an exception is thrown:
+
+<pre class="no-highlight">**Fatal error**: Uncaught exception 'Doctrine\DBAL\DBALException' with message 'Unknown database type enum requested, Doctrine\DBAL\Platforms\MySqlPlatform may not support it.'</pre>
+
+Thankfully, the fix is very easy. There is even a [Doctrine Cookbook article](http://www.doctrine-project.org/docs/orm/2.1/en/cookbook/mysql-enums.html) about it. All you have to do is register the ENUM type as a Doctrine varchar (string):
+
 <pre class="highlight-php">/** @var $em \Doctrine\ORM\EntityManager */
 $platform = $em-&gt;getConnection()-&gt;getDatabasePlatform();
 $platform-&gt;registerDoctrineTypeMapping('enum', 'string');</pre>
-<p>This fix can be applied to any unsupported data type, for example SET (which is also used in PyroCMS):</p>
+
+This fix can be applied to any unsupported data type, for example SET (which is also used in PyroCMS):
+
 <pre class="highlight-php">$platform-&gt;registerDoctrineTypeMapping('set', 'string');</pre>

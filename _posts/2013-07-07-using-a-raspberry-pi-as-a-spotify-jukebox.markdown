@@ -12,4 +12,3 @@ type: post
 published: false
 author: Joseph Wynn
 ---
-

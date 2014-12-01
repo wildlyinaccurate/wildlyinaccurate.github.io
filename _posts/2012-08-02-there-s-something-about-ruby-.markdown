@@ -10,6 +10,9 @@ type: post
 published: false
 author: Joseph Wynn
 ---
-<p>I'm a PHP developer by profession.</p>
-<p>Right tool for the right job - I use Python and Ruby for various tasks.</p>
-<p>I don't know what it is, but I keep going back to Ruby. It just feels right.</p>
+
+I'm a PHP developer by profession.
+
+Right tool for the right job - I use Python and Ruby for various tasks.
+
+I don't know what it is, but I keep going back to Ruby. It just feels right.

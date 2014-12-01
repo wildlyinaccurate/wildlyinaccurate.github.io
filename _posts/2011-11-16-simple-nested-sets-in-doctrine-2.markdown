@@ -17,13 +17,15 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>Unlike Doctrine 1 with it's NestedSet behaviour, there is no nested set functionality in the core of Doctrine 2. There are a few extensions available that offer nested set support:</p>
-<ul>
-<li><a href="https://github.com/l3pp4rd/DoctrineExtensions">DoctrineExtensions by Gediminas Morkevicius</a></li>
-<li><a href="https://github.com/guilhermeblanco/Doctrine2-Hierarchical-Structural-Behavior">Doctrine2 Hierarchical Structural Behavior by Guilherme Blanco</a></li>
-<li><a href="https://github.com/blt04/doctrine2-nestedset">Doctrine2 NestedSet by Brandon Turner</a></li>
-</ul>
-<p>I tried all of these extensions, but none of them felt simple or lightweight enough for my application. What I wanted to do was have a Category entity which could have a tree of sub-categories, e.g:<!--more--></p>
+
+Unlike Doctrine 1 with it's NestedSet behaviour, there is no nested set functionality in the core of Doctrine 2. There are a few extensions available that offer nested set support:
+
+*   [DoctrineExtensions by Gediminas Morkevicius](https://github.com/l3pp4rd/DoctrineExtensions)
+*   [Doctrine2 Hierarchical Structural Behavior by Guilherme Blanco](https://github.com/guilhermeblanco/Doctrine2-Hierarchical-Structural-Behavior)
+*   [Doctrine2 NestedSet by Brandon Turner](https://github.com/blt04/doctrine2-nestedset)
+
+I tried all of these extensions, but none of them felt simple or lightweight enough for my application. What I wanted to do was have a Category entity which could have a tree of sub-categories, e.g:<!--more-->
+
 <pre class="no-highlight">Food
     Pizza
         Margherita
@@ -33,8 +35,11 @@ author: Joseph Wynn
         Dark
         Milk
         White</pre>
-<p>The simplest way I found of doing this without using any extensions was to make use of <abbr title="Standard PHP Library">SPL</abbr>'s <a href="http://php.net/manual/en/class.recursiveiterator.php">RecursiveIterator</a> and <a href="http://www.php.net/manual/en/class.recursiveiteratoriterator.php">RecursiveIteratorIterator</a> classes. Here's the final code, to output a drop-down menu like this one:</p>
-<p><a href="https://wildlyinaccurate.com/wp-content/uploads/2011/11/dropdown.png"><img class="size-full wp-image-322 aligncenter" title="Hierarchical Dropdown" alt="" src="assets/dropdown.png" width="162" height="200" /></a></p>
+
+The simplest way I found of doing this without using any extensions was to make use of <abbr title="Standard PHP Library">SPL</abbr>'s [RecursiveIterator](http://php.net/manual/en/class.recursiveiterator.php) and [RecursiveIteratorIterator](http://www.php.net/manual/en/class.recursiveiteratoriterator.php) classes. Here's the final code, to output a drop-down menu like this one:
+
+[![](assets/dropdown.png "Hierarchical Dropdown")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/dropdown.png)
+
 <pre class="highlight-php">/** @var $em \Doctrine\ORM\EntityManager */
 $root_categories = $em-&gt;getRepository('Entity\Category')-&gt;findBy(array('parent_category' =&gt; null));
 
@@ -46,7 +51,9 @@ foreach ($recursive_iterator as $index =&gt; $child_category)
 {
     echo '&lt;option value="' . $child_category-&gt;getId() . '"&gt;' . str_repeat('&amp;nbsp;&amp;nbsp;', $recursive_iterator-&gt;getDepth()) . $child_category-&gt;getTitle() . '&lt;/option&gt;';
 }</pre>
-<p>Here's how it's done. Start out with an entity class that looks something like this:</p>
+
+Here's how it's done. Start out with an entity class that looks something like this:
+
 <pre class="highlight-php">namespace Entity;
 
 /**
@@ -87,7 +94,9 @@ class Category
     // Getters and setters ...
 
 }</pre>
-<p>Next, the RecursiveCategoryIterator class. I have written this to interface with Doctrine's Collection object, but it could easily be re-written to work with native PHP arrays (see <a href="http://www.php.net/manual/en/class.recursiveiterator.php#106034">this note</a> in the PHP manual for an example of a RecursiveIterator class that uses native arrays).</p>
+
+Next, the RecursiveCategoryIterator class. I have written this to interface with Doctrine's Collection object, but it could easily be re-written to work with native PHP arrays (see [this note](http://www.php.net/manual/en/class.recursiveiterator.php#106034) in the PHP manual for an example of a RecursiveIterator class that uses native arrays).
+
 <pre class="highlight-php">namespace Entity;
 
 use Doctrine\Common\Collections\Collection;
@@ -138,5 +147,7 @@ class RecursiveCategoryIterator implements \RecursiveIterator
     }
 
 }</pre>
-<p>That's everything! A very simple Nested Set behaviour in Doctrine 2 using only a simple RecursiveIterator class – no complicated extensions.</p>
-<p><em>Edit: As Hans has pointed out, while this approach does allow us to model hierarchies, it is not truly a nested set model as it does not number each node to allow for tree traversal. This model is probably closer to an <a href="http://en.wikipedia.org/wiki/Adjacency_list">adjacency list</a>.</em></p>
+
+That's everything! A very simple Nested Set behaviour in Doctrine 2 using only a simple RecursiveIterator class – no complicated extensions.
+
+_Edit: As Hans has pointed out, while this approach does allow us to model hierarchies, it is not truly a nested set model as it does not number each node to allow for tree traversal. This model is probably closer to an [adjacency list](http://en.wikipedia.org/wiki/Adjacency_list)._

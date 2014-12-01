@@ -16,10 +16,17 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>The <code>find</code> utility's -exec flag makes it very easy to recursively perform operations on specific files or directories.</p>
+
+The `find` utility's -exec flag makes it very easy to recursively perform operations on specific files or directories.
+
 <pre>find . -type d -exec chmod 755 {} \;</pre>
-<p>This command finds all directories (starting at 'dot' - the current directory) and sets their permissions to 755 (rwxr-xr-x).</p>
+
+This command finds all directories (starting at 'dot' - the current directory) and sets their permissions to 755 (rwxr-xr-x).
+
 <pre>find . -type f -exec chmod 644 {} \;</pre>
-<p>Similarly, this command finds all files and sets their permissions to 644 (rw-r--r--).</p>
-<p>&nbsp;</p>
-<p>Thanks to <a href="http://movabletripe.com/archive/recursively-chmod-directories-only/">moveabletripe</a> for the info.</p>
+
+Similarly, this command finds all files and sets their permissions to 644 (rw-r--r--).
+
+&nbsp;
+
+Thanks to [moveabletripe](http://movabletripe.com/archive/recursively-chmod-directories-only/) for the info.

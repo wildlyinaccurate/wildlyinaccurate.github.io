@@ -9,5 +9,7 @@ type: post
 published: false
 author: Joseph Wynn
 ---
-<p><em>This post is a response to François Zaninotto's </em><a href="http://redotheweb.com/2013/06/04/you-should-write-ugly-code.html">You Should Write Ugly Code</a>.</p>
-<p>&nbsp;</p>
+
+_This post is a response to François Zaninotto's _[You Should Write Ugly Code](http://redotheweb.com/2013/06/04/you-should-write-ugly-code.html).
+
+&nbsp;

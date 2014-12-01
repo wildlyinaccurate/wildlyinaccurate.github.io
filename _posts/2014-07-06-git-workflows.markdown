@@ -14,22 +14,32 @@ type: post
 published: false
 author: Joseph Wynn
 ---
-<p>[toc]</p>
-<h2>Introduction</h2>
-<p>&nbsp;</p>
-<h2>Branching Strategies</h2>
-<h3>Single Branch</h3>
-<p><strong>Pros</strong></p>
-<ul>
-<li>Extremely simple; low barrier to entry.</li>
-<li></li>
-</ul>
-<p><strong>Cons</strong></p>
-<ul>
-<li></li>
-</ul>
-<h3>Feature Branches</h3>
-<h3>"Develop" Branch and Feature Branches</h3>
-<h2>Collaborative Strategies</h2>
-<h3>Pull Requests: Single Remote</h3>
-<h3>Pull Requests: Forks</h3>
+
+[toc]
+
+## Introduction
+
+&nbsp;
+
+## Branching Strategies
+
+### Single Branch
+
+**Pros**
+
+*   Extremely simple; low barrier to entry.
+*
+
+**Cons**
+
+*
+
+### Feature Branches
+
+### "Develop" Branch and Feature Branches
+
+## Collaborative Strategies
+
+### Pull Requests: Single Remote
+
+### Pull Requests: Forks

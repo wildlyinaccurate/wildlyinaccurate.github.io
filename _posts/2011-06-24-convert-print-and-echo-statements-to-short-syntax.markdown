@@ -16,8 +16,11 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>It's debatable whether or not it's good practice to use short syntax in PHP. I personally prefer to use short syntax because it keeps my view files looking tidy.</p>
-<p>The regular expression below will find all one-liner <code>print</code> and <code>echo</code> statements (e.g. <code>&lt;?php print $var; ?&gt;</code>) and convert them to <code>&lt;?=$var?&gt;</code> statements. It will not match statements containing closing brackets, for example when using ternary operators: <code>&lt;?=($foo == $bar) ? 'Foobar' : 'Foo'?&gt;</code></p>
+
+It's debatable whether or not it's good practice to use short syntax in PHP. I personally prefer to use short syntax because it keeps my view files looking tidy.
+
+The regular expression below will find all one-liner `print` and `echo` statements (e.g. `<?php print $var; ?>`) and convert them to `<?=$var?>` statements. It will not match statements containing closing brackets, for example when using ternary operators: `<?=($foo == $bar) ? 'Foobar' : 'Foo'?>`
+
 <pre class="no-highlight">Find:
 &lt;\?php[\s]*(print|echo)[\s]*\(?([^&gt;\)]+?)\)?[\s]*;?[\s]*\?&gt;</pre>
 <pre class="no-highlight">Replace:

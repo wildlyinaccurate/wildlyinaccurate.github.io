@@ -13,14 +13,17 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p>Everybody wants to write "good code", right? So why is it that nearly every time we pick up another developer's work, our <a href="http://www.osnews.com/story/19266/WTFs_m">WTF-o-meter</a> goes crazy?</p>
-<p><a href="https://wildlyinaccurate.com/wp-content/uploads/2011/11/wtfm.jpg"><img class="aligncenter size-full wp-image-311" title="The only valid measurement of code quality: WTFs/minute" src="assets/wtfm.jpg" alt="" width="500" height="471" /></a></p>
-<p>Everybody has a different idea of what "good code" is. Below are a few ways that I believe we can increase the quality of our code and reduce the number of WTFs our code generates.</p>
-<ul>
-<li>Keep it simple; refactor overly-complex methods...</li>
-<li>...Or if refactoring isn't feasible, document complex methods.</li>
-<li>Use <a href="http://xunitpatterns.com/Intent%20Revealing%20Name.html">descriptive variable and method names</a>.</li>
-<li>Follow code conventions.</li>
-<li>Don't commit unfinished or broken code.</li>
-</ul>
-<p>Most of these are just common sense. The trouble is, we throw good coding practices – and common sense – out the window when we're under pressure from things like slipping deadlines and scope creep. If you ever find this happening, just remember to<strong> write your code as if the person who has to maintain it is a violent psychopath who knows where you live. </strong>What would you rather: miss a deadline, or be hacked up into little pieces by an angry developer?</p>
+
+Everybody wants to write "good code", right? So why is it that nearly every time we pick up another developer's work, our [WTF-o-meter](http://www.osnews.com/story/19266/WTFs_m) goes crazy?
+
+[![](assets/wtfm.jpg "The only valid measurement of code quality: WTFs/minute")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/wtfm.jpg)
+
+Everybody has a different idea of what "good code" is. Below are a few ways that I believe we can increase the quality of our code and reduce the number of WTFs our code generates.
+
+*   Keep it simple; refactor overly-complex methods...
+*   ...Or if refactoring isn't feasible, document complex methods.
+*   Use [descriptive variable and method names](http://xunitpatterns.com/Intent%20Revealing%20Name.html).
+*   Follow code conventions.
+*   Don't commit unfinished or broken code.
+
+Most of these are just common sense. The trouble is, we throw good coding practices – and common sense – out the window when we're under pressure from things like slipping deadlines and scope creep. If you ever find this happening, just remember to** write your code as if the person who has to maintain it is a violent psychopath who knows where you live. **What would you rather: miss a deadline, or be hacked up into little pieces by an angry developer?

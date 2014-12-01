@@ -16,20 +16,35 @@ type: post
 published: true
 author: Joseph Wynn
 ---
-<p><em>This post assumes you have set up <a href="http://eryr.wordpress.com/2010/09/26/integrating-doctrine-2-with-codeigniter-2/">Doctrine 2 with CodeIgniter 2</a>.</em></p>
-<h2>Load Data from Fixtures</h2>
-<p>I could not find a command to load data from fixtures, so I made a very basic command that recursively executes native SQL. If you want to load data from YAML files, you will need to search elsewhere for a YAML interpreter or even a way to convert YAML to SQL.</p>
-<p><!--more--></p>
-<p>In application/doctrine.php, add the following line anywhere after the chdir() command. Mine sits on line #5.</p>
+
+_This post assumes you have set up [Doctrine 2 with CodeIgniter 2](http://eryr.wordpress.com/2010/09/26/integrating-doctrine-2-with-codeigniter-2/)._
+
+## Load Data from Fixtures
+
+I could not find a command to load data from fixtures, so I made a very basic command that recursively executes native SQL. If you want to load data from YAML files, you will need to search elsewhere for a YAML interpreter or even a way to convert YAML to SQL.
+
+<!--more-->
+
+In application/doctrine.php, add the following line anywhere after the chdir() command. Mine sits on line #5.
+
 <pre>require_once '../fixtures/Commands.php';</pre>
-<p>And anywhere in the <code>$cli-&gt;addCommands</code> array, add: <code>new \Doctrine\ORM\Tools\Console\Command\LoadDataCommand(),</code></p>
-<p>Now create the following directories and files:<img class="alignright" title="Fixtures Directory Structure" src="assets/capture.jpg" alt="" width="264" height="220" /></p>
-<p>application/fixtures/<br />
-application/fixtures/Commands.php<br />
-application/fixtures/Command/<br />
-application/fixtures/Command/LoadDataCommand.php</p>
-<p>application/fixtures/Commands.php is used to load our custom commands. For now, we only have one command - LoadData. To load this command, simply add the line <code>require_once 'Command/LoadDataCommand.php';</code></p>
-<p>Now in application/fixtures/Command/LoadDataCommand.php, copy the following code:</p>
+
+And anywhere in the `$cli->addCommands` array, add: `new \Doctrine\ORM\Tools\Console\Command\LoadDataCommand(),`
+
+Now create the following directories and files:![](assets/capture.jpg "Fixtures Directory Structure")
+
+application/fixtures/
+
+application/fixtures/Commands.php
+
+application/fixtures/Command/
+
+application/fixtures/Command/LoadDataCommand.php
+
+application/fixtures/Commands.php is used to load our custom commands. For now, we only have one command - LoadData. To load this command, simply add the line `require_once 'Command/LoadDataCommand.php';`
+
+Now in application/fixtures/Command/LoadDataCommand.php, copy the following code:
+
 <pre class="brush: php">&lt;?php
 namespace Doctrine\ORM\Tools\Console\Command;
 
@@ -127,4 +142,5 @@ EOT
 
     }
 }</pre>
-<p>Now all you need to do is create .sql files in application/fixtures and run the load-data command from the Doctrine Console. Note that on my system, the script catches a PDOException after it executes a SQL file. I can't work out where the exception is coming from but the script still manages to process all of the files so you can safely ignore it.</p>
+
+Now all you need to do is create .sql files in application/fixtures and run the load-data command from the Doctrine Console. Note that on my system, the script catches a PDOException after it executes a SQL file. I can't work out where the exception is coming from but the script still manages to process all of the files so you can safely ignore it.
