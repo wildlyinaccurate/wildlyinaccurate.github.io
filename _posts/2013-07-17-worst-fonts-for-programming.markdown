@@ -10,12 +10,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>There are <a href="http://www.slant.co/topics/67/~what-are-the-best-programming-fonts">plenty</a> <a href="http://hivelogic.com/articles/top-10-programming-fonts">of</a> <a href="https://news.ycombinator.com/item?id=1058946">discussions</a> about which font is the best for programming. The problem is, there are so many "best" fonts that it's difficult to choose one. Rather than have an exhaustive list of "best" fonts for programming, wouldn't it be easier to simply know which fonts to avoid?</p>
 <h2>Brush Script MT</h2>

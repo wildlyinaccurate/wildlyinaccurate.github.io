@@ -10,12 +10,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Quite often I've accidentally typed "git" twice. Usually this is fine, and Git just does something like this:</p>
 <pre class="no-highlight">$ git git diff

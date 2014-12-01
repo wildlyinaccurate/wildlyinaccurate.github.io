@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>I came across this recently while I was developing a module for PyroCMS. Some of the PyroCMS tables contain ENUM columns, which Doctrine doesn't support. You would think that this wouldn't be an issue since these tables are not mapped, but apparently when Doctrine builds the schema it includes all tables in the database - even if they are not mapped. This has been <a href="http://www.doctrine-project.org/jira/browse/DDC-1273">reported as an issue</a>, but the Doctrine team has given it a low priority.</p>
 <p>The symptom? When using the SchemaTool to create, update, or drop the schema; an exception is thrown:</p>

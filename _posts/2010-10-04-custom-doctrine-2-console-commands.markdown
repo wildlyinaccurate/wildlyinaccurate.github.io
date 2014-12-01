@@ -14,12 +14,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p><em>This post assumes you have set up <a href="http://eryr.wordpress.com/2010/09/26/integrating-doctrine-2-with-codeigniter-2/">Doctrine 2 with CodeIgniter 2</a>.</em></p>
 <h2>Load Data from Fixtures</h2>

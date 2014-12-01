@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Today I found out just how easy it is to convert an SVN repository to Git without losing any commit history. Note that you will need <a href="http://schacon.github.com/git/git-svn.html">git-svn</a> (<code>apt-get install git-svn</code> on Debian/Ubuntu).</p>
 <pre class="no-highlight">git svn clone http://mysvnrepo.com/my-project my-project

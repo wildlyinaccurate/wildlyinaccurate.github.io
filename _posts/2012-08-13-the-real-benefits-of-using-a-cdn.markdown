@@ -8,11 +8,6 @@ tags: []
 status: draft
 type: post
 published: false
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Most web developers should be aware of the immediate benefits of using a content delivery network (CDN).</p>

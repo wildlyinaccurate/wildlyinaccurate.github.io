@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>If you've used Linode's LISH console to get remote access to your server, you're probably familiar with the way the console wraps everything to 60x20 (columns x rows) - even when you're connected via ssh in a much larger terminal.</p>
 <p>[caption id="attachment_742" align="aligncenter" width="640"]<a href="https://wildlyinaccurate.com/wp-content/uploads/2013/05/lishwrap1.png"><img class=" wp-image-742 " alt="LISH Wrapping" src="assets/lishwrap1.png" width="640" height="36" /></a> Everything looks fine until...[/caption]</p>

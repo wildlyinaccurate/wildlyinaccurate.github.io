@@ -13,12 +13,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>There are a two main things that tripped me up while I was writing functional tests for my Laravel controllers: POST requests, and session state.</p>
 <p>Laravel's Controller class has the <code>call()</code> method, which essentially makes a GET request to a controller method. In order to make POST requests, it's necessary to inject some extra parameters into the <code>HttpFoundation</code> components. To make this easier, I created a <code>ControllerTestCase</code> class with convenient <code>get()</code> and <code>post()</code> methods:<!--more--></p>

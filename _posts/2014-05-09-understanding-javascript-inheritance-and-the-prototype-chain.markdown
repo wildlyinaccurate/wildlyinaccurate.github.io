@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p><em>This is the first post in a series on JavaScript. In this post I'm going to explain how JavaScript's prototype chain works, and how you can use it to achieve inheritance.</em></p>
 <p>First, it's important to understand that while JavaScript is an object-oriented language, it is prototype-based and does not implement a traditional class system. Keep in mind that when I mention a <em>class</em> in this post, I am simply referring to JavaScript objects and the prototype chain – more on this in a bit.</p>

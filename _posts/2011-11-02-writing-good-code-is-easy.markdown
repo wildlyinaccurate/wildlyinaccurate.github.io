@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Everybody wants to write "good code", right? So why is it that nearly every time we pick up another developer's work, our <a href="http://www.osnews.com/story/19266/WTFs_m">WTF-o-meter</a> goes crazy?</p>
 <p><a href="https://wildlyinaccurate.com/wp-content/uploads/2011/11/wtfm.jpg"><img class="aligncenter size-full wp-image-311" title="The only valid measurement of code quality: WTFs/minute" src="assets/wtfm.jpg" alt="" width="500" height="471" /></a></p>

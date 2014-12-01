@@ -7,12 +7,7 @@ tags: []
 status: draft
 type: post
 published: false
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p><em>This post is a response to François Zaninotto's </em><a href="http://redotheweb.com/2013/06/04/you-should-write-ugly-code.html">You Should Write Ugly Code</a>.</p>
 <p>&nbsp;</p>

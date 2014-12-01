@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p><em>A Hacker's Guide to Git</em> is now available as an e-book. You can purchase it <a href="https://leanpub.com/a-hackers-guide-to-git">on LeanPub</a>.</p>
 <p>[toc]</p>

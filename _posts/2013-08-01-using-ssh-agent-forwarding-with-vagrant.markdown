@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Sometimes you'll want to use your local SSH keys on your Vagrant boxes, so that you don't have to manage password-less keys for each box. This can be done with SSH agent forwarding, which is <a href="http://www.unixwiz.net/techtips/ssh-agent-forwarding.html">explained in great detail on Unixwiz.net</a>.</p>
 <p>Setting this up is fairly straightforward. On the host machine, you need to add the following to <code>~/.ssh/config</code> (which you should create if it doesn't exist):</p>

@@ -10,12 +10,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>A word of warning: eAccelerator does not play well with Doctrine 2. This came to my attention today after I installed eAccelerator so that I could measure the performance gains (if any). As it turns out, one of eAccelerator's "features" is to remove Docblocks from PHP scripts - probably to reduce compile times. Suddenly my application was throwing exceptions with the message "Class <em>X</em> is not a valid entity or mapped super class".</p>
 <p><!--more--></p>

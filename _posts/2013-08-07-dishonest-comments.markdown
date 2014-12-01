@@ -9,12 +9,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>One of my favourite Ruby Rogues episodes (<a href="http://rubyrogues.com/what-makes-beautiful-code/"><em>What Makes Beautiful Code</em></a>) has a short section where the Rogues talk about the concept of <em>dishonest code</em>. David Brady wrote a <a href="http://chalain.livejournal.com/39332.html">really good piece</a> on this, which I highly recommend reading.</p>
 <p>What I want to talk about is a more specific variant of dishonest code: dishonest comments.</p>

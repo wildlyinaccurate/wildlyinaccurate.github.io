@@ -14,12 +14,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>The <code>find</code> utility's -exec flag makes it very easy to recursively perform operations on specific files or directories.</p>
 <pre>find . -type d -exec chmod 755 {} \;</pre>

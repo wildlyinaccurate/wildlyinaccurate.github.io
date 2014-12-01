@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Setting up your editor correctly can make working with other developers much less painful. Below are some things that I believe every developer should do when editing source code. Any good IDE or editor should have settings to do these things automatically - the points below are paired with their Sublime Text setting.</p>
 <ul>

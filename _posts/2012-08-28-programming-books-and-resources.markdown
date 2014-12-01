@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>This post is a list of programming-related books that I intend to read at some point (in no particular order).</p>
 <ul>

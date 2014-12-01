@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>In the early hours of 4 September 2010, I was sound asleep in my house on Mount Pleasant hill in Christchurch, New Zealand. At 4:35am I was woken by a deep rumbling sound. Seconds later, the floor and walls began to shake as my house was rocked back and forth on its foundations. I scrambled out of bed and hid in a doorway until the shaking stopped. After checking that my family was okay, I went upstairs and stepped onto the balcony to look out over Christchurch. The city was silent save for a few car alarms, and it was in this relative quiet that I came to understand the significance of this event. I didn't realise it then, but that earthquake would become a catalyst for change in my life.<!--more--></p>
 <p>The regular aftershocks kept everybody on edge and were a constant reminder that the ground we stood on was unstable. Still, life in Christchurch carried on almost as normal. I was surrounded by friends, had a great job, and was spending lots of time with my younger brothers. There was no reason for me to want to change anything. Then out of nowhere, in the middle of the day on 22 February 2011 a <a href="http://en.wikipedia.org/wiki/2011_Christchurch_earthquake">powerful quake</a> hit Christchurch, killing 185 people.</p>

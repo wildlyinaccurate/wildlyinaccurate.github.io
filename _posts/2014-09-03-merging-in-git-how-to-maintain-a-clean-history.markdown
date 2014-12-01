@@ -11,12 +11,7 @@ tags:
 status: draft
 type: post
 published: false
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Maintaining a clean history in Git is important for more than just aesthetic reasons.</p>
 <p>There are two prevailing schools of thought regarding merges in Git: those who favour atomic commits, and those who favour "stream of consciousness" commits.</p>

@@ -9,12 +9,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>It's really easy to set up automatic MySQL backups using <code>mysqldump</code>. First, you need to set up a user with <code>SELECT</code> and <code>LOCK TABLES</code> privileges. In this example the user doesn't have a password.</p>
 <pre class="highlight-sql">CREATE USER 'autobackup'@'localhost';

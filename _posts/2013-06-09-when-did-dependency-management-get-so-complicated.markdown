@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>This evening I wanted to start hacking on a <a href="https://github.com/wildlyinaccurate/wildly-minimalistic-wordpress-theme">project of mine</a>, which is a simple WordPress theme. My main development machine was being used by somebody else, so I decided to boot up my old Sony Vaio running Ubuntu. <em>It'll be simple</em>, I thought. <em>I've just got to clone the repo, run <code>npm install</code>, <code>bower install</code>, and <code>grunt build</code>, and I'll be good to go</em>. I was wrong.</p>
 <p>First, the version of npm installed on the laptop is apparently so out-of-date that it can't run the install. So I let it update itself (and all the other packages I have installed - why not?) with <code>sudo npm -g update</code>. Being a Sunday night, my broadband connection is running spectacularly slow, so the update process takes about 10 minutes at 40kB/s. But hey, at least now I can run <code>npm install</code>, right?</p>

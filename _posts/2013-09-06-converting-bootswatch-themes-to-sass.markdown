@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>There's a fairly quick way to convert Bootswatch themes to Sass (which you might want to do if you use something like <a href="https://github.com/jlong/sass-bootstrap">sass-bootstrap</a>).</p>
 <p>Simply download the theme's variables.less and run the following find/replace patterns against it:</p>

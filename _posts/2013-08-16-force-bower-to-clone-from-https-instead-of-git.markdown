@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Most Bower packages will be fetched using a git:// URL, which connects on port 9418. This can be problematic if you're behind a firewall which blocks this port.</p>
 <p>You can get around this quite easily by telling Git to always use https:// instead of git://:</p>

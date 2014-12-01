@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Initializing variables properly in JavaScript can have significant performance benefits. This can be shown with a simple synthetic benchmark.</p>
 <h3>notype.js</h3>

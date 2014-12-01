@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>MySQL has a <a href="http://dev.mysql.com/doc/refman/5.1/en/create-index.html">prefix limitation</a> of 767 bytes in InnoDB, and 1000 bytes in MyISAM. This has never been a problem for me, until I started using UTF-16 as the character set for one of my databases. UTF-16 can use up to 4 bytes per character which means that in an InnoDB table, you can't have any keys longer than 191 characters. Take this <code>CREATE</code> statement for example:</p>
 <pre class="highlight-sql">CREATE TABLE `user` (

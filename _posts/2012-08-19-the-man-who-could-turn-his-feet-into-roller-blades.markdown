@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p><em>Few people know about my ability to transform my feet into roller blades. Doctors around the world are perplexed, and also impressed. Biologists debate whether such a transformation is even possible.</em></p>
 <p>I casually slide into the biologist debating hall and take a seat near the front. People are staring at my roller-feet, but I don't care. I put my shades on.<!--more--></p>

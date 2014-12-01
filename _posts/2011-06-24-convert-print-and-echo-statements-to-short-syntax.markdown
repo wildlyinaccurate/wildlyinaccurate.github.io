@@ -14,12 +14,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>It's debatable whether or not it's good practice to use short syntax in PHP. I personally prefer to use short syntax because it keeps my view files looking tidy.</p>
 <p>The regular expression below will find all one-liner <code>print</code> and <code>echo</code> statements (e.g. <code>&lt;?php print $var; ?&gt;</code>) and convert them to <code>&lt;?=$var?&gt;</code> statements. It will not match statements containing closing brackets, for example when using ternary operators: <code>&lt;?=($foo == $bar) ? 'Foobar' : 'Foo'?&gt;</code></p>

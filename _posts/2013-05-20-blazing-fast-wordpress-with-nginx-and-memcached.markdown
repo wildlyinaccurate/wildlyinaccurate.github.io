@@ -13,12 +13,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Inspired by Eric Mann's post on <a href="http://eamann.com/tech/ludicrous-speed-wordpress-caching-with-redis/">caching WordPress with Redis</a>, I thought I'd experiment with a similar setup using Memcached. Any in-memory caching system should work just as well, but I've chosen Memcached because it's already running on my server and because PHP already has a <a href="http://www.php.net/manual/en/class.memcached.php">built-in libmemcached API</a>.</p>
 <p>My current setup is Nginx and PHP-FPM, with WP Super Cache. The cache is saved to the filesystem, allowing Nginx to serve static files (which it is <a href="http://nbonvin.wordpress.com/2011/03/14/apache-vs-nginx-vs-varnish-vs-gwan/">very good at</a>) without needing to pass any requests to PHP. This setup has worked very well, so I'll be using it as a baseline.</p>

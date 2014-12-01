@@ -17,12 +17,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>People who enjoy listening to more 'traditional' styles of music often believe that electronic music shouldn't be called 'real' music. They believe that producing electronic music must be so easy, because after all, isn't it just a few loops played over and over? This is one of the common misconceptions about electronic music production.</p>
 <p>I have recently been working on a remix of a <a href="http://www.shapeshifter.co.nz">Shapeshifter</a> song called Longest Day. To give you an idea of the music production process and how it is much more than looping a few sounds, I'm going to share with you some of the work that I've put into this remix.<!--more-->Shapeshifter were nice enough to provide all of the mastered tracks for Longest Day as part of their The System Is A Remix competition. There were 12 tracks in total, including vocals, drums, synths, bass, etc. Because these tracks were provided as WAVE files, I had to cut up each track into sections.</p>

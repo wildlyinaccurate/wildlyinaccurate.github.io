@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>I noticed that the Internet Sharing functionality didn't work on my Macbook Air (running OSX 10.8 - Mountain Lion). This is because the Air's DNS server (BIND) isn't configured correctly.</p>
 <p>For me, the fix was pretty simple. Edit <code>/etc/com.apple.named.proxy.conf</code> by running <code>sudo nano /etc/com.apple.named.proxy.conf</code> in a terminal, and change</p>

@@ -8,12 +8,7 @@ tags: []
 status: draft
 type: post
 published: false
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Dubstep is well-known for its "wobble" bass, but frankly I'm bored of hearing track after track using that same bass sound. The "wobble" characteristic that defines a dubstep bass is a low frequency oscillator (LFO) routed to a low pass (LP) filter's frequency. The oscillation of the LP filter frequency gives the bass an effect not dissimilar to turning the volume up and down.</p>
 <p>Sticking with the theme of creating interesting sounds simply by varying the volume and frequency of an instrument's output, I created a bass that delays the effects of the LP filter by adding a long attack to the filter envelope.<!--more--></p>

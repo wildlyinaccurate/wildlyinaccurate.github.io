@@ -15,12 +15,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p><em>If you're looking for a quick way to get Doctrine 2 running with CodeIgniter 2, you might want to download my <a href="https://github.com/wildlyinaccurate/CodeIgniter-2-with-Doctrine-2">CodeIgniter 2/Doctrine 2 package</a></em></p>
 <h2>Overview</h2>

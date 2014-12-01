@@ -8,12 +8,7 @@ tags: []
 status: draft
 type: post
 published: false
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>I'm a PHP developer by profession.</p>
 <p>Right tool for the right job - I use Python and Ruby for various tasks.</p>

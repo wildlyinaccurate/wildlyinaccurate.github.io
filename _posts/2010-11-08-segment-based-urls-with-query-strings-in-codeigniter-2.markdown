@@ -10,12 +10,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>My latest CodeIgniter 2 project requires that I use query strings in some of my URLs. CodeIgniter 1 was notoriously difficult to work with when you enabled query strings, and unfortunately CodeIgniter 2 is no different. Whereas in CodeIgniter 1 you could change two configuration options to enable a combination of segment-based URLs and query strings, this same approach only makes matters worse in CodeIgniter 2.<br />
 <!--more--></p>

@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <h2 id="name-and-email-address">Name and email address</h2>
 <p>Each commit you make has your name and email address attached to it. Git will automatically configure these based on your username and hostname, but this information is usually not a good identifier. It is a good idea to set your real name and email address so that your commits can be identified easily.</p>

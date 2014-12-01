@@ -8,12 +8,7 @@ tags: []
 status: draft
 type: post
 published: false
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Today I had a lengthy discussion with a colleague about whether or not to add some fields to one of our models. I remember thinking partway through: why are we even discussing this? This is such a trivial task -- surely we can just add the fields now and be done with it.</p>
 <p>The thing is, these trivial tasks can be the cause of major headaches down the road. The reason we were having the discussion in the first place is because we didn't need those fields <em>right then</em>. There was a chance that we might need them in the future, but it would just be easier to add them now.</p>

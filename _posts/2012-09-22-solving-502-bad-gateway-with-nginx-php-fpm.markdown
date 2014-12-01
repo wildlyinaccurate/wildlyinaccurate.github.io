@@ -13,12 +13,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>After upgrading php-fpm, my PHP-based sites were returning "502 Bad Gateway" errors. This can happen when the php5-fpm package reconfigures itself to listen on a different socket. Here's how you can solve it.</p>
 <p>Check to make sure that php-fpm is running with <code>ps aux | grep php</code> - if you can't see any php-fpm processes in the output, then you may need to re-install php-fpm. If php-fpm is running okay, then skip this first step.</p>

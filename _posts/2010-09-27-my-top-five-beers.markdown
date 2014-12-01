@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Before I start this list, let me explain something. I am not a beer connoisseur; I haven't tried every beer under the sun. I am actually quite picky when it comes to drinking beer. I have no tolerance for the beer-flavoured fizzy water that multi-billion dollar companies like Carlsberg and Heineken produce. I do not enjoy beers that are "low carb" or "lite".</p>
 <p>Well then, what beers <em>do</em> I like? Stouts and dark ales, of course! So really, this isn't a list of my top five beers. It's a list of my top five dark ales and stouts.<!--more--></p>

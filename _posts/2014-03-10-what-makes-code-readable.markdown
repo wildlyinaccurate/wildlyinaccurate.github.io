@@ -10,12 +10,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Code readability is something that I often bring up during code reviews, but I often have trouble explaining <em>why</em> I find a piece of code to be easy or difficult to read.</p>
 <p>When you ask programmers how to make code easier to read, many of them will mention things like coding standards, descriptive naming, and decomposition. These things actually aid in making code easier to <em>comprehend</em> rather than easier to <em>read</em>. For me, <em>readability </em>is at a lower level, somewhere between legibility and comprehension.</p>

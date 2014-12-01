@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Doctrine 2.1 has been released, bringing many major changes to the ORM - some of which are not backwards-compatible with Doctrine 2.0.<!--more--></p>
 <p>Some of the changes that I thought were of particular interest are:</p>

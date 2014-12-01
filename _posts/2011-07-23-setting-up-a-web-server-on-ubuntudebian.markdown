@@ -18,12 +18,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Setting up a web server with Apache, PHP, and MySQL on any Debian-based system is really easy thanks to APT (Advanced Packaging Tool). Follow along and you'll have a web server set up within fifteen minutes.<!--more--></p>
 <h4>Requirements</h4>

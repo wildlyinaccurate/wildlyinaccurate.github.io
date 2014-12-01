@@ -11,12 +11,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>I understand what people mean when they say that they want to hire a <em>hacker</em>. It means that they want to hire a developer; probably one who is enthusiastic and good at solving problems. The thing is, to me, the term <em>hacker </em>is no different from terms like <em>rock star</em> or <em>ninja</em>. When I see these terms in a job advertisement, a few red flags are raised in my mind:</p>
 <h4>You're probably a start-up</h4>

@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>CodeIgniter 2.0.0 was <a href="http://codeigniter.com/news/codeigniter_2.0.0_released/">released today</a>, signalling a huge step forward for the already-popular PHP framework. The interesting thing about CodeIgniter 2 is that there are two branches in development: CodeIgniter Core, which is the 'official' branch developed by EllisLabs; and CodeIgniter Reactor which is a community-driven branch enabling faster adoption of new features. Reactor will essentially become CodeIgniter, as EllisLabs recommends Reactor for day to day development.<!--more--></p>
 <p>So what is new in CodeIgniter 2? There are several major changes that are worth knowing about:</p>

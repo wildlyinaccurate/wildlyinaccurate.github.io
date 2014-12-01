@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Girls always say to me, "I want a really great boyfriend, where do I find one?" The answer is simple: you should date a web developer! Why, you ask? There are dozens, even hundreds of good reasons why you should date a web developer:</p>
 <ol>

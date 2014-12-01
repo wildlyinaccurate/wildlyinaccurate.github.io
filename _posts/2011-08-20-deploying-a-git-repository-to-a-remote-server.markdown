@@ -16,12 +16,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Git's <code>archive</code> command is basically the equivalent of SVN's <code>export</code> – it dumps a copy of the entire repository without any of the version control files, making it perfect for deploying to a testing or production server.<!--more--></p>
 <p>Using a combination of <code>git archive</code>, SSH, and Gzip; deploying a Git repository to a remote server can be done quickly and easily:</p>

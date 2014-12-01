@@ -12,12 +12,7 @@ tags:
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Doctrine 2's console is really powerful when you know how to use it. You can generate entity classes and their method stubs, reverse-engineer a database, validate your entity schemas, and much more. In this post, I'm going to cover some of the Doctrine console's more useful commands and explain how you can use them to reduce development time. For a full overview of the Doctrine 2 console, read the <a href="http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/tools.html">Doctrine Tools</a> documentation.<!--more--></p>
 <h2 id="orm-validate-schema">orm:validate-schema</h2>

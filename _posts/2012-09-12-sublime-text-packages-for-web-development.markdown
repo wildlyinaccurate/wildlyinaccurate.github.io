@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>Coming from <a href="http://www.jetbrains.com/phpstorm/">PhpStorm</a> (a full-featured IDE), I felt that Sublime Text was missing a few useful features. Luckily, one of the great things about Sublime is that it can be easily extended with <a href="http://docs.sublimetext.info/en/latest/extensibility/plugins.html">plugins</a> and packages. Perhaps the most useful package for Sublime is <a href="http://wbond.net/sublime_packages/package_control">Sublime Package Control</a>, which allows you to easily install and manage packages (it can even uninstall itself - über meta).</p>
 <p>Below are some Sublime Text packages that I have found to be useful for web development.</p>

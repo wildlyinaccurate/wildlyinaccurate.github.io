@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>This post is to help me keep track of non-tech books that I would like to read.</p>
 <p><a href="http://www.amazon.com/Breakfast-Champions-Vonnegut-Series-ebook/dp/B003XRELEI">Breakfast of Champions by Kurt Vonnegut</a><br />

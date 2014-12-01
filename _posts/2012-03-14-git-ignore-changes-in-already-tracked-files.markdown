@@ -8,12 +8,7 @@ tags: []
 status: publish
 type: post
 published: true
-author:
-  login: joseph
-  email: joseph@wildlyinaccurate.com
-  display_name: Joseph
-  first_name: Joseph
-  last_name: Wynn
+author: Joseph Wynn
 ---
 <p>There are often times when you want to modify a file but not commit the changes, for example changing the database configuration to run on your local machine.</p>
 <p>Adding the file to .gitignore doesn't work, because the file is already tracked. Luckily, Git will allow you to manually "ignore" changes to a file or directory:</p>
