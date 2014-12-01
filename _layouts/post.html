@@ -1,14 +1,17 @@
 ---
 layout: default
 ---
-<header class="post-header">
+
+<header class="page-header">
     {% if page.featured_image %}
-        <img class="header__featured-image" src="{{ page.featured_image }}">
+        <img class="page-header__featured-image" src="{{ page.featured_image }}">
+    {% else %}
+        <img class="page-header__featured-image" src="/assets/default-featured-image.jpg">
     {% endif %}
 
     <div class="container">
-        <h1 class="post-header__title">{{ page.title }}</h1>
-        <p class="post-header__meta">
+        <h1 class="page-header__title">{{ page.title }}</h1>
+        <p class="page-header__meta">
             {{ page.date | date: "%b %-d, %Y" }}
 
             {% if page.author.display_name %}
@@ -22,8 +25,8 @@ layout: default
     </div>
 </header>
 
-<div class="content">
+<article class="post-content">
     <div class="container">
         {{ content }}
     </div>
-</div>
+</article>

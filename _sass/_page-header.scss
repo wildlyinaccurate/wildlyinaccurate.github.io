@@ -1,0 +1,39 @@
+.page-header {
+    border: none;
+    color: $color-primary-contrast;
+    height: 300px;
+    margin: 0 0 $navbar-margin-bottom;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.page-header__title {
+    margin-top: 100px;
+}
+
+@media (min-width: $screen-md-min) {
+    .page-header {
+        height: 450px;
+    }
+
+    .page-header__title {
+        margin-top: 150px;
+    }
+}
+
+.page-header--no-image {
+    color: $text-color;
+    height: auto;
+    text-shadow: none;
+}
+
+.page-header__featured-image {
+    filter: blur(3px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}

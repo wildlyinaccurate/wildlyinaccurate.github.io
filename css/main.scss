@@ -1,6 +1,6 @@
-----
+---
 # Only the main Sass file needs front matter (the dashes are enough)
-----
+---
 
 $color-primary:             #8e44ad;
 $color-primary-contrast:    #ffffff;
@@ -22,6 +22,7 @@ $navbar-padding-horizontal: $navbar-padding-horizontal * 1.5;
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
 
 @import "scaffolding";
+@import "layout";
 @import "navbar";
-@import "post-header";
+@import "page-header";
 @import "thumbnail";
