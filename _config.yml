@@ -1,7 +1,6 @@
 title: Wildly Inaccurate
 description: Guides &amp; opinions about programming and the state of the web.
 
-baseurl:
 url: https://wildlyinaccurate.com
 permalink: /:title
 
