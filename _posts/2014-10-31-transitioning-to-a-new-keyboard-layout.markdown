@@ -30,7 +30,7 @@ So I ordered myself an [ErgoDox kit from MassDrop](https://www.massdrop.com/buy/
 
 I built the keyboard in short bursts when I had spare time on the weekends. All up I probably invested about 10 hours over a period of two months. I made good use of the electronics station at [London Hackspace](https://london.hackspace.org.uk/), and learned a lot about soldering and about electronics in general. I'm fairly confident that I could build another ErgoDox in a matter of hours.
 
-![The finished ErgoDox](/assets/ergodox-1024x551.jpg)
+{% image src: /assets/ergodox-1024x551.jpg alt: "The finished ErgoDox" %}
 
 While the open-source firmware has [several layouts available](https://github.com/wildlyinaccurate/ergodox-firmware/tree/master/src/keyboard/ergodox/layout), MassDrop provides the binary firmware for a QWERTY layout to get you started. I didn't particularly feel like learning a completely new keyboard layout so I stuck with QWERTY, figuring that the layout of the ErgoDox would solve the fatigue problems I was having. I was wrong.
 
