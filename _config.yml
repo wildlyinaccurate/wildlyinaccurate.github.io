@@ -5,10 +5,13 @@ baseurl:
 url: https://wildlyinaccurate.com
 permalink: /:title
 
+excerpt_separator: <!--more-->
+
 email: joseph@wildlyinaccurate.com
 twitter_username: Joseph_Wynn
 github_username:  wildlyinaccurate
 
+markdown: kramdown
+
 sass:
     style: compressed
-markdown: kramdown

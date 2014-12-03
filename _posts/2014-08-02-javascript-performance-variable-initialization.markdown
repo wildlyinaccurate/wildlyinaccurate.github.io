@@ -14,7 +14,7 @@ published: true
 author: Joseph Wynn
 ---
 
-Initializing variables properly in JavaScript can have significant performance benefits. This can be shown with a simple synthetic benchmark.
+Initializing variables properly in JavaScript can have significant performance benefits. This can be shown with a simple synthetic benchmark.<!--more-->
 
 ### notype.js
 
