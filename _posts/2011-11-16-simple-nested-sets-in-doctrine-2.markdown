@@ -38,7 +38,7 @@ I tried all of these extensions, but none of them felt simple or lightweight eno
 
 The simplest way I found of doing this without using any extensions was to make use of <abbr title="Standard PHP Library">SPL</abbr>'s [RecursiveIterator](http://php.net/manual/en/class.recursiveiterator.php) and [RecursiveIteratorIterator](http://www.php.net/manual/en/class.recursiveiteratoriterator.php) classes. Here's the final code, to output a drop-down menu like this one:
 
-[![](assets/dropdown.png "Hierarchical Dropdown")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/dropdown.png)
+[{% image src: /assets/dropdown.png "Hierarchical Dropdown")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/dropdown.png alt: "" %}
 
 <pre class="highlight-php">/** @var $em \Doctrine\ORM\EntityManager */
 $root_categories = $em-&gt;getRepository('Entity\Category')-&gt;findBy(array('parent_category' =&gt; null));

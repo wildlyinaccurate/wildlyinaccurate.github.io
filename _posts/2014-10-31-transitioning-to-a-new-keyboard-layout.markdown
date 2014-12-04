@@ -36,7 +36,7 @@ While the open-source firmware has [several layouts available](https://github.co
 
 Using the ErgoDox, I still felt like my fingers were moving just as much as on a regular keyboard. I used Patrick Gillespie's amazing [Keyboard Layout Analyzer](http://patorjk.com/keyboard-layout-analyzer) to help me figure out what the problem was.
 
-![ErgoDox QWERTY Layout Heat Map](/assets/ergodox-qwerty-heatmap.png)
+{% image src: /assets/ergodox-qwerty-heatmap.png alt: "ErgoDox QWERTY Layout Heat Map" %}
 
 &nbsp;
 
@@ -51,11 +51,11 @@ After some experimenting and reading others' thoughts, I finally settled on Cole
 *   Keys used for common keyboard shortcuts (Q, W, Z, X, C, V) remain unchanged.
 *   It felt the most "natural" compared to other popular layouts like Workman, Dvorak, and Programmer Dvorak.
 
-![The heat map for a Colemak layout on the ErgoDox](/assets/ergodox-colemak-heatmap1.png)
+{% image src: /assets/ergodox-colemak-heatmap1.png alt: "The heat map for a Colemak layout on the ErgoDox" %}
 
 An article about [Jason Trill's experience with the ErgoDox](http://jjt.io/2013/11/25/why-any-developer-should-check-out-the-ergodox-keyboard/) convinced me at the last minute to use a modified version of Colemak which puts the symbols on a separate layer around the home row, so you don't need to move your fingers to the top row to type symbols. In case you're wondering what I mean by a "separate layer": layers on a keyboard are a way to have one key type different characters. You actually use layers all the time, even if you don't realise it. When you hold down the Shift key, you're activating another layer on your keyboard. When you hit the Caps Lock key, you're toggling that layer. Layers differ from key combinations (like Control + Alt + Delete) in that they're implemented in the keyboard's firmware rather than at the software level.
 
-![The "symbolmod" Colemak layout reduces finger movement even further](/assets/ergodox-colemak-symbolmod-heatmap.png)
+{% image src: /assets/ergodox-colemak-symbolmod-heatmap.png alt: "The "symbolmod" Colemak layout reduces finger movement even further" %}
 
 As you can probably tell from the heat map above, the "Alt Gr" key enables the symbol layer, allowing me to type common symbols without my fingers leaving the home row.
 
@@ -75,7 +75,7 @@ The quick brown fox jumps over the lazy fox.</pre>
 
 In theory, the more I use each key, the less I'll have to look at my guide.
 
-![The layout guide I'm using to type at the moment](/assets/ergodox-layout-guide-1024x598.jpg)
+{% image src: /assets/ergodox-layout-guide-1024x598.jpg alt: "The layout guide I'm using to type at the moment" %}
 
 ### Stage 2 - Speed
 

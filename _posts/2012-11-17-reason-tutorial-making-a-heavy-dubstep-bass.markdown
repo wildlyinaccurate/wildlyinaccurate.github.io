@@ -19,7 +19,7 @@ The finished product will sound something like this: [audio:https://wildlyinaccu
 
 Let's get started. In a combinator, create a Thor synthesizer. The bass we're going to build will be based on a preset patch called DnB Bass, so click the little folder icon to open up the Patch Browser and look for DnB Bass.thor in the Bass folder.
 
-![](assets/blank-rack.jpg "DnB Bass")
+{% image src: /assets/blank-rack.jpg "DnB Bass" alt: "" %}
 
 This DnB Bass patch is a great start to a deep, growly dubstep bass. We're going to need to modify it and add some effects to get it sounding the way we want though. Make sure the Thor programmer is showing (click the Show Programmer button to the right of the pitch bend and mod wheel). Make the following changes:
 

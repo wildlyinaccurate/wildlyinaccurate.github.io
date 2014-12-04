@@ -71,13 +71,13 @@ So really, the only way to avoid dishonest comments is to simply **not write the
 
 I think this ends up coming back to the way that syntax highlighting hides comments from us. It's really difficult to spot dishonest comments because we've trained our brains to focus on the bright &amp; colourful text, and ignore the dull grey text.
 
-![Greyed-out comments](assets/hidden-comments.png)
+{% image src: /assets/hidden-comments.png alt: "Greyed-out comments" %}
 
 If you opened this file to make some changes, chances are you wouldn't even notice the comments, let alone figure out that they are all lies. But what if the comments stood out more?
 
 I'm currently experimenting with my own variation of the Monokai colour scheme which draws comments in a bright colour.
 
-![Bright comments](assets/bright-comments.png)
+{% image src: /assets/bright-comments.png alt: "Bright comments" %}
 
 Suddenly the comments stand out. They even stand out more than most of the actual code in this file. To me, this is a good thing because comments should only be there to say something important that the code can't say by itself. If there is a comment in the code, I want it to stand out because it must be telling me something **really important**.
 
