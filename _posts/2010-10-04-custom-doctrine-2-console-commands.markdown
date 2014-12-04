@@ -31,7 +31,7 @@ In application/doctrine.php, add the following line anywhere after the chdir()
 
 And anywhere in the `$cli->addCommands` array, add: `new \Doctrine\ORM\Tools\Console\Command\LoadDataCommand(),`
 
-Now create the following directories and files:{% image src: /assets/capture.jpg "Fixtures Directory Structure" alt: "" %}
+Now create the following directories and files:{% image path: assets/capture.jpg "Fixtures Directory Structure" alt: "" %}
 
 application/fixtures/
 

@@ -1,5 +1,6 @@
 title: Wildly Inaccurate
-description: Guides &amp; opinions about programming and the state of the web.
+description: >
+  Guides &amp; opinions about programming and the state of the web.
 
 url: https://wildlyinaccurate.com
 permalink: /:title
@@ -9,6 +10,23 @@ excerpt_separator: <!--more-->
 email: joseph@wildlyinaccurate.com
 twitter_username: Joseph_Wynn
 github_username:  wildlyinaccurate
+
+responsive_images:
+  sizes:
+    - width: 320
+      quality: 65
+
+    - width: 480
+      quality: 70
+
+    - width: 640
+      quality: 75
+
+    - width: 1000
+      quality: 85
+
+    - width: 1400
+      quality: 85
 
 markdown: kramdown
 
