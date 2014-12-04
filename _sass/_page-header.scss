@@ -1,7 +1,7 @@
 .page-header {
     border: none;
     color: $color-primary-contrast;
-    height: 300px;
+    min-height: 300px;
     margin: 0 0 $navbar-margin-bottom;
     overflow: hidden;
     padding: 0;
@@ -15,7 +15,7 @@
 
 @media (min-width: $screen-md-min) {
     .page-header {
-        height: 450px;
+        min-height: 450px;
     }
 
     .page-header__title {
@@ -34,6 +34,6 @@
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
     position: absolute;
     top: 0;
-    width: 100%;
+    max-width: none;
     z-index: -1;
 }
