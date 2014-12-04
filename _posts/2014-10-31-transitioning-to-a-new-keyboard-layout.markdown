@@ -38,8 +38,6 @@ Using the ErgoDox, I still felt like my fingers were moving just as much as on a
 
 {% image src: /assets/ergodox-qwerty-heatmap.png alt: "ErgoDox QWERTY Layout Heat Map" %}
 
-&nbsp;
-
 The heat map above shows how the QWERTY layout requires you to constantly move your fingers between rows. For me, this was a major cause of discomfort. I decided that I needed to find a more efficient keyboard layout.
 
 Learning a new keyboard layout isn't something you can take lightly. There's a huge time investment required not only to learn the new layout, but to become proficient with it. For me, "proficient" means being able to type at least 100WPM -- hopefully even more. So finding the "right" layout was a fairly daunting task.
