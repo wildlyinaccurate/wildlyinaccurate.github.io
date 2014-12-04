@@ -1,0 +1,11 @@
+.social-media {
+    float: right;
+    list-style: none;
+}
+
+.social-media__icon {
+    display: inline-block;
+    height: $line-height-computed;
+    vertical-align: middle;
+    width: $line-height-computed;
+}
