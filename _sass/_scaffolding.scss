@@ -1,3 +1,16 @@
+@mixin selection {
+    background-color: $color-primary;
+    color: $color-primary-contrast;
+}
+
+::-moz-selection {
+    @include selection;
+}
+
+::selection {
+    @include selection;
+}
+
 img {
   @include img-responsive;
 }
