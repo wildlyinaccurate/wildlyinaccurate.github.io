@@ -46,7 +46,7 @@ animal.speak(); // My name is Monty</pre>
 
 The structure of the `Animal` object becomes clear when we inspect it in the console. We can see that the `name` property belongs to the object itself, while `speak` is part of the `Animal` prototype.
 
-{% image path: assets/Animal.png alt: "Animal Prototype" %}
+{% responsive_image path: assets/Animal.png alt: "Animal Prototype" %}
 
 Now let's look at how we can extend the `Animal` class to create a `Cat` class:
 
@@ -63,7 +63,7 @@ What we are doing here is setting `Cat`'s prototype to an instance of `Animal`, 
 
 Let's take a look at the `Cat` object to get a better view of what's going on.
 
-{% image path: assets/Cat.png alt: "Cat" %}
+{% responsive_image path: assets/Cat.png alt: "Cat" %}
 
 The `Cat` object has its own `name` instance property, like we expected. When we look at the object's prototype we see that it has also inherited `Animal`'s `name` instance property as well as the `speak` prototype property. This is where the prototype chain comes in – when we request `cat.name`, JavaScript finds the `name` instance property and doesn't bother going down the prototype chain. However when we request `cat.speak`, JavaScript has to travel down the prototype chain until it finds the `speak` property inherited from `Animal`.
 
