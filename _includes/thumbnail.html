@@ -1,9 +1,10 @@
 <div class="thumbnail">
-    <img class="thumbnail__image" alt="{{ alt }}" src="/{{ src }}" srcset="
-        {% for i in resized %}
+    <img class="thumbnail__image"
+         alt="{{ alt }}"
+         src="/{{ path }}"
+         srcset="{% for i in resized %}
             /{{ i.path }} {{ i.width }}w{% if forloop.last == false %},{% endif %}
-        {% endfor %}
-    ">
+         {% endfor %}">
 
     {% if alt %}
     <div class="thumbnail__caption">

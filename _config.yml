@@ -11,7 +11,10 @@ email: joseph@wildlyinaccurate.com
 twitter_username: Joseph_Wynn
 github_username:  wildlyinaccurate
 
-responsive_images:
+gems: [jekyll/responsive_image]
+
+responsive_image:
+  template: _includes/thumbnail.html
   sizes:
     - width: 320
       quality: 65
