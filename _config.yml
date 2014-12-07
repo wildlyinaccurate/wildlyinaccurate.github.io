@@ -16,20 +16,27 @@ gems: [jekyll/responsive_image]
 responsive_image:
   template: _includes/thumbnail.html
   sizes:
-    - width: 320
-      quality: 65
+    # 320px devices
+    - width: 290
 
-    - width: 480
-      quality: 70
+    # 360px devices
+    - width: 315
 
-    - width: 640
-      quality: 75
+    # Container width on S devices
+    - width: 720
 
-    - width: 1000
-      quality: 85
+    # Container width on M devices
+    - width: 940
 
-    - width: 1400
-      quality: 85
+    # Container width on L devices
+    - width: 1140
+
+    # Common device widths (minus ~80px allowance for UI) for full-width images
+    - width: 1280
+    - width: 1360
+    - width: 1680
+    - width: 1840
+
 
 markdown: kramdown
 
