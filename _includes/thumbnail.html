@@ -2,9 +2,7 @@
     <img class="thumbnail__image"
          alt="{{ alt }}"
          src="/{{ path }}"
-         srcset="{% for i in resized %}
-            /{{ i.path }} {{ i.width }}w{% if forloop.last == false %},{% endif %}
-         {% endfor %}">
+         srcset="{% for i in resized %}/{{ i.path }} {{ i.width }}w, {% endfor %} /{{ original.path }} {{ original.width }}w">
 
     {% if alt %}
     <div class="thumbnail__caption">
