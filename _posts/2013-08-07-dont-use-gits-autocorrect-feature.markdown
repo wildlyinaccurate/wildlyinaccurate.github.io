@@ -15,7 +15,7 @@ author: Joseph Wynn
 
 Quite often I've accidentally typed "git" twice. Usually this is fine, and Git just does something like this:
 
-<pre class="no-highlight">$ git git diff
+<pre>$ git git diff
 git: 'git' is not a git command. See 'git --help'.
 
 Did you mean this?
@@ -23,7 +23,7 @@ Did you mean this?
 
 But I recently turned on Git's autocorrect feature, to see what it was like (`git config --global help.autocorrect 1`). The results were... _interesting_:
 
-<pre class="no-highlight">$ git git diff
+<pre>$ git git diff
 WARNING: You called a Git command named 'git', which does not exist.
 Continuing under the assumption that you meant 'init' in **0.1 seconds** automatically...
 fatal: internal error: work tree has already been set

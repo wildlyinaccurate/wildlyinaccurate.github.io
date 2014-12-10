@@ -18,14 +18,14 @@ What I want to talk about is a more specific variant of dishonest code: dishones
 
 Take this code, for example:
 
-<pre class="highlight-js">$('a').click(function(e) {
+<pre>$('a').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
 });</pre>
 
 If you're not familiar with JavaScript events, `e.stopPropagation()` will stop this event from bubbling up to other event handlers. Now, what if somebody decides that the event _should_ bubble up? They might do something like this:
 
-<pre class="highlight-diff diff">--- a/example.js
+<pre>--- a/example.js
 +++ b/example.js
 @@ -1,4 +1,4 @@
  $('a').click(function(e) {
@@ -38,7 +38,7 @@ This is pretty common practice; a developer will leave a comment so that the nex
 
 So far this isn't too bad. But what happens when somebody changes their mind again, and doesn't want the event to bubble up anymore? Quite often, this is what happens:
 
-<pre class="highlight-diff diff">--- a/example.js
+<pre>--- a/example.js
 +++ b/example.js
 @@ -1,4 +1,5 @@
  $('a').click(function(e) {
@@ -51,7 +51,7 @@ The `e.stopPropagation()` call is added back in, right where it was before. You 
 
 A lot of developers tend to ignore comments in code, especially comments that were written by somebody else. Modern text editors and IDEs are partly to blame for this, since their syntax highlighting tends to de-emphasise comments by greying them out.
 
-<pre class="highlight-js">$('a').click(function(e) {
+<pre>$('a').click(function(e) {
     // Let the event bubble up to the next handler
     e.stopPropagation();
     e.preventDefault();

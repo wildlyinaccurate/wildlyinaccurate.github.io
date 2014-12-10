@@ -21,7 +21,7 @@ It's debatable whether or not it's good practice to use short syntax in PHP. I p
 
 The regular expression below will find all one-liner `print` and `echo` statements (e.g. `<?php print $var; ?>`) and convert them to `<?=$var?>` statements. It will not match statements containing closing brackets, for example when using ternary operators: `<?=($foo == $bar) ? 'Foobar' : 'Foo'?>`
 
-<pre class="no-highlight">Find:
+<pre>Find:
 &lt;\?php[\s]*(print|echo)[\s]*\(?([^&gt;\)]+?)\)?[\s]*;?[\s]*\?&gt;</pre>
-<pre class="no-highlight">Replace:
+<pre>Replace:
 &lt;?=$2?&gt;</pre>

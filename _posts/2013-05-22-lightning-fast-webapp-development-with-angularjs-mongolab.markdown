@@ -11,7 +11,7 @@ type: post
 published: false
 author: Joseph Wynn
 ---
-<pre class="no-highlight">$ yo angular --coffee --minsafe
+<pre>$ yo angular --coffee --minsafe
 Would you like to include Twitter Bootstrap? (Y/n) Y
 If so, would you like to use Twitter Bootstrap for Compass (as opposed to vanilla CSS)? (Y/n) Y
 Would you like to include angular-resource.js? (Y/n) Y

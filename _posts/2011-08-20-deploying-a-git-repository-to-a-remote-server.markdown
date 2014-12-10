@@ -23,7 +23,7 @@ Git's `archive` command is basically the equivalent of SVN's `export` – it dum
 
 Using a combination of `git archive`, SSH, and Gzip; deploying a Git repository to a remote server can be done quickly and easily:
 
-<pre class="no-highlight">git archive --format=tar origin/master | gzip -9c | ssh user@yourserver.com "tar --directory=/var/www -xvzf -"</pre>
+<pre>git archive --format=tar origin/master | gzip -9c | ssh user@yourserver.com "tar --directory=/var/www -xvzf -"</pre>
 
 Let's take a look at the different parts of that command.
 

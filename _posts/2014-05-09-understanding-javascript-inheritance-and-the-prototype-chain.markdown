@@ -25,13 +25,13 @@ So what is the prototype chain used for? When you request a property which the o
 
 Don't worry if this doesn't make sense yet. To see prototypes in action, let's take a look at the simplest example of a "class" within JavaScript, which is created with a function object:
 
-<pre class="highlight javascript">function Animal() {}
+<pre>function Animal() {}
 
 var animal = new Animal();</pre>
 
 We can add properties to the `Animal` class in two ways: either by setting them as _instance properties_, or by adding them to the `Animal` prototype.
 
-<pre class="highlight javascript">function Animal(name) {
+<pre>function Animal(name) {
     // Instance properties can be set on each instance of the class
     this.name = name;
 }
@@ -50,7 +50,7 @@ The structure of the `Animal` object becomes clear when we inspect it in the con
 
 Now let's look at how we can extend the `Animal` class to create a `Cat` class:
 
-<pre class="highlight javascript">function Cat(name) {
+<pre>function Cat(name) {
     Animal.call(this, name);
 }
 

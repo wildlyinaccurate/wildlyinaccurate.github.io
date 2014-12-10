@@ -17,7 +17,7 @@ author: Joseph Wynn
 
 Bcrypt is a Blowfish-based hashing algorithm which is commonly used for password hashing because of its potentially expensive key setup phase. A Bcrypt hash has the following structure:
 
-<pre class="no-highlight">$2a$(2 chars work)$(22 chars salt)(31 chars hash)</pre>
+<pre>$2a$(2 chars work)$(22 chars salt)(31 chars hash)</pre>
 
 The reason that the key setup phase can be potentially expensive is because it is run `2<sup>work</sup>` times. As password hashing is usually associated with common tasks like logging a user into a system, it's important to find the right balance between security and performance. Using a high work factor makes it incredibly difficult to execute a brute-force attack, but can put unnecessary load on the system.
 
@@ -27,7 +27,7 @@ Using [Marco Arment's PHP Bcrypt class](https://gist.github.com/1053158/), I per
 
 **Desktop Machine, Intel i3-2120 (Quad Core, 3.30GHz)**
 
-<pre class="no-highlight">Work	Time (Seconds)
+<pre>Work	Time (Seconds)
 4	0.0013326406478882
 5	0.0024385929107666
 6	0.0046159029006958
@@ -48,7 +48,7 @@ Using [Marco Arment's PHP Bcrypt class](https://gist.github.com/1053158/), I per
 
 **Linode Xen Instance (Shared Intel Xeon)**
 
-<pre class="no-highlight">Work	Time (Seconds)
+<pre>Work	Time (Seconds)
 4	0.0054517030715942
 5	0.0034224390983582
 6	0.0065383553504944

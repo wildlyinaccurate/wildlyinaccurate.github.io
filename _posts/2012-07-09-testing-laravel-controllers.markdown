@@ -20,7 +20,7 @@ There are a two main things that tripped me up while I was writing functional te
 
 Laravel's Controller class has the `call()` method, which essentially makes a GET request to a controller method. In order to make POST requests, it's necessary to inject some extra parameters into the `HttpFoundation` components. To make this easier, I created a `ControllerTestCase` class with convenient `get()` and `post()` methods:<!--more-->
 
-<pre class="highlight-php">abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
+<pre>abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
 {
 
     public function call($destination, $parameters = array(), $method = 'GET')
@@ -62,7 +62,7 @@ Note that each POST request must be "cleaned" so that the POST data from previou
 
 This makes it easy to write functional tests for Laravel controllers, for example checking the session for errors after a POST request:
 
-<pre class="highlight-php">require_once('ControllerTestCase.php');
+<pre>require_once('ControllerTestCase.php');
 
 class AccountControllerTest extends ControllerTestCase
 {
@@ -94,7 +94,7 @@ class AccountControllerTest extends ControllerTestCase
 
 But here is where the session state tripped me up. In `testSignupWithValidData`, the Laravel session state from `testSignupWithNoData` is retained and the test fails. To get around this, I simply reload the session before each test, in a `setUp` method in `ControllerTestCase`:
 
-<pre class="highlight-php">abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
+<pre>abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
 {
 
     // ...

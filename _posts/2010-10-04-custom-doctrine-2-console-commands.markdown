@@ -47,7 +47,7 @@ application/fixtures/Commands.php is used to load our custom commands. For now, 
 
 Now in application/fixtures/Command/LoadDataCommand.php, copy the following code:
 
-<pre class="brush: php">&lt;?php
+<pre>&lt;?php
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,

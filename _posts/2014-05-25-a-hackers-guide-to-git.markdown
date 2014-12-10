@@ -54,7 +54,7 @@ The important thing to remember about a Git repository is that it exists entirel
 
 You can initialize a Git repository anywhere with the `git init` command. Take a look inside the `.git` folder to get a glimpse of what a repository looks like.
 
-<pre class="no-highlight">$ git init
+<pre>$ git init
 Initialized empty Git repository in /home/demo/demo-repository/.git/
 $ ls -l .git
 total 32
@@ -77,7 +77,7 @@ A tree object in Git can be thought of as a directory. It contains a list of bl
 
 Imagine we had a simple repository, with a `README` file and a `src/` directory containing a `hello.c` file.
 
-<pre class="no-highlight">README
+<pre>README
 src/
     hello.c</pre>
 
@@ -132,7 +132,7 @@ A commit object is essentially a pointer that contains a few pieces of importan
 
 Let's see a commit object in action by creating a simple repository.
 
-<pre class="no-highlight"> $ git init
+<pre> $ git init
 Initialized empty Git repository in /home/demo/simple-repository/.git/
  $ echo 'This is the readme.' &gt; README
  $ git add README
@@ -143,7 +143,7 @@ Initialized empty Git repository in /home/demo/simple-repository/.git/
 
 When you create a commit, Git will give you the hash of that commit. Using `git show` with the `--format=raw` flag, we can see this newly-created commit's metadata.
 
-<pre class="no-highlight">$ git show --format=raw d409ca7
+<pre>$ git show --format=raw d409ca7
 
 commit d409ca76bc919d9ca797f39ae724b7c65700fd27
 tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1
@@ -163,7 +163,7 @@ index 0000000..9761654
 
 Notice how although we referenced the commit by the partial hash `d409ca7`, Git was able to figure out that we actually meant `d409ca76bc919d9ca797f39ae724b7c65700fd27`. This is because the hashes that Git assigns to objects are unique enough to be identified by the first few characters. You can see here that Git is able to find this commit with as few as four characters; after which point Git will tell you that the reference is ambiguous.
 
-<pre class="no-highlight">$ git show d409c
+<pre>$ git show d409c
 $ git show d409
 $ git show d40
 fatal: ambiguous argument 'd40': unknown revision or path not in the working tree.</pre>
@@ -176,33 +176,33 @@ To save you from having to memorize these hashes, Git has references, or "refs"
 
 To carry on the example from _Commits_, let's figure out the hash of "First commit" using references only.
 
-<pre class="no-highlight">$ git status
+<pre>$ git status
 On branch master
 nothing to commit, working directory clean</pre>
 
 `git status` has told us that we are on branch `master`. As we will learn in a later section, branches are just references. We can see this by looking in `.git/refs/heads`.
 
-<pre class="no-highlight">$ ls -l .git/refs/heads/
+<pre>$ ls -l .git/refs/heads/
 total 4
 -rw-rw-r-- 1 demo demo 41 May 24 20:02 master</pre>
 
 We can easily see which commit `master` points to by reading the file.
 
-<pre class="no-highlight">$ cat .git/refs/heads/master
+<pre>$ cat .git/refs/heads/master
 d409ca76bc919d9ca797f39ae724b7c65700fd27</pre>
 
 Sure enough, `master` contains the hash of the "First commit" object.
 
 Of course, it's possible to simplify this process. Git can tell us which commit a reference is pointing to with the `show` and `rev-parse` commands.
 
-<pre class="no-highlight">$ git show --oneline master
+<pre>$ git show --oneline master
 d409ca7 First commit
 $ git rev-parse master
 d409ca76bc919d9ca797f39ae724b7c65700fd27</pre>
 
 Git also has a special reference, `HEAD`. This is a "symbolic" reference which points to the tip of the current branch rather than an actual commit. If we inspect `HEAD`, we see that it simply points to `refs/head/master`.
 
-<pre class="no-highlight">$ cat .git/HEAD
+<pre>$ cat .git/HEAD
 ref: refs/heads/master</pre>
 
 It is actually possible for `HEAD` to point directly to a commit object. When this happens, Git will tell you that you are in a "detached HEAD state". We'll talk a bit more about this later, but really all this means is that you're not currently on a branch.
@@ -213,7 +213,7 @@ Git's branches are often touted as being one of its strongest features. This is 
 
 The reason branches are so lightweight in Git is because they're just references. We saw in _References_ that the `master` branch was simply a file inside `.git/refs/heads`. Let's create another branch to see what happens under the hood.
 
-<pre class="no-highlight">$ git branch test-branch
+<pre>$ git branch test-branch
 $ cat .git/refs/heads/test-branch
 d409ca76bc919d9ca797f39ae724b7c65700fd27</pre>
 
@@ -221,7 +221,7 @@ It's as simple as that. Git has created a new entry in `.git/refs/heads` and poi
 
 We also saw in _References_ that `HEAD` is Git's reference to the current branch. Let's see that in action by switching to our newly-created branch.
 
-<pre class="no-highlight">$ cat .git/HEAD
+<pre>$ cat .git/HEAD
 ref: refs/heads/master
 $ git checkout test-branch
 Switched to branch 'test-branch'
@@ -230,7 +230,7 @@ ref: refs/heads/test-branch</pre>
 
 When you create a new commit, Git simply changes the current branch to point to the newly-created commit object.
 
-<pre class="no-highlight">$ echo 'Some more information here.' &gt;&gt; README
+<pre>$ echo 'Some more information here.' &gt;&gt; README
 $ git add README
 $ git commit -m "Update README in a new branch"
 [test-branch 7604067] Update README in a new branch
@@ -246,13 +246,13 @@ There are two types of tags in Git -- **lightweight tags** and **annotated tags
 
 On the surface, these two types of tags look very similar. Both of them are references stored in `.git/refs/tags`. However, that's about as far as the similarities go. Let's create a lightweight tag to see how they work.
 
-<pre class="no-highlight">$ git tag 1.0-lightweight
+<pre>$ git tag 1.0-lightweight
 $ cat .git/refs/tags/1.0-lightweight
 d409ca76bc919d9ca797f39ae724b7c65700fd27</pre>
 
 We can see that Git has created a tag reference which points to the current commit. By default, `git tag` will create a lightweight tag. Note that this is **not a tag object**. We can verify this by using `git cat-file` to inspect the tag.
 
-<pre class="no-highlight">$ git cat-file -p 1.0-lightweight
+<pre>$ git cat-file -p 1.0-lightweight
 tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1
 author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
 committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
@@ -269,13 +269,13 @@ You can see that as far as Git is concerned, the `1.0-lightweight` tag and the `
 
 Let's compare this to an annotated tag.
 
-<pre class="no-highlight">$ git tag -a -m "Tagged 1.0" 1.0
+<pre>$ git tag -a -m "Tagged 1.0" 1.0
 $ cat .git/refs/tags/1.0
 10589beae63c6e111e99a0cd631c28479e2d11bf</pre>
 
 We've passed the `-a` (`--annotate`) flag to `git tag` to create an annotated tag. Notice how Git creates a reference for the tag just like the lightweight tag, but this reference is not pointing to the same object as the lightweight tag. Let's use `git cat-file` again to inspect the object.
 
-<pre class="no-highlight">$ git cat-file -p 1.0
+<pre>$ git cat-file -p 1.0
 object d409ca76bc919d9ca797f39ae724b7c65700fd27
 type commit
 tag 1.0
@@ -295,7 +295,7 @@ Annotated tags are also timestamped. Since new versions are usually tagged right
 
 Merging in Git is the process of joining two histories (usually branches) together. Let's start with a simple example. Say you've created a new feature branch from `master`, and done some work on it.
 
-<pre class="no-highlight">$ git checkout -b feature-branch
+<pre>$ git checkout -b feature-branch
 Switched to a new branch 'feature-branch'
 $ vim feature.html
 $ git commit -am "Finished the new feature"
@@ -304,7 +304,7 @@ $ git commit -am "Finished the new feature"
 
 At the same time, you need to fix an urgent bug. So you create a `hotfix` branch from `master`, and do some work in there.
 
-<pre class="no-highlight">$ git checkout master
+<pre>$ git checkout master
 Switched to branch 'master'
 $ git checkout -b hotfix
 Switched to a new branch 'hotfix'
@@ -319,7 +319,7 @@ At this point, the history will look something like this.
 
 Now you want to bring the bug fix into `master` so that you can tag it and release it.
 
-<pre class="no-highlight">$ git checkout master
+<pre>$ git checkout master
 Switched to branch 'master'
 $ git merge hotfix
 Updating d939a3a..40837f1
@@ -333,7 +333,7 @@ Notice how Git mentions **fast-forward** during the merge. What this means is 
 
 Now let's try and merge `feature-branch` into `master`.
 
-<pre class="no-highlight">$ git merge feature-branch
+<pre>$ git merge feature-branch
 Merge made by the 'recursive' strategy.
  feature.html | 1 +
  1 file changed, 1 insertion(+)</pre>
@@ -342,7 +342,7 @@ This time, Git wasn't able to perform a fast-forward. This is because `feature-
 
 So how did Git handle this merge? Taking a look at the log, we see that Git has actually created a new "merge" commit, as well as bringing the commit from `feature-branch`.
 
-<pre class="no-highlight">$ git log --oneline
+<pre>$ git log --oneline
 8ad0923 Merge branch 'feature-branch'
 0c21359 Finished the new feature
 40837f1 Fixed some wording
@@ -350,7 +350,7 @@ d939a3a Initial commit</pre>
 
 Upon closer inspection, we can see that this is a special kind of commit object -- it has **two parent commits**. This is referred to as a **merge commit**.
 
-<pre class="no-highlight">$ git show --format=raw 8ad0923
+<pre>$ git show --format=raw 8ad0923
 
 commit 8ad09238b0dff99e8a99c84d68161ebeebbfc714
 tree e5ee97c8f9a4173f07aa4c46cb7f26b7a9ff7a17
@@ -393,20 +393,20 @@ As you can see, `master` has been updated since `foo` was created. To avoid po
 
 It's not going to be easy, but we can achieve this with `git cherry-pick`. First, we need to create a temporary branch at commit _F_.
 
-<pre class="no-highlight">$ git checkout master
+<pre>$ git checkout master
 $ git checkout -b foo-tmp</pre>
 
 {% responsive_image path: assets/foo-tmp.png alt: "Node graph -- after creating foo-tmp" %}
 
 Now that we have a base on commit _F_, we can `cherry-pick` all of `foo`'s commits on top of it.
 
-<pre class="no-highlight">$ git cherry-pick C D</pre>
+<pre>$ git cherry-pick C D</pre>
 
 {% responsive_image path: assets/cherry-pick-c-d.png alt: "Node graph -- after cherry-picking C and D" %}
 
 Now all that's left to do is point `foo` at commit **D'**, and delete the temporary branch `foo-tmp`. We do this with the `reset` command, which points `HEAD` (and therefore the current branch) at a specified commit. The `--hard` flag ensures our working tree is updated as well.
 
-<pre class="no-highlight">$ git checkout foo
+<pre>$ git checkout foo
 $ git reset --hard foo-tmp
 $ git branch -D foo-tmp</pre>
 
@@ -418,7 +418,7 @@ This gives the desired result of `foo`'s commits being upstream of `master`. N
 
 While the example in _Cherry-Picking_ worked, it's not practical. In Git, rebasing allows us to replace our verbose cherry-pick workflow...
 
-<pre class="no-highlight">$ git checkout master
+<pre>$ git checkout master
 $ git checkout -b foo-tmp
 $ git cherry-pick C D
 $ git checkout foo
@@ -427,7 +427,7 @@ $ git branch -D foo-tmp</pre>
 
 ...With a single command.
 
-<pre class="no-highlight">$ git rebase master foo</pre>
+<pre>$ git rebase master foo</pre>
 
 With the format `git rebase <base> <target>`, the `rebase` command will take all of the commits from `<target>` and play them on top of `<base>` one by one. It does this without actually modifying `<base>`, so the end result is a linear history in which `<base>` can be fast-forwarded to `<target>`.
 
@@ -439,7 +439,7 @@ Let's take a look again at the example graph from _Merging_ to see how rebasing
 
 All we have to do to enable a fast-forward merge of `feature-branch` into `master` is run `git rebase master feature-branch` before performing the merge.
 
-<pre class="no-highlight">$ git rebase master feature-branch
+<pre>$ git rebase master feature-branch
 First, rewinding head to replay your work on top of it...
 Applying: Finished the new feature</pre>
 
@@ -449,7 +449,7 @@ This has brought `feature-branch` directly upstream of `master`.
 
 Git is now able to perform a fast-forward merge.
 
-<pre class="no-highlight">$ git checkout master
+<pre>$ git checkout master
 $ git merge feature-branch
 Updating 40837f1..2a534dd
 Fast-forward
@@ -464,7 +464,7 @@ Recall that Git stores the entire repository inside the `.git` directory. Insi
 
 It is therefore possible to have a repository which can store your project's history without actually having a working tree. This is called a _bare_ repository. Bare repositories are most commonly used as a "central" repository where collaborators can share changes. The mechanism for sharing these changes will be explained in detail in the _Pushing_ and _Pulling_ sections. For now, let's look at creating a bare repository.
 
-<pre class="no-highlight">$ git init --bare
+<pre>$ git init --bare
 Initialised empty Git repository in /home/demo/bare-repo/
 $ ls -l
 total 12
@@ -481,7 +481,7 @@ Notice how rather than creating a `.git` directory for the repository, `git in
 
 There's really not much to this repository. The only interesting things it contains are a `HEAD` reference which points to the `master` branch (which doesn't exist yet), and a `config` file which has the `bare` flag set to `true`. The other files aren't of much interest to us.
 
-<pre class="no-highlight">$ find . -type f
+<pre>$ find . -type f
 ./info/exclude
 ./hooks/commit-msg.sample
 ./hooks/pre-commit.sample
@@ -507,7 +507,7 @@ $ cat config
 
 So what can we do with this repository? Well, nothing much right now. Git won't let us modify the repository because it doesn't have a working tree to modify. (Note: this isn't strictly true. We could painstakingly use Git's low-level commands to manually create and store objects in Git's data store, but that is beyond the scope of this guide. If you're _really_ interested, read [_Git Internals - Git Objects_](http://git-scm.com/book/en/Git-Internals-Git-Objects)).
 
-<pre class="no-highlight">$ touch README
+<pre>$ touch README
 $ git add README
 fatal: This operation must be run in a work tree</pre>
 
@@ -526,7 +526,7 @@ The `git clone` command is really just a shortcut which does a few things for yo
 
 The `clone` command takes a URL and supports a number of transport protocols including HTTP, SSH, and Git's own protocol. It also supports plain old file paths, which is what we'll use.
 
-<pre class="no-highlight">$ cd ..
+<pre>$ cd ..
 $ git clone bare-repo/ clone-of-bare-repo
 Cloning into 'clone-of-bare-repo'...
 warning: You appear to have cloned an empty repository.
@@ -534,7 +534,7 @@ done.</pre>
 
 Let's inspect this cloned repository to see how Git has set it up.
 
-<pre class="no-highlight">$ cd clone-of-bare-repo/
+<pre>$ cd clone-of-bare-repo/
 $ find . -type f
 ./.git/info/exclude
 ./.git/hooks/commit-msg.sample
@@ -577,7 +577,7 @@ Below that is a `branch` listing. This is the configuration for a _remote-tracki
 
 We've just cloned a completely empty repository, and we want to start working on it.
 
-<pre class="no-highlight">$ echo 'Project v1.0' &gt; README
+<pre>$ echo 'Project v1.0' &gt; README
 $ git add README
 $ git commit -m "Add readme"
 [master (root-commit) 5d591d5] Add readme
@@ -586,12 +586,12 @@ $ git commit -m "Add readme"
 
 Notice that even though it didn't _technically_ exist (there was nothing in `.git/refs/heads`), this commit has been made to the `master` branch. That's because the `HEAD` of this repository pointed to `master`, so Git has gone ahead and created the branch for us.
 
-<pre class="no-highlight">$ cat .git/refs/heads/master
+<pre>$ cat .git/refs/heads/master
 5d591d5fafd538610291f45bec470d1b4e77891e</pre>
 
 Now that we've completed some work, we need to share this with our collaborators who have also cloned this repository. Git makes this really easy.
 
-<pre class="no-highlight">$ git push origin master
+<pre>$ git push origin master
 Counting objects: 3, done.
 Writing objects: 100% (3/3), 231 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
@@ -602,7 +602,7 @@ Notice how we specified both the remote (`origin`) and the branch (`master`) tha
 
 So, let's take a look at the remote repository to see what happened.
 
-<pre class="no-highlight">$ cd ../bare-repo/
+<pre>$ cd ../bare-repo/
 $ cat refs/heads/master
 5d591d5fafd538610291f45bec470d1b4e77891e
 
@@ -629,7 +629,7 @@ Essentially what happened when we ran `git push`, is Git updated the remote's 
 
 As we saw in _Cloning_, a remote-tracking branch is essentially just a few lines in `.git/config`. Let's take a look at those lines again.
 
-<pre class="no-highlight">[branch "master"]
+<pre>[branch "master"]
     remote = origin
     merge = refs/heads/master</pre>
 
@@ -645,36 +645,36 @@ The `git fetch` command is fairly simple. It takes the name of a remote (unless
 
 Recall what a remote's configuration looks like.
 
-<pre class="no-highlight">[remote "origin"]
+<pre>[remote "origin"]
     url = /home/demo/bare-repo/
     fetch = +refs/heads/*:refs/remotes/origin/*</pre>
 
 The `fetch` parameter here specifies a mapping of `<remote-refs>:<local-refs>`. The example above simply states that the references found in origin's `refs/heads/*` should be stored locally in `refs/remotes/origin/*`. We can see this in the repository that we cloned earlier.
 
-<pre class="no-highlight">$ ls -l .git/refs/remotes/origin/
+<pre>$ ls -l .git/refs/remotes/origin/
 total 4
 -rw-rw-r-- 1 demo demo 41 May 31 14:12 master</pre>
 
 Let's see a fetch in action to get a better idea of what happens. First, we'll create a new branch on the remote repository.
 
-<pre class="no-highlight">$ cd ../bare-repo/
+<pre>$ cd ../bare-repo/
 $ git branch feature-branch</pre>
 
 Now we'll run `git fetch` from the clone.
 
-<pre class="no-highlight">$ cd ../clone-of-bare-repo/
+<pre>$ cd ../clone-of-bare-repo/
 $ git fetch origin
 From /home/demo/bare-repo
  * [new branch] feature-branch -&gt; origin/feature-branch</pre>
 
 This has done a couple of things. First, it has created a reference for the remote branch in `.git/refs/remotes/origin`.
 
-<pre class="no-highlight">$ cat .git/refs/remotes/origin/feature-branch
+<pre>$ cat .git/refs/remotes/origin/feature-branch
 5d591d5fafd538610291f45bec470d1b4e77891e</pre>
 
 It has also updated a special file, `.git/FETCH_HEAD` with some important information. We'll talk about this file in more detail soon.
 
-<pre class="no-highlight">$ cat .git/FETCH_HEAD
+<pre>$ cat .git/FETCH_HEAD
 5d591d5fafd538610291f45bec470d1b4e77891e branch 'master' of /home/demo/bare-repo
 5d591d5fafd538610291f45bec470d1b4e77891e not-for-merge branch 'feature-branch' of /home/demo/bare-repo</pre>
 
@@ -682,21 +682,21 @@ What is _hasn't_ done is created a local branch. This is because Git understan
 
 But what if we _do_ want a local branch which tracks the remote `feature-branch`? Git makes this easy. If we run `git checkout feature-branch`, rather than failing because no local `feature-branch` exists, Git will see that there is a remote `feature-branch` available and create a local branch for us.
 
-<pre class="no-highlight">$ git checkout feature-branch
+<pre>$ git checkout feature-branch
 
 Branch feature-branch set up to track remote branch feature-branch from origin.
 Switched to a new branch 'feature-branch'</pre>
 
 Git has done a couple of things for us here. First, it has created a local `feature-branch` reference which points to the same commit as the remote `feature-branch`.
 
-<pre class="no-highlight">$ cat .git/refs/remotes/origin/feature-branch
+<pre>$ cat .git/refs/remotes/origin/feature-branch
 5d591d5fafd538610291f45bec470d1b4e77891e
 $ cat .git/refs/heads/feature-branch
 5d591d5fafd538610291f45bec470d1b4e77891e</pre>
 
 It has also created a remote-tracking branch entry in `.git/config`.
 
-<pre class="no-highlight">$ cat .git/config
+<pre>$ cat .git/config
 [core]
     repositoryformatversion = 0
     filemode = true
@@ -724,7 +724,7 @@ At this point, it helps to understand Git's `FETCH_HEAD`. Every time you run `
 
 Let's introduce some new commits to our remote repository so that we can see this in practice.
 
-<pre class="no-highlight">$ git clone bare-repo/ new-clone-of-bare-repo
+<pre>$ git clone bare-repo/ new-clone-of-bare-repo
 Cloning into 'new-clone-of-bare-repo'...
 done.
 
@@ -746,7 +746,7 @@ To /home/demo/bare-repo/
 
 Now, using the steps outlined earlier, let's manually perform a `git pull` on the other clone to pull in the changes we just introduced.
 
-<pre class="no-highlight">$ cd ../clone-of-bare-repo/
+<pre>$ cd ../clone-of-bare-repo/
 $ git fetch origin
 remote: Counting objects: 5, done.
 remote: Total 3 (delta 0), reused 0 (delta 0)
@@ -759,14 +759,14 @@ $ cat .git/FETCH_HEAD
 
 At this point, Git has updated our local copy of the remote branch, and updated the information in `FETCH_HEAD`.
 
-<pre class="no-highlight">$ cat .git/refs/heads/feature-branch
+<pre>$ cat .git/refs/heads/feature-branch
 5d591d5fafd538610291f45bec470d1b4e77891e
 $ cat .git/refs/remotes/origin/feature-branch
 7cd83c29d7360dfc432d556fdbf03eb83ec5158d</pre>
 
 We know from `FETCH_HEAD` that the fetch introduced some changes to `feature-branch`. So all that's left to do to complete the "pull" is perform a merge.
 
-<pre class="no-highlight">$ git merge FETCH_HEAD
+<pre>$ git merge FETCH_HEAD
 Updating 5d591d5..7cd83c2
 Fast-forward
  README | 1 +
@@ -774,7 +774,7 @@ Fast-forward
 
 And that's it -- we've just performed a `git pull` without actually running `git pull`. Of course, it is much easier to let Git take care of these details. Just to be sure that the outcome is the same, we can run `git pull` as well.
 
-<pre class="no-highlight">$ git reset --hard HEAD^1
+<pre>$ git reset --hard HEAD^1
 HEAD is now at 5d591d5 Add readme
 $ git pull origin feature-branch
 From /home/demo/bare-repo
@@ -794,7 +794,7 @@ Whenever you make a change in Git that affects the tip of a branch, Git records
 
 Let's say you have a repository with a few commits.
 
-<pre class="no-highlight">$ git log --oneline
+<pre>$ git log --oneline
 d6f2a84 Add empty LICENSE file
 51c4b49 Add some actual content to readme
 3413f46 Add TODO note to readme
@@ -802,18 +802,18 @@ d6f2a84 Add empty LICENSE file
 
 You decide, for some reason, to perform a destructive action on your `master` branch.
 
-<pre class="no-highlight">$ git reset --hard 3413f46
+<pre>$ git reset --hard 3413f46
 HEAD is now at 3413f46 Add TODO note to readme</pre>
 
 Since performing this action, you've realised that you lost some commits and you have no idea what their hashes were. You never pushed the changes; they were only in your local repository. `git log` is no help, since the commits are no longer reachable from `HEAD`.
 
-<pre class="no-highlight">$ git log --oneline
+<pre>$ git log --oneline
 3413f46 Add TODO note to readme
 322c826 Add empty readme</pre>
 
 This is where `git reflog` can be useful.
 
-<pre class="no-highlight">$ git reflog
+<pre>$ git reflog
 3413f46 HEAD@{0}: reset: moving to 3413f46
 d6f2a84 HEAD@{1}: commit: Add empty LICENSE file
 51c4b49 HEAD@{2}: commit: Add some actual content to readme
@@ -836,7 +836,7 @@ By this analogy, `git fsck` is aptly named after `fsck` ("file system check"). T
 
 When a reference (like a branch) is deleted from Git's index, the object(s) they refer to usually aren't deleted, even if they are no longer reachable by any other references. Using a simple example, we can see this in practice. Here we have a branch, `feature-branch`, which points at `f71bb43`. If we delete `feature-branch`, the commit will no longer be reachable.
 
-<pre class="no-highlight">$ git branch
+<pre>$ git branch
   feature-branch
 * master
 $ git rev-parse --short feature-branch
@@ -846,7 +846,7 @@ Deleted branch feature-branch (was f71bb43).</pre>
 
 At this point, commit `f71bb43` still exists in our repository, but there are no references pointing to it. By searching through the database, `git fsck` is able to find it.
 
-<pre class="no-highlight">$ git fsck --lost-found
+<pre>$ git fsck --lost-found
 Checking object directories: 100% (256/256), done.
 dangling commit f71bb43907bffe0bce2967504341a0ece7a8cb68</pre>
 
@@ -858,7 +858,7 @@ For simple cases, `git reflog` may be preferred. Where `git fsck` excels over `g
 
 This seems fairly simple at first, but the mechanism behind the `stash` command is actually quite complex. Let's build a simple repository to see how it works.
 
-<pre class="no-highlight">$ git init
+<pre>$ git init
 Initialised empty Git repository in /home/demo/demo-repo/.git/
 $ echo 'Foo' &gt; test.txt
 $ git add test.txt
@@ -869,19 +869,19 @@ $ git commit -m "Initial commit"
 
 Now let's make some changes, and stash them.
 
-<pre class="no-highlight">$ echo 'Bar' &gt;&gt; test.txt
+<pre>$ echo 'Bar' &gt;&gt; test.txt
 $ git stash
 Saved working directory and index state WIP on master: 2522332 Initial commit
 HEAD is now at 2522332 Initial commit</pre>
 
 Stashes in Git are put onto a stack, with the most recently-stashed on top. You can list all current stashes with `git stash list`.
 
-<pre class="no-highlight">$ git stash list
+<pre>$ git stash list
 stash@{0}: WIP on master: 2522332 Initial commit</pre>
 
 Right now we only have one stash: `stash@{0}`. This is actually a reference, which we can inspect.
 
-<pre class="no-highlight">$ git show stash@{0}
+<pre>$ git show stash@{0}
 commit f949b46a417a4f1595a9d12773c89cce4454a958
 Merge: 2522332 1fbe1cc
 Author: Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt;
@@ -899,7 +899,7 @@ index bc56c4d,bc56c4d..3b71d5b
 
 From this we can see that the stash is pointing to a commit object. What's interesting is that the stash commit is a **merge commit**. We'll look into that in a bit, but first: where _is_ this commit?
 
-<pre class="no-highlight">$ git log --oneline
+<pre>$ git log --oneline
 2522332 Initial commit
 
 $ git branch
@@ -912,7 +912,7 @@ It's not in the current branch, and there are no other branches it could be in. 
 
 The answer is simple: Git creates a special reference for the stash which isn't seen by commands like `git branch` and `git tag`. This reference lives in `.git/refs/stash`. We can verify this with `git show-ref`.
 
-<pre class="no-highlight">$ git show-ref
+<pre>$ git show-ref
 25223321ec2fbcb718b7fbf99485f1cb4d2f2042 refs/heads/master
 f949b46a417a4f1595a9d12773c89cce4454a958 refs/stash</pre>
 
@@ -934,7 +934,7 @@ This can be helpful for things like build and release scripts, as well as figuri
 
 `git describe` will take any reference or commit hash, and return the name of the most recent tag. If the tag points at the commit you gave it, `git describe` will return only the tag name. Otherwise, it will suffix the tag name with some information including the number of commits since the tag and an abbreviation of the commit hash.
 
-<pre class="no-highlight">$ git describe v1.2.15
+<pre>$ git describe v1.2.15
 v1.2.15
 $ git describe 2db66f
 v1.2.15-80-g2db66f5
@@ -942,14 +942,14 @@ v1.2.15-80-g2db66f5
 
 If you want to ensure that only the tag name is returned, you can force Git to remove the suffix by passing `--abbrev=0`.
 
-<pre class="no-highlight">$ git describe --abbrev=0 2db66f
+<pre>$ git describe --abbrev=0 2db66f
 v1.2.15</pre>
 
 ### git-rev-parse
 
 `git rev-parse` is an ancillary plumbing command which takes a wide range of inputs and returns one or more commit hashes. The most common use case is figuring out which commit a tag or branch points to.
 
-<pre class="no-highlight">$ git rev-parse v1.2.15
+<pre>$ git rev-parse v1.2.15
 2a46f5e2fbe83ccb47a1cd42b81f815f2f36ee9d
 $ git rev-parse --short v1.2.15
 2a46f5e</pre>
@@ -958,7 +958,7 @@ $ git rev-parse --short v1.2.15
 
 `git bisect` is an indispensable tool when you need to figure out which commit introduced a breaking change. The `bisect` command does a binary search through your commit history to help you find the breaking change as quickly as possible. To get started, simply run `git bisect start`, and tell Git that the commit you're currently on is broken with `git bisect bad`. Then, you can give Git a commit that you know is working with `git bisect good <commit>`.
 
-<pre class="no-highlight">$ git bisect start
+<pre>$ git bisect start
 $ git bisect bad
 $ git bisect good v1.2.15
 Bisecting: 41 revisions left to test after this (roughly 5 steps)
@@ -966,7 +966,7 @@ Bisecting: 41 revisions left to test after this (roughly 5 steps)
 
 Git will then checkout a commit and ask you to test whether it's broken or not. If the commit is broken, run `git bisect bad`. If the commit is fine, run `git bisect good`. After doing this a few times, Git will be able to pinpoint the commit which first introduced the breaking change.
 
-<pre class="no-highlight">$ git bisect bad
+<pre>$ git bisect bad
 e145a8df72f309d5fb80eaa6469a6148b532c821 is the first bad commit</pre>
 
 Once the `bisect` is finished (or when you want to abort it), be sure to run `git bisect reset` to reset `HEAD` to where it was before the `bisect`.

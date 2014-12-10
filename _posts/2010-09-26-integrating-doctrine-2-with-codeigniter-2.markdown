@@ -41,7 +41,7 @@ Setting up Doctrine as a CodeIgniter library is fairly simple:
 1.  Put the Doctrine directory into application/libraries (so that you have a application/libraries/Doctrine directory).
 2.  Create the file application/libraries/Doctrine.php. This will be our Doctrine bootstrap as well as the library that CodeIgniter loads.
 3.  Copy the following code into Doctrine.php:
-<pre class="highlight-php">&lt;?php
+<pre>&lt;?php
 
 use Doctrine\Common\ClassLoader,
     Doctrine\ORM\Tools\Setup,
@@ -91,7 +91,7 @@ There are some parts of this file that you might like to modify to suit your nee
 
 **Lines 34-37:**
 
-<pre class="highlight-php">$models_namespace = 'Entity';
+<pre>$models_namespace = 'Entity';
 $models_path = APPPATH . 'models';
 $proxies_dir = APPPATH . 'models/Proxies';
 $metadata_paths = array(APPPATH . 'models');</pre>
@@ -100,7 +100,7 @@ These lines determine where you need to put your model files, and how you instan
 
 **Line 40**
 
-<pre class="highlight-php">$config = Setup::createAnnotationMetadataConfiguration($metadata_paths, $dev_mode = true, $proxies_dir);</pre>
+<pre>$config = Setup::createAnnotationMetadataConfiguration($metadata_paths, $dev_mode = true, $proxies_dir);</pre>
 
 This line uses Doctrine's `Setup` class to automatically create the metadata configuration. The [Metadata Driver](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/metadata-drivers.html) is what Doctrine uses to interpret your models and map them to the database. In this tutorial I have used the [Annotations Driver](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/annotations-reference.html). If you would like to use a different metadata driver, change `createAnnotationMetadataConfiguration` to one of the methods below:
 
@@ -125,17 +125,17 @@ For more advanced configuration, read the [Configuration](http://docs.doctrine-p
 
 Doctrine can now be loaded in the same way as any other CodeIgniter library:
 
-<pre class="highlight-php">$this-&gt;load-&gt;library('doctrine');</pre>
+<pre>$this-&gt;load-&gt;library('doctrine');</pre>
 
 Once the Doctrine library is loaded, you can retrieve the Entity Manage like so:
 
-<pre class="highlight-php">$em = $this-&gt;doctrine-&gt;em;</pre>
+<pre>$em = $this-&gt;doctrine-&gt;em;</pre>
 
 ## Defining Models
 
 Building models using the AnnotationDriver is simple. You can build your classes as if they were regular PHP classes, and define the Doctrine metadata in Docblock annotations.
 
-<pre class="highlight-php">&lt;?php
+<pre>&lt;?php
 
 namespace Entity;
 
@@ -160,7 +160,7 @@ For a full list of the available annotations and their uses, see the [Annotation
 
 Below are two sample entities that show a basic one-to-many relationship:
 
-<pre class="highlight-php">&lt;?php
+<pre>&lt;?php
 
 namespace Entity;
 
@@ -231,7 +231,7 @@ class Group
 
 It is important to note that any mapped properties on your Entities need to be either `private` or `protected`, otherwise [lazy-loading might not work as expected](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/architecture.html#entities). This means that it is necessary to use Java-styled getter and setter methods:
 
-<pre class="highlight-php">public function setUsername($username)
+<pre>public function setUsername($username)
 {
     $this-&gt;username = $username;
 }
@@ -249,7 +249,7 @@ This step is optional, however the Doctrine Console has some very useful command
 
 All you need to do is create the file application/doctrine.php and copy the following code into it:
 
-<pre class="highlight-php">&lt;?php
+<pre>&lt;?php
 
 define('APPPATH', dirname(__FILE__) . '/');
 define('BASEPATH', APPPATH . '/../system/');
@@ -294,7 +294,7 @@ If you run the Doctrine console with no arguments, you will be presented with a 
 
 Once your models are set up and your database is built, you can access your models using the Doctrine EntityManager. I like shortcuts, so I always instantiate the EntityManager in MY_Controller:
 
-<pre class="highlight-php">&lt;?php
+<pre>&lt;?php
 
 class MY_Controller extends Controller
 {
@@ -314,7 +314,7 @@ class MY_Controller extends Controller
 
 Instead of the longer `$this->doctrine->em`, this will allow you to access the EntityManager using `$this->em`:
 
-<pre class="highlight-php">$user = new Entity\User;
+<pre>$user = new Entity\User;
 $user-&gt;setUsername('Joseph');
 $user-&gt;setPassword('secretPassw0rd');
 $user-&gt;setEmail('josephatwildlyinaccuratedotcom');

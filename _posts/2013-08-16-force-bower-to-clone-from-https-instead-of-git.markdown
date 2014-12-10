@@ -18,4 +18,4 @@ Most Bower packages will be fetched using a git:// URL, which connects on port 9
 
 You can get around this quite easily by telling Git to always use https:// instead of git://:
 
-<pre class="no-highlight">git config --global url.https://.insteadOf git://</pre>
+<pre>git config --global url.https://.insteadOf git://</pre>
