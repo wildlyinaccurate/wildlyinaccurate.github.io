@@ -18,14 +18,14 @@ I came across this recently while I was developing a module for PyroCMS. Some of
 
 The symptom? When using the SchemaTool to create, update, or drop the schema; an exception is thrown:
 
-<pre class="no-highlight">**Fatal error**: Uncaught exception 'Doctrine\DBAL\DBALException' with message 'Unknown database type enum requested, Doctrine\DBAL\Platforms\MySqlPlatform may not support it.'</pre>
+<pre>**Fatal error**: Uncaught exception 'Doctrine\DBAL\DBALException' with message 'Unknown database type enum requested, Doctrine\DBAL\Platforms\MySqlPlatform may not support it.'</pre>
 
 Thankfully, the fix is very easy. There is even a [Doctrine Cookbook article](http://www.doctrine-project.org/docs/orm/2.1/en/cookbook/mysql-enums.html) about it. All you have to do is register the ENUM type as a Doctrine varchar (string):
 
-<pre class="highlight-php">/** @var $em \Doctrine\ORM\EntityManager */
+<pre>/** @var $em \Doctrine\ORM\EntityManager */
 $platform = $em-&gt;getConnection()-&gt;getDatabasePlatform();
 $platform-&gt;registerDoctrineTypeMapping('enum', 'string');</pre>
 
 This fix can be applied to any unsupported data type, for example SET (which is also used in PyroCMS):
 
-<pre class="highlight-php">$platform-&gt;registerDoctrineTypeMapping('set', 'string');</pre>
+<pre>$platform-&gt;registerDoctrineTypeMapping('set', 'string');</pre>

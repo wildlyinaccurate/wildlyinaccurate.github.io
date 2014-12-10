@@ -17,13 +17,13 @@ author: Joseph Wynn
 
 If you've used Linode's LISH console to get remote access to your server, you're probably familiar with the way the console wraps everything to 60x20 (columns x rows) - even when you're connected via ssh in a much larger terminal.
 
-{% responsive_image path: assets/lishwrap1.png alt: "LISH Wrapping" %} Everything looks fine until...
+{% responsive_image path: assets/lishwrap1.png %} Everything looks fine until...
 
-{% responsive_image path: assets/lishwrap2.png alt: "LISH Wrapping" %} ... The terminal wraps on itself
+{% responsive_image path: assets/lishwrap2.png %} ... The terminal wraps on itself
 
 <p>Luckily, the fix is easy. The LISH console is essentially emulating a raw serial port connected to the server. The serial port itself has no natural size, so the terminal gives it a default safe size (60x20). We can tell the terminal to change this size, using the [`stty`](http://unixhelp.ed.ac.uk/CGI/man-cgi?stty) command:
 
-<pre class="highlight-bash">stty cols 200 rows 75</pre>
+<pre>stty cols 200 rows 75</pre>
 
 It's as simple as that. Just set the `cols` and `rows` values to whatever size suits you.
 

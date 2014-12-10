@@ -36,7 +36,7 @@ And there you have it. Setting uri_protocol to PATH_INFO and enabling query stri
 
 Note: It is considered good practice to extend core classes rather than modify them. I highly recommend doing this, as it will prevent your changes from being overwritten when you update CodeIgniter. To extend the CI_Config class, create the file `application/core/MY_Config.php` and paste the following code into it:
 
-<pre class="highlight-php">class MY_Config extends CI_Config
+<pre>class MY_Config extends CI_Config
 {
     /**
      * Site URL

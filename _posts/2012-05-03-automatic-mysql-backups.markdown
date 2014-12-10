@@ -14,7 +14,7 @@ author: Joseph Wynn
 
 It's really easy to set up automatic MySQL backups using `mysqldump`. First, you need to set up a user with `SELECT` and `LOCK TABLES` privileges. In this example the user doesn't have a password.
 
-<pre class="highlight-sql">CREATE USER 'autobackup'@'localhost';
+<pre>CREATE USER 'autobackup'@'localhost';
 GRANT SELECT, LOCK TABLES ON *.* TO 'autobackup'@'localhost';</pre>
 
 Next create the cron job with `crontab -e`. This job is set to run every day at 5:20am.

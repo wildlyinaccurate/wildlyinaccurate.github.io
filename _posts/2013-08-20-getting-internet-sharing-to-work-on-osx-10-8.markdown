@@ -19,11 +19,11 @@ I noticed that the Internet Sharing functionality didn't work on my Macbook Air 
 
 For me, the fix was pretty simple. Edit `/etc/com.apple.named.proxy.conf` by running `sudo nano /etc/com.apple.named.proxy.conf` in a terminal, and change
 
-<pre class="no-highlight">forward first;</pre>
+<pre>forward first;</pre>
 
 to
 
-<pre class="no-highlight">forward only;</pre>
+<pre>forward only;</pre>
 
 Then turn Internet Sharing off and on again.
 

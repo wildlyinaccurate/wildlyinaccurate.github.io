@@ -17,7 +17,7 @@ author: Joseph Wynn
 
 Using Node.js* you can run a simple "HTTP status as a service" server. This can be useful for quickly checking whether your application handles various status codes.
 
-<pre class="highlight-javascript">var http = require('http');
+<pre>var http = require('http');
 
 http.createServer(function (request, response) {
   var status = request.url.substr(1);
@@ -32,7 +32,7 @@ http.createServer(function (request, response) {
 
 This will create a server on port 5000, or any port that you specify in the `PORT` environment variable. It will respond to `/{CODE}` and return the HTTP status that corresponds to `{CODE}`. Here's a couple of examples:
 
-<pre class="no-highlight">$ curl -i http://127.0.0.1:5000/500
+<pre>$ curl -i http://127.0.0.1:5000/500
 HTTP/1.1 500 Internal Server Error
 Content-Type: text/plain
 Date: Mon, 30 Sep 2013 14:10:10 GMT
@@ -40,7 +40,7 @@ Connection: keep-alive
 Transfer-Encoding: chunked
 
 Internal Server Error%</pre>
-<pre class="no-highlight">$ curl -i http://127.0.0.1:5000/404
+<pre>$ curl -i http://127.0.0.1:5000/404
 HTTP/1.1 404 Not Found
 Content-Type: text/plain
 Date: Mon, 30 Sep 2013 14:10:32 GMT

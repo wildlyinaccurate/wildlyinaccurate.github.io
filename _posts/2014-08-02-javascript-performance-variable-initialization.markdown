@@ -18,7 +18,7 @@ Initializing variables properly in JavaScript can have significant performance 
 
 ### notype.js
 
-<pre class="highlight-js">var x = null;
+<pre>var x = null;
 
 for (var i = 0; i &lt; 1e8; i++) {
     x = 1 + x;
@@ -26,7 +26,7 @@ for (var i = 0; i &lt; 1e8; i++) {
 
 ### withtype.js
 
-<pre class="highlight-js">var x = 0;
+<pre>var x = 0;
 
 for (var i = 0; i &lt; 1e8; i++) {
     x = 1 + x;
@@ -34,7 +34,7 @@ for (var i = 0; i &lt; 1e8; i++) {
 
 ### Benchmark Results
 
-<pre class="no-highlight">$ time node notype.js
+<pre>$ time node notype.js
 node notype.js  **0.30s** user 0.01s system 100% cpu 0.301 total
 
 $ time node withtype.js
@@ -46,7 +46,7 @@ Running these scripts again with V8's profiler enabled, we can gain some additio
 
 ### notype.js
 
-<pre class="no-highlight"> [JavaScript]:
+<pre> [JavaScript]:
    ticks  total  nonlib   name
     181   63.3%   71.8%  LazyCompile: * /home/joseph/dev/jsperf/var_init_value/notype.js:1
      68   23.8%   27.0%  Stub: BinaryOpStub_ADD_Alloc_SMI
@@ -56,7 +56,7 @@ Running these scripts again with V8's profiler enabled, we can gain some additio
 
 ### withtype.js
 
-<pre class="no-highlight"> [JavaScript]:
+<pre> [JavaScript]:
    ticks  total  nonlib   name
      72   66.7%   98.6%  LazyCompile: * /home/joseph/dev/jsperf/var_init_value/withtype.js:1
       1    0.9%    1.4%  LazyCompile: RegExpConstructor native regexp.js:86</pre>

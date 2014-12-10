@@ -25,7 +25,7 @@ Usage: `orm:validate-schema`
 
 Example output:
 
-<pre class="no-highlight">[Mapping]  FAIL - The entity-class 'modelsAlbum' mapping is invalid:
+<pre>[Mapping]  FAIL - The entity-class 'modelsAlbum' mapping is invalid:
 * The mappings modelsAlbum#tracks and modelsSong#album are incosistent with each other.
 
 [Mapping]  FAIL - The entity-class 'modelsGenre' mapping is invalid:
