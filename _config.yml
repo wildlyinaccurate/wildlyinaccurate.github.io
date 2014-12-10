@@ -37,7 +37,6 @@ responsive_image:
     - width: 1680
     - width: 1840
 
-
 markdown: kramdown
 
 sass:
