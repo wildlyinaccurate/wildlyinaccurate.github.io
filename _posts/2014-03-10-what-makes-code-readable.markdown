@@ -43,7 +43,8 @@ Without even reading the content, the version on the right should appear more pl
 
 Breaking up large amounts of text into paragraphs is common practice in modern writing. Unfortunately, this practice doesn't seem to have been adopted by programmers. It's not uncommon to see code with no more than one sequential line break.
 
-<pre>while(index--) {
+```javascript
+while(index--) {
   digit = uid[index].charCodeAt(0);
   if (digit == 57 /*'9'*/) {
     uid[index] = 'A';
@@ -55,11 +56,13 @@ Breaking up large amounts of text into paragraphs is common practice in modern w
     uid[index] = String.fromCharCode(digit + 1);
     return uid.join('');
   }
-}</pre>
+}
+```
 
 The above is an excerpt from the [Mozilla Persona](https://github.com/mozilla/persona) source code. It's only 14 lines long, but you need to really engage your brain to read and understand it. Without some sort of paragraph structure, we have no way of knowing which lines are related, so we're forced to digest all 14 lines at once.
 
-<pre>while(index--) {
+```javascript
+while(index--) {
   digit = uid[index].charCodeAt(0);
 
   if (digit == 57 /*'9'*/) {
@@ -73,7 +76,8 @@ The above is an excerpt from the [Mozilla Persona](https://github.com/mozilla/p
     uid[index] = String.fromCharCode(digit + 1);
     return uid.join('');
   }
-}</pre>
+}
+```
 
 With only 2 extra line breaks, the code has been changed from a single 14-line block to three distinct blocks, with the largest being only 6 lines. With this added structure, it's much easier to figure out what each block does: Block #1 sets the value of `digit`. Block #2 handles the case of `digit` being 57. Block #3 handles the case of `digit` being 90, and every other case as well. The difference may be trivial in this example, but applied to larger blocks of code this technique can save hours of time trying to read code.
 
@@ -87,30 +91,38 @@ There aren't any solid rules on when to separate blocks of code. Usually you sho
 
 Writers will often use [plain language](http://en.wikipedia.org/wiki/Plain_language) to reduce the _idea density_ of their text. This enables readers to quickly skim over text rather than making an effort to understand complex language. Programmers can use similar techniques to reduce what I call the _line density_ of code. Lines become dense when they contain too much logic. A good example is a complex if-statement.
 
-<pre>if (x == 10 || x == 20 &amp;&amp; y == 2 || y == 5)</pre>
+```javascript
+if (x == 10 || x == 20 &amp;&amp; y == 2 || y == 5)
+```
 
 In this example, the reader must make a significant effort to determine that there are 3 possible "truth" conditions. The reason this requires so much effort is because we are required to read the line character-by-character until we find the `||`, which we know separates each condition.
 
-<pre>if (
+```javascript
+if (
   x == 10 ||
   x == 20 &amp;&amp; y == 2 ||
   y == 5
-)</pre>
+)
+```
 
 By moving each condition onto its own line, the overall line density is reduced, thereby reducing the mental effort required to identify the conditions.
 
 Line density also applies to function calls which take a large number of arguments.
 
-<pre>doSomething(longVariableName, process(anotherVariable), ['array', 'of', 'things'], getSomethingFrom(SOME_CONSTANT))</pre>
+```javascript
+doSomething(longVariableName, process(anotherVariable), ['array', 'of', 'things'], getSomethingFrom(SOME_CONSTANT))
+```
 
 This can be made more readable by moving each argument onto a separate line.
 
-<pre>doSomething(
+```javascript
+doSomething(
   longVariableName,
   process(anotherVariable),
   ['array', 'of', 'things'],
   getSomethingFrom(SOME_CONSTANT)
-)</pre>
+)
+```
 
 ## Other factors
 

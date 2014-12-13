@@ -17,8 +17,10 @@ My latest CodeIgniter 2 project requires that I use query strings in some of my 
 
 <!--more-->
 
-<pre>$config['uri_protocol'] = "PATH_INFO";
-$config['enable_query_strings'] = TRUE;</pre>
+```php
+$config['uri_protocol'] = "PATH_INFO";
+$config['enable_query_strings'] = TRUE;
+```
 
 You would expect that using this configuration would allow you to use query strings, while still using the PATH_INFO URI protocol for your segment-based URLs. In CodeIgniter 1 this would produce URLs like `example.com/users/profile?user=Joseph&edit=true`. CodeIgniter 2 however would produce `example.com/?users/profile?user=Joseph&edit=true` - and the reason for this becomes apparent when you compare CodeIgniter 2's CI_Config::site_url() method with the same method in CodeIgniter 1.
 
@@ -26,17 +28,22 @@ I'm sure their intentions were good, but it appears that the CodeIgniter team as
 
 Getting around this is a very simple task; only one line needs to be modified. In `system/core/Config.php`, change line 221 from:
 
-<pre>if ($this-&gt;item('enable_query_strings') == FALSE)</pre>
+```
+if ($this-&gt;item('enable_query_strings') == FALSE)
+```
 
 To:
 
-<pre>if ($this-&gt;item('enable_query_strings') == FALSE OR $this-&gt;item('uri_protocol') == 'PATH_INFO')</pre>
+```
+if ($this-&gt;item('enable_query_strings') == FALSE OR $this-&gt;item('uri_protocol') == 'PATH_INFO')
+```
 
 And there you have it. Setting uri_protocol to PATH_INFO and enabling query strings will allow you to have  attractive segment-based URLs and still make use of query strings.
 
 Note: It is considered good practice to extend core classes rather than modify them. I highly recommend doing this, as it will prevent your changes from being overwritten when you update CodeIgniter. To extend the CI_Config class, create the file `application/core/MY_Config.php` and paste the following code into it:
 
-<pre>class MY_Config extends CI_Config
+```php
+class MY_Config extends CI_Config
 {
     /**
      * Site URL
@@ -98,4 +105,5 @@ Note: It is considered good practice to extend core classes rather than modify t
             }
         }
     }
-}</pre>
+}
+```

@@ -19,13 +19,15 @@ There are several ways to set up virtual hosts on your web server. One of the mo
 
 Because all of my virtual hosts are sub-directories of my web server's base directory, I prefer to dynamically allocate the virtual host directory based on the host name. For example, I want wildlyinaccurate.localhost to point to /var/www/wildlyinaccurate. This can be achieved by modifying the .htaccess file of your web server's base directory:<!--more-->
 
-<pre>Options +FollowSymlinks
+```
+Options +FollowSymlinks
 RewriteEngine On
 RewriteBase /
 
 RewriteCond %{HTTP_HOST} ^([^\.]+)\.localhost$
 RewriteCond /var/www/%1 -d
-RewriteRule ^(.*)$ %1/$1 [L]</pre>
+RewriteRule ^(.*)$ %1/$1 [L]
+```
 
 Let me explain what this does:
 

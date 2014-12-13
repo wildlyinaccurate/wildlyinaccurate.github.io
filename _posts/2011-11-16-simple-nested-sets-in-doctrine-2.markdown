@@ -26,7 +26,8 @@ Unlike Doctrine 1 with it's NestedSet behaviour, there is no nested set function
 
 I tried all of these extensions, but none of them felt simple or lightweight enough for my application. What I wanted to do was have a Category entity which could have a tree of sub-categories, e.g:<!--more-->
 
-<pre>Food
+```
+Food
     Pizza
         Margherita
         La Reine
@@ -34,13 +35,15 @@ I tried all of these extensions, but none of them felt simple or lightweight eno
     Chocolate
         Dark
         Milk
-        White</pre>
+        White
+```
 
 The simplest way I found of doing this without using any extensions was to make use of <abbr title="Standard PHP Library">SPL</abbr>'s [RecursiveIterator](http://php.net/manual/en/class.recursiveiterator.php) and [RecursiveIteratorIterator](http://www.php.net/manual/en/class.recursiveiteratoriterator.php) classes. Here's the final code, to output a drop-down menu like this one:
 
-{% responsive_image path: assets/dropdown.png alt: "Hierarchical Dropdown" %}
+[{% responsive_image path: assets/dropdown.png "Hierarchical Dropdown")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/dropdown.png alt: "" %}
 
-<pre>/** @var $em \Doctrine\ORM\EntityManager */
+```php
+/** @var $em \Doctrine\ORM\EntityManager */
 $root_categories = $em-&gt;getRepository('Entity\Category')-&gt;findBy(array('parent_category' =&gt; null));
 
 $collection = new Doctrine\Common\Collections\ArrayCollection($root_categories);
@@ -50,11 +53,13 @@ $recursive_iterator = new RecursiveIteratorIterator($category_iterator, Recursiv
 foreach ($recursive_iterator as $index =&gt; $child_category)
 {
     echo '&lt;option value="' . $child_category-&gt;getId() . '"&gt;' . str_repeat('&amp;nbsp;&amp;nbsp;', $recursive_iterator-&gt;getDepth()) . $child_category-&gt;getTitle() . '&lt;/option&gt;';
-}</pre>
+}
+```
 
 Here's how it's done. Start out with an entity class that looks something like this:
 
-<pre>namespace Entity;
+```php
+namespace Entity;
 
 /**
  * @Entity
@@ -93,11 +98,13 @@ class Category
 
     // Getters and setters ...
 
-}</pre>
+}
+```
 
 Next, the RecursiveCategoryIterator class. I have written this to interface with Doctrine's Collection object, but it could easily be re-written to work with native PHP arrays (see [this note](http://www.php.net/manual/en/class.recursiveiterator.php#106034) in the PHP manual for an example of a RecursiveIterator class that uses native arrays).
 
-<pre>namespace Entity;
+```php
+namespace Entity;
 
 use Doctrine\Common\Collections\Collection;
 
@@ -146,7 +153,8 @@ class RecursiveCategoryIterator implements \RecursiveIterator
         $this-&gt;_data-&gt;first();
     }
 
-}</pre>
+}
+```
 
 That's everything! A very simple Nested Set behaviour in Doctrine 2 using only a simple RecursiveIterator class – no complicated extensions.
 
