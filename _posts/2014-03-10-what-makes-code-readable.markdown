@@ -43,7 +43,7 @@ Without even reading the content, the version on the right should appear more pl
 
 Breaking up large amounts of text into paragraphs is common practice in modern writing. Unfortunately, this practice doesn't seem to have been adopted by programmers. It's not uncommon to see code with no more than one sequential line break.
 
-```javascript
+```js
 while(index--) {
   digit = uid[index].charCodeAt(0);
   if (digit == 57 /*'9'*/) {
@@ -61,7 +61,7 @@ while(index--) {
 
 The above is an excerpt from the [Mozilla Persona](https://github.com/mozilla/persona) source code. It's only 14 lines long, but you need to really engage your brain to read and understand it. Without some sort of paragraph structure, we have no way of knowing which lines are related, so we're forced to digest all 14 lines at once.
 
-```javascript
+```js
 while(index--) {
   digit = uid[index].charCodeAt(0);
 
@@ -91,13 +91,13 @@ There aren't any solid rules on when to separate blocks of code. Usually you sho
 
 Writers will often use [plain language](http://en.wikipedia.org/wiki/Plain_language) to reduce the _idea density_ of their text. This enables readers to quickly skim over text rather than making an effort to understand complex language. Programmers can use similar techniques to reduce what I call the _line density_ of code. Lines become dense when they contain too much logic. A good example is a complex if-statement.
 
-```javascript
+```js
 if (x == 10 || x == 20 &amp;&amp; y == 2 || y == 5)
 ```
 
 In this example, the reader must make a significant effort to determine that there are 3 possible "truth" conditions. The reason this requires so much effort is because we are required to read the line character-by-character until we find the `||`, which we know separates each condition.
 
-```javascript
+```js
 if (
   x == 10 ||
   x == 20 &amp;&amp; y == 2 ||
@@ -109,13 +109,13 @@ By moving each condition onto its own line, the overall line density is reduced,
 
 Line density also applies to function calls which take a large number of arguments.
 
-```javascript
+```js
 doSomething(longVariableName, process(anotherVariable), ['array', 'of', 'things'], getSomethingFrom(SOME_CONSTANT))
 ```
 
 This can be made more readable by moving each argument onto a separate line.
 
-```javascript
+```js
 doSomething(
   longVariableName,
   process(anotherVariable),
