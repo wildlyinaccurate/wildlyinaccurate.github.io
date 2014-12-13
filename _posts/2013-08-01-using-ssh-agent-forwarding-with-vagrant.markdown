@@ -18,8 +18,10 @@ Sometimes you'll want to use your local SSH keys on your Vagrant boxes, so that 
 
 Setting this up is fairly straightforward. On the host machine, you need to add the following to `~/.ssh/config` (which you should create if it doesn't exist):
 
-<pre>host your.domain.com
-    ForwardAgent yes</pre>
+```
+host your.domain.com
+    ForwardAgent yes
+```
 
 You need to replace `your.domain.com` with either the domain or the IP address of your Vagrant box. You can wildcard this with `host *`, but this is a _really_ bad idea because it lets every server you SSH to access your keys.
 
@@ -27,6 +29,8 @@ Once you've done that, just run `ssh-add` to ensure you ensure your identities a
 
 Now, add the following to the config block in your Vagrantfile:
 
-<pre>config.ssh.forward_agent = true</pre>
+```ruby
+config.ssh.forward_agent = true
+```
 
 That's all it takes. You can make sure it worked by comparing the output of `ssh-add -L` on both the host machine and the guest box.

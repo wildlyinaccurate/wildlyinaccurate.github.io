@@ -25,13 +25,16 @@ So what is the prototype chain used for? When you request a property which the o
 
 Don't worry if this doesn't make sense yet. To see prototypes in action, let's take a look at the simplest example of a "class" within JavaScript, which is created with a function object:
 
-<pre>function Animal() {}
+```javascript
+function Animal() {}
 
-var animal = new Animal();</pre>
+var animal = new Animal();
+```
 
 We can add properties to the `Animal` class in two ways: either by setting them as _instance properties_, or by adding them to the `Animal` prototype.
 
-<pre>function Animal(name) {
+```javascript
+function Animal(name) {
     // Instance properties can be set on each instance of the class
     this.name = name;
 }
@@ -42,7 +45,8 @@ Animal.prototype.speak = function() {
 };
 
 var animal = new Animal('Monty');
-animal.speak(); // My name is Monty</pre>
+animal.speak(); // My name is Monty
+```
 
 The structure of the `Animal` object becomes clear when we inspect it in the console. We can see that the `name` property belongs to the object itself, while `speak` is part of the `Animal` prototype.
 
@@ -50,14 +54,16 @@ The structure of the `Animal` object becomes clear when we inspect it in the con
 
 Now let's look at how we can extend the `Animal` class to create a `Cat` class:
 
-<pre>function Cat(name) {
+```javascript
+function Cat(name) {
     Animal.call(this, name);
 }
 
 Cat.prototype = new Animal();
 
 var cat = new Cat('Monty');
-cat.speak(); // My name is Monty</pre>
+cat.speak(); // My name is Monty
+```
 
 What we are doing here is setting `Cat`'s prototype to an instance of `Animal`, so that `Cat` inherits all of `Animal's` properties. We're also using `Animal.call` to inherit the `Animal` constructor (sort of like `parent` or `super` in other languages). `call` is a special function which lets us call a function and specify the value of `this` _within that function_. So when `this.name` is set inside the `Animal` constructor, it's the `Cat`'s name property being set, not the `Animal`'s.
 

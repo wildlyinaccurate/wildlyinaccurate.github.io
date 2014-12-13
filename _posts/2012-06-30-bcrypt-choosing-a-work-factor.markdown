@@ -17,7 +17,9 @@ author: Joseph Wynn
 
 Bcrypt is a Blowfish-based hashing algorithm which is commonly used for password hashing because of its potentially expensive key setup phase. A Bcrypt hash has the following structure:
 
-<pre>$2a$(2 chars work)$(22 chars salt)(31 chars hash)</pre>
+```
+$2a$(2 chars work)$(22 chars salt)(31 chars hash)
+```
 
 The reason that the key setup phase can be potentially expensive is because it is run `2<sup>work</sup>` times. As password hashing is usually associated with common tasks like logging a user into a system, it's important to find the right balance between security and performance. Using a high work factor makes it incredibly difficult to execute a brute-force attack, but can put unnecessary load on the system.
 
@@ -27,7 +29,8 @@ Using [Marco Arment's PHP Bcrypt class](https://gist.github.com/1053158/), I per
 
 **Desktop Machine, Intel i3-2120 (Quad Core, 3.30GHz)**
 
-<pre>Work	Time (Seconds)
+```
+Work	Time (Seconds)
 4	0.0013326406478882
 5	0.0024385929107666
 6	0.0046159029006958
@@ -44,11 +47,13 @@ Using [Marco Arment's PHP Bcrypt class](https://gist.github.com/1053158/), I per
 17	9.0786491513252
 18	18.10820235014
 19	36.225910997391
-20	72.565172195435</pre>
+20	72.565172195435
+```
 
 **Linode Xen Instance (Shared Intel Xeon)**
 
-<pre>Work	Time (Seconds)
+```
+Work	Time (Seconds)
 4	0.0054517030715942
 5	0.0034224390983582
 6	0.0065383553504944
@@ -65,7 +70,8 @@ Using [Marco Arment's PHP Bcrypt class](https://gist.github.com/1053158/), I per
 17	14.522540104389
 18	30.156531906128
 19	58.399033403397
-20	117.1653290987</pre>
+20	117.1653290987
+```
 
 Marco's default work factor of 8 looks like a good place to start, taking 0.2 seconds on both the desktop and Xen instance. Personally I use a work factor of 12, which is fast enough to not be noticed and will (hopefully) still be strong in a few years. With a work factor of 14 you can start to see what kind of difference computational power makes - the desktop machine generates the hash nearly twice as fast as the Xen instance.
 

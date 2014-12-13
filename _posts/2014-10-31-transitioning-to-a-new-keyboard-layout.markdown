@@ -67,9 +67,11 @@ Rather than just trying to use the new layout for my day-to-day tasks, I've come
 
 Before I do anything else, I need to learn how to touch type with the new layout. At the moment I'm relying on a printed guide, which I constantly refer to in order to find the keys I want. To learn how to touch type, I'm going back to basics:
 
-<pre>The quick brown fox jumps over the lazy fox.
+```
 The quick brown fox jumps over the lazy fox.
-The quick brown fox jumps over the lazy fox.</pre>
+The quick brown fox jumps over the lazy fox.
+The quick brown fox jumps over the lazy fox.
+```
 
 In theory, the more I use each key, the less I'll have to look at my guide.
 

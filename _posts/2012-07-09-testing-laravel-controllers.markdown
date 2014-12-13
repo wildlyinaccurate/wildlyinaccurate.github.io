@@ -20,7 +20,8 @@ There are a two main things that tripped me up while I was writing functional te
 
 Laravel's Controller class has the `call()` method, which essentially makes a GET request to a controller method. In order to make POST requests, it's necessary to inject some extra parameters into the `HttpFoundation` components. To make this easier, I created a `ControllerTestCase` class with convenient `get()` and `post()` methods:<!--more-->
 
-<pre>abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
+```php
+abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
 {
 
     public function call($destination, $parameters = array(), $method = 'GET')
@@ -56,13 +57,15 @@ Laravel's Controller class has the `call()` method, which essentially makes a GE
         }
     }
 
-}</pre>
+}
+```
 
 Note that each POST request must be "cleaned" so that the POST data from previous requests isn't retained (thanks [wahyudinata](https://wildlyinaccurate.com/testing-laravel-controllers/comment-page-1#comment-4153) for this tip!).
 
 This makes it easy to write functional tests for Laravel controllers, for example checking the session for errors after a POST request:
 
-<pre>require_once('ControllerTestCase.php');
+```php
+require_once('ControllerTestCase.php');
 
 class AccountControllerTest extends ControllerTestCase
 {
@@ -90,11 +93,13 @@ class AccountControllerTest extends ControllerTestCase
         $this-&gt;assertNull($session_errors);
     }
 
-}</pre>
+}
+```
 
 But here is where the session state tripped me up. In `testSignupWithValidData`, the Laravel session state from `testSignupWithNoData` is retained and the test fails. To get around this, I simply reload the session before each test, in a `setUp` method in `ControllerTestCase`:
 
-<pre>abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
+```php
+abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
 {
 
     // ...
@@ -104,6 +109,7 @@ But here is where the session state tripped me up. In `testSignupWithValidData`,
         \Laravel\Session::load();
     }
 
-}</pre>
+}
+```
 
 And that's it! A fairly simple `ControllerTestCase` class which solves the POST request and session state problems. See this Gist for [the full code with comments](https://gist.github.com/3079291).

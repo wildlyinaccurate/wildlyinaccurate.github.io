@@ -18,44 +18,52 @@ What I want to talk about is a more specific variant of dishonest code: dishones
 
 Take this code, for example:
 
-<pre>$('a').click(function(e) {
+```js
+$('a').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
-});</pre>
+});
+```
 
 If you're not familiar with JavaScript events, `e.stopPropagation()` will stop this event from bubbling up to other event handlers. Now, what if somebody decides that the event _should_ bubble up? They might do something like this:
 
-<pre>--- a/example.js
+```diff
+--- a/example.js
 +++ b/example.js
 @@ -1,4 +1,4 @@
  $('a').click(function(e) {
 +    // Let the event bubble up to the next handler
 -    e.stopPropagation();
      e.preventDefault();
- });</pre>
+ });
+```
 
 This is pretty common practice; a developer will leave a comment so that the next person understands why the `e.stopPropagation()` is gone.<!--more-->
 
 So far this isn't too bad. But what happens when somebody changes their mind again, and doesn't want the event to bubble up anymore? Quite often, this is what happens:
 
-<pre>--- a/example.js
+```diff
+--- a/example.js
 +++ b/example.js
 @@ -1,4 +1,5 @@
  $('a').click(function(e) {
      // Let the event bubble up to the next handler
 +    e.stopPropagation();
      e.preventDefault();
- });</pre>
+ });
+```
 
 The `e.stopPropagation()` call is added back in, right where it was before. You can see the problem here: the comment explaining that the event will bubble up is still there.
 
 A lot of developers tend to ignore comments in code, especially comments that were written by somebody else. Modern text editors and IDEs are partly to blame for this, since their syntax highlighting tends to de-emphasise comments by greying them out.
 
-<pre>$('a').click(function(e) {
+```js
+$('a').click(function(e) {
     // Let the event bubble up to the next handler
     e.stopPropagation();
     e.preventDefault();
-});</pre>
+});
+```
 
 What we've ended up with is a comment which says one thing, and some code which does something _entirely different_. This is surprisingly common -- most codebases are absolutely _littered_ with dishonest comments.
 

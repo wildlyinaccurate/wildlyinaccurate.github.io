@@ -27,7 +27,9 @@ I could not find a command to load data from fixtures, so I made a very basic co
 
 In application/doctrine.php, add the following line anywhere after the chdir() command. Mine sits on line #5.
 
-<pre>require_once '../fixtures/Commands.php';</pre>
+```
+require_once '../fixtures/Commands.php';
+```
 
 And anywhere in the `$cli->addCommands` array, add: `new \Doctrine\ORM\Tools\Console\Command\LoadDataCommand(),`
 
@@ -47,7 +49,8 @@ application/fixtures/Commands.php is used to load our custom commands. For now, 
 
 Now in application/fixtures/Command/LoadDataCommand.php, copy the following code:
 
-<pre>&lt;?php
+```php
+&lt;?php
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,
@@ -143,6 +146,7 @@ EOT
         $output-&gt;write("Finished loading data ({$counter} files processed)" . PHP_EOL);
 
     }
-}</pre>
+}
+```
 
 Now all you need to do is create .sql files in application/fixtures and run the load-data command from the Doctrine Console. Note that on my system, the script catches a PDOException after it executes a SQL file. I can't work out where the exception is coming from but the script still manages to process all of the files so you can safely ignore it.
