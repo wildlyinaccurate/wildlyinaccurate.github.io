@@ -84,34 +84,14 @@ src/
 
 This would be represented by two tree objects: one for the root directory, and another for the `src/` directory. Here's what they would look like.
 
-**tree 4da454..**
+#### tree 4da454..
 
-<table border="1" cellpadding="8">
-<tbody>
-<tr>
-<td>blob</td>
-<td>976165..</td>
-<td>README</td>
-</tr>
-<tr>
-<td>tree</td>
-<td>81fc8b..</td>
-<td>src</td>
-</tr>
-</tbody>
-</table>
+| blob | 976165.. | README |
+| tree | 81fc8b.. | src    |
 
-**tree 81fc8b..**
+#### tree 81fc8b..
 
-<table border="1" cellpadding="8">
-<tbody>
-<tr>
-<td>blob</td>
-<td>1febef..</td>
-<td>hello.c</td>
-</tr>
-</tbody>
-</table>
+| blob | 1febef.. | hello.c |
 
 If we draw the blobs (in green) as well as the tree objects (in blue), we end up with a diagram that looks a lot like our directory structure.
 
