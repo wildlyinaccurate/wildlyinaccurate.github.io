@@ -17,7 +17,7 @@ author: Joseph Wynn
 
 Using Node.js* you can run a simple "HTTP status as a service" server. This can be useful for quickly checking whether your application handles various status codes.
 
-```javascript
+```js
 var http = require('http');
 
 http.createServer(function (request, response) {
