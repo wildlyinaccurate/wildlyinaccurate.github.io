@@ -41,8 +41,9 @@ Setting up Doctrine as a CodeIgniter library is fairly simple:
 1.  Put the Doctrine directory into application/libraries (so that you have a application/libraries/Doctrine directory).
 2.  Create the file application/libraries/Doctrine.php. This will be our Doctrine bootstrap as well as the library that CodeIgniter loads.
 3.  Copy the following code into Doctrine.php:
+
 ```php
-&lt;?php
+<?php
 
 use Doctrine\Common\ClassLoader,
     Doctrine\ORM\Tools\Setup,
@@ -61,14 +62,14 @@ class Doctrine
         require APPPATH . 'config/database.php';
 
         $connection_options = array(
-            'driver'        =&gt; 'pdo_mysql',
-            'user'          =&gt; $db['default']['username'],
-            'password'      =&gt; $db['default']['password'],
-            'host'          =&gt; $db['default']['hostname'],
-            'dbname'        =&gt; $db['default']['database'],
-            'charset'       =&gt; $db['default']['char_set'],
-            'driverOptions' =&gt; array(
-                'charset'   =&gt; $db['default']['char_set'],
+            'driver'        => 'pdo_mysql',
+            'user'          => $db['default']['username'],
+            'password'      => $db['default']['password'],
+            'host'          => $db['default']['hostname'],
+            'dbname'        => $db['default']['database'],
+            'charset'       => $db['default']['char_set'],
+            'driverOptions' => array(
+                'charset'   => $db['default']['char_set'],
             ),
         );
 
@@ -81,10 +82,10 @@ class Doctrine
 
         // Set $dev_mode to TRUE to disable caching while you develop
         $config = Setup::createAnnotationMetadataConfiguration($metadata_paths, $dev_mode = true, $proxies_dir);
-        $this-&gt;em = EntityManager::create($connection_options, $config);
+        $this->em = EntityManager::create($connection_options, $config);
 
         $loader = new ClassLoader($models_namespace, $models_path);
-        $loader-&gt;register();
+        $loader->register();
     }
 }
 ```
@@ -132,13 +133,13 @@ For more advanced configuration, read the [Configuration](http://docs.doctrine-p
 Doctrine can now be loaded in the same way as any other CodeIgniter library:
 
 ```php
-$this-&gt;load-&gt;library('doctrine');
+$this->load->library('doctrine');
 ```
 
 Once the Doctrine library is loaded, you can retrieve the Entity Manage like so:
 
 ```php
-$em = $this-&gt;doctrine-&gt;em;
+$em = $this->doctrine->em;
 ```
 
 ## Defining Models
@@ -146,7 +147,7 @@ $em = $this-&gt;doctrine-&gt;em;
 Building models using the AnnotationDriver is simple. You can build your classes as if they were regular PHP classes, and define the Doctrine metadata in Docblock annotations.
 
 ```php
-&lt;?php
+<?php
 
 namespace Entity;
 
@@ -173,7 +174,7 @@ For a full list of the available annotations and their uses, see the [Annotation
 Below are two sample entities that show a basic one-to-many relationship:
 
 ```php
-&lt;?php
+<?php
 
 namespace Entity;
 
@@ -248,12 +249,12 @@ It is important to note that any mapped properties on your Entities need to be e
 ```php
 public function setUsername($username)
 {
-    $this-&gt;username = $username;
+    $this->username = $username;
 }
 
 public function getUsername()
 {
-    return $this-&gt;username;
+    return $this->username;
 }
 ```
 
@@ -266,7 +267,7 @@ This step is optional, however the Doctrine Console has some very useful command
 All you need to do is create the file application/doctrine.php and copy the following code into it:
 
 ```php
-&lt;?php
+<?php
 
 define('APPPATH', dirname(__FILE__) . '/');
 define('BASEPATH', APPPATH . '/../system/');
@@ -284,11 +285,11 @@ foreach ($GLOBALS as $helperSetCandidate) {
 }
 
 $doctrine = new Doctrine;
-$em = $doctrine-&gt;em;
+$em = $doctrine->em;
 
 $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
-    'db' =&gt; new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em-&gt;getConnection()),
-    'em' =&gt; new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
+    'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),
+    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
 ));
 
 \Doctrine\ORM\Tools\Console\ConsoleRunner::run($helperSet);
@@ -313,7 +314,7 @@ If you run the Doctrine console with no arguments, you will be presented with a 
 Once your models are set up and your database is built, you can access your models using the Doctrine EntityManager. I like shortcuts, so I always instantiate the EntityManager in MY_Controller:
 
 ```php
-&lt;?php
+<?php
 
 class MY_Controller extends Controller
 {
@@ -325,9 +326,9 @@ class MY_Controller extends Controller
         parent::__construct();
 
         // Not required if you autoload the library
-        $this-&gt;load-&gt;library('doctrine');
+        $this->load->library('doctrine');
 
-        $this-&gt;em = $this-&gt;doctrine-&gt;em;
+        $this->em = $this->doctrine->em;
     }
 }
 ```
@@ -336,12 +337,12 @@ Instead of the longer `$this->doctrine->em`, this will allow you to access the E
 
 ```php
 $user = new Entity\User;
-$user-&gt;setUsername('Joseph');
-$user-&gt;setPassword('secretPassw0rd');
-$user-&gt;setEmail('josephatwildlyinaccuratedotcom');
+$user->setUsername('Joseph');
+$user->setPassword('secretPassw0rd');
+$user->setEmail('josephatwildlyinaccuratedotcom');
 
-$this-&gt;em-&gt;persist($user);
-$this-&gt;em-&gt;flush();
+$this->em->persist($user);
+$this->em->flush();
 ```
 
 ## Final Words

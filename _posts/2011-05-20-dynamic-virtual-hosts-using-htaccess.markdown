@@ -15,7 +15,7 @@ published: true
 author: Joseph Wynn
 ---
 
-There are several ways to set up virtual hosts on your web server. One of the more common methods is to manually create a [&lt;VirtualHost&gt;](http://httpd.apache.org/docs/2.0/mod/core.html#virtualhost) record for each virtual host. While using this method is fine, it can end you up with a huge configuration file that is difficult to manage.
+There are several ways to set up virtual hosts on your web server. One of the more common methods is to manually create a `[<VirtualHost>](http://httpd.apache.org/docs/2.0/mod/core.html#virtualhost)` record for each virtual host. While using this method is fine, it can end you up with a huge configuration file that is difficult to manage.
 
 Because all of my virtual hosts are sub-directories of my web server's base directory, I prefer to dynamically allocate the virtual host directory based on the host name. For example, I want wildlyinaccurate.localhost to point to /var/www/wildlyinaccurate. This can be achieved by modifying the .htaccess file of your web server's base directory:<!--more-->
 

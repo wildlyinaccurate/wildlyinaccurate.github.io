@@ -26,12 +26,12 @@ Thankfully, the fix is very easy. There is even a [Doctrine Cookbook article](ht
 
 ```php
 /** @var $em \Doctrine\ORM\EntityManager */
-$platform = $em-&gt;getConnection()-&gt;getDatabasePlatform();
-$platform-&gt;registerDoctrineTypeMapping('enum', 'string');
+$platform = $em->getConnection()->getDatabasePlatform();
+$platform->registerDoctrineTypeMapping('enum', 'string');
 ```
 
 This fix can be applied to any unsupported data type, for example SET (which is also used in PyroCMS):
 
 ```php
-$platform-&gt;registerDoctrineTypeMapping('set', 'string');
+$platform->registerDoctrineTypeMapping('set', 'string');
 ```
