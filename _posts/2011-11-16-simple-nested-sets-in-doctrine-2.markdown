@@ -44,15 +44,15 @@ The simplest way I found of doing this without using any extensions was to make 
 
 ```php
 /** @var $em \Doctrine\ORM\EntityManager */
-$root_categories = $em-&gt;getRepository('Entity\Category')-&gt;findBy(array('parent_category' =&gt; null));
+$root_categories = $em->getRepository('Entity\Category')->findBy(array('parent_category' => null));
 
 $collection = new Doctrine\Common\Collections\ArrayCollection($root_categories);
 $category_iterator = new Entity\RecursiveCategoryIterator($collection);
 $recursive_iterator = new RecursiveIteratorIterator($category_iterator, RecursiveIteratorIterator::SELF_FIRST);
 
-foreach ($recursive_iterator as $index =&gt; $child_category)
+foreach ($recursive_iterator as $index => $child_category)
 {
-    echo '&lt;option value="' . $child_category-&gt;getId() . '"&gt;' . str_repeat('&amp;nbsp;&amp;nbsp;', $recursive_iterator-&gt;getDepth()) . $child_category-&gt;getTitle() . '&lt;/option&gt;';
+    echo '<option value="' . $child_category->getId() . '">' . str_repeat('&amp;nbsp;&amp;nbsp;', $recursive_iterator->getDepth()) . $child_category->getTitle() . '</option>';
 }
 ```
 
@@ -93,7 +93,7 @@ class Category
 
     public function __construct()
     {
-        $this-&gt;child_categories = new \Doctrine\Common\Collections\ArrayCollection;
+        $this->child_categories = new \Doctrine\Common\Collections\ArrayCollection;
     }
 
     // Getters and setters ...
@@ -115,42 +115,42 @@ class RecursiveCategoryIterator implements \RecursiveIterator
 
     public function __construct(Collection $data)
     {
-        $this-&gt;_data = $data;
+        $this->_data = $data;
     }
 
     public function hasChildren()
     {
-        return ( ! $this-&gt;_data-&gt;current()-&gt;getChildCategories()-&gt;isEmpty());
+        return ( ! $this->_data->current()->getChildCategories()->isEmpty());
     }
 
     public function getChildren()
     {
-        return new RecursiveCategoryIterator($this-&gt;_data-&gt;current()-&gt;getChildCategories());
+        return new RecursiveCategoryIterator($this->_data->current()->getChildCategories());
     }
 
     public function current()
     {
-        return $this-&gt;_data-&gt;current();
+        return $this->_data->current();
     }
 
     public function next()
     {
-        $this-&gt;_data-&gt;next();
+        $this->_data->next();
     }
 
     public function key()
     {
-        return $this-&gt;_data-&gt;key();
+        return $this->_data->key();
     }
 
     public function valid()
     {
-        return $this-&gt;_data-&gt;current() instanceof \Entity\Category;
+        return $this->_data->current() instanceof \Entity\Category;
     }
 
     public function rewind()
     {
-        $this-&gt;_data-&gt;first();
+        $this->_data->first();
     }
 
 }

@@ -21,7 +21,7 @@ Initializing variables properly in JavaScript can have significant performance 
 ```js
 var x = null;
 
-for (var i = 0; i &lt; 1e8; i++) {
+for (var i = 0; i < 1e8; i++) {
     x = 1 + x;
 }
 ```
@@ -31,7 +31,7 @@ for (var i = 0; i &lt; 1e8; i++) {
 ```js
 var x = 0;
 
-for (var i = 0; i &lt; 1e8; i++) {
+for (var i = 0; i < 1e8; i++) {
     x = 1 + x;
 }
 ```

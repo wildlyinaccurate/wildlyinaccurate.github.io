@@ -50,7 +50,7 @@ application/fixtures/Commands.php is used to load our custom commands. For now, 
 Now in application/fixtures/Command/LoadDataCommand.php, copy the following code:
 
 ```php
-&lt;?php
+<?php
 namespace Doctrine\ORM\Tools\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument,
@@ -68,17 +68,17 @@ class LoadDataCommand extends Console\Command\Command
     protected function configure()
     {
         $this
-        -&gt;setName('load-data')
-        -&gt;setDescription(
+        ->setName('load-data')
+        ->setDescription(
             'Find and run all SQL files in the fixtures directory.'
         )
-        -&gt;setDefinition(array(
+        ->setDefinition(array(
             new InputArgument(
                 'fixtures-path', InputArgument::OPTIONAL,
                 'The path to the fixtures directory. If none is provided, the default (application/fixtures) will be used.'
             )
         ))
-        -&gt;setHelp(&lt;&lt;&lt;EOT
+        ->setHelp(<<<EOT
 Processes the schema and either create it directly on EntityManager Storage Connection or generate the SQL output.
 EOT
         );
@@ -89,17 +89,17 @@ EOT
      */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $em = $this-&gt;getHelper('em')-&gt;getEntityManager();
+        $em = $this->getHelper('em')->getEntityManager();
 
         // Process destination directory
-        if (($fixtures_path = $input-&gt;getArgument('fixtures-path')) === null) {
+        if (($fixtures_path = $input->getArgument('fixtures-path')) === null) {
             $fixtures_path = dirname(getcwd()) . '/fixtures';
         }
         $fixtures_path = realpath($fixtures_path);
 
         if ( ! is_dir($fixtures_path)) {
             throw new \InvalidArgumentException(
-                sprintf("Fixtures directory '&lt;info&gt;%s&lt;/info&gt;' does not exist.", $fixtures_path)
+                sprintf("Fixtures directory '<info>%s</info>' does not exist.", $fixtures_path)
             );
         }
 
@@ -108,42 +108,42 @@ EOT
 
         foreach (glob("{$fixtures_path}/*.sql") as $filename)
         {
-        	$output-&gt;write('Found file ' . basename($filename) . '.' . PHP_EOL);
+        	$output->write('Found file ' . basename($filename) . '.' . PHP_EOL);
         	$sql = file_get_contents($filename);
-        	$output-&gt;write('Loading ' . basename($filename) . '... ' . PHP_EOL);
+        	$output->write('Loading ' . basename($filename) . '... ' . PHP_EOL);
 
         	try
         	{
         		$errors = FALSE;
-        		$em-&gt;createNativeQuery($sql, $rsm)-&gt;execute();
+        		$em->createNativeQuery($sql, $rsm)->execute();
         	}
         	catch (\PDOException $e)
         	{
-        		$output-&gt;write(PHP_EOL . "\t \tError!\t");
-        		$output-&gt;write('Caught a PDOException. (' . $e-&gt;getMessage() . ')' . PHP_EOL);
-        		$output-&gt;write("\t \tAttempting to recover... ");
+        		$output->write(PHP_EOL . "\t \tError!\t");
+        		$output->write('Caught a PDOException. (' . $e->getMessage() . ')' . PHP_EOL);
+        		$output->write("\t \tAttempting to recover... ");
 
-        		if (is_numeric($e-&gt;getCode()))
+        		if (is_numeric($e->getCode()))
         		{
         			$errors = TRUE;
-        			$output-&gt;write('Unable to recover. ' . basename($filename) . ' was not fully loaded.');
+        			$output->write('Unable to recover. ' . basename($filename) . ' was not fully loaded.');
         		}
         		else
         		{
-        			$output-&gt;write('Recovery successful!');
+        			$output->write('Recovery successful!');
         		}
 
-        		$output-&gt;write(PHP_EOL . PHP_EOL);
+        		$output->write(PHP_EOL . PHP_EOL);
         	}
 
         	if (! $errors)
         	{
-        		$output-&gt;write('Successfully loaded ' . basename($filename) . '!' . PHP_EOL . PHP_EOL);
+        		$output->write('Successfully loaded ' . basename($filename) . '!' . PHP_EOL . PHP_EOL);
 	        	$counter++;
         	}
         }
 
-        $output-&gt;write("Finished loading data ({$counter} files processed)" . PHP_EOL);
+        $output->write("Finished loading data ({$counter} files processed)" . PHP_EOL);
 
     }
 }

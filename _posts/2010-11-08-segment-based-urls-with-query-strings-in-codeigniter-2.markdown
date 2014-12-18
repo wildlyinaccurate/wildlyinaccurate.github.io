@@ -29,13 +29,13 @@ I'm sure their intentions were good, but it appears that the CodeIgniter team as
 Getting around this is a very simple task; only one line needs to be modified. In `system/core/Config.php`, change line 221 from:
 
 ```
-if ($this-&gt;item('enable_query_strings') == FALSE)
+if ($this->item('enable_query_strings') == FALSE)
 ```
 
 To:
 
 ```
-if ($this-&gt;item('enable_query_strings') == FALSE OR $this-&gt;item('uri_protocol') == 'PATH_INFO')
+if ($this->item('enable_query_strings') == FALSE OR $this->item('uri_protocol') == 'PATH_INFO')
 ```
 
 And there you have it. Setting uri_protocol to PATH_INFO and enabling query strings will allow you to have  attractive segment-based URLs and still make use of query strings.

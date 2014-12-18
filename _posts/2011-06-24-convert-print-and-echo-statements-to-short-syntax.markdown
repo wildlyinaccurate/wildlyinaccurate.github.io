@@ -23,9 +23,9 @@ The regular expression below will find all one-liner `print` and `echo` statemen
 
 ```
 Find:
-&lt;\?php[\s]*(print|echo)[\s]*\(?([^&gt;\)]+?)\)?[\s]*;?[\s]*\?&gt;
+<\?php[\s]*(print|echo)[\s]*\(?([^>\)]+?)\)?[\s]*;?[\s]*\?>
 ```
 ```
 Replace:
-&lt;?=$2?&gt;
+<?=$2?>
 ```

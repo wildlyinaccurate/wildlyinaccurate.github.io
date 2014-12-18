@@ -63,19 +63,19 @@ If you want to try out this setup for yourself, it's relatively simple to get ru
 First you'll need to create the PHP script that handles the caching. I've called mine `index-cached.php`. The script below will cache pages with the key `fullpage:your.domain.com/the/page/uri` for 1 day. It will also append a comment to the end of the response, specifying whether the page was served from cache or generated dynamically and how long the execution took.
 
 ```php
-&lt;?php
+<?php
 
 $start = microtime(true);
 
 $memcached = new Memcached;
-$memcached-&gt;addServer('127.0.0.1', 11211);
+$memcached->addServer('127.0.0.1', 11211);
 
 // Cache time in seconds (1 day)
 $cacheTime = 60 * 60 * 24 * 1;
 $cacheKey = "fullpage:{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 
 $debugMessage = 'Page retrieved from cache in %f seconds';
-$html = $memcached-&gt;get($cacheKey);
+$html = $memcached->get($cacheKey);
 
 if ( ! $html) {
     $debugMessage = 'Page generated in %f seconds';
@@ -85,7 +85,7 @@ if ( ! $html) {
     require 'index.php';
     $html = ob_get_contents();
 
-    $memcached-&gt;set($cacheKey, $html, $cacheTime);
+    $memcached->set($cacheKey, $html, $cacheTime);
 
     ob_end_clean();
 }
@@ -93,7 +93,7 @@ if ( ! $html) {
 $finish = microtime(true);
 
 echo $html;
-echo '&lt;!-- ' . sprintf($debugMessage, $finish - $start) . ' --&gt;';
+echo '<!-- ' . sprintf($debugMessage, $finish - $start) . ' -->';
 exit;
 ```
 

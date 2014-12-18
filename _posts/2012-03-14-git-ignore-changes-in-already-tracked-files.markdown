@@ -16,13 +16,13 @@ There are often times when you want to modify a file but not commit the changes,
 Adding the file to .gitignore doesn't work, because the file is already tracked. Luckily, Git will allow you to manually "ignore" changes to a file or directory:
 
 ```
-git update-index --assume-unchanged &lt;file&gt;
+git update-index --assume-unchanged <file>
 ```
 
 And if you want to start tracking changes again, you can undo the previous command using:
 
 ```
-git update-index --no-assume-unchanged &lt;file&gt;
+git update-index --no-assume-unchanged <file>
 ```
 
 Easy!

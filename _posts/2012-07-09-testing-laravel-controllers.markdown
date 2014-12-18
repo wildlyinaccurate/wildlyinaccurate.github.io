@@ -27,33 +27,33 @@ abstract class ControllerTestCase extends PHPUnit_Framework_TestCase
     public function call($destination, $parameters = array(), $method = 'GET')
     {
         $old_method = Request::foundation()->getMethod();
-        \Laravel\Request::foundation()-&gt;setMethod($method);
+        \Laravel\Request::foundation()->setMethod($method);
         $response = Controller::call($destination, $parameters);
-        Request::foundation()-&gt;setMethod($old_method);
+        Request::foundation()->setMethod($old_method);
 
         return $response;
     }
 
     public function get($destination, $parameters = array())
     {
-        return $this-&gt;call($destination, $parameters, 'GET');
+        return $this->call($destination, $parameters, 'GET');
     }
 
     public function post($destination, $post_data, $parameters = array())
     {
-        $this-&gt;clean_request();
-        \Laravel\Request::foundation()-&gt;request-&gt;add($post_data);
+        $this->clean_request();
+        \Laravel\Request::foundation()->request->add($post_data);
 
-        return $this-&gt;call($destination, $parameters, 'POST');
+        return $this->call($destination, $parameters, 'POST');
     }
 
     private function clean_request()
     {
-        $request = \Laravel\Request::foundation()-&gt;request;
+        $request = \Laravel\Request::foundation()->request;
 
-        foreach ($request-&gt;keys() as $key)
+        foreach ($request->keys() as $key)
         {
-            $request-&gt;remove($key);
+            $request->remove($key);
         }
     }
 
@@ -72,25 +72,25 @@ class AccountControllerTest extends ControllerTestCase
 
     public function testSignupWithNoData()
     {
-        $response = $this-&gt;post('account@signup', array());
-        $this-&gt;assertEquals('302', $response-&gt;foundation-&gt;getStatusCode());
+        $response = $this->post('account@signup', array());
+        $this->assertEquals('302', $response->foundation->getStatusCode());
 
-        $session_errors = \Laravel\Session::instance()-&gt;get('errors')-&gt;all();
-        $this-&gt;assertNotEmpty($session_errors);
+        $session_errors = \Laravel\Session::instance()->get('errors')->all();
+        $this->assertNotEmpty($session_errors);
     }
 
     public function testSignupWithValidData()
     {
-        $response = $this-&gt;post('account@signup', array(
-            'username' =&gt; 'validusername',
-            'email' =&gt; 'some@validemail.com',
-            'password' =&gt; 'passw0rd',
-            'password_confirm' =&gt; 'passw0rd',
+        $response = $this->post('account@signup', array(
+            'username' => 'validusername',
+            'email' => 'some@validemail.com',
+            'password' => 'passw0rd',
+            'password_confirm' => 'passw0rd',
         ));
-        $this-&gt;assertEquals('302', $response-&gt;foundation-&gt;getStatusCode());
+        $this->assertEquals('302', $response->foundation->getStatusCode());
 
-        $session_errors = \Laravel\Session::instance()-&gt;get('errors');
-        $this-&gt;assertNull($session_errors);
+        $session_errors = \Laravel\Session::instance()->get('errors');
+        $this->assertNull($session_errors);
     }
 
 }

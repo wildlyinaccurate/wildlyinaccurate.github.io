@@ -120,7 +120,7 @@ Let's see a commit object in action by creating a simple repository.
 ```
  $ git init
 Initialized empty Git repository in /home/demo/simple-repository/.git/
- $ echo 'This is the readme.' &gt; README
+ $ echo 'This is the readme.' > README
  $ git add README
  $ git commit -m "First commit"
 [master (root-commit) **d409ca7**] First commit
@@ -135,8 +135,8 @@ $ git show --format=raw d409ca7
 
 commit d409ca76bc919d9ca797f39ae724b7c65700fd27
 tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1
-author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
-committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
+author Joseph Wynn <joseph@wildlyinaccurate.com> 1400976134 -0400
+committer Joseph Wynn <joseph@wildlyinaccurate.com> 1400976134 -0400
 
     First commit
 
@@ -236,7 +236,7 @@ ref: refs/heads/test-branch
 When you create a new commit, Git simply changes the current branch to point to the newly-created commit object.
 
 ```
-$ echo 'Some more information here.' &gt;&gt; README
+$ echo 'Some more information here.' >> README
 $ git add README
 $ git commit -m "Update README in a new branch"
 [test-branch 7604067] Update README in a new branch
@@ -264,14 +264,14 @@ We can see that Git has created a tag reference which points to the current comm
 ```
 $ git cat-file -p 1.0-lightweight
 tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1
-author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
-committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
+author Joseph Wynn <joseph@wildlyinaccurate.com> 1400976134 -0400
+committer Joseph Wynn <joseph@wildlyinaccurate.com> 1400976134 -0400
 
 First commit
 $ git cat-file -p d409ca7
 tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1
-author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
-committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400
+author Joseph Wynn <joseph@wildlyinaccurate.com> 1400976134 -0400
+committer Joseph Wynn <joseph@wildlyinaccurate.com> 1400976134 -0400
 
 First commit
 ```
@@ -293,7 +293,7 @@ $ git cat-file -p 1.0
 object d409ca76bc919d9ca797f39ae724b7c65700fd27
 type commit
 tag 1.0
-tagger Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401029229 -0400
+tagger Joseph Wynn <joseph@wildlyinaccurate.com> 1401029229 -0400
 
 Tagged 1.0
 ```
@@ -382,8 +382,8 @@ commit 8ad09238b0dff99e8a99c84d68161ebeebbfc714
 tree e5ee97c8f9a4173f07aa4c46cb7f26b7a9ff7a17
 parent 40837f14b8122ac6b37c0919743b1fd429b3bbab
 parent 0c21359730915c7888c6144aa8e9063345330f1f
-author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401134489 +0100
-committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401134489 +0100
+author Joseph Wynn <joseph@wildlyinaccurate.com> 1401134489 +0100
+committer Joseph Wynn <joseph@wildlyinaccurate.com> 1401134489 +0100
 
  Merge branch 'feature-branch'
 ```
@@ -629,7 +629,7 @@ Below that is a `branch` listing. This is the configuration for a _remote-tracki
 We've just cloned a completely empty repository, and we want to start working on it.
 
 ```
-$ echo 'Project v1.0' &gt; README
+$ echo 'Project v1.0' > README
 $ git add README
 $ git commit -m "Add readme"
 [master (root-commit) 5d591d5] Add readme
@@ -652,7 +652,7 @@ Counting objects: 3, done.
 Writing objects: 100% (3/3), 231 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To /home/demo/bare-repo/
- * [new branch] master -&gt; master
+ * [new branch] master -> master
 ```
 
 Notice how we specified both the remote (`origin`) and the branch (`master`) that we want Git to push. It _is_ possible to simply run `git push`, but this can be dangerous and is generally advised against. Running `git push` without any arguments can (depending on your configuration) push all remote-tracking branches. This is usually okay, but it can result in you pushing changes which you don't want collaborators to pull. In the worst case, you can destroy other collaborators' changes if you specify the `--force` flag.
@@ -666,7 +666,7 @@ $ cat refs/heads/master
 
 $ git show 5d591d5
 commit 5d591d5fafd538610291f45bec470d1b4e77891e
-Author: Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt;
+Author: Joseph Wynn <joseph@wildlyinaccurate.com>
 Date: Sat May 31 14:08:34 2014 +0100
 
  Add readme
@@ -733,7 +733,7 @@ Now we'll run `git fetch` from the clone.
 $ cd ../clone-of-bare-repo/
 $ git fetch origin
 From /home/demo/bare-repo
- * [new branch] feature-branch -&gt; origin/feature-branch
+ * [new branch] feature-branch -> origin/feature-branch
 ```
 
 This has done a couple of things. First, it has created a reference for the remote branch in `.git/refs/remotes/origin`.
@@ -813,7 +813,7 @@ $ git checkout feature-branch
 Branch feature-branch set up to track remote branch feature-branch from origin.
 Switched to a new branch 'feature-branch'
 
-$ echo 'Some more information.' &gt;&gt; README
+$ echo 'Some more information.' >> README
 $ git commit -am "Add more information to readme"
 [feature-branch 7cd83c2] Add more information to readme
  1 file changed, 1 insertion(+)
@@ -822,7 +822,7 @@ Counting objects: 5, done.
 Writing objects: 100% (3/3), 298 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To /home/demo/bare-repo/
-   5d591d5..7cd83c2  feature-branch -&gt; feature-branch
+   5d591d5..7cd83c2  feature-branch -> feature-branch
 ```
 
 Now, using the steps outlined earlier, let's manually perform a `git pull` on the other clone to pull in the changes we just introduced.
@@ -834,7 +834,7 @@ remote: Counting objects: 5, done.
 remote: Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
 From /home/demo/bare-repo
-   5d591d5..7cd83c2  feature-branch -&gt; origin/feature-branch
+   5d591d5..7cd83c2  feature-branch -> origin/feature-branch
 $ cat .git/FETCH_HEAD
 7cd83c29d7360dfc432d556fdbf03eb83ec5158d        branch 'feature-branch' of /home/demo/bare-repo
 5d591d5fafd538610291f45bec470d1b4e77891e    not-for-merge   branch 'master' of /home/demo/bare-repo
@@ -866,7 +866,7 @@ $ git reset --hard HEAD^1
 HEAD is now at 5d591d5 Add readme
 $ git pull origin feature-branch
 From /home/demo/bare-repo
- * branch            feature-branch -&gt; FETCH_HEAD
+ * branch            feature-branch -> FETCH_HEAD
 Updating 5d591d5..7cd83c2
 Fast-forward
  README | 1 +
@@ -962,7 +962,7 @@ This seems fairly simple at first, but the mechanism behind the `stash` command
 ```
 $ git init
 Initialised empty Git repository in /home/demo/demo-repo/.git/
-$ echo 'Foo' &gt; test.txt
+$ echo 'Foo' > test.txt
 $ git add test.txt
 $ git commit -m "Initial commit"
 [master (root-commit) 2522332] Initial commit
@@ -973,7 +973,7 @@ $ git commit -m "Initial commit"
 Now let's make some changes, and stash them.
 
 ```
-$ echo 'Bar' &gt;&gt; test.txt
+$ echo 'Bar' >> test.txt
 $ git stash
 Saved working directory and index state WIP on master: 2522332 Initial commit
 HEAD is now at 2522332 Initial commit
@@ -992,7 +992,7 @@ Right now we only have one stash: `stash@{0}`. This is actually a reference, whi
 $ git show stash@{0}
 commit f949b46a417a4f1595a9d12773c89cce4454a958
 Merge: 2522332 1fbe1cc
-Author: Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt;
+Author: Joseph Wynn <joseph@wildlyinaccurate.com>
 Date:   Sat Jul 5 00:15:51 2014 +0100
 
     WIP on master: 2522332 Initial commit
