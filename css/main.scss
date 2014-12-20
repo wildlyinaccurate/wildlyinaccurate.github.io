@@ -23,8 +23,9 @@ $headings-line-height:      1.15;
 
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 
-$navbar-padding-vertical:   $navbar-padding-vertical * 1.5;
-$navbar-padding-horizontal: $navbar-padding-horizontal * 1.5;
+// Don't go wider than 'medium'
+$container-large-desktop:   $container-md;
+$container-lg:              $container-md;
 
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
