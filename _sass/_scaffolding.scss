@@ -18,3 +18,7 @@ img {
 a {
     @include transition-duration(0.4s);
 }
+
+p {
+    margin-bottom: 24px;
+}
