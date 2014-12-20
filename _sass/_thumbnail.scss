@@ -8,6 +8,8 @@
 
 .thumbnail__caption {
     color: $color-secondary;
+    font-size: $font-size-small;
+    font-style: italics;
     padding: $thumbnail-caption-padding;
     text-align: center;
 }
