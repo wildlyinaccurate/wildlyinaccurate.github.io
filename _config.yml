@@ -45,3 +45,5 @@ kramdown:
 
 sass:
     style: compressed
+
+exclude: [Gemfile, Gemfile.lock, bower_components, bower.js]
