@@ -12,6 +12,7 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+featured_image: assets/ergodox-cover.jpg
 ---
 
 I've long been considering switching to a different keyboard layout. I tend to type with mostly my forefinger and middle finger, only using my ring and pinky fingers occasionally to stretch out to the modifier keys. Despite this, I still manage to type at around 120WPM on a staggered QWERTY keyboard.
