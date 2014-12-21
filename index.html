@@ -2,7 +2,9 @@
 layout: default
 ---
 
-<header class="page-header page-header--no-image">
+<header class="page-header page-header--no-meta">
+    {% responsive_image path: assets/default-featured-image.jpg template: _includes/featured-image.html %}
+
     <div class="container">
         <h1 class="page-header__title">Blog</h1>
         <p class="site-description">{{ site.description }}</p>

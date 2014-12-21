@@ -21,13 +21,10 @@
     .page-header__title {
         margin-top: 150px;
     }
-}
 
-.page-header--no-image {
-    color: $text-color;
-    height: auto;
-    min-height: auto;
-    text-shadow: none;
+    .page-header--no-meta {
+        min-height: 340px;
+    }
 }
 
 .page-header__featured-image {
