@@ -7,10 +7,10 @@ module Jekyll
         preserve_elements = preserve_elements.split
       else
         # Default, sane elements
-        preserve_elements = %w[b strong i em p br pre code]
+        preserve_elements = %w[a b strong i em p br h2 h3 h4 h5 h6 pre code]
       end
 
-      Sanitize.fragment(html, :elements => preserve_elements)
+      Sanitize.fragment(html, :elements => preserve_elements, :remove_contents => true)
     end
   end
 end
