@@ -23,7 +23,7 @@ _A Hacker's Guide to Git_ is now available as an e-book. You can purchase it [on
 
 Git is currently the most widely used version control system in the world, mostly thanks to GitHub. By that measure, I'd argue that it's also the most misunderstood version control system in the world.
 
-This statement probably doesn't ring true straight away because on the surface, Git is pretty simple. It's really easy to pick up if you've come from another VCS like Subversion or Mercurial. It's even relatively easy to pick up if you've never used a VCS before. Everybody understands adding, committing, pushing and pulling; but this is about as far as Git's simplicity goes. Past this point, Git is shrouded by fear, uncertainty and doubt.
+This statement probably doesn't ring true straight away because on the surface, Git is pretty simple. It's really easy to pick up if you've come from another VCS like Subversion or Mercurial. It's even relatively easy to pick up if you've never used a VCS before. Everybody understands adding, committing, pushing and pulling; but this is about as far as Git's simplicity goes. Past this point, Git is shrouded by fear, uncertainty and doubt.<!--more-->
 
 Once you start talking about branching, merging, rebasing, multiple remotes, remote-tracking branches, detached HEAD states... Git becomes less of an easily-understood tool and more of a feared deity. Anybody who talks about no-fast-forward merges is regarded with quiet superstition, and even veteran hackers would rather stay away from rebasing "just to be safe".
 
@@ -36,8 +36,6 @@ That's why trying to understand Git in this way is wrong. Git doesn't work like
 Complex systems like Git become much easier to understand once you figure out how they really work. The goal of this guide is to shed some light on how Git works under the hood. We're going to take a look at some of Git's core concepts including its basic object storage, how commits work, how branches and tags work, and we'll look at the different kinds of merging in Git including the much-feared rebase. Hopefully at the end of it all, you'll have a solid understanding of these concepts and will be able to use some of Git's more advanced features with confidence.
 
 It's worth noting at this point that this guide is not intended to be a beginner's introduction to Git. This guide was written for people who already use Git, but would like to better understand it by taking a peek under the hood, and learn a few neat tricks along the way. With that said, let's begin.
-
-<!--more-->
 
 ## Repositories
 

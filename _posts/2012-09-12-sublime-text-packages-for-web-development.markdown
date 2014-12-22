@@ -13,7 +13,7 @@ author: Joseph Wynn
 
 Coming from [PhpStorm](http://www.jetbrains.com/phpstorm/) (a full-featured IDE), I felt that Sublime Text was missing a few useful features. Luckily, one of the great things about Sublime is that it can be easily extended with [plugins](http://docs.sublimetext.info/en/latest/extensibility/plugins.html) and packages. Perhaps the most useful package for Sublime is [Sublime Package Control](http://wbond.net/sublime_packages/package_control), which allows you to easily install and manage packages (it can even uninstall itself - über meta).
 
-Below are some Sublime Text packages that I have found to be useful for web development.
+Below are some Sublime Text packages that I have found to be useful for web development.<!--more-->
 
 *   [**All Autocomplete**](https://github.com/alienhard/SublimeAllAutocomplete) extends the Sublime Text autocompletion to find matches in all open files.
 *   [**ApacheConf.tmLanguage**](https://github.com/colinta/ApacheConf.tmLanguage) provides ApacheConf syntax highlighting (for .htaccess, vhosts, etc).
