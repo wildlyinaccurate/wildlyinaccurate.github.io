@@ -1,0 +1,25 @@
+@media (max-width: $screen-xs-max) {
+    body {
+        font-size: floor($font-size-base * 0.9);
+    }
+
+    h1 {
+        font-size: floor($font-size-h1 * 0.8);
+    }
+
+    h2 {
+        font-size: floor($font-size-h2 * 0.8);
+    }
+
+    h3 {
+        font-size: floor($font-size-h3 * 0.8);
+    }
+
+    h4 {
+        font-size: floor($font-size-h4 * 0.8);
+    }
+
+    h5 {
+        font-size: floor($font-size-h5 * 0.8);
+    }
+}
