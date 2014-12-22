@@ -26,6 +26,7 @@
 .navbar-nav {
     float: right;
     margin: 0;
+    padding: 0;
 }
 
 .navbar-nav__item {
@@ -43,5 +44,12 @@
         background: rgba($color-primary-contrast, 0.45);
         color: $color-primary-contrast;
         text-decoration: none;
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+    .navbar-nav__item-link {
+        padding-bottom: 23px;
+        padding-top: 23px;
     }
 }
