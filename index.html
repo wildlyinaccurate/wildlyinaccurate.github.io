@@ -21,7 +21,7 @@ layout: default
                 <a class="post-summary__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
             </h3>
 
-            <p>{{ post.excerpt | sanitize }}</p>
+            <p>{{ post.excerpt | sanitize }} <a href="{{ post.url | prepend: site.baseurl }}">(Read more)</a></p>
         </article>
     {% endfor %}
 
