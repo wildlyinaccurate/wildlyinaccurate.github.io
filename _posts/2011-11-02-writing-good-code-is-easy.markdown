@@ -14,9 +14,9 @@ published: true
 author: Joseph Wynn
 ---
 
-Everybody wants to write "good code", right? So why is it that nearly every time we pick up another developer's work, our [WTF-o-meter](http://www.osnews.com/story/19266/WTFs_m) goes crazy?
+Everybody wants to write "good code", right? So why is it that nearly every time we pick up another developer's work, our [WTF-o-meter](http://www.osnews.com/story/19266/WTFs_m) goes crazy?<!--more-->
 
-[{% responsive_image path: assets/wtfm.jpg "The only valid measurement of code quality: WTFs/minute")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/wtfm.jpg alt: "" %}
+{% responsive_image path: assets/wtfm.jpg alt: "The only valid measurement of code quality: WTFs/minute" %}
 
 Everybody has a different idea of what "good code" is. Below are a few ways that I believe we can increase the quality of our code and reduce the number of WTFs our code generates.
 

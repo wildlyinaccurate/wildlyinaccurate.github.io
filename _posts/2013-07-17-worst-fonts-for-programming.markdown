@@ -13,7 +13,7 @@ published: true
 author: Joseph Wynn
 ---
 
-There are [plenty](http://www.slant.co/topics/67/~what-are-the-best-programming-fonts) [of](http://hivelogic.com/articles/top-10-programming-fonts) [discussions](https://news.ycombinator.com/item?id=1058946) about which font is the best for programming. The problem is, there are so many "best" fonts that it's difficult to choose one. Rather than have an exhaustive list of "best" fonts for programming, wouldn't it be easier to simply know which fonts to avoid?
+There are [plenty](http://www.slant.co/topics/67/~what-are-the-best-programming-fonts) [of](http://hivelogic.com/articles/top-10-programming-fonts) [discussions](https://news.ycombinator.com/item?id=1058946) about which font is the best for programming. The problem is, there are so many "best" fonts that it's difficult to choose one. Rather than have an exhaustive list of "best" fonts for programming, wouldn't it be easier to simply know which fonts to avoid?<!--more-->
 
 ## Brush Script MT
 
