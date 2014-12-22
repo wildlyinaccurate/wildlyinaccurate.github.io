@@ -2,3 +2,4 @@ _site
 .sass-cache
 assets/resized
 bower_components
+node_modules
