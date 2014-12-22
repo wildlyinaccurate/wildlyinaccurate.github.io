@@ -1,0 +1,15 @@
+{
+  "name": "wildlyinaccurate.com",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-uncss": "^0.3.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wildlyinaccurate/wildlyinaccurate.com.git"
+  },
+  "author": "Joseph Wynn <joseph@wildlyinaccurate.com>"
+}
