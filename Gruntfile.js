@@ -6,7 +6,8 @@ module.exports = function(grunt) {
         uncss: {
             dist: {
                 options: {
-                    htmlroot: '_site'
+                    htmlroot: '_site',
+                    ignore: ['#carbonads', /\.carbon\-.+/]
                 },
                 files: {
                     '_site/css/main.css': [
