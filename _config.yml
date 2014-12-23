@@ -6,6 +6,7 @@ url: https://wildlyinaccurate.github.io
 permalink: /:title
 
 excerpt_separator: <!--more-->
+paginate: 15
 
 email: joseph@wildlyinaccurate.com
 twitter_username: Joseph_Wynn

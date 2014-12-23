@@ -8,19 +8,11 @@
 }
 
 .navbar__title {
-    background-color: rgba($color-primary, 1);
-    color: $color-primary-contrast;
+    @extend %primary-button;
+
     float: left;
     font-size: $font-size-large;
     font-weight: bold;
-    padding: 16px 22px;
-
-    &:hover,
-    &:focus {
-        background-color: rgba($color-primary, 0.8);
-        color: $color-primary-contrast;
-        text-decoration: none;
-    }
 }
 
 .navbar-nav {

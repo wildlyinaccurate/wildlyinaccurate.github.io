@@ -12,6 +12,7 @@ module.exports = function(grunt) {
                 files: {
                     '_site/css/main.css': [
                         '_site/index.html',
+                        '_site/page2/index.html',
                         '_site/about/index.html',
                         '_site/projects/index.html',
                         '_site/a-hackers-guide-to-git/index.html',

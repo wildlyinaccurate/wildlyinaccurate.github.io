@@ -38,6 +38,7 @@ $container-lg:              $container-md;
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tables";
 
+@import "components";
 @import "scaffolding";
 @import "type";
 @import "layout";
@@ -48,6 +49,7 @@ $container-lg:              $container-md;
 @import "thumbnail";
 @import "social-media";
 @import "site-description";
+@import "pagination";
 @import "code";
 @import "tables";
 @import "toc";
