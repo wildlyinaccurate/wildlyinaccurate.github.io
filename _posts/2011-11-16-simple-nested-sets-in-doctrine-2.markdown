@@ -40,7 +40,7 @@ Food
 
 The simplest way I found of doing this without using any extensions was to make use of <abbr title="Standard PHP Library">SPL</abbr>'s [RecursiveIterator](http://php.net/manual/en/class.recursiveiterator.php) and [RecursiveIteratorIterator](http://www.php.net/manual/en/class.recursiveiteratoriterator.php) classes. Here's the final code, to output a drop-down menu like this one:
 
-[{% responsive_image path: assets/dropdown.png "Hierarchical Dropdown")](https://wildlyinaccurate.com/wp-content/uploads/2011/11/dropdown.png alt: "" %}
+{% responsive_image path: assets/dropdown.png alt: "Hierarchical Dropdown" %}
 
 ```php
 /** @var $em \Doctrine\ORM\EntityManager */
