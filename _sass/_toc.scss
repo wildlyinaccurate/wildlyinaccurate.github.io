@@ -1,0 +1,18 @@
+#markdown-toc {
+    background: $code-bg;
+    border: $code-border;
+    display: table;
+    font-size: $font-size-small;
+    padding: $paragraph-spacing $paragraph-spacing $paragraph-spacing ($paragraph-spacing * 3);
+
+    &, ul {
+        list-style: outside decimal;
+    }
+
+    &:before {
+        content: 'Contents';
+        display: block;
+        margin-bottom: $paragraph-spacing / 2;
+        margin-left: -($paragraph-spacing * 2);
+    }
+}
