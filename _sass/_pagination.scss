@@ -1,0 +1,13 @@
+.pagination__link {
+    @extend %primary-button;
+
+    font-family: $font-family-sans-serif;
+}
+
+.pagination__link--next {
+    float: left;
+}
+
+.pagination__link--previous {
+    float: right;
+}

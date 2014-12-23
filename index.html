@@ -13,7 +13,7 @@ layout: default
 
 <section class="posts-index">
 
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
         <article class="post-summary">
             <span class="post-summary__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -24,5 +24,17 @@ layout: default
             <p>{{ post.excerpt | sanitize }} <a href="{{ post.url | prepend: site.baseurl }}">(Read more)</a></p>
         </article>
     {% endfor %}
+
+    {% if paginator.total_pages > 1 %}
+        <div class="pagination">
+            {% if paginator.next_page %}
+                <a class="pagination__link pagination__link--next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">&#8592; Older Posts</a>
+            {% endif %}
+
+            {% if paginator.previous_page %}
+                <a class="pagination__link pagination__link--previous" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '/index.html', '/' }}">Newer Posts &#8594;</a>
+            {% endif %}
+        </div>
+    {% endif %}
 
 </section>
