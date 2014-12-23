@@ -11,6 +11,29 @@
 
         {% include footer.html %}
 
+        <script>
+            (function() {
+                var s, p, n, a;
+
+                s = document.createElement('script');
+                s.async = 1;
+                s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=wildlyinaccuratecom';
+                s.id = '_carbonads_js';
+
+                p = document.createElement('p');
+                p.appendChild(s);
+
+                n = document.querySelector('.post-content > p:nth-child(3)');
+
+                if (n) {
+                    n.parentNode.insertBefore(p, n.nextSibling);
+                } else {
+                    n = document.getElementsByTagName('article')[0];
+                    n.parentNode.insertBefore(p, n.nextSibling);
+                }
+            })();
+        </script>
+
     </body>
 
 </html>
