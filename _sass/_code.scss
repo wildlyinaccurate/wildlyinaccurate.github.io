@@ -1,0 +1,18 @@
+code,
+pre {
+    background: $code-bg;
+    font-size: $font-size-small;
+}
+
+code {
+    padding: 6px 2px;
+}
+
+pre {
+    border: $code-border;
+    padding: $paragraph-spacing;
+
+    code {
+        padding: 0;
+    }
+}
