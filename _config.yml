@@ -46,4 +46,11 @@ kramdown:
 sass:
     style: compressed
 
-exclude: [Gemfile, Gemfile.lock, bower_components, bower.js]
+exclude:
+    - bower_components
+    - bower.js
+    - Gemfile
+    - Gemfile.lock
+    - Gruntfile.js
+    - node_modules
+    - package.json
