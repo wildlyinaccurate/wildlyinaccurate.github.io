@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-uncss');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.initConfig({
         uncss: {
@@ -22,7 +23,20 @@ module.exports = function(grunt) {
                     ]
                 }
             }
+        },
+
+        cssmin: {
+            dist: {
+                files: {
+                    '_site/css/main.css': ['_site/css/main.css']
+                }
+            }
         }
     });
+
+    grunt.registerTask('build', [
+        'uncss',
+        'cssmin'
+    ]);
 
 };
