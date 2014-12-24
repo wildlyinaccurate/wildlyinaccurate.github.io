@@ -5,6 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-cssmin": "^0.11.0",
     "grunt-uncss": "^0.3.8"
   },
   "repository": {
