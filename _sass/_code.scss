@@ -1,16 +1,17 @@
 code,
 pre {
     background: $code-bg;
-    font-size: $font-size-small;
+    font-size: 85%;
 }
 
 code {
-    padding: 6px 2px;
+    padding: 6px;
 }
 
 pre {
     border: $code-border;
-    padding: $paragraph-spacing;
+    line-height: 1.25;
+    padding: (ceil($paragraph-spacing * 0.75)) $paragraph-spacing;
 
     code {
         padding: 0;

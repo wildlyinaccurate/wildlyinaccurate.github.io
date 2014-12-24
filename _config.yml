@@ -38,7 +38,7 @@ responsive_image:
     - width: 1680
     - width: 1840
 
-markdown: kramdown
+markdown: KramdownPygments
 
 kramdown:
     toc_levels: 1..3
