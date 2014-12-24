@@ -6,8 +6,8 @@ $color-primary:             #8e44ad;
 $color-primary-contrast:    #ffffff;
 $color-secondary:           lighten($text-color, 33%);
 $link-color:                $color-primary;
-$code-bg:                   #f7f7f7;
-$code-border:               1px solid darken($code-bg, 15%);
+$code-bg:                   #f5f5f5;
+$code-border:               1px solid darken($code-bg, 10%);
 
 $font-family-sans-serif:    Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif:         Merriweather, Georgia, "Times New Roman", Times, serif;
@@ -37,6 +37,8 @@ $container-lg:              $container-md;
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/type";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tables";
+
+@import "pygments";
 
 @import "components";
 @import "scaffolding";
