@@ -97,7 +97,7 @@ This would be represented by two tree objects: one for the root directory, and a
 
 If we draw the blobs (in green) as well as the tree objects (in blue), we end up with a diagram that looks a lot like our directory structure.
 
-{% responsive_image path: assets/tree-graph.png alt: "Git tree graph" %}
+{% responsive_image path: assets/tree-graph.png %}
 
 Notice how given the root tree object, we can recurse through every tree object to figure out the state of the entire working tree. The root tree object, therefore, is essentially a snapshot of your repository at a given time. Usually when Git refers to "the tree", it is referring to the root tree object.
 
@@ -115,16 +115,16 @@ A commit object is essentially a pointer that contains a few pieces of importan
 
 Let's see a commit object in action by creating a simple repository.
 
-```
+<pre>
  $ git init
 Initialized empty Git repository in /home/demo/simple-repository/.git/
  $ echo 'This is the readme.' > README
  $ git add README
  $ git commit -m "First commit"
-[master (root-commit) **d409ca7**] First commit
+[master (root-commit) <strong>d409ca7</strong>] First commit
  1 file changed, 1 insertion(+)
  create mode 100644 README
-```
+</pre>
 
 When you create a commit, Git will give you the hash of that commit. Using `git show` with the `--format=raw` flag, we can see this newly-created commit's metadata.
 
@@ -332,7 +332,7 @@ $ git commit -am "Fixed some wording"
 
 At this point, the history will look something like this.
 
-{% responsive_image path: assets/branch-feature-hotfix.png alt: "Branching -- hotfix and feature branch" %}
+{% responsive_image path: assets/branch-feature-hotfix.png %}
 
 Now you want to bring the bug fix into `master` so that you can tag it and release it.
 
@@ -348,7 +348,7 @@ Fast-forward
 
 Notice how Git mentions **fast-forward** during the merge. What this means is that all of the commits in `hotfix` were directly upstream from `master`. This allows Git to simply move the `master` pointer up the tree to `hotfix`. What you end up with looks like this.
 
-{% responsive_image path: assets/branch-merge-hotfix.png alt: "Branching -- after merging hotfix" %}
+{% responsive_image path: assets/branch-merge-hotfix.png %}
 
 Now let's try and merge `feature-branch` into `master`.
 
@@ -388,13 +388,13 @@ committer Joseph Wynn <joseph@wildlyinaccurate.com> 1401134489 +0100
 
 This means that our history graph now looks something like this (commit **E** is the new merge commit).
 
-{% responsive_image path: assets/branch-merge-feature.png alt: "Branching -- after merging feature-branch" %}
+{% responsive_image path: assets/branch-merge-feature.png %}
 
 Some people believe that this sort of history graph is undesirable. In the _Rebasing (Continued)_ section, we'll learn how to prevent non-fast-forward merges by rebasing feature branches before merging them with `master`.
 
 ## Rebasing
 
-Rebasing is without a doubt one of Git's most misunderstood features. For most people, `git rebase` is a command that should be avoided at all costs. This is probably due to the extraordinary amount of scaremongering around rebasing. _"Rebase Considered Harmful"_, and _"Please, stay away from rebase" _are just two of the many anti-rebase articles you will find in the vast archives of the Internet.
+Rebasing is without a doubt one of Git's most misunderstood features. For most people, `git rebase` is a command that should be avoided at all costs. This is probably due to the extraordinary amount of scaremongering around rebasing. _"Rebase Considered Harmful"_, and _"Please, stay away from rebase"_ are just two of the many anti-rebase articles you will find in the vast archives of the Internet.
 
 But rebase isn't scary, or dangerous, so long as you understand what it does. But before we get into rebasing, I'm going to take a quick digression, because it's actually much easier to explain rebasing in the context of cherry-picking.
 
@@ -402,17 +402,17 @@ But rebase isn't scary, or dangerous, so long as you understand what it does. Bu
 
 What `git cherry-pick` does is take one or more commits, and replay them on top of the current commit. Imagine a repository with the following history graph.
 
-{% responsive_image path: assets/cherry-pick-before.png alt: "Node graph -- before cherry-pick" %}
+{% responsive_image path: assets/cherry-pick-before.png %}
 
 If you are on commit **D** and you run `git cherry-pick F`, Git will take the changes that were introduced in commit **F** and replay them _as a new commit_ (shown as **F'**) on top of commit **D.**
 
-{% responsive_image path: assets/cherry-pick-after.png alt: "Node graph -- after cherry-pick" %}
+{% responsive_image path: assets/cherry-pick-after.png %}
 
 The reason you end up with a _copy_ of commit **F** rather than commit **F** itself is due to the way commits are constructed. Recall that the parent commit is part of a commit's hash. So despite containing the exact same changes, author information and timestamp; **F'** will have a different parent to **F**, giving it a different hash.
 
 A common workflow in Git is to develop features on small branches, and merge the features one at a time into the master branch. Let's recreate this scenario by adding some branch labels to the graphs.
 
-{% responsive_image path: assets/graph-branch-labels.png alt: "Node graph -- with branch labels" %}
+{% responsive_image path: assets/graph-branch-labels.png %}
 
 As you can see, `master` has been updated since `foo` was created. To avoid potential conflicts when `foo` is merged with `master`, we want to bring `master`'s changes into `foo`. Because `master` is the _base_ branch, we want to play `foo`'s commits _on top_ of `master`. Essentially, we want to change commit **C**'s parent from **B** to **F**.
 
@@ -423,7 +423,7 @@ $ git checkout master
 $ git checkout -b foo-tmp
 ```
 
-{% responsive_image path: assets/foo-tmp.png alt: "Node graph -- after creating foo-tmp" %}
+{% responsive_image path: assets/foo-tmp.png %}
 
 Now that we have a base on commit _F_, we can `cherry-pick` all of `foo`'s commits on top of it.
 
@@ -431,7 +431,7 @@ Now that we have a base on commit _F_, we can `cherry-pick` all of `foo`'s commi
 $ git cherry-pick C D
 ```
 
-{% responsive_image path: assets/cherry-pick-c-d.png alt: "Node graph -- after cherry-picking C and D" %}
+{% responsive_image path: assets/cherry-pick-c-d.png %}
 
 Now all that's left to do is point `foo` at commit **D'**, and delete the temporary branch `foo-tmp`. We do this with the `reset` command, which points `HEAD` (and therefore the current branch) at a specified commit. The `--hard` flag ensures our working tree is updated as well.
 
@@ -443,7 +443,7 @@ $ git branch -D foo-tmp
 
 This gives the desired result of `foo`'s commits being upstream of `master`. Note that the original **C** and **D** commits are no longer reachable because no branch points to them.
 
-{% responsive_image path: assets/cherry-pick-final.png alt: "Node graph -- after resetting foo" %}
+{% responsive_image path: assets/cherry-pick-final.png %}
 
 ## Rebasing (Continued)
 
@@ -470,7 +470,7 @@ In a sense, performing a rebase is like telling Git, **"Hey, I want to pretend t
 
 Let's take a look again at the example graph from _Merging_ to see how rebasing can prevent us from having to do a non-fast-forward merge.
 
-{% responsive_image path: assets/branch-merge-hotfix.png alt: "Branching -- after merging hotfix" %}
+{% responsive_image path: assets/branch-merge-hotfix.png %}
 
 All we have to do to enable a fast-forward merge of `feature-branch` into `master` is run `git rebase master feature-branch` before performing the merge.
 
@@ -482,7 +482,7 @@ Applying: Finished the new feature
 
 This has brought `feature-branch` directly upstream of `master`.
 
-{% responsive_image path: assets/rebase-feature.png alt: "Rebasing -- rebase feature-branch with master" %}
+{% responsive_image path: assets/rebase-feature.png %}
 
 Git is now able to perform a fast-forward merge.
 
@@ -1031,7 +1031,7 @@ So why does Git create a merge commit for a stash? The answer is relatively simp
 
 This gives us a history that looks a little like this:
 
-{% responsive_image path: assets/stash.png alt: "Stashing" %}
+{% responsive_image path: assets/stash.png %}
 
 In this history graph, the tree of commit **C** contains the changes to the working tree. Commit **C**'s first parent is the commit that `HEAD` pointed to when the stash was created (commit **A**). The second parent (commit **B**) contains the changes to the index. It is with these two commits that Git is able to re-apply your stashed changes.
 
