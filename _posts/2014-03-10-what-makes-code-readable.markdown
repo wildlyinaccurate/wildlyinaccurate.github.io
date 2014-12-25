@@ -15,7 +15,7 @@ author: Joseph Wynn
 
 Code readability is something that I often bring up during code reviews, but I often have trouble explaining _why_ I find a piece of code to be easy or difficult to read.
 
-When you ask programmers how to make code easier to read, many of them will mention things like coding standards, descriptive naming, and decomposition. These things actually aid in making code easier to _comprehend_ rather than easier to _read_. For me, _readability _is at a lower level, somewhere between legibility and comprehension.
+When you ask programmers how to make code easier to read, many of them will mention things like coding standards, descriptive naming, and decomposition. These things actually aid in making code easier to _comprehend_ rather than easier to _read_. For me, _readability_ is at a lower level, somewhere between legibility and comprehension.
 
 &nbsp;
 

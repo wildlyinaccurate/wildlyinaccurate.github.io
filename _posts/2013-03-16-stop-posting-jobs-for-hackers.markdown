@@ -14,7 +14,7 @@ published: true
 author: Joseph Wynn
 ---
 
-I understand what people mean when they say that they want to hire a _hacker_. It means that they want to hire a developer; probably one who is enthusiastic and good at solving problems. The thing is, to me, the term _hacker _is no different from terms like _rock star_ or _ninja_. When I see these terms in a job advertisement, a few red flags are raised in my mind:<!--more-->
+I understand what people mean when they say that they want to hire a _hacker_. It means that they want to hire a developer; probably one who is enthusiastic and good at solving problems. The thing is, to me, the term _hacker_ is no different from terms like _rock star_ or _ninja_. When I see these terms in a job advertisement, a few red flags are raised in my mind:<!--more-->
 
 #### You're probably a start-up
 
