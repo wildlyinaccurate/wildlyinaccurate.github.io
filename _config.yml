@@ -2,8 +2,8 @@ title: Wildly Inaccurate
 description: >
   A collection of guides &amp; opinions about programming and the state of the web, from a developer at BBC News.
 
-url: https://wildlyinaccurate.com
-permalink: /:title
+url: https://blog.wildlyinaccurate.com
+permalink: /:title/
 
 excerpt_separator: <!--more-->
 paginate: 15
