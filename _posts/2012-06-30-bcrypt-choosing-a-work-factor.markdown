@@ -21,7 +21,7 @@ Bcrypt is a Blowfish-based hashing algorithm which is commonly used for password
 $2a$(2 chars work)$(22 chars salt)(31 chars hash)
 ```
 
-The reason that the key setup phase can be potentially expensive is because it is run `2<sup>work</sup>` times. As password hashing is usually associated with common tasks like logging a user into a system, it's important to find the right balance between security and performance. Using a high work factor makes it incredibly difficult to execute a brute-force attack, but can put unnecessary load on the system.
+The reason that the key setup phase can be potentially expensive is because it is run <code>2<sup>work</sup></code> times. As password hashing is usually associated with common tasks like logging a user into a system, it's important to find the right balance between security and performance. Using a high work factor makes it incredibly difficult to execute a brute-force attack, but can put unnecessary load on the system.
 
 Using [Marco Arment's PHP Bcrypt class](https://gist.github.com/1053158/), I performed some benchmarks to determine how long it takes to hash a string with various work factors:<!--more-->
 

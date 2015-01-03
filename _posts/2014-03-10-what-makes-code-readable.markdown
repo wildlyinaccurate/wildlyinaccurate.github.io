@@ -31,12 +31,20 @@ Readability sits between these two. This level is a little harder to define, but
 
 Our brains are very good at identifying structure and patterns; we find them pleasing. In the same sense, many people find a lack of structure to be quite displeasing. The effect of structure on readability can be easily demonstrated using an excerpt from this BBC article [_Indian probe begins journey to Mars_](http://www.bbc.co.uk/news/science-environment-25163113).
 
+{::options parse_block_html="true" /}
+
+<div class="col-xs-6">
 > India's mission to Mars has embarked on its 300-day journey to the Red Planet. Early on Sunday the spacecraft fired its main engine for more than 20 minutes, giving it the correct velocity to leave Earth's orbit. It will now cruise for 680m km (422m miles), setting up an encounter with its target on 24 September 2014.
+</div>
+
+<div class="col-xs-6">
 > India's mission to Mars has embarked on its 300-day journey to the Red Planet.
 >
 > Early on Sunday the spacecraft fired its main engine for more than 20 minutes, giving it the correct velocity to leave Earth's orbit.
 >
 > It will now cruise for 680m km (422m miles), setting up an encounter with its target on 24 September 2014.
+</div>
+
 <div style="clear: both;"></div>
 
 Without even reading the content, the version on the right should appear more pleasant. The line breaks should give you a visual cue that each paragraph, while relevant, is not directly related to its neighbours. This is important because it lets you digest the text in smaller chunks which are much easier to comprehend by themselves than one big wall of text.
@@ -126,6 +134,6 @@ doSomething(
 
 ## Other factors
 
-<span style="font-size: 21px; line-height: 1.6;">There are plenty of other factors involved in code readability. But as with most things, readability is entirely subjective -- it's important not to confuse it with personal preference.</span>
+There are plenty of other factors involved in code readability. But as with most things, readability is entirely subjective -- it's important not to confuse it with personal preference.
 
 Programming is an interesting mix of engineering and craft. As well as borrowing precision and discipline from engineering, we need to remember to also borrow style and ergonomics from visual design.

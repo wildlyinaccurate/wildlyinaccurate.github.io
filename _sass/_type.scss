@@ -1,4 +1,5 @@
 @media (max-width: $screen-xs-max) {
+    blockquote,
     body {
         font-size: floor($font-size-base * 0.9);
     }
