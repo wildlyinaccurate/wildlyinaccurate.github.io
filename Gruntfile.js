@@ -2,6 +2,8 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-filerev');
+    grunt.loadNpmTasks('grunt-usemin');
 
     grunt.initConfig({
         uncss: {
@@ -31,12 +33,31 @@ module.exports = function(grunt) {
                     '_site/css/main.css': ['_site/css/main.css']
                 }
             }
-        }
+        },
+
+        filerev: {
+            options: {
+                algorithm: 'sha1',
+                length: 7
+            },
+            styles: {
+                src: '_site/css/main.css'
+            }
+        },
+
+        usemin: {
+            html: '_site/{**/,}*.html',
+            options: {
+                assetsDirs: '_site',
+            }
+        },
     });
 
     grunt.registerTask('build', [
         'uncss',
-        'cssmin'
+        'cssmin',
+        'filerev',
+        'usemin'
     ]);
 
 };
