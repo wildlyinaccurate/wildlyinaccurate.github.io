@@ -34,7 +34,7 @@ Different producers use different techniques for building their drum tracks. Som
 
 {% responsive_image path: assets/recycle-drum-loop.jpg alt: "This drum loop has been sliced in ReCycle" %}
 
-With the sliced tracks finished, I open up my <abbr title="Digital Audio Workstation">DAW</abbr> of choice –Reason– and began sequencing the structure of my remix. Sequencing is the easiest part of producing a track; it is where the finished elements of the track can be cut up, copied, and moved around until everything sounds right.
+With the sliced tracks finished, I open up my <acronym title="Digital Audio Workstation">DAW</acronym> of choice –Reason– and began sequencing the structure of my remix. Sequencing is the easiest part of producing a track; it is where the finished elements of the track can be cut up, copied, and moved around until everything sounds right.
 
 Having these loops was great, but my remix wouldn't be much of a remix without my own sounds thrown into the mix. Synthesizing sounds is where I invest most of my production time – I can spend days perfecting a sound.
 
