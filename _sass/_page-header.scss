@@ -13,6 +13,17 @@
     margin-top: 100px;
 }
 
+.page-header__featured-image {
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    height: 100%;
+    position: absolute;
+    top: 0;
+    max-width: none;
+    z-index: -1;
+}
+
 @media (min-width: $screen-md-min) {
     .page-header {
         min-height: 450px;
@@ -27,12 +38,8 @@
     }
 }
 
-.page-header__featured-image {
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-    position: absolute;
-    top: 0;
-    max-width: none;
-    z-index: -1;
+@media (min-width: $screen-sm-min) {
+    .page-header__featured-image {
+        height: auto;
+    }
 }
