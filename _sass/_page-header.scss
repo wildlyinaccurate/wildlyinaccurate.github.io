@@ -2,7 +2,7 @@
     border: none;
     color: $color-primary-contrast;
     min-height: 300px;
-    margin: 0 0 $navbar-margin-bottom;
+    margin: 0 0 ($navbar-margin-bottom * 2);
     overflow: hidden;
     padding: 0;
     position: relative;
