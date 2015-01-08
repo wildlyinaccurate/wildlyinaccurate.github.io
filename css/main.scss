@@ -31,9 +31,9 @@ $headings-line-height:      1.15;
 
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 
-// Don't go wider than 'medium'
-$container-large-desktop:   $container-md;
-$container-lg:              $container-md;
+// Don't go wider than 810px for maximum readability
+$container-large-desktop:   810px;
+$container-lg:              810px;
 
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
