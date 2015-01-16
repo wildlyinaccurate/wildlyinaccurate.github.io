@@ -29,8 +29,8 @@ responsive_image:
     # Container width on M devices
     - width: 940
 
-    # Container width on L devices
-    - width: 1140
+    # Container width on L devices (yes, this is smaller than M)
+    - width: 780
 
     # Common device widths (minus ~80px allowance for UI) for full-width images
     - width: 1280
