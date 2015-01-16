@@ -4,7 +4,7 @@
 
         <ul class="navbar-nav">
         {% for page in site.pages %}
-            {% if page.title %}
+            {% if page.title and page.navigation == 'main' %}
             <li class="navbar-nav__item">
                 <a class="navbar-nav__item-link navbar__link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
             </li>

@@ -2,6 +2,7 @@
 layout: page
 title: Projects
 permalink: /projects/
+navigation: main
 ---
 
 ### Pukeko
