@@ -1,8 +1,8 @@
 .page-header {
     border: none;
     color: $color-primary-contrast;
-    min-height: 300px;
     margin: 0 0 ($navbar-margin-bottom * 2);
+    min-height: 300px;
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -22,6 +22,16 @@
     top: 0;
     max-width: none;
     z-index: -1;
+}
+
+.page-meta__category {
+    font-family: monospace;
+
+    &,
+    &:focus,
+    &:hover {
+        color: $color-primary-contrast;
+    }
 }
 
 @media (min-width: $screen-md-min) {

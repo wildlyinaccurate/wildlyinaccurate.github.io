@@ -2,27 +2,13 @@
 layout: default
 ---
 
-<header class="page-header page-header--no-meta">
-    {% responsive_image path: assets/default-featured-image.jpg template: _includes/featured-image.html %}
-
-    <div class="container">
-        <h1 class="page-header__title">Blog</h1>
-        <p class="site-description">{{ site.description }}</p>
-    </div>
-</header>
+{% assign title = 'Blog' %}
+{% include page-header.html %}
 
 <section class="posts-index">
 
     {% for post in paginator.posts %}
-        <article class="post-summary">
-            <span class="post-summary__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-            <h3>
-                <a class="post-summary__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h3>
-
-            <p>{{ post.excerpt | sanitize }} <a href="{{ post.url | prepend: site.baseurl }}">(Read more)</a></p>
-        </article>
+        {% include post-summary.html %}
     {% endfor %}
 
     {% if paginator.total_pages > 1 %}
