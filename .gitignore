@@ -1,5 +1,6 @@
 _site
 .sass-cache
+search.json
 assets/resized
 bower_components
 node_modules
