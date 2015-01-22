@@ -71,6 +71,7 @@ GEM
       nokogiri (>= 1.4.4)
       nokogumbo (= 1.1.12)
     sass (3.4.9)
+    stringex (2.5.2)
     timers (4.0.1)
       hitimes
     toml (0.1.2)
@@ -84,3 +85,4 @@ DEPENDENCIES
   jekyll (~> 2.5)
   jekyll-responsive_image (~> 0.11)
   sanitize (~> 3.0)
+  stringex (~> 2.5)

@@ -4,6 +4,7 @@ description: >
 
 url: https://wildlyinaccurate.com
 permalink: /:title/
+category_dir: category
 
 excerpt_separator: <!--more-->
 paginate: 15
