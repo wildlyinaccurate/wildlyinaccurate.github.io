@@ -49,6 +49,9 @@ kramdown:
     toc_levels: 1..3
     input: GFM
 
+include:
+    - search.json
+
 exclude:
     - bower_components
     - bower.js
