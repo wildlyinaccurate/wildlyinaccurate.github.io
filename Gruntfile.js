@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-usemin');
 
@@ -35,6 +36,21 @@ module.exports = function(grunt) {
             }
         },
 
+        htmlmin: {
+            dist: {
+                options: {
+                    collapseWhitespace:    true,
+                    removeEmptyAttributes: true,
+                },
+                files: [{
+                    expand: true,
+                    cwd: '_site',
+                    src: '**/*.html',
+                    dest: '_site'
+                }]
+            }
+        },
+
         filerev: {
             options: {
                 algorithm: 'sha1',
@@ -56,6 +72,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'uncss',
         'cssmin',
+        'htmlmin',
         'filerev',
         'usemin'
     ]);
