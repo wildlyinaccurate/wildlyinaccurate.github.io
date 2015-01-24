@@ -40,6 +40,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     collapseWhitespace:    true,
+                    conservativeCollapse:  true,
                     removeEmptyAttributes: true,
                 },
                 files: [{
@@ -72,9 +73,9 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'uncss',
         'cssmin',
-        'htmlmin',
         'filerev',
-        'usemin'
+        'usemin',
+        'htmlmin',
     ]);
 
 };
