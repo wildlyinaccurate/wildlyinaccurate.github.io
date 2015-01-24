@@ -24,16 +24,6 @@
     z-index: -1;
 }
 
-.page-meta__category {
-    font-family: monospace;
-
-    &,
-    &:focus,
-    &:hover {
-        color: $color-primary-contrast;
-    }
-}
-
 @media (min-width: $screen-md-min) {
     .page-header {
         min-height: 450px;

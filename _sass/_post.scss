@@ -1,0 +1,17 @@
+.post-meta--footer {
+    font-size: $font-size-small;
+    font-style: italic;
+    margin: $navbar-margin-bottom auto;
+}
+
+.post-meta--header {
+    & a,
+    & a:focus,
+    & a:hover {
+        color: $color-primary-contrast;
+    }
+}
+
+.post-meta__data {
+    font-family: monospace;
+}

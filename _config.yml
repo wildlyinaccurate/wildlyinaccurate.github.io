@@ -4,7 +4,9 @@ description: >
 
 url: https://wildlyinaccurate.com
 permalink: /:title/
+
 category_dir: category
+tag_dir: tag
 
 excerpt_separator: <!--more-->
 paginate: 15
@@ -13,7 +15,9 @@ email: joseph@wildlyinaccurate.com
 twitter_username: Joseph_Wynn
 github_username:  wildlyinaccurate
 
-gems: [jekyll/responsive_image]
+gems:
+  - jekyll/responsive_image
+  - jekyll-last-modified-at
 
 responsive_image:
   template: _includes/thumbnail.html
