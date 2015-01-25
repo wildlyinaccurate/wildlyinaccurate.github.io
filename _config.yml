@@ -50,6 +50,7 @@ kramdown:
     input: GFM
 
 exclude:
+    - README.md
     - bower_components
     - bower.js
     - Gemfile
