@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     htmlroot: '_site',
-                    ignore: ['#carbonads', /\.carbon\-.+/]
+                    ignore: ['#carbonads', /\.carbon\-.+/, /\.search-results.+/]
                 },
                 files: {
                     '_site/css/main.css': [
@@ -19,6 +19,7 @@ module.exports = function(grunt) {
                         '_site/page2/index.html',
                         '_site/about/index.html',
                         '_site/projects/index.html',
+                        '_site/search/index.html',
                         '_site/a-hackers-guide-to-git/index.html',
                         '_site/transitioning-to-a-new-keyboard-layout/index.html',
                         '_site/understanding-javascript-inheritance-and-the-prototype-chain/index.html',
@@ -59,6 +60,9 @@ module.exports = function(grunt) {
             },
             styles: {
                 src: '_site/css/main.css'
+            },
+            scripts: {
+                src: '_site/js/*.js'
             }
         },
 

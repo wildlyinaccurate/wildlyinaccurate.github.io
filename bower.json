@@ -5,6 +5,7 @@
   ],
   "dependencies": {
     "bootstrap-sass-official": "3.3.1",
-    "pygments": "2.0.1"
+    "pygments": "2.0.1",
+    "hogan": "~3.0.2"
   }
 }
