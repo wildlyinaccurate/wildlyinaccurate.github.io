@@ -566,8 +566,7 @@ The `git clone` command is really just a shortcut which does a few things for yo
 
 1.  Create remote-tracking branches for each branch in the remote.
 2.  Check out the branch which is currently active (`HEAD`) on the remote.
-3.  Perform a `git fetch` to update all remote-tracking branches.
-4.  Perform a `git pull` to bring the current branch and working tree up-to-date with the remote.
+3.  Perform a `git pull` to bring the current branch and working tree up-to-date with the remote.
 
 The `clone` command takes a URL and supports a number of transport protocols including HTTP, SSH, and Git's own protocol. It also supports plain old file paths, which is what we'll use.
 
