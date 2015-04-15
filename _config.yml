@@ -17,6 +17,7 @@ github_username:  wildlyinaccurate
 
 gems:
   - jekyll/responsive_image
+  - jekyll-paginate
   - jekyll-last-modified-at
 
 responsive_image:
@@ -46,11 +47,11 @@ responsive_image:
     - width: 1680
     - width: 1840
 
-markdown: KramdownPygments
-
+markdown: kramdown
 kramdown:
     toc_levels: 1..3
     input: GFM
+    syntax_highlighter: rouge
 
 include:
     - search.json
