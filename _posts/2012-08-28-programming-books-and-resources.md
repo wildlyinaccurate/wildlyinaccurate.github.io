@@ -3,7 +3,8 @@ layout: post
 title: Programming Books and Resources
 date: 2012-08-28 10:21:59.000000000 +01:00
 categories:
-- Books
+- books
+- resources
 tags: []
 status: publish
 type: post
