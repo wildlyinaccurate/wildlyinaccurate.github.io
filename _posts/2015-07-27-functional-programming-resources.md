@@ -22,6 +22,10 @@ Considered to be "the" paper describing the importance of functional programming
 
 A short reflection of _Why Functional Programming Matters_, with a particular focus on language design.
 
+#### [How Functional Programming Mattered](http://nsr.oxfordjournals.org/content/early/2015/07/13/nsr.nwv042.full.pdf)
+
+This paper attempts to asses the impact that functional programming has had in the real world, more than 20 years after _Why Functional Programming Matters_ was written.
+
 #### [What is Reactive Programming?](http://paulstovell.com/blog/reactive-programming)
 
 A very concise explanation of what (functional) reactive programming is.
@@ -32,9 +36,13 @@ A very concise explanation of what (functional) reactive programming is.
 
 Conal Elliott talks about how the definition of FPR has recently become more and more misunderstood. He explains the original definition of FRP and the benefits it is intended to provide.
 
+#### [Lenses: compositional data access and manipulation](https://skillsmatter.com/skillscasts/4251-lenses-compositional-data-access-and-manipulation)
+
+An introduction to [lens](http://hackage.haskell.org/package/lens), and how lenses can help simplify working with complex data types.
+
 #### [Lenses, Folds, and Traversals](https://www.youtube.com/watch?v=cefnmjtAolY)
 
-A talk centred around the [les package](http://hackage.haskell.org/package/lens), covering how to compose lenses using Haskell's regular composition operator (`.`), and illustrating a scheme for performing les-based folds and traversals.
+A talk centred around the [lens package](http://hackage.haskell.org/package/lens), covering how to compose lenses using Haskell's regular composition operator (`.`), and illustrating a scheme for performing lens-based folds and traversals.
 
 #### [Railway Oriented Programming](http://fsharpforfunandprofit.com/rop/)
 
