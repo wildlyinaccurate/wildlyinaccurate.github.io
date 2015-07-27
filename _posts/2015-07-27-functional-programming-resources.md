@@ -51,3 +51,13 @@ Scott Wlaschin explains a functional approach to error handling (F#).
 #### [Functional Programming Design Patterns](http://fsharpforfunandprofit.com/fppatterns/)
 
 Another talk by Scott Wlaschin where he explains some common functional design patterns.
+
+### Other Collections
+
+#### [Functional Programming in Haskell and OCaml by Examples](https://github.com/caiorss/Functional-Programming)
+
+A collection of tutorials which aim to teach functional programming concepts and patterns by example.
+
+#### [How to learn Haskell](https://github.com/bitemyapp/learnhaskell)
+
+A _huge_ collection of resources for learning Haskell. The [_Specific topics for Haskell users_](https://github.com/bitemyapp/learnhaskell/blob/master/specific_topics.md) page is especially useful for understanding specific concepts.
