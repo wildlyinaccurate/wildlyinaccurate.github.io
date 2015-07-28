@@ -6,7 +6,7 @@ categories:
 tags:
 - cabal
 - readline
-- osx
+- OSX
 - homebrew
 published: true
 author: Joseph Wynn
