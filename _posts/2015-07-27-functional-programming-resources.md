@@ -30,6 +30,20 @@ This paper attempts to asses the impact that functional programming has had in t
 
 A very concise explanation of what (functional) reactive programming is.
 
+#### [The algebra (and calculus!) of algebraic data types](https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types)
+
+An intermediate-level article which explores the connection between algebraic data types and elemendary algebra. A basic understanding of Haskell's data type declaration syntax is assumed.
+
+### Books
+
+#### [Professor Frisby's Mostly Adequate Guide to Functional Programming](http://drboolean.gitbooks.io/mostly-adequate-guide/)
+
+A general look at the functional paradigm, using JavaScript as the example language. This book is [available on GitHub](https://github.com/DrBoolean/mostly-adequate-guide) (under the Attribution-ShareAlike license).
+
+#### [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/full-text/book/book.html)
+
+Available for free on MIT Press, this classic textbook covers the foundations of modern programming. Scheme is the main language used, so most of the book is written from a functional perspective.
+
 ### Videos
 
 #### [The Essence of FRP](http://begriffs.com/posts/2015-07-22-essence-of-frp.html)
