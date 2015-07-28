@@ -24,3 +24,9 @@
         font-size: floor($font-size-h5 * 0.8);
     }
 }
+
+h4,
+h5,
+h6 {
+    margin-bottom: ceil($line-height-computed / 3);
+}
