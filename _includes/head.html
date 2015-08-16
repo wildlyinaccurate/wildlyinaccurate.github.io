@@ -1,7 +1,7 @@
 {% if page.url == '/index.html' %}
     {% assign canonicalUrl = '/' %}
 {% else %}
-    {% capture canonicalUrl %}{{ page.url | append: '♥♥♥♥' | replace: '/index.html♥♥♥♥', '' | replace: '/♥♥♥♥', '' }}{% endcapture %}
+    {% capture canonicalUrl %}{{ page.url | append: '♥♥♥♥' | replace: '/index.html♥♥♥♥', '' | replace: '/404.html♥♥♥♥', '' | replace: '/♥♥♥♥', '' }}{% endcapture %}
 {% endif %}
 
 <head>
