@@ -27,13 +27,13 @@ For a while, I was defeated.
 
 Then, I stumbled across the [ErgoDox](http://ergodox.org/). At a glance, this looked like the perfect keyboard for me. The split-hand design would relieve the tension from my shoulders, the thumb keys would reduce the need to stretch my pinkies to reach the modifier keys, and the non-staggered layout would help reduce the distance my fingers need to travel when changing rows. The fact that the keyboard is fully programmable with open-source firmware was what finally sold me.
 
-So I ordered myself an [ErgoDox kit from MassDrop](https://www.massdrop.com/buy/ergodox), and set around to building my keyboard.
+So I ordered myself an [ErgoDox kit from Massdrop](https://www.massdrop.com/buy/ergodox), and set around to building my keyboard.
 
 I built the keyboard in short bursts when I had spare time on the weekends. All up I probably invested about 10 hours over a period of two months. I made good use of the electronics station at [London Hackspace](https://london.hackspace.org.uk/), and learned a lot about soldering and about electronics in general. I'm fairly confident that I could build another ErgoDox in a matter of hours.
 
 {% responsive_image path: assets/ergodox-1024x551.jpg alt: "The finished ErgoDox" %}
 
-While the open-source firmware has [several layouts available](https://github.com/wildlyinaccurate/ergodox-firmware/tree/master/src/keyboard/ergodox/layout), MassDrop provides the binary firmware for a QWERTY layout to get you started. I didn't particularly feel like learning a completely new keyboard layout so I stuck with QWERTY, figuring that the layout of the ErgoDox would solve the fatigue problems I was having. I was wrong.
+While the open-source firmware has [several layouts available](https://github.com/wildlyinaccurate/ergodox-firmware/tree/master/src/keyboard/ergodox/layout), Massdrop provides the binary firmware for a QWERTY layout to get you started. I didn't particularly feel like learning a completely new keyboard layout so I stuck with QWERTY, figuring that the layout of the ErgoDox would solve the fatigue problems I was having. I was wrong.
 
 Using the ErgoDox, I still felt like my fingers were moving just as much as on a regular keyboard. I used Patrick Gillespie's amazing [Keyboard Layout Analyzer](http://patorjk.com/keyboard-layout-analyzer) to help me figure out what the problem was.
 
