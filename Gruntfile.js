@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
 
+    grunt.loadNpmTasks('grunt-elm');
     grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -8,6 +9,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-usemin');
 
     grunt.initConfig({
+        elm: {
+            compile: {
+                files: {
+                    'js/compiled/Collection.js': 'elm/Collection.elm'
+                }
+            }
+        },
+
         uncss: {
             dist: {
                 options: {
@@ -78,7 +87,7 @@ module.exports = function(grunt) {
                 src: '_site/css/main.css'
             },
             scripts: {
-                src: '_site/js/*.js'
+                src: '_site/js/**/*.js'
             }
         },
 
