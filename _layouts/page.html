@@ -2,22 +2,7 @@
 layout: default
 ---
 
-<header class="page-header page-header--no-meta">
-    {% if page.featured_image %}
-        {% assign featured_image = page.featured_image %}
-    {% else %}
-        {% assign featured_image = 'assets/default-featured-image.jpg' %}
-    {% endif %}
-
-    {% responsive_image_block %}
-        path: {{ featured_image }}
-        template: _includes/featured-image.html
-    {% endresponsive_image_block %}
-
-    <div class="container">
-        <h1 class="page-header__title">{{ page.title }}</h1>
-    </div>
-</header>
+{% include content-page-header.html %}
 
 <article class="post-content">
     {{ content }}
