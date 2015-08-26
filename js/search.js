@@ -1,5 +1,7 @@
 (function() {
 
+    'use strict'
+
     function Search(data) {
         this.data = data
         this.cache = {}
