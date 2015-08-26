@@ -113,6 +113,7 @@ filterControls : Address Action -> Collection -> Html
 filterControls address model =
     let tags = allTags model
         filters = model.filters
+        allChecked = (filters == tags)
     in
         div
             []
@@ -122,15 +123,15 @@ filterControls address model =
 
             , ul
                 [ class "filters" ]
-                ( selectAll address filters :: tagFilters address filters tags )
+                ( selectAll address allChecked :: tagFilters address filters tags )
             ]
 
 
-selectAll : Address Action -> FilterList -> Html
-selectAll address filters =
+selectAll : Address Action -> Bool -> Html
+selectAll address allChecked =
     li
         [ class "filter filter--select-all"]
-        [ checkbox address (not (List.isEmpty filters)) SelectAllFilters "All" ]
+        [ checkbox address allChecked SelectAllFilters "All" ]
 
 
 tagFilters : Address Action -> FilterList -> List String -> List Html
