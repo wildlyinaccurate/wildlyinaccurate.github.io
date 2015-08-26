@@ -21,6 +21,8 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     htmlroot: '_site',
+                    timeout: 2000,
+                    ignoreSheets: [/fonts.googleapis/],
                     ignore: ['#carbonads', /\.carbon\-.+/, /\.search-results.+/]
                 },
                 files: {
