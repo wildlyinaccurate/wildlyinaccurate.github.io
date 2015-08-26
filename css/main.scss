@@ -1,65 +1,36 @@
 ---
 ---
-@import "fonts";
+@import "component/fonts";
 
-$text-color:                #333333;
-$color-primary:             #8e44ad;
-$color-primary-contrast:    #ffffff;
-$color-secondary:           lighten($text-color, 33%);
-$link-color:                $color-primary;
-$code-bg:                   #f5f5f5;
-$code-border-color:         darken($code-bg, 10%);
-$code-border:               1px solid $code-border-color;
+@import "bootstrap";
 
-$font-family-sans-serif:    Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-family-serif:         Merriweather, Georgia, "Times New Roman", Times, serif;
-$font-family-base:          $font-family-serif;
-
-$font-size-base:            20px;
-$font-size-h1:              floor($font-size-base * 3);
-$font-size-xs:              floor($font-size-base * 0.7);
-
-$blockquote-font-size:      $font-size-base;
-$blockquote-border-color:   $code-border-color;
-
-$line-height-base:          1.5;
-$paragraph-spacing:         24px;
-
-$headings-font-family:      $font-family-sans-serif;
-$headings-font-weight:      700;
-$headings-line-height:      1.15;
-
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
-
-// Don't go wider than 880px for maximum readability
-$container-large-desktop:   880px;
-$container-lg:              880px;
-
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/type";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/buttons";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/labels";
 
-@import "pygments";
+@import "component/pygments";
 
-@import "components";
-@import "scaffolding";
-@import "type";
-@import "layout";
-@import "navbar";
-@import "page-header";
-@import "page-footer";
-@import "post";
-@import "index";
-@import "thumbnail";
-@import "social-media";
-@import "site-description";
-@import "pagination";
-@import "search";
-@import "code";
-@import "tables";
-@import "toc";
-@import "ads";
+@import "component/components";
+@import "component/scaffolding";
+@import "component/type";
+@import "component/layout";
+@import "component/navbar";
+@import "component/page-header";
+@import "component/page-footer";
+@import "component/post";
+@import "component/index";
+@import "component/thumbnail";
+@import "component/social-media";
+@import "component/site-description";
+@import "component/pagination";
+@import "component/search";
+@import "component/collection";
+@import "component/code";
+@import "component/tables";
+@import "component/toc";
+@import "component/ads";
