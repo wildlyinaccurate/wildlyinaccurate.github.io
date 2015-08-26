@@ -3,6 +3,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-usemin');
 
@@ -23,9 +24,24 @@ module.exports = function(grunt) {
                         '_site/a-hackers-guide-to-git/index.html',
                         '_site/transitioning-to-a-new-keyboard-layout/index.html',
                         '_site/understanding-javascript-inheritance-and-the-prototype-chain/index.html',
+                        '_site/functional-programming-resources/index.html',
                         '_site/worst-fonts-for-programming/index.html'
                     ]
                 }
+            }
+        },
+
+        uglify: {
+            options: {
+                screwIE8: true
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '_site/js',
+                    src: '**/*.js',
+                    dest: '_site/js'
+                }]
             }
         },
 
@@ -77,6 +93,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'uncss',
         'cssmin',
+        'uglify',
         'filerev',
         'usemin',
         'htmlmin',
