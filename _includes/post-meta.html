@@ -1,0 +1,15 @@
+<p class="post-meta--header">
+    {{ page.date | date: "%b %-d, %Y" }}
+
+    {% if page.author %}
+        • by {{ page.author }}
+    {% endif %}
+
+    {% if page.categories %}
+        • posted in
+
+        <span class="post-meta__data">
+            [{% for category in page.categories %}<a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
+        </span>
+    {% endif %}
+</p>
