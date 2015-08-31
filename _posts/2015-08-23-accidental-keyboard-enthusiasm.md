@@ -17,7 +17,7 @@ Over the last 5 years I've managed to collect quite a few mechanical keyboards, 
 
 This was my first mechanical keyboard. The soft Cherry MX Brown switches make it my favourites for long periods of typing. Even so, I rarely use it anymore. At the time of writing, this model is still available [on the Das Keyboard website](http://www.daskeyboard.com/model-s-ultimate/).
 
-{% responsive_image path: assets/das-keyboard.jpg alt: "Das Keyboard Model S Ultimate" %}
+{% responsive_image path: assets/das-keyboard.jpg alt: "Das Keyboard Model S Ultimate" bleed: true %}
 
 ### CODE Keyboard
 
@@ -25,7 +25,7 @@ I was really excited when Jeff Atwood [announced the CODE keyboard](http://blog.
 
 The CODE has Cherry MX Clear switches, which makes for a much firmer keyboard than the Das. I find the clears preferable for short bursts of typing, but over long periods they tire my hands out.
 
-{% responsive_image path: assets/code-keyboard.jpg alt: "CODE keyboard with Keycool rainbow keycaps" %}
+{% responsive_image path: assets/code-keyboard.jpg alt: "CODE keyboard with Keycool rainbow keycaps" bleed: true %}
 
 ### ErgoDox
 
@@ -33,4 +33,4 @@ As I've mentioned in [a previous post](/transitioning-to-a-new-keyboard-layout/)
 
 My ErgoDox has Cherry MX Clear switches. Somehow the clears on the ErgoDox feel much softer than on the CODE, so I'm able to enjoy the feeling of firm keys without the fatigue I experience with the CODE.
 
-{% responsive_image path: assets/ergodox.jpg alt: "ErgoDox keyboard" %}
+{% responsive_image path: assets/ergodox.jpg alt: "ErgoDox keyboard" bleed: true %}

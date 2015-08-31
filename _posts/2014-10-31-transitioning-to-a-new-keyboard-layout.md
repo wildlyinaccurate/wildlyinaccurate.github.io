@@ -31,13 +31,13 @@ So I ordered myself an [ErgoDox kit from Massdrop](https://www.massdrop.com/buy/
 
 I built the keyboard in short bursts when I had spare time on the weekends. All up I probably invested about 10 hours over a period of two months. I made good use of the electronics station at [London Hackspace](https://london.hackspace.org.uk/), and learned a lot about soldering and about electronics in general. I'm fairly confident that I could build another ErgoDox in a matter of hours.
 
-{% responsive_image path: assets/ergodox-1024x551.jpg alt: "The finished ErgoDox" %}
+{% responsive_image path: assets/ergodox-1024x551.jpg alt: "The finished ErgoDox" bleed: true %}
 
 While the open-source firmware has [several layouts available](https://github.com/wildlyinaccurate/ergodox-firmware/tree/master/src/keyboard/ergodox/layout), Massdrop provides the binary firmware for a QWERTY layout to get you started. I didn't particularly feel like learning a completely new keyboard layout so I stuck with QWERTY, figuring that the layout of the ErgoDox would solve the fatigue problems I was having. I was wrong.
 
 Using the ErgoDox, I still felt like my fingers were moving just as much as on a regular keyboard. I used Patrick Gillespie's amazing [Keyboard Layout Analyzer](http://patorjk.com/keyboard-layout-analyzer) to help me figure out what the problem was.
 
-{% responsive_image path: assets/ergodox-qwerty-heatmap.png alt: "ErgoDox QWERTY Layout Heat Map" %}
+{% responsive_image path: assets/ergodox-qwerty-heatmap.png alt: "ErgoDox QWERTY Layout Heat Map" bleed: true %}
 
 The heat map above shows how the QWERTY layout requires you to constantly move your fingers between rows. For me, this was a major cause of discomfort. I decided that I needed to find a more efficient keyboard layout.
 
@@ -50,11 +50,11 @@ After some experimenting and reading others' thoughts, I finally settled on Cole
 *   Keys used for common keyboard shortcuts (Q, W, Z, X, C, V) remain unchanged.
 *   It felt the most "natural" compared to other popular layouts like Workman, Dvorak, and Programmer Dvorak.
 
-{% responsive_image path: assets/ergodox-colemak-heatmap1.png alt: "The heat map for a Colemak layout on the ErgoDox" %}
+{% responsive_image path: assets/ergodox-colemak-heatmap1.png alt: "The heat map for a Colemak layout on the ErgoDox" bleed: true %}
 
 An article about [Jason Trill's experience with the ErgoDox](http://jjt.io/2013/11/25/why-any-developer-should-check-out-the-ergodox-keyboard/) convinced me at the last minute to use a modified version of Colemak which puts the symbols on a separate layer around the home row, so you don't need to move your fingers to the top row to type symbols. In case you're wondering what I mean by a "separate layer": layers on a keyboard are a way to have one key type different characters. You actually use layers all the time, even if you don't realise it. When you hold down the Shift key, you're activating another layer on your keyboard. When you hit the Caps Lock key, you're toggling that layer. Layers differ from key combinations (like Control + Alt + Delete) in that they're implemented in the keyboard's firmware rather than at the software level.
 
-{% responsive_image path: assets/ergodox-colemak-symbolmod-heatmap.png alt: "The &quot;symbolmod&quot; Colemak layout reduces finger movement even further" %}
+{% responsive_image path: assets/ergodox-colemak-symbolmod-heatmap.png alt: "The &quot;symbolmod&quot; Colemak layout reduces finger movement even further" bleed: true %}
 
 As you can probably tell from the heat map above, the "Alt Gr" key enables the symbol layer, allowing me to type common symbols without my fingers leaving the home row.
 
@@ -76,7 +76,7 @@ The quick brown fox jumps over the lazy fox.
 
 In theory, the more I use each key, the less I'll have to look at my guide.
 
-{% responsive_image path: assets/ergodox-layout-guide-1024x598.jpg alt: "The layout guide I'm using to type at the moment" %}
+{% responsive_image path: assets/ergodox-layout-guide-1024x598.jpg alt: "The layout guide I'm using to type at the moment" bleed: true %}
 
 ### Stage 2 - Speed
 
