@@ -1,5 +1,11 @@
+body {
+    // Hide oversized .thumbnail--bleed divs
+    overflow: hidden;
+}
+
 .thumbnail {
     margin: 20px 0;
+    position: relative;
 }
 
 .thumbnail__image {
@@ -12,4 +18,26 @@
     font-style: italics;
     padding: $thumbnail-caption-padding;
     text-align: center;
+}
+
+@media (min-width: $screen-sm-min) {
+    .thumbnail--bleed {
+        left: -8%;
+        width: 116%;
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    .thumbnail--bleed {
+        left: -13%;
+        width: 126%;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    .thumbnail--bleed {
+        left: -20%;
+        position: relative;
+        width: 140%;
+    }
 }

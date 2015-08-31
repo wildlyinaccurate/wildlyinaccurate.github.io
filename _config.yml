@@ -20,13 +20,16 @@ gems:
   - jekyll-last-modified-at
 
 responsive_image:
+  default_quality: 85
   template: _includes/thumbnail.html
   sizes:
     # 320px devices
-    - width: 290
+    - width: 320
+      quality: 75
 
     # 360px devices
-    - width: 315
+    - width: 360
+      quality: 75
 
     # Container width on S devices
     - width: 720
@@ -34,8 +37,8 @@ responsive_image:
     # Container width on M devices
     - width: 940
 
-    # Container width on L devices (yes, this is smaller than M)
-    - width: 780
+    # Container width on L devices
+    - width: 1140
 
     # Common device widths (minus ~80px allowance for UI) for full-width images
     - width: 1280
