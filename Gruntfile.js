@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         elm: {
             compile: {
                 files: {
-                    'js/compiled/Collection.js': 'elm/Collection.elm'
+                    '_site/js/compiled/Collection.js': 'elm/Main.elm',
                 }
             }
         },
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '_site/js',
-                    src: '**/*.js',
+                    src: '{**/,}*.js',
                     dest: '_site/js'
                 }]
             }
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
                 src: '_site/css/main.css'
             },
             scripts: {
-                src: '_site/js/**/*.js'
+                src: '_site/js/{**/,}*.js'
             }
         },
 
@@ -102,6 +102,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
+        'elm',
         'uncss',
         'cssmin',
         'uglify',
