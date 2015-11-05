@@ -2,8 +2,7 @@ module Jekyll
   class CollectionItem < Liquid::Block
     def render(context)
       site = context.registers[:site]
-      # Note: getConverterImpl should be find_converter_instance after upgrading to 3.0
-      converter = site.getConverterImpl(Jekyll::Converters::Markdown)
+      converter = site.find_converter_instance(Jekyll::Converters::Markdown)
 
       attributes = YAML.load(super)
       attributes['description'] = converter.convert(attributes['description'])
