@@ -9,10 +9,10 @@ module Jekyll
     def generate(site)
       post_json = lambda do |post|
         {
-          title:      post.title,
-          tags:       post.tags,
-          categories: post.categories,
-          url:        post.url,
+          title:      post.data['title'],
+          tags:       post.data['tags'],
+          categories: post.data['categories'],
+          url:        post.data['url'],
         }
       end
 
