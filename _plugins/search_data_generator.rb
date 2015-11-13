@@ -12,7 +12,7 @@ module Jekyll
           title:      post.data['title'],
           tags:       post.data['tags'],
           categories: post.data['categories'],
-          url:        post.data['url'],
+          url:        post.url,
         }
       end
 
