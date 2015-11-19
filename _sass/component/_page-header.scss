@@ -43,3 +43,9 @@
         height: auto;
     }
 }
+
+@media (max-width: $screen-sm-min) {
+    .page-header__title {
+        margin-top: 150px;
+    }
+}
