@@ -12,7 +12,8 @@ module.exports = function(grunt) {
         elm: {
             compile: {
                 files: {
-                    '_site/js/compiled/Collection.js': 'elm/Main.elm',
+                    '_site/js/compiled/Collection.js': 'elm/Collection.elm',
+                    '_site/js/compiled/Search.js': 'elm/Search.elm',
                 }
             }
         },

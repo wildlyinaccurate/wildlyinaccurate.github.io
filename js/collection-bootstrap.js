@@ -3,7 +3,7 @@
     'use strict'
 
     Elm.embed(
-        Elm.Main,
+        Elm.Collection,
         document.querySelector('.collection-container'),
         { getFixtures: getData() }
     )

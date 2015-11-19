@@ -1,18 +1,25 @@
-module Collection
-    ( Collection
-    , model
-    , update
-    , view
-    ) where
+module Collection where
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (class, checked, type')
 import Html.Events exposing (on, targetChecked)
 import Html.Lazy exposing (lazy2)
 import Signal exposing (Signal, Address)
+import StartApp.Simple exposing (start)
 
 import Item
 import List.Extra as LE
+
+
+main =
+  start
+    { model = model getFixtures
+    , update = update
+    , view = view
+    }
+
+
+port getFixtures : Maybe Collection
 
 
 ---- UTILS ----
@@ -57,7 +64,7 @@ model : Maybe Collection -> Collection
 model fixtures =
     case fixtures of
         Just f ->
-            { f | filters <- allTags f }
+            { f | filters = allTags f }
 
         Nothing ->
             emptyModel
@@ -80,15 +87,15 @@ update action model =
     case action of
         SelectFilter tag checked ->
             if checked then
-                { model | filters <- tag :: model.filters }
+                { model | filters = tag :: model.filters }
             else
-                { model | filters <- List.filter ((/=) tag) model.filters }
+                { model | filters = List.filter ((/=) tag) model.filters }
 
         SelectAllFilters checked ->
             if checked then
-                { model | filters <- allTags model }
+                { model | filters = allTags model }
             else
-                { model | filters <- [] }
+                { model | filters = [] }
 
 
 ---- VIEW ----

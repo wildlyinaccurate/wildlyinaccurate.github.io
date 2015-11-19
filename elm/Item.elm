@@ -1,7 +1,8 @@
 module Item
     ( Item
     , view
-    ) where
+    )
+    where
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

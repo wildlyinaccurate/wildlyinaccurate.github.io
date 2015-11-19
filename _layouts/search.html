@@ -7,38 +7,22 @@ layout: default
 <article class="post-content">
     {{ content }}
 
-    <input class="search-input" placeholder="Search query">
-
-    <div class="search-results"></div>
+    <div class="search-container"></div>
 </article>
 
-{% raw %}
-<script type="text/template" id="tmpl-search-results">
-    {{#results.length}}
-        <h2 class="search-results__title">Search results for '{{query}}'</h2>
-    {{/results.length}}
+<script src="/js/compiled/Search.js"></script>
 
-    {{^results.length}}
-        {{#query}}
-            <h2 class="search-results__title">No results found for '{{query}}'</h2>
-        {{/query}}
-    {{/results.length}}
+<script>
+    var xhr = new XMLHttpRequest()
+    xhr.onload = onSearchDataLoaded
+    xhr.open('get', '/search.json', true)
+    xhr.send()
 
-    {{#results.length}}
-        <ul class="search-results__results">
-        {{#results}}
-            <li class="result-item">
-                <h4 class="result-item__title">
-                    <a class="result-item__link" href="{{url}}">
-                        {{#type}}{{type}}:{{/type}} {{title}}
-                    </a>
-                </h4>
-            </li>
-        {{/results}}
-        </ul>
-    {{/results.length}}
+    function onSearchDataLoaded() {
+        Elm.embed(
+            Elm.Search,
+            document.querySelector('.search-container'),
+            { getSearchData: JSON.parse(this.responseText) }
+        )
+    }
 </script>
-{% endraw %}
-
-<script src="/js/hogan.js"></script>
-<script src="/js/search.js"></script>
