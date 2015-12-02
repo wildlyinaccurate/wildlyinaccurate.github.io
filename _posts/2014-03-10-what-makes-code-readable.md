@@ -47,7 +47,7 @@ Our brains are very good at identifying structure and patterns; we find them ple
 
 <div style="clear: both;"></div>
 
-Without even reading the content, the version on the right should appear more pleasant. The line breaks should give you a visual cue that each paragraph, while relevant, is not directly related to its neighbours. This is important because it lets you digest the text in smaller chunks which are much easier to comprehend by themselves than one big wall of text.
+Without even reading the content, the second version should appear more pleasant. The line breaks should give you a visual cue that each paragraph, while relevant, is not directly related to its neighbours. This is important because it lets you digest the text in smaller chunks which are much easier to comprehend by themselves than one big wall of text.
 
 Breaking up large amounts of text into paragraphs is common practice in modern writing. Unfortunately, this practice doesn't seem to have been adopted by programmers. It's not uncommon to see code with no more than one sequential line break.
 
