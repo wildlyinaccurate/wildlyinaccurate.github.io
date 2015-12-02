@@ -52,7 +52,7 @@ $recursive_iterator = new RecursiveIteratorIterator($category_iterator, Recursiv
 
 foreach ($recursive_iterator as $index => $child_category)
 {
-    echo '<option value="' . $child_category->getId() . '">' . str_repeat('&amp;nbsp;&amp;nbsp;', $recursive_iterator->getDepth()) . $child_category->getTitle() . '</option>';
+    echo '<option value="' . $child_category->getId() . '">' . str_repeat('&nbsp;&nbsp;', $recursive_iterator->getDepth()) . $child_category->getTitle() . '</option>';
 }
 ```
 

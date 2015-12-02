@@ -77,7 +77,7 @@ So really, the only way to avoid dishonest comments is to simply **not write the
 
 In the Ruby Rogues episode I mentioned at the start of this post, there's a brief discussion about the idea that comments are a code smell. This idea is [hotly debated](http://programmers.stackexchange.com/questions/1/comments-are-a-code-smell). However, I do believe that treating comments as a code smell can help you to identify dishonest comments before they become a problem.
 
-I think this ends up coming back to the way that syntax highlighting hides comments from us. It's really difficult to spot dishonest comments because we've trained our brains to focus on the bright &amp; colourful text, and ignore the dull grey text.
+I think this ends up coming back to the way that syntax highlighting hides comments from us. It's really difficult to spot dishonest comments because we've trained our brains to focus on the bright & colourful text, and ignore the dull grey text.
 
 {% responsive_image path: assets/hidden-comments.png alt: "Greyed-out comments" %}
 
