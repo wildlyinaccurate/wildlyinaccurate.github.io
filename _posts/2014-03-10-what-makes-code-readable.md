@@ -21,7 +21,7 @@ When you ask programmers how to make code easier to read, many of them will ment
 
 {% responsive_image path: assets/legibility-readability-comprehension.png alt: "Legibility - Readability - Comprehension" %}
 
-At the lowest level is legibility. This is how easily individual characters can be distinguished from each other, and can usually be boiled down to the choice of font, as well as the foreground &amp; background colours.
+At the lowest level is legibility. This is how easily individual characters can be distinguished from each other, and can usually be boiled down to the choice of font, as well as the foreground & background colours.
 
 At the highest level is comprehension, which is the ease in which a block of code can be fully understood. Decomposition, naming conventions and comments are just a few of the many ways to improve comprehension.
 
@@ -91,7 +91,7 @@ With only 2 extra line breaks, the code has been changed from a single 14-line b
 
 There aren't any solid rules on when to separate blocks of code. Usually you should trust your gut and split code into blocks of related lines. As a guideline though, I tend to treat the following as separate blocks:
 
-*   Initialization &amp; assignment
+*   Initialization & assignment
 *   Control flow
 *   Data transformations
 
@@ -100,7 +100,7 @@ There aren't any solid rules on when to separate blocks of code. Usually you sho
 Writers will often use [plain language](http://en.wikipedia.org/wiki/Plain_language) to reduce the _idea density_ of their text. This enables readers to quickly skim over text rather than making an effort to understand complex language. Programmers can use similar techniques to reduce what I call the _line density_ of code. Lines become dense when they contain too much logic. A good example is a complex if-statement.
 
 ```js
-if (x == 10 || x == 20 &amp;&amp; y == 2 || y == 5)
+if (x == 10 || x == 20 && y == 2 || y == 5)
 ```
 
 In this example, the reader must make a significant effort to determine that there are 3 possible "truth" conditions. The reason this requires so much effort is because we are required to read the line character-by-character until we find the `||`, which we know separates each condition.
@@ -108,7 +108,7 @@ In this example, the reader must make a significant effort to determine that the
 ```js
 if (
   x == 10 ||
-  x == 20 &amp;&amp; y == 2 ||
+  x == 20 && y == 2 ||
   y == 5
 )
 ```
