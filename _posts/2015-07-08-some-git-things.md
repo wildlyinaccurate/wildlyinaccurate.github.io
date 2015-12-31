@@ -36,6 +36,14 @@ $ git rev-parse --short HEAD
 0f64e9e
 ```
 
+### Find which branches a commit is in
+
+```
+$ git branch --contains HEAD
+  master
+* other-branch
+```
+
 ### View details of an object
 
 ```
