@@ -2,7 +2,7 @@
 layout: post
 title: 'Making the BBC News website faster'
 categories:
-- web development
+- Web Development
 tags:
 - web
 - performance

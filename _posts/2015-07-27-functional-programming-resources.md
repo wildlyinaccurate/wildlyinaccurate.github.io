@@ -2,8 +2,8 @@
 layout: collection
 title: 'Functional Programming Resources'
 categories:
-- functional programming
-- resources
+- Functional Programming
+- Resources
 tags:
 - functional programming
 published: true

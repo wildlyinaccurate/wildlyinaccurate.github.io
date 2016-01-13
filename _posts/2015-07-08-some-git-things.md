@@ -2,7 +2,7 @@
 layout: post
 title: 'Some Git Things'
 categories:
-- git
+- Git
 tags:
 - git
 published: true
