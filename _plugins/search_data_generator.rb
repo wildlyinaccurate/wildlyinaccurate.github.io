@@ -16,7 +16,7 @@ module Jekyll
         }
       end
 
-      posts = site.posts.map(&post_json)
+      posts = site.posts.docs.map(&post_json)
       tags = site.tags.keys
       categories = site.categories.keys
 
