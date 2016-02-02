@@ -5,9 +5,9 @@ permalink: /projects/
 navigation: main
 ---
 
-### Pukeko
+### Plait
 
-Currently in a private beta, [Pukeko](https://pukeko.io/) aims to help companies hire the right developers by providing simple coding tests.
+Based on the Elm architecture, [Plait](https://wildlyinaccurate.com/plait/) is a minimal JavaScript framework for creating reactive web applications.
 
 ### A Hacker's Guide to Git
 
