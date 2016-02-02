@@ -1,5 +1,5 @@
 <header class="page-header page-header--no-meta {% unless title %}page-header--no-title{% endunless %}">
-    {% responsive_image path: assets/default-featured-image.jpg template: _includes/featured-image.html %}
+    {% responsive_image path: assets/default-featured-image.jpg template: _includes/featured-image.html cache: true %}
 
     <div class="container">
         {% if title %}<h1 class="page-header__title">{{ title }}</h1>{% endif %}
