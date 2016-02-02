@@ -16,7 +16,7 @@ GEM
     jekyll-last-modified-at (0.3.4)
       jekyll
     jekyll-paginate (1.1.0)
-    jekyll-responsive_image (0.14.0)
+    jekyll-responsive_image (0.15.0)
       jekyll (>= 2.0, < 4.0)
       rmagick (>= 2.0, < 3.0)
     jekyll-sass-converter (1.4.0)
@@ -54,7 +54,7 @@ DEPENDENCIES
   jekyll (~> 3.0)
   jekyll-last-modified-at (~> 0.3)
   jekyll-paginate (~> 1.1)
-  jekyll-responsive_image (~> 0.14)
+  jekyll-responsive_image (~> 0.15)
   sanitize (~> 4.0)
   stringex (~> 2.6)
 
