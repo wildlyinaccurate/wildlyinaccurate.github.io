@@ -46,6 +46,14 @@ excerpt: This post contains a collection of resources for learning about functio
 {% endcollection_item %}
 
 {% collection_item %}
+    title: 'Functors, Applicatives, And Monads In Pictures'
+    url: 'http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html'
+    description: 'A great illustrated introduction to functors, applicatives and monads.'
+    category: 'Articles, Papers & Blog Posts'
+    tags: ['Blog', 'Intermediate', 'Haskell']
+{% endcollection_item %}
+
+{% collection_item %}
     title: 'The algebra (and calculus!) of algebraic data types'
     url: 'https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types'
     description: 'An intermediate-level article which explores the connection between algebraic data types and elemendary algebra. A basic understanding of Haskell&#39;s data type declaration syntax is assumed.'
