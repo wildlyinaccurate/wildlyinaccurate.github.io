@@ -44,6 +44,23 @@ $ git branch --contains HEAD
 * other-branch
 ```
 
+### Find commits which are in one branch but not another
+
+```
+$ git log --oneline --right-only master...hotfix-1
+
+0f64e9e Apply hotfix patch from #2914 to hotfix-1
+bc3bff5 [Cherry-pick] Fix issue #2926
+```
+
+##### Exclude commits which were cherry-picked
+
+```
+$ git log --oneline --cherry-pick --right-only master...hotfix-1
+
+0f64e9e Apply hotfix patch from #2914 to hotfix-1
+```
+
 ### View details of an object
 
 ```
@@ -56,14 +73,14 @@ committer Foo Bar <foo@bar.com> 1436294582 +0100
 Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ```
 
-#### Show an object's type
+##### Show an object's type
 
 ```
 $ git cat-file -t HEAD
 commit
 ```
 
-#### Show an object's size
+##### Show an object's size
 
 ```
 $ git cat-file -s HEAD
