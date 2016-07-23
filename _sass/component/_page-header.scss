@@ -1,8 +1,8 @@
 .page-header {
     border: none;
     color: $color-primary-contrast;
-    margin: 0 0 ($navbar-margin-bottom * 2);
-    min-height: 300px;
+    margin: 0 0 $navbar-margin-bottom;
+    min-height: 260px;
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -26,7 +26,7 @@
 
 @media (min-width: $screen-md-min) {
     .page-header {
-        min-height: 420px;
+        min-height: 320px;
     }
 
     .page-header__title {
@@ -34,7 +34,7 @@
     }
 
     .page-header--no-meta {
-        min-height: 340px;
+        min-height: 260px;
     }
 }
 

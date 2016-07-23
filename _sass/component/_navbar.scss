@@ -41,7 +41,13 @@
 
 @media (max-width: $screen-xs-max) {
     .navbar-nav__item-link {
-        padding-bottom: 23px;
-        padding-top: 23px;
+        padding-bottom: 22px;
+        padding-top: 21px;
+    }
+}
+
+@media (max-width: $screen-xs-max / 2) {
+    .navbar-nav__item-link {
+        padding: 10px 12px;
     }
 }
