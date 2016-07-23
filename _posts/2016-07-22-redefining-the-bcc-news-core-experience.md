@@ -74,6 +74,7 @@ Earlier this week, I started thinking about how I would approach the core experi
 
 What I came up with was a hand rolled CSS framework (using Sass mixins from [Bootstrap v4](https://github.com/twbs/bootstrap/tree/v4-dev)) which allowed me to build a page with very minimal markup. The results were promising:
 
+ * A fully responsive page which works at all device widths.
  * A 7KB HTML document containing all the core content and styles -- 80% smaller than the current 36KB core experience.
  * 2 HTTP requests totalling 58KB -- 73 fewer requests and 80% fewer bytes.
  * 100ms first paint time -- 150ms faster (60%) than the current core experience.
@@ -83,3 +84,14 @@ What I came up with was a hand rolled CSS framework (using Sass mixins from [Boo
 {% responsive_image path: assets/lightweight-cpu-profile.png alt: "The CPU profile of the lightweight prototype" %}
 
 {% responsive_image path: assets/bbc-news-core-cpu-profile.png alt: "The CPU profile of the current BBC News core experience" %}
+
+Here is the finished product on a wide screen:
+
+{% responsive_image path: assets/redefining-core-prototype.png alt: "The lightweight core experience prototype" %}
+
+As well as creating a truly lightweight core experience, I also wanted to think about how we can put the users back in control of their experience. We can give users a core experience when we think they need it -for example by detecting screen width or connection speed- and also them give them the controls to progressively enhance the page themselves.
+
+I've started to explore these ideas by implementing two controls:
+
+ * A button which (lazily) loads the remaining images on the page. This requires basic JavaScript support, so can be used by most users.
+ * Buttons to prefetch the content for the top 7, and the remaining articles on the page. This requires a browser with Service Worker support.
