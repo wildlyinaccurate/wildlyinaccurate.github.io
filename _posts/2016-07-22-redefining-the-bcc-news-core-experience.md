@@ -74,9 +74,10 @@ Earlier this week, I started thinking about how I would approach the core experi
 
 What I came up with was a hand rolled CSS framework (using Sass mixins from [Bootstrap v4](https://github.com/twbs/bootstrap/tree/v4-dev)) which allowed me to build a page with very minimal markup. The results were promising:
 
- * A fully responsive page which works at all device widths.
  * A 7KB HTML document containing all the core content and styles -- 80% smaller than the current 36KB core experience.
- * 2 HTTP requests totalling 58KB -- 73 fewer requests and 80% fewer bytes.
+ * 2 HTTP requests totalling 27KB -- 73 fewer requests and 90% fewer bytes.
+ * A fully responsive page which works at all device widths.
+ * Responsive images for browsers which support `srcset`.
  * 100ms first paint time -- 150ms faster (60%) than the current core experience.
  * 460ms first paint time -- 440ms faster (50%).
  * A much smaller CPU profile.
@@ -85,9 +86,13 @@ What I came up with was a hand rolled CSS framework (using Sass mixins from [Boo
 
 {% responsive_image path: assets/bbc-news-core-cpu-profile.png alt: "The CPU profile of the current BBC News core experience" %}
 
+Obviously I've cheated a lot. There is no white "BBC bar" at the top (which accounts for much of the page weight on the core experience) or site navigation, and about 15% of the content is missing. However, I'm confident that the navigation and remaining content can be added to the page without going over 10KB of HTML and CSS.
+
 Here is the finished product on a wide screen:
 
 {% responsive_image path: assets/redefining-core-prototype.png alt: "The lightweight core experience prototype" %}
+
+You can find the (minified) code [on GitHub](https://github.com/wildlyinaccurate/lightweight-progressive-news), and view the live prototype at [https://wildlyinaccurate.com/lightweight-progressive-news/](https://wildlyinaccurate.com/lightweight-progressive-news/).
 
 As well as creating a truly lightweight core experience, I also wanted to think about how we can put the users back in control of their experience. We can give users a core experience when we think they need it -for example by detecting screen width or connection speed- and also them give them the controls to progressively enhance the page themselves.
 
@@ -95,3 +100,20 @@ I've started to explore these ideas by implementing two controls:
 
  * A button which (lazily) loads the remaining images on the page. This requires basic JavaScript support, so can be used by most users.
  * Buttons to prefetch the content for the top 7, and the remaining articles on the page. This requires a browser with Service Worker support.
+
+## Where to from here?
+
+I presented this prototype to most of the BBC News technical teams. The response from many people was "why isn't our core experience already like that?" and "how did our core experience become so big?". Those are the right questions, and answering them might help to prevent this from happening to you.
+
+As I mentioned earlier, the BBC News core experience used to be fast and lightweight. Over the last 4 years, various BBC teams have insisted that their products be placed in the BBC News core experience. These include:
+
+#### BBC ID
+
+Allows you to sign in and do things like post comments and receive notifications. This adds about 8 external scripts to the page, and an external stylesheet.
+
+
+#### Notifications
+
+Opens a large popover asking you to register to be notified when your favourite BBC content is updated.
+
+#### Search 
