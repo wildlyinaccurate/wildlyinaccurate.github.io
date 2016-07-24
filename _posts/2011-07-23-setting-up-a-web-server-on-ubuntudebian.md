@@ -38,7 +38,7 @@ sudo apt-get install apache2
 
 #### Enabling .htaccess overrides
 
-.htaccess overrides are a common component of many web applications. To enable .htaccess overrides, first open /etc/apache2/sites-available/default with the text editor of your choice (e.g. `sudo nano /etc/apache2/sites-available/default`). Inside the `<VirtualHost *:80>` section, set `AllowOverride` to `All`.
+.htaccess overrides are a common component of many web applications. To enable .htaccess overrides, first open `/etc/apache2/sites-available/default` with the text editor of your choice (e.g. `sudo nano /etc/apache2/sites-available/default`). Inside the `<VirtualHost *:80>` section, set `AllowOverride` to `All`.
 
 Next, create a symbolic link to the rewrite module in the mods-enabled directory:
 
@@ -71,15 +71,15 @@ After installing everything, you should restart Apache to make sure it reads you
 
 Below is a list of useful tools and modules that I recommend installing. Remember to restart your web server after installing a new module.
 
-#### PhpMyAdmin
+#### phpMyAdmin
 
-PhpMyAdmin is an in-browser MySQL administration interface written in PHP. Installing PhpMyAdmin will require an extra 20MB of disk space, as it is dependant on several other packages.
+phpMyAdmin is an in-browser MySQL administration interface written in PHP. Installing phpMyAdmin will require an extra 20MB of disk space, as it is dependant on several other packages.
 
 ```
 sudo apt-get install phpmyadmin
 ```
 
-Once PhpMyAdmin is installed, open /etc/apache2/apache2.conf with the text editor of your choice (e.g. `sudo nano /etc/apache2/apache2.conf`) and add this line at the bottom of the file:
+Once phpMyAdmin is installed, open `/etc/apache2/apache2.conf` with the text editor of your choice (e.g. `sudo nano /etc/apache2/apache2.conf`) and add this line at the bottom of the file:
 
 ```
 Include /etc/phpmyadmin/apache.conf
@@ -97,7 +97,7 @@ The APC team have written a script which is useful for monitoring the cache and 
 
 #### cURL
 
-cURL is a PHP library that allows you to communicate with different types of servers using many protocols including http, https, ftp, telnet, ldap, and more. cURL is especially useful for making API calls.
+cURL is a PHP library that allows you to communicate with different types of servers using many protocols including APTTP, HTTPS, FTP, telnet, LDAP, and more. cURL is especially useful for making API calls.
 
 ```
 sudo apt-get install php5-curl

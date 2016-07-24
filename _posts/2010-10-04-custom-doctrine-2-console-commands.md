@@ -25,7 +25,7 @@ I could not find a command to load data from fixtures, so I made a very basic co
 
 <!--more-->
 
-In application/doctrine.php, add the following line anywhere after the chdir() command. Mine sits on line #5.
+In `application/doctrine.php`, add the following line anywhere after the `chdir()` command. Mine sits on line #5.
 
 ```
 require_once '../fixtures/Commands.php';
@@ -37,17 +37,17 @@ Now create the following directories and files:
 
 {% responsive_image path: assets/capture.jpg alt: "Fixtures Directory Structure" %}
 
-application/fixtures/
+`application/fixtures/`
 
-application/fixtures/Commands.php
+`application/fixtures/Commands.php`
 
-application/fixtures/Command/
+`application/fixtures/Command/`
 
-application/fixtures/Command/LoadDataCommand.php
+`application/fixtures/Command/LoadDataCommand.php`
 
-application/fixtures/Commands.php is used to load our custom commands. For now, we only have one command - LoadData. To load this command, simply add the line `require_once 'Command/LoadDataCommand.php';`
+`application/fixtures/Commands.php` is used to load our custom commands. For now, we only have one command - `LoadData`. To load this command, simply add the line `require_once 'Command/LoadDataCommand.php';`
 
-Now in application/fixtures/Command/LoadDataCommand.php, copy the following code:
+Now in `application/fixtures/Command/LoadDataCommand.php`, copy the following code:
 
 ```php
 <?php
@@ -149,4 +149,4 @@ EOT
 }
 ```
 
-Now all you need to do is create .sql files in application/fixtures and run the load-data command from the Doctrine Console. Note that on my system, the script catches a PDOException after it executes a SQL file. I can't work out where the exception is coming from but the script still manages to process all of the files so you can safely ignore it.
+Now all you need to do is create `.sql` files in `application/fixtures` and run the `load-data` command from the Doctrine Console. Note that on my system, the script catches a PDOException after it executes a SQL file. I can't work out where the exception is coming from but the script still manages to process all of the files so you can safely ignore it.

@@ -40,7 +40,7 @@ If you're not familiar with JavaScript events, `e.stopPropagation()` will stop t
 
 This is pretty common practice; a developer will leave a comment so that the next person understands why the `e.stopPropagation()` is gone.<!--more-->
 
-So far this isn't too bad. But what happens when somebody changes their mind again, and doesn't want the event to bubble up anymore? Quite often, this is what happens:
+So far this isn't too bad. But what happens when somebody changes their mind again, and doesn't want the event to bubble up any more? Quite often, this is what happens:
 
 ```diff
 --- a/example.js

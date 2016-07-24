@@ -15,7 +15,7 @@ Over the last 5 years I've managed to collect quite a few mechanical keyboards, 
 
 ### Das Keyboard (3) Model S Ultimate
 
-This was my first mechanical keyboard. The soft Cherry MX Brown switches make it my favourites for long periods of typing. Even so, I rarely use it anymore. At the time of writing, this model is still available [on the Das Keyboard website](http://www.daskeyboard.com/model-s-ultimate/).
+This was my first mechanical keyboard. The soft Cherry MX Brown switches make it my favourites for long periods of typing. Even so, I rarely use it any more. At the time of writing, this model is still available [on the Das Keyboard website](http://www.daskeyboard.com/model-s-ultimate/).
 
 {% responsive_image path: assets/das-keyboard.jpg alt: "Das Keyboard Model S Ultimate" bleed: true %}
 

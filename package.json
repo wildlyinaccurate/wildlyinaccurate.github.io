@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "grunt build"
+   "build": "grunt build",
+   "spellcheck": "mdspell --ignore-numbers --ignore-acronyms --no-suggestions _posts/**/*.md"
   },
   "dependencies": {},
   "devDependencies": {
@@ -16,7 +17,8 @@
     "grunt-elm": "^1.3.0",
     "grunt-filerev": "^2.3.1",
     "grunt-uncss": "^0.4.4",
-    "grunt-usemin": "^3.1.1"
+    "grunt-usemin": "^3.1.1",
+    "markdown-spellcheck": "^0.11.0"
   },
   "repository": {
     "type": "git",

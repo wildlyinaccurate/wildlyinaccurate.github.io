@@ -30,7 +30,7 @@ To get started, download [CodeIgniter 2](http://codeigniter.com/download.php) an
 
 ## Setting up CodeIgniter
 
-Put all of the CodeIgniter files into a directory on your web server, and configure it to your liking. If you need a guide on how to do this, the best place to look is the [CodeIgniter User Guide](http://codeigniter.com/user_guide/). Keep in mind that Doctrine will load the database configuration from CodeIgniter (application/config/database.php).
+Put all of the CodeIgniter files into a directory on your web server, and configure it to your liking. If you need a guide on how to do this, the best place to look is the [CodeIgniter User Guide](http://codeigniter.com/user_guide/). Keep in mind that Doctrine will load the database configuration from CodeIgniter (`application/config/database.php`).
 
 ## Setting up Doctrine
 
@@ -39,8 +39,8 @@ Because Doctrine is an entire system in itself, it worked well as a plugin for C
 Setting up Doctrine as a CodeIgniter library is fairly simple:
 
 1.  Put the Doctrine directory into application/libraries (so that you have a application/libraries/Doctrine directory).
-2.  Create the file application/libraries/Doctrine.php. This will be our Doctrine bootstrap as well as the library that CodeIgniter loads.
-3.  Copy the following code into Doctrine.php:
+2.  Create the file `application/libraries/Doctrine.php`. This will be our Doctrine bootstrap as well as the library that CodeIgniter loads.
+3.  Copy the following code into `Doctrine.php`:
 
 ```php
 <?php
@@ -122,7 +122,7 @@ Notice the `$dev_mode` variable. This should be true while you are developing, a
 Likewise, when `$dev_mode` is false:
 
 1.  Prevents your proxy classes from being overwritten
-2.  Attempts to use one of the following persistent caches, in this order: APC, Xcache, Memcache (127.0.0.1:11211), and Redis (127.0.0.1:6379)
+2.  Attempts to use one of the following persistent caches, in this order: APC, XCache, Memcache (127.0.0.1:11211), and Redis (127.0.0.1:6379)
 
 ## Advanced Configuration
 
@@ -144,7 +144,7 @@ $em = $this->doctrine->em;
 
 ## Defining Models
 
-Building models using the AnnotationDriver is simple. You can build your classes as if they were regular PHP classes, and define the Doctrine metadata in Docblock annotations.
+Building models using the AnnotationDriver is simple. You can build your classes as if they were regular PHP classes, and define the Doctrine metadata in DocBlock annotations.
 
 ```php
 <?php
@@ -264,7 +264,7 @@ Thankfully you can save a lot of time and [automatically generate these methods]
 
 This step is optional, however the Doctrine Console has some very useful commands so I highly recommend setting it up.
 
-All you need to do is create the file application/doctrine.php and copy the following code into it:
+All you need to do is create the file `application/doctrine.php` and copy the following code into it:
 
 ```php
 <?php
@@ -303,15 +303,15 @@ If you are on Windows, you can run `php.exe application/doctrine.php` from the c
 
 If you run the Doctrine console with no arguments, you will be presented with a list of the available commands. For now, we are only interested in the `orm:schema-tool` commands. If you would like to learn about the other commands you can run a command with the `--help` flag or read my quick [Doctrine console overview](https://wildlyinaccurate.com/useful-doctrine-2-console-commands).
 
-**orm:schema-tool:create** will create tables in your database based on your Doctrine models.
+`orm:schema-tool:create` will create tables in your database based on your Doctrine models.
 
-**orm:schema-tool:drop** will do the exact opposite. It is worth noting that this command will only drop tables which have correlating Doctrine models. Any tables that aren't mapped to a Doctrine model will be left alone.
+`orm:schema-tool:drop` will do the exact opposite. It is worth noting that this command will only drop tables which have correlating Doctrine models. Any tables that aren't mapped to a Doctrine model will be left alone.
 
-**orm:schema-tool:update** will determine if your database schema is out-of-date, and give you the option of updating it. You can execute this command with the `--dump-sql` flag to see the changes, or the `--force` flag to execute the changes.
+`orm:schema-tool:update` will determine if your database schema is out-of-date, and give you the option of updating it. You can execute this command with the `--dump-sql` flag to see the changes, or the `--force` flag to execute the changes.
 
 ## Using Doctrine
 
-Once your models are set up and your database is built, you can access your models using the Doctrine EntityManager. I like shortcuts, so I always instantiate the EntityManager in MY_Controller:
+Once your models are set up and your database is built, you can access your models using the Doctrine EntityManager. I like shortcuts, so I always instantiate the `EntityManager` in `MY_Controller`:
 
 ```php
 <?php

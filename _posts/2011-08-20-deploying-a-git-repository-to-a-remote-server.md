@@ -29,19 +29,19 @@ git archive --format=tar origin/master | gzip -9c | ssh user@yourserver.com "tar
 
 Let's take a look at the different parts of that command.
 
-**--format=tar**
+`--format=tar`
 
 This tells Git to combine all of the repository's files into a single tarball file. The benefit of doing this is that a large single file can be transferred much quicker than thousands of smaller files.
 
-**origin/master**
+`origin/master`
 
 If you are familiar with Git, you should recognise that these are the default names for a Git remote and branch. You should change these to match your remote/branch setup.
 
-**gzip -9c**
+`gzip -9c`
 
 The tarball created by `git archive` is piped into Gzip, which applies compression to reduce the size of the file. The `9` flag tells Gzip to use the best compression method, and the `c` flag makes Gzip write the compressed file to <abbr title="Standard Output">stdout</abbr>. The reason we want Gzip to write to standard output is so that we can send the compressed repository straight to the remote server via SSH.
 
-**ssh user@yourserver.com "tar --directory=/var/www -xvzf -"**
+`ssh user@yourserver.com "tar --directory=/var/www -xvzf -"`
 
 The Gzipped tarball is then piped through SSH to your remote server. The remote server runs `tar --directory=/var/www -xvzf -` which extracts the Gzipped tarball into the `/var/www` directory. Note that the hyphen (`-`) at the end of the `tar` command tells tar to receive data from a piped command instead of a file.
 

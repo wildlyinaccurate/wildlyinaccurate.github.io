@@ -23,6 +23,6 @@ Let's get started. In a combinator, create a Thor synthesizer. The bass we're go
 
 This DnB Bass patch is a great start to a deep, growly dubstep bass. We're going to need to modify it and add some effects to get it sounding the way we want though. Make sure the Thor programmer is showing (click the Show Programmer button to the right of the pitch bend and mod wheel). Make the following changes:
 
-1.  Set the balance of oscillator #1 and #2 to 40. This will give the sawtooth osc more volume, and give the synth a harsh and raw feel.
+1.  Set the balance of oscillator #1 and #2 to 40. This will give the sawtooth oscillator more volume, and give the synth a harsh and raw feel.
 2.  Set the filter envelope attack to about 400ms. This makes the filter kick in a little sooner.
 3.  Turn the shaper off.
