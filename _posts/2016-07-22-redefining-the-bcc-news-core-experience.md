@@ -36,11 +36,11 @@ Despite huge Internet growth in developing countries, device capabilities and co
 
 So what does all of this have to do with a core experience?
 
-If the majority of your users access the Internet on a mobile connection, then (hopefully) the last thing you want to do is send them bytes they don't need. Not only can this be costly for your users (it would take 17 hours of minimum wage work in India to purchase 500MB of mobile data), it can also be costly for your business. At BBC News, the difference between a page loading in 4 seconds versus the same page loading in 8 seconds correlates to a 30% increase in users abandoning the page. This is a big deal for content providers like the BBC, and an even bigger deal for online stores.
+If the majority of your users access the Internet on a mobile connection, then (hopefully) the last thing you want to do is send them bytes they don't need. Not only can this be costly for your users (it takes 17 hours of minimum wage work in India to purchase 500MB of mobile data), it can also be costly for your business. At BBC News, the difference between a page loading in 4 seconds versus the same page loading in 8 seconds correlates to a 30% increase in users abandoning the page. This is a big deal for content providers like the BBC, and an even bigger deal for online stores.
 
 Providing a core experience is about being able to reach users all around the world, regardless of connection speed and device capabilities. It's about thinking beyond the USA & Europe, and welcoming the other 65% of the Internet to your website.
 
-## The definition
+## The definition of a core experience
 
 A core experience should be made up of these five things, in order of importance:
 
@@ -56,13 +56,13 @@ The way this has been achieved so far at the BBC has been to create a small `cor
 
 ## The problem with the BBC News core experience
 
-Cutting the mustard to provide an enhanced experience is great from a web developer's point of view: browsers which use `enhanced.css` can use modern (in browser terms) standards like CSS3. Likewise, modern JavaScript can be used without the need for polyfills or compatibility libraries. But there's a problem with this approach: the user has no say in which experience they get.
+Cutting the mustard to provide an enhanced experience is great from a web developer's point of view: browsers that use `enhanced.css` can use modern (in browser terms) standards like CSS3. Likewise, modern JavaScript can be used without the need for polyfills or compatibility libraries. But there's a problem with this approach: the user has no say in which experience they get.
 
 The fact that a user has a modern browser does not mean that they have a fast or reliable connection. Providing a core experience is useless if users are going to be forced onto the enhanced experience anyway. Loading the enhanced BBC News front page on a mobile device will cost about 500KB (or 10 minutes of minimum wage work). Opening an article page from there will cost another 370KB. That's a cost of nearly 1MB of data just to read a single article.
 
 {% responsive_image path: assets/bbc-news-core.png alt: "The BBC News core experience on a wide screen" %}
 
-Another issue I have with the BBC News core experience is that it was designed to work well on small smartphones and feature phones. The content is forced into a single column layout, and the main image size is hard-coded to 200px. It doesn't look so good on anything larger than a small phone. This is problematic if we consider that people may want to receive the core experience on a larger device. It is unfair that they should have a degraded experience.
+Another issue I have with the BBC News core experience is that it was designed to work well on small smartphones and feature phones. The content is forced into a single column layout, and the width of the primary image is hard-coded to 200px. It doesn't look good on anything larger than a small phone. This is problematic if we consider that people may want to receive the core experience on a larger device. It is unfair that they should have a degraded experience.
 
 ## Starting from scratch
 
@@ -70,7 +70,7 @@ Earlier this week, I started thinking about how I would approach the core experi
 
 What I came up with was a hand rolled CSS framework using Sass mixins from [Bootstrap v4](https://github.com/twbs/bootstrap/tree/v4-dev), which allowed me to build a page with very minimal markup. The results were promising:
 
- * A 7KB HTML document containing all the core content and styles -- 80% smaller than the current 36KB core experience.
+ * A 7KB HTML document containing all the core content and inlined styles -- 80% smaller than the current 36KB core experience.
  * 2 HTTP requests totalling 27KB -- 73 fewer requests and 90% fewer bytes.
  * A fully responsive page which works at all device widths.
  * Responsive images for browsers which support `srcset`.
@@ -82,13 +82,11 @@ What I came up with was a hand rolled CSS framework using Sass mixins from [Boot
 
 {% responsive_image path: assets/bbc-news-core-cpu-profile.png alt: "The CPU profile of the current BBC News core experience" %}
 
-Obviously I've cheated a lot. There is no white "BBC bar" at the top (which accounts for much of the page weight on the core experience). There is no site navigation, and about 15% of the content is missing. However, I'm confident that the navigation and remaining content can be added to the page in just a couple more bytes of HTML and CSS.
+Obviously I've cheated a bit. There is no white "BBC bar" at the top (which accounts for much of the page weight on the core experience). There is no site navigation, and a small amount of core content is missing. However, the remaining core content can be added in a couple of bytes, and in my opinion the other features should not be part of the core experience anyway.
 
 Here is the finished product on a wide screen:
 
 {% responsive_image path: assets/redefining-core-prototype.png alt: "The lightweight core experience prototype" %}
-
-The code for this is [on GitHub](https://github.com/wildlyinaccurate/news-core-experience), and a demo is available at [https://wildlyinaccurate.com/news-core-experience/](https://wildlyinaccurate.com/news-core-experience/).
 
 As well as creating a truly lightweight core experience, I also wanted to think about how we can put people back in control of their own web experience. We can give people a core experience when we think they need it -for example by detecting screen width or connection speed- and also them give them the controls to progressively enhance the page themselves.
 
@@ -99,11 +97,13 @@ I've started to explore these ideas by implementing two controls:
 
 I think there's certainly more to explore in this area, especially around minimising the amount of interaction required to receive the optimal or desired experience.
 
+The code for this prototype is [on GitHub](https://github.com/wildlyinaccurate/news-core-experience), and a demo is available at [https://wildlyinaccurate.com/news-core-experience/](https://wildlyinaccurate.com/news-core-experience/).
+
 ## Why isn't the core experience already like this?
 
 When I presented this prototype to the BBC News technical teams, the responses were mostly along the lines of _"why isn't the core experience already like that?"_. I may be trivialising it slightly, but I think that the answer to that question is pretty simple: feature creep, and a lack of monitoring.
 
-I cannot stress enough how important monitoring is for performance. The BBC's lack of performance monitoring is probably one of the biggest reasons behind the deterioration of the BBC News core experience. Good monitoring enables realistic performance budgets, which in turn enables automated warnings when performance budgets are broken.
+I cannot stress enough how important monitoring is for performance. The BBC's lack of performance monitoring is probably one of the biggest reasons behind the deterioration of the BBC News core experience. Good monitoring enables realistic performance budgets, which in turn enables automated warnings when performance budgets are overspent.
 
 Today the BBC uses [SpeedCurve](https://speedcurve.com/) to run over 22,000 performance tests each month. These tests notify us when we approach our performance budgets, and allow us to address problems before they become a serious concern.
 
@@ -111,7 +111,7 @@ Feature creep is a harder problem to address. At the BBC, it has mostly come in 
 
 #### BBC ID
 
-The ID service allows you to sign in so that you can do things like post comments and receive notifications. It adds 13 HTTP requests to the page -8 of which are scripts- totalling 25KB.
+The ID service allows you to sign in so that you can do things like post comments and receive notifications. It adds 13 HTTP requests to the page --8 of which are scripts-- totalling 25KB.
 
 {% responsive_image path: assets/bbc-id.png alt: "The BBC ID button" %}
 
@@ -144,4 +144,4 @@ I want the BBC to start taking the core experience seriously again. Prototypes l
 
 BBC World Service is expanding to reach a wider audience by 2020, and most of the users in that audience will come from developing countries. This is a fantastic opportunity to reinvent the BBC's web experience and tailor it for the users we _have_ (people using underpowered phones on mobile connections), rather than the users we _want_ (people using Macbooks on cable connections).
 
-With HTTPS Everywhere being [rolled out across the BBC](http://www.bbc.co.uk/blogs/internet/entries/f6f50d1f-a879-4999-bc6d-6634a71e2e60) later this year, the ability to use Service Workers on BBC websites is finally a reality. This opens up another set of opportunities around progressive enhancement and performance.
+With HTTPS Everywhere being [rolled out across the BBC](http://www.bbc.co.uk/blogs/internet/entries/f6f50d1f-a879-4999-bc6d-6634a71e2e60) later this year, the BBC's web teams will have the ability to create some great experiences using service workers. This opens up a whole new set of opportunities around progressive enhancement and performance.
