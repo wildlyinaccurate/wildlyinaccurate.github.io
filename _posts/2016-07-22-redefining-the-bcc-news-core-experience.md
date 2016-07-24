@@ -88,7 +88,7 @@ Here is the finished product on a wide screen:
 
 {% responsive_image path: assets/redefining-core-prototype.png alt: "The lightweight core experience prototype" %}
 
-You can find the (minified) code [on GitHub](https://github.com/wildlyinaccurate/news-core-experience), and view the live prototype at [https://wildlyinaccurate.com/news-core-experience/](https://wildlyinaccurate.com/news-core-experience/).
+The code for this is [on GitHub](https://github.com/wildlyinaccurate/news-core-experience), and a demo is available at [https://wildlyinaccurate.com/news-core-experience/](https://wildlyinaccurate.com/news-core-experience/).
 
 As well as creating a truly lightweight core experience, I also wanted to think about how we can put people back in control of their own web experience. We can give people a core experience when we think they need it -for example by detecting screen width or connection speed- and also them give them the controls to progressively enhance the page themselves.
 
