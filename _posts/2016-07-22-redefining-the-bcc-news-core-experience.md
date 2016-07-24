@@ -62,18 +62,18 @@ The fact that a user has a modern browser does not mean that they have a fast or
 
 {% responsive_image path: assets/bbc-news-core.png alt: "The BBC News core experience on a wide screen" %}
 
-Another issue I have with the BBC News core experience is that it was designed to work well on small smartphones and feature phones. The content is forced into a single column layout, and the width of the primary image is hard-coded to 200px. It doesn't look good on anything larger than a small phone. This is problematic if we consider that people may want to receive the core experience on a larger device. It is unfair that they should have a degraded experience.
+As well as being unnecessarily heavy, the BBC News core experience was designed with small screens in mind. The content is forced into a single column layout, and the width of the primary image is hard-coded to 200px. It looks fine on low resolution smartphones and feature phones, but on anything larger it starts to look stretched and at the same time somewhat empty.
 
 ## Starting from scratch
 
 Earlier this week, I started thinking about how I would approach the core experience for BBC News if I was given the opportunity to build it from scratch.
 
-What I came up with was a hand rolled CSS framework using Sass mixins from [Bootstrap v4](https://github.com/twbs/bootstrap/tree/v4-dev), which allowed me to build a page with very minimal markup. The results were promising:
+What I came up with was a hand-rolled CSS framework using Sass mixins from [Bootstrap v4](https://github.com/twbs/bootstrap/tree/v4-dev), which allowed me to build a page with very minimal markup. The results were promising:
 
  * A 7KB HTML document containing all the core content and inlined styles -- 80% smaller than the current 36KB core experience.
  * 2 HTTP requests totalling 27KB -- 73 fewer requests and 90% fewer bytes.
- * A fully responsive page which works at all device widths.
- * Responsive images for browsers which support `srcset`.
+ * A fully responsive layout which works at all device widths.
+ * Responsive images for browsers which support `srcset`, with fallbacks to a sensibly-sized `src`.
  * 100ms first paint time -- 150ms faster (60%) than the current core experience.
  * 460ms first paint time -- 440ms faster (50%).
  * A much smaller CPU profile.
