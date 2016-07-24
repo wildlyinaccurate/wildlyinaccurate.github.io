@@ -17,7 +17,7 @@ Below are some Sublime Text packages that I have found to be useful for web deve
 
 *   [**All Autocomplete**](https://github.com/alienhard/SublimeAllAutocomplete) extends the Sublime Text autocompletion to find matches in all open files.
 *   [**ApacheConf.tmLanguage**](https://github.com/colinta/ApacheConf.tmLanguage) provides ApacheConf syntax highlighting (for .htaccess, vhosts, etc).
-*   [**DocBlockr**](https://github.com/spadgos/sublime-jsdocs) simplifies and automates writing DocBlock comments in many languages including PHP and Javascript.
+*   [**DocBlockr**](https://github.com/spadgos/sublime-jsdocs) simplifies and automates writing DocBlock comments in many languages including PHP and JavaScript.
 *   [**Sass**](https://github.com/nathos/sass-textmate-bundle) and [**LESS**](https://github.com/danro/LESS-sublime) both provide syntax highlighting for the Sass and LESS dynamic stylesheet languages. **[Compass](https://github.com/WhatWeDo/Sublime-Text-2-Compass-Build-System) **also provides a watch/build system for Sass.
 *   [**SideBarEnhancements**](https://github.com/titoBouzout/SideBarEnhancements) provides many useful enhancements to the default Sublime Text sidebar, including _Copy Path_ and _Open With..._
 *   **[SublimeCodeIntel](http://github.com/Kronuz/SublimeCodeIntel)** is a full-featured code intelligence engine that provides smart autocomplete and jump-to-symbol functionality.

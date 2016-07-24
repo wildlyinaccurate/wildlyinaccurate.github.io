@@ -70,7 +70,7 @@ git config --global alias.br branch
 git config --global core.compression 9
 ```
 
-If you find that Git is taking too long to compress objects, you can play around with this value. A value of 0 tells Git to use no compression. Values 1-9 are various speed/size tradeoffs where 1 is the fastest and 9 provides the best compression. A value of -1 lets zlib decide which compression level to use.
+If you find that Git is taking too long to compress objects, you can play around with this value. A value of 0 tells Git to use no compression. Values 1-9 are various speed/size trade-offs where 1 is the fastest and 9 provides the best compression. A value of -1 lets zlib decide which compression level to use.
 
 ## Automatically rebase pulls
 

@@ -15,7 +15,7 @@ published: true
 author: Joseph Wynn
 ---
 
-Before I start this list, let me explain something. I am not a beer connoisseur; I haven't tried every beer under the sun. I am actually quite picky when it comes to drinking beer. I have no tolerance for the beer-flavoured fizzy water that multi-billion dollar companies like Carlsberg and Heineken produce. I do not enjoy beers that are "low carb" or "lite".
+Before I start this list, let me explain something. I am not a beer connoisseur; I haven't tried every beer under the sun. I am actually quite picky when it comes to drinking beer. I have no tolerance for the beer-flavoured fizzy water that multi-billion dollar companies like Carlsberg and Heineken produce. I do not enjoy beers that are "low carb" or "light".
 
 Well then, what beers _do_ I like? Stouts and dark ales, of course! So really, this isn't a list of my top five beers. It's a list of my top five dark ales and stouts.<!--more-->
 
@@ -37,13 +37,13 @@ The Sou' Wester offers the usual malty qualities of a dark stout: toffee, chocol
 
 Available only in 750mL bottles, the Sou' Wester is difficult to find. At $8 a bottle it isn't cheap, but it is worth every cent. New World supermarkets often stock the Dux range, and the Dux de Lux usually has it on tap.
 
-## 3. Leffe Brun
+## 3. Leffe Brune
 
-Leffe's history dates back as far as 1240. Monks from the Leffe Abbey (known as Notre-Dame Abbey until 1200) brewed ale based on a recipe that had been passed down from generation to generation. In 1460 the Abbey was hit by a devastating flood, and several years later Charles the Bold ransacked the Abbey and burned it to the ground. Leffe Abbey remained inactive until 1952 when its brewing traditions were revived by Father Abbot Nys and Albert Lootvoet, who took it upon themselves to brew a dark beer based on the traditional recipes and processes. The beer was an instant success, and is today known as Leffe Brun.
+Leffe's history dates back as far as 1240. Monks from the Leffe Abbey (known as Notre-Dame Abbey until 1200) brewed ale based on a recipe that had been passed down from generation to generation. In 1460 the Abbey was hit by a devastating flood, and several years later Charles the Bold ransacked the Abbey and burned it to the ground. Leffe Abbey remained inactive until 1952 when its brewing traditions were revived by Father Abbot Nys and Albert Lootvoet, who took it upon themselves to brew a dark beer based on the traditional recipes and processes. The beer was an instant success, and is today known as Leffe Brune.
 
-Dark brown, almost maroon in colour, Leffe Brun looks absolutely delicious. The flavours are bold, yet delicate - vanilla and clove give the beer a sweet and spicy taste, while the darkly roasted malts provide beautiful caramel and toffee aromas.
+Dark brown, almost maroon in colour, Leffe Brune looks absolutely delicious. The flavours are bold, yet delicate - vanilla and clove give the beer a sweet and spicy taste, while the darkly roasted malts provide beautiful caramel and toffee aromas.
 
-Being an imported beer, Leffe Brun sells for around $18 for a pack of four. I would recommend finding a pub that has Leffe Brun on tap, as it is much better fresh out of the keg. Belgian Beer Cafe Torenhof in Christchurch has Leffe Brun and many other beautiful Belgian beers on tap.
+Being an imported beer, Leffe Brune sells for around $18 for a pack of four. I would recommend finding a pub that has Leffe Brune on tap, as it is much better fresh out of the keg. Belgian Beer Cafe Torenhof in Christchurch has Leffe Brune and many other beautiful Belgian beers on tap.
 
 ## 2. Cooper's Extra Strong Vintage Ale
 
@@ -55,9 +55,9 @@ The Extra Strong Vintage Ale can be found in most supermarkets. At around $20 fo
 
 ## **1. Renaissance Craftsman**
 
-Renaissance is a small brewery run by two experienced Californian brewers. Located in Blenheim, Malborough, Renaissance was founded with one goal in mind - to produce stunning beers in a region more renouned for the excellence of its wines.
+Renaissance is a small brewery run by two experienced Californian brewers. Located in Blenheim, Marlborough, Renaissance was founded with one goal in mind - to produce stunning beers in a region more renowned for the excellence of its wines.
 
-The Craftsman is a limited release oatmeal chocolate stout. Using a mixture of crystal, brown, and black malts, the Renaissance brewers have created a stout that has a full rounded flavour with the intensity you would expect from a stout. Cocoa nibs are added to the brew kettle and fermentor, giving the stout a wonderful chocolate aroma which compliments perfectly the notes of coffee and caramel. The Craftsman gets its beautiful smooth texture from the rolled oats which are added to the grains before they are mashed.
+The Craftsman is a limited release oatmeal chocolate stout. Using a mixture of crystal, brown, and black malts, the Renaissance brewers have created a stout that has a full rounded flavour with the intensity you would expect from a stout. Cocoa nibs are added to the brew kettle and fermenter, giving the stout a wonderful chocolate aroma which compliments perfectly the notes of coffee and caramel. The Craftsman gets its beautiful smooth texture from the rolled oats which are added to the grains before they are mashed.
 
 The Renaissance Craftsman is sweet and delicate enough to be enjoyed with cakes and biscuits, but also tasty enough to compliment red meats (especially venison). This is without a doubt my favourite beer, and I drink it as often as I can! Unfortunately though, it has become very difficult to find. I know of only one New World supermarket that stocks Renaissance beers, and it very rarely has the Craftsman in stock.
 

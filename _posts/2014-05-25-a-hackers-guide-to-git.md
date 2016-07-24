@@ -14,7 +14,7 @@ published: true
 author: Joseph Wynn
 ---
 
-_A Hacker's Guide to Git_ is now available as an e-book. You can purchase it [on LeanPub](https://leanpub.com/a-hackers-guide-to-git).
+_A Hacker's Guide to Git_ is now available as an e-book. You can purchase it [on Leanpub](https://leanpub.com/a-hackers-guide-to-git).
 
 * Placeholder list item
 {:toc}

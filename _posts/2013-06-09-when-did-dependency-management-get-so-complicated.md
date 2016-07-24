@@ -19,7 +19,7 @@ This evening I wanted to start hacking on a [project of mine](https://github.com
 
 First, the version of npm installed on the laptop is apparently so out-of-date that it can't run the install. So I let it update itself (and all the other packages I have installed - why not?) with `sudo npm -g update`. Being a Sunday night, my broadband connection is running spectacularly slow, so the update process takes about 10 minutes at 40kB/s. But hey, at least now I can run `npm install`, right?
 
-Nope. Now npm is throwing some errors with unhelpful messages, but that's fine, I'll just trawl through the error log. 5 minutes later, I figure out that ~/tmp belongs to root (probably from running `npm update` as root). Ok, fine, I'll change the permissions and try again. This time `npm install` works! But of course, my connection is so horribly slow and grunt has so many dependencies that the install process takes **over 15 minutes**.<!--more-->
+Nope. Now npm is throwing some errors with unhelpful messages, but that's fine, I'll just trawl through the error log. 5 minutes later, I figure out that ~/tmp belongs to root (probably from running `npm update` as root). OK, fine, I'll change the permissions and try again. This time `npm install` works! But of course, my connection is so horribly slow and grunt has so many dependencies that the install process takes **over 15 minutes**.<!--more-->
 
 After all of that, I can _finally_ run `bower install`, and then I can build the damn project and start hacking. At least bower works first try, but now it's got to clone all of these repos, which takes another 5 minutes on my slow connection. By the time I've run `grunt build` and started hacking, over 30 minutes has passed and I'm _really_ pissed off.
 
