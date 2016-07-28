@@ -14,7 +14,7 @@ author: Joseph Wynn
 
 > **TL;DR:** Over the last 4 years, the BBC News core experience has been transformed from a speedy 21KB page into a slow & bloated 685KB monster. This was in part due to a lack of performance monitoring and 4 years of feature creep, but also due to a lack of performance-oriented culture throughout the business.
 >
-> I created a [prototype](https://wildlyinaccurate.com/news-core-experience/) to prove that the best way to build an extremely fast core experience is to focus on the content first and foremost.
+> I created a lightweight prototype of the BBC News core experience which demonstrates that focusing on the content first and foremost can result in an extremely fast page. I want the BBC and other websites to rethink what the core experience means, and experiment with giving users the power to define their own experience.
 
 In the beginning of 2012 the BBC Responsive News team wrote about how they provide a "core experience" for users by default, and then progressively enhance the page if the browser [cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). At the time, this was cutting edge. They were able to build pages that worked on practically any browser without compromising the experience for users on modern browsers. To quote directly from the Responsive News blog:
 
