@@ -16,7 +16,7 @@ author: Joseph Wynn
 >
 > I created a [prototype](https://wildlyinaccurate.com/news-core-experience/) to prove that the best way to build an extremely fast core experience is to focus on the content first and foremost.
 
-In the beginning of 2012 the BBC Responsive News team wrote about how they provide a "core experience" for users by default, and then progressively enhance the page if the browser [cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). At the time, this was cutting edge. They were able to build pages which worked on practically any browser without compromising the experience for users on modern browsers. To quote directly from the Responsive News blog:
+In the beginning of 2012 the BBC Responsive News team wrote about how they provide a "core experience" for users by default, and then progressively enhance the page if the browser [cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). At the time, this was cutting edge. They were able to build pages that worked on practically any browser without compromising the experience for users on modern browsers. To quote directly from the Responsive News blog:
 
 > The first tier of support we call the core experience. This works on everything. I’ve seen it work on a Nokia E65, a Blackberry OS4, Kindle 1, a HTC Touch 2 running Win Mobile 6.5, a Samsung U900 Soul, a Commodore Vic20, my nan’s slipper and a toaster just sellotaped to a TV. Likewise, GoogleBot, text-browsers like Lynx, folks that disable JavaScript and so on are all assured a good level of service.
 
@@ -56,7 +56,7 @@ A core experience should be made up of these five things, in order of importance
 
 A core experience should be _just_ these things. Everything else is an enhancement.
 
-The way this has been achieved so far at the BBC has been to create a small `core.css` stylesheet containing just the styles for points 3 and 4. Then, provided the browser cuts the mustard, some JavaScript inserts an `enhanced.css` stylesheet into the page which contains the rest of the styling. This JavaScript is also responsible for downloading and initialising other JavaScript enhancements, like live updates and localisation services.
+The way this has been achieved so far at the BBC has been to create a small `core.css` stylesheet containing just the styles for points 3 and 4. Then, provided the browser cuts the mustard, some JavaScript inserts an `enhanced.css` stylesheet into the page that contains the rest of the styling. This JavaScript is also responsible for downloading and initialising other JavaScript enhancements, like live updates and localisation services.
 
 ## The problem with the BBC News core experience
 
@@ -66,13 +66,13 @@ The fact that a user has a modern browser does not mean that they have a fast or
 
 {% responsive_image path: assets/bbc-news-core.png alt: "The BBC News core experience on a wide screen" %}
 
-As well as being relatively heavy, the BBC News core experience was designed with small screens in mind. The content is forced into a single column layout, and the width of the primary image is hard-coded to 200px. It looks fine on low resolution smartphones and feature phones, but on anything larger it starts to look stretched and at the same time somewhat empty.
+As well as being relatively heavy, the BBC News core experience was designed with small screens in mind. The content is forced into a single column layout, and the width of the primary image is hard-coded to 200px. It looks fine on low-resolution smartphones and feature phones, but on anything larger it starts to look stretched and at the same time somewhat empty.
 
 ## How did we get here?
 
-The BBC is a relatively unique organisation in that its digital divisions don't always act like a cohesive unit. The various digital "products" within the BBC (like News, Sport, and Weather) are developed independently and share very little in the way of code or overall vision. If you look closely at what makes up the BBC News core experience, you might notice that a large portion of the CSS, the JavaScript, and the images on the page come from BBC products which are _not_ BBC News.
+The BBC is a relatively unique organisation in that its digital divisions don't always act like a cohesive unit. The various digital "products" within the BBC (like News, Sport, and Weather) are developed independently and share very little in the way of code or overall vision. If you look closely at what makes up the BBC News core experience, you might notice that a large portion of the CSS, the JavaScript, and the images on the page come from BBC products that are _not_ BBC News.
 
-Most of these products live in the "white BBC bar" at the top of the page. This is an area of the page which used to have a very good core experience, but has become bloated over the last year or so in order to accommodate new features. When I look through the network requests of a core page load, there are three products which stand out from the crowd:
+Most of these products live in the "white BBC bar" at the top of the page. This is an area of the page which used to have a very good core experience, but has become bloated over the last year or so in order to accommodate new features. When I look through the network requests of a core page load, there are three products that stand out from the crowd:
 
 #### BBC iD
 
@@ -100,13 +100,13 @@ Perhaps I'm trivialising it, but the answer to how the core experience became so
 
 I cannot stress enough how important monitoring is for performance. Good monitoring enables realistic performance budgets, which in turn enable automated warnings and performance alarms. Provided there is a good culture around performance, these things can be used as leverage to prioritise performance and user experience over features and deadlines.
 
-Good performance monitoring needs to include both synthetic testing and real user monitoring. Today the BBC uses [SpeedCurve](https://speedcurve.com/) to run over 22,000 synthetic performance tests each month. We mostly use these to provide a high-level "state of performance", and to track whether releases have any affect on page performance. We have also previously used [mPulse real user monitoring](https://www.soasta.com/performance-monitoring/) which allowed us to get a much more detailed view of how our pages were performing in the real world.
+Good performance monitoring needs to include both synthetic testing and real user monitoring. Today the BBC uses [SpeedCurve](https://speedcurve.com/) to run over 22,000 synthetic performance tests each month. We mostly use these to provide a high-level "state of performance", and to track whether releases have any affect on page performance. We have also previously used [mPulse real user monitoring](https://www.soasta.com/performance-monitoring/), which allowed us to get a much more detailed view of how our pages were performing in the real world.
 
 ## Starting from scratch
 
 Making a slow website fast again is really hard. Sometimes there are easy pickings, like removing unused styles and scripts. Usually though, the problems are like a metastatic cancer: they are spread out far and thin, and you can't remove them without risking damage to the rest of the system.
 
-That's why earlier this week, I started thinking about how I would approach the core experience for BBC News if I was given the opportunity to build it from scratch. No overhead, no requirements, no third-party products on the page.
+That's why earlier this week, I started thinking about how I would approach the core experience for BBC News if I were given the opportunity to build it from scratch. No overhead, no requirements, no third-party products on the page.
 
 What I came up with was a hand-rolled CSS framework using Sass mixins from [Bootstrap v4](https://github.com/twbs/bootstrap/tree/v4-dev). This produces about 3.5KB of CSS (1.5KB gzipped), which is small enough to inline. It also enables the markup to be fairly concise, with very few extraneous elements. From a performance perspective, I think the prototype is a success:
 
@@ -132,7 +132,7 @@ As well as creating a truly lightweight core experience, I also wanted to think 
 
 I've started to explore these ideas by implementing two controls:
 
- * A button which (lazily) loads the remaining images on the page. This requires basic JavaScript support, so can be used by most users.
+ * A button that (lazily) loads the remaining images on the page. This requires basic JavaScript support, so can be used by most users.
  * Buttons to prefetch article content. This requires a relatively modern browser with service worker support.
 
 I think there's certainly more to explore in this area, especially around minimising the amount of interaction required to receive the optimal or desired experience.
@@ -145,7 +145,7 @@ After all of that, the point I really want to make is this: for a website like B
 
 With current trends, very soon the majority of Internet users will be browsing the web on a mobile connection. The lucky ones will have 3G-like speeds, and the others will be lucky to even get 2G-like speeds. As website producers, we need to make it easier for these people to get to the content that they want. By far, the easiest way for us to do that is to give them _just the content_. Nothing else.
 
-BBC World Service is expanding to reach a wider audience by 2020, and most of the users in that audience will come from developing countries. This is a fantastic opportunity to reinvent the BBC's web experience and tailor it for the users we _have_ (people using underpowered phones on mobile connections), rather than the users we _want_ (people using Macbooks on cable connections).
+BBC World Service is expanding to reach a wider audience by 2020, and most of the users in that audience will come from developing countries. This is a fantastic opportunity to reinvent the BBC's web experience and tailor it for the users we _have_ (people using underpowered phones on mobile connections), rather than the users we _want_ (people using MacBooks on cable connections).
 
 At BBC News we understand this, and we're in the middle of building our front page from the ground up with performance at the front of our minds. We're using the small & efficient [Grandstand](https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66) CSS framework developed by our colleagues in BBC Sport. We're also investing in performance monitoring up-front, and trying to drive performance as a key feature rather then an afterthought.
 
