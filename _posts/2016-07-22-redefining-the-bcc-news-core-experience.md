@@ -20,7 +20,7 @@ In the beginning of 2012 the BBC Responsive News team wrote about how they provi
 
 > The first tier of support we call the core experience. This works on everything. I’ve seen it work on a Nokia E65, a Blackberry OS4, Kindle 1, a HTC Touch 2 running Win Mobile 6.5, a Samsung U900 Soul, a Commodore Vic20, my nan’s slipper and a toaster just sellotaped to a TV. Likewise, GoogleBot, text-browsers like Lynx, folks that disable JavaScript and so on are all assured a good level of service.
 
-This technique is still in use today, and is an integral part of the front-end strategy for all modern BBC News pages. In 2012 it allowed the team to provide a fast and lightweight experience for users on low-end devices. 7 HTTP requests totalling 21KB was all it took to load the core experience of the BBC News front page. All users benefited from this initially fast load, with modern browsers progressively enhancing the rest of the page after the content was loaded.
+This technique is still in use today, and is an integral part of the front-end strategy for all modern BBC News pages. In 2012 it allowed the team to provide a fast and lightweight experience for users on low-end devices. 7 HTTP requests totalling 21KB was all it took to load the core experience of the BBC News front page. All users benefited from this fast initial page load, with modern browsers progressively enhancing the rest of the page after the content was loaded.
 
 It has been over 4 years since the BBC News core experience was first built, and a lot has changed since then. Today, the core experience consists of 91 HTTP requests totalling 685KB -- over 32x heavier than the original core experience. With JavaScript disabled this can be reduced to 137KB -- still over 6x heavier.
 
