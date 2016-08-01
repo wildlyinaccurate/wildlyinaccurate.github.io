@@ -1,13 +1,13 @@
-import Collection exposing (Collection, model, update, view)
-import StartApp exposing (start)
+module Main exposing (..)
+
+import Collection exposing (Collection, model, subscriptions, update, view)
+import Html.App as App
 
 
 main =
-  start
-    { model = model getFixtures
+  App.programWithFlags
+    { init = model
+    , subscriptions = subscriptions
     , update = update
     , view = view
     }
-
-
-port getFixtures : Maybe Collection
