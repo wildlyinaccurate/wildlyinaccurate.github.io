@@ -5,9 +5,9 @@ import Html.App as App
 
 
 main =
-  App.programWithFlags
-    { init = model
-    , subscriptions = subscriptions
-    , update = update
-    , view = view
-    }
+    App.programWithFlags
+        { init = model
+        , subscriptions = subscriptions
+        , update = update
+        , view = view
+        }
