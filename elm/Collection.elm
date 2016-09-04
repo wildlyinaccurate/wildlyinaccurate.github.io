@@ -1,21 +1,22 @@
-module Collection exposing
-    ( Collection
-    , model
-    , subscriptions
-    , update
-    , view
-    )
+module Collection
+    exposing
+        ( Collection
+        , model
+        , subscriptions
+        , update
+        , view
+        )
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onCheck, targetChecked)
 import Html.Lazy exposing (lazy)
-
 import Item
 import List.Extra as LE
 
 
 ---- UTILS ----
+
 
 allTags : Collection -> List String
 allTags model =
@@ -34,12 +35,16 @@ filterItems filters items =
 
 matchesFilters : FilterList -> Item.Item -> Bool
 matchesFilters filters item =
-    let intersect = LE.intersect filters item.tags
+    let
+        intersect =
+            LE.intersect filters item.tags
     in
         not (List.isEmpty intersect)
 
 
+
 ---- MODEL ----
+
 
 type alias Collection =
     { items : ItemList
@@ -47,13 +52,15 @@ type alias Collection =
     }
 
 
-type alias ItemList = List Item.Item
+type alias ItemList =
+    List Item.Item
 
 
-type alias FilterList = List String
+type alias FilterList =
+    List String
 
 
-model : Maybe Collection -> (Collection, Cmd msg)
+model : Maybe Collection -> ( Collection, Cmd msg )
 model fixtures =
     case fixtures of
         Just f ->
@@ -68,14 +75,18 @@ emptyModel =
     Collection [] []
 
 
+
 ---- SUBSCRIPTIONS ----
+
 
 subscriptions : Collection -> Sub Msg
 subscriptions model =
     Sub.none
 
 
+
 ---- UPDATE ----
+
 
 type Msg
     = SelectFilter String Bool
@@ -84,28 +95,33 @@ type Msg
 
 update : Msg -> Collection -> ( Collection, Cmd msg )
 update action model =
-    let updatedModel =
-        case action of
-            SelectFilter tag checked ->
-                if checked then
-                    { model | filters = tag :: model.filters }
-                else
-                    { model | filters = List.filter ((/=) tag) model.filters }
+    let
+        updatedModel =
+            case action of
+                SelectFilter tag checked ->
+                    if checked then
+                        { model | filters = tag :: model.filters }
+                    else
+                        { model | filters = List.filter ((/=) tag) model.filters }
 
-            SelectAllFilters checked ->
-                if checked then
-                    { model | filters = allTags model }
-                else
-                    { model | filters = [] }
+                SelectAllFilters checked ->
+                    if checked then
+                        { model | filters = allTags model }
+                    else
+                        { model | filters = [] }
     in
         ( updatedModel, Cmd.none )
 
 
+
 ---- VIEW ----
+
 
 view : Collection -> Html Msg
 view model =
-    let filteredItems = filterItems model.filters model.items
+    let
+        filteredItems =
+            filterItems model.filters model.items
     in
         div
             []
@@ -121,26 +137,31 @@ itemList items =
 
 filterControls : Collection -> Html Msg
 filterControls model =
-    let tags = allTags model
-        filters = model.filters
-        allChecked = (filters == tags)
+    let
+        tags =
+            allTags model
+
+        filters =
+            model.filters
+
+        allChecked =
+            (filters == tags)
     in
         div
             []
             [ h4
                 []
                 [ text "Filters" ]
-
             , ul
                 [ class "filters" ]
-                ( selectAll allChecked :: tagFilters filters tags )
+                (selectAll allChecked :: tagFilters filters tags)
             ]
 
 
 selectAll : Bool -> Html Msg
 selectAll allChecked =
     li
-        [ class "filter filter--select-all"]
+        [ class "filter filter--select-all" ]
         [ checkbox allChecked SelectAllFilters "All" ]
 
 
@@ -151,11 +172,18 @@ tagFilters filters tags =
 
 tagFilter : FilterList -> String -> Html Msg
 tagFilter filters tag =
-    let checked = List.member tag filters
+    let
+        checked =
+            List.member tag filters
     in
         li
             [ class "filter" ]
-            [ checkbox checked (SelectFilter tag) tag ]
+            [ checkbox
+                checked
+                (SelectFilter tag)
+                tag
+            ]
+
 
 checkbox : Bool -> (Bool -> Msg) -> String -> Html Msg
 checkbox isChecked action name =
@@ -167,5 +195,5 @@ checkbox isChecked action name =
             , onCheck action
             ]
             []
-            , text name
+        , text name
         ]

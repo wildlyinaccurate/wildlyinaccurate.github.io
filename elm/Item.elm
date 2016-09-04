@@ -1,7 +1,8 @@
-module Item exposing
-    ( Item
-    , view
-    )
+module Item
+    exposing
+        ( Item
+        , view
+        )
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -17,10 +18,7 @@ type alias Item =
     }
 
 
---type alias Msg =
-
-
---view : Item -> Html Msg
+view : Item -> Html msg
 view item =
     div
         []
@@ -32,11 +30,11 @@ view item =
             ]
         , p [] <|
             span [ property "innerHTML" (Json.Encode.string item.description) ] []
-            :: (List.map tagView item.tags)
+                :: (List.map tagView item.tags)
         ]
 
 
---tagView : String -> Html Msg
+tagView : String -> Html msg
 tagView tag =
     span
         [ class "item-tag label label-default" ]
