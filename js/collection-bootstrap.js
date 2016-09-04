@@ -2,11 +2,16 @@
 
     'use strict'
 
-    Elm.embed(
-        Elm.Main,
-        document.querySelector('.collection-container'),
-        { getFixtures: getData() }
+    var mountPoint = document.createElement('div')
+    var staticContainer = document.querySelector('.collection-container')
+
+    Elm.Main.embed(
+        mountPoint,
+        getData()
     )
+
+    staticContainer.innerHTML = ''
+    staticContainer.parentNode.appendChild(mountPoint)
 
     function getData() {
         var container = document.querySelector('.post-content')
