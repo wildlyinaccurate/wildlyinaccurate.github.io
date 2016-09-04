@@ -1,11 +1,11 @@
 module Item
-    ( Item
-    , view
-    ) where
+    exposing
+        ( Item
+        , view
+        )
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Signal exposing (Address)
 import Json.Encode exposing (string)
 
 
@@ -18,8 +18,8 @@ type alias Item =
     }
 
 
-view : Address a -> Item -> Html
-view address item =
+view : Item -> Html msg
+view item =
     div
         []
         [ h4
@@ -30,12 +30,12 @@ view address item =
             ]
         , p [] <|
             span [ property "innerHTML" (Json.Encode.string item.description) ] []
-            :: (List.map (tagView address) item.tags)
+                :: (List.map tagView item.tags)
         ]
 
 
-tagView : Address a -> String -> Html
-tagView address tag =
+tagView : String -> Html msg
+tagView tag =
     span
         [ class "item-tag label label-default" ]
         [ text tag ]

@@ -1,9 +1,9 @@
-module List.Extra
+module List.Extra exposing
     ( union
     , intersect
     , diff
     , nub
-    ) where
+    )
 
 import Set as S
 
