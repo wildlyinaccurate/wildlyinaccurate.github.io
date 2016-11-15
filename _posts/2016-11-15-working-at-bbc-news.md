@@ -39,6 +39,12 @@ There are about 6 BBC News development teams at any one time. Teams tend to form
 
 In the past, teams have usually stuck together when they move onto a new project. More recently though, the teams have been shuffling a lot more. We don't have a formal team rotation system in place at the moment, but it's easy to move between teams if you want to work on something new. I've worked on 3 different teams over the last two years.
 
+We also regularly collaborate with teams from all around the BBC. In the last 3 months alone, I have worked with:
+
+ * The Local News team in Cardiff.
+ * The Sport and Live teams and the Accessibility Champions group in Manchester.
+ * The Worldwide team in West London.
+
 ## Learning & personal development
 
 BBC staff can attend [BBC Academy](http://www.bbc.co.uk/academy) courses for free. There are _so many_ courses available covering subjects across journalism, broadcasting, technology, management, personal development, just to name a few. You can even earn a BBC-funded MSCS (Masters of Science in Computer Science) by completing Academy courses over a 22-month period.
@@ -47,8 +53,31 @@ Anyone in BBC News can get a [Pluralsight](https://www.pluralsight.com/) license
 
 We have an office library, and a (pretty generous) annual budget for purchasing new books.
 
+There is a budget for attending events & conferences.
+
 Most teams have a dedicated _learning day_ once every two weeks where everybody is encouraged to spend their time learning something new.
 
 On top of learning days, most managers will encourage you to dedicate at least a few days each month to learning and attending training courses.
 
 We have regular personal development reviews where your manager will recommend training courses and learning resources to help you achieve your personal goals.
+
+## Working hours & annual leave
+
+Flexible hours
+
+Working from home
+
+Taking leave
+
+## Technologies
+
+## Other perks & local discounts
+
+Having an office right by Oxford Circus in the centre of London puts us (somewhat dangerously) close to dozens of really great shops, restaurants, cafés, and bars. Many of them offer a discount to BBC employees.
+
+The BBC runs a centralised benefits scheme which offers things like:
+
+ * A great pension plan.
+ * Dental, health, and travel insurance.
+ * Access to [Cyclescheme](https://www.cyclescheme.co.uk/).
+ * Buying and selling annual leave.
