@@ -10,7 +10,7 @@ published: false
 author: Joseph Wynn
 ---
 
-The BBC is a pretty large organisation. Today it employs around 20,000 people (actually around 35,000 when you include part-time and fix-term contract employees) across a huge number of divisions. The [BBC Careers website](http://careerssearch.bbc.co.uk/) typically has over 100 vacancies posted on any given day. As an outsider, I found it difficult to gain any insight as to what it would be like to work in an organisation like the BBC. In this post, I hope to shed some light on what it's like to work as a developer (or a tester!) in BBC News and BBC World Service.<!--more-->
+The BBC is a pretty large organisation. Today it employs around 20,000 people (actually around 35,000 when you include part-time and fixed-term contract employees) across a huge number of divisions. The [BBC Careers website](http://careerssearch.bbc.co.uk/) typically has over 100 vacancies posted on any given day. As an outsider, I found it difficult to gain any insight as to what it would be like to work in an organisation like the BBC. In this post, I hope to shed some light on what it's like to work as a developer (or a tester!) in BBC News and BBC World Service.<!--more-->
 
 But first, a little trip down memory lane.
 
