@@ -44,6 +44,7 @@ We also regularly collaborate with teams from all around the BBC. In the last 3 
  * The Local News team in Cardiff.
  * The Sport and Live teams and the Accessibility Champions group in Manchester.
  * The Worldwide team in West London.
+ * The Weather, Programmes, and Radio teams in Central London.
 
 ## Learning & personal development
 
@@ -63,11 +64,13 @@ We have regular personal development reviews where your manager will recommend t
 
 ## Working hours & annual leave
 
-Flexible hours
+The BBC has a "core hours" system where you are required to work between 10am and 4pm. Other than that, you can pretty much work whichever hours you like so long as you work all of your contracted hours (usually 35 hours per week). I come in at 8am every day and leave at 4pm. Some of my colleagues come in at 10am and leave at 6pm.
 
-Working from home
+Working from home is common, and is done at your manager's discretion. Many people regularly work from home one day each week.
 
-Taking leave
+Overtime is actively discouraged. No project is more important than your wellbeing!
+
+Taking annual leave is never an issue, provided you give enough notice. If you work on a project with a "hard" deadline like an election or sporting event, your manager might ask you to avoid taking leave in the weeks leading up to the deadline, but this is not mandatory.
 
 ## Technologies
 
