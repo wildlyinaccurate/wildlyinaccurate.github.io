@@ -74,6 +74,13 @@ Taking annual leave is never an issue, provided you give enough notice. If you w
 
 ## Technologies
 
+Most of the software we write is written in Ruby, JavaScript, and PHP. Teams have the freedom to use whichever technologies they like, provided there is sufficient justification. Here's a sample of technologies I've worked with so far at BBC News:
+
+ * Responsive News is PHP application which uses [a range of interesting techniques](http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design) to support all of the World Service languages and scripts.
+ * The BBC News [AMP pages](https://www.ampproject.org/) and many of the worldwide elections components are powered by an open-source [broker-renderer](https://en.wikipedia.org/wiki/Broker_Pattern) framework called [Alephant](https://github.com/BBC-News/alephant).
+ * The BBC News front page is being rebuilt using React on a [highly-scalable Node.js platform](https://www.youtube.com/watch?v=pxmXiKlh5OU) developed by BBC Sport.
+ * One of our page composition systems is powered by services written in Ruby and Go.
+
 ## Other perks & local discounts
 
 Having an office right by Oxford Circus in the centre of London puts us (somewhat dangerously) close to dozens of really great shops, restaurants, cafés, and bars. Many of them offer a discount to BBC employees.
