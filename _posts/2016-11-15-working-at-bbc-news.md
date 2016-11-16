@@ -54,11 +54,15 @@ Anyone in BBC News can get a [Pluralsight](https://www.pluralsight.com/) license
 
 We have an office library, and a (pretty generous) annual budget for purchasing new books.
 
-There is a budget for attending events & conferences.
+We run a _developer gathering_ every month where developers and testers from around the BBC give technical talks and open the floor to discussions.
+
+We run a _town hall_ every fortnight where people from all around BBC News (developers, testers, journalists, UXers, product owners, everyone!) give 5 minute lightning talks about what's going on in their world.
+
+There is a budget for attending external events & conferences.
 
 Most teams have a dedicated _learning day_ once every two weeks where everybody is encouraged to spend their time learning something new.
 
-On top of learning days, most managers will encourage you to dedicate at least a few days each month to learning and attending training courses.
+On top of learning days, most managers will encourage you to dedicate at least a few days each month to personal development.
 
 We have regular personal development reviews where your manager will recommend training courses and learning resources to help you achieve your personal goals.
 
