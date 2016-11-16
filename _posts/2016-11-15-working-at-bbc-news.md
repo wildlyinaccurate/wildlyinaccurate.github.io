@@ -33,7 +33,7 @@ So what could I write here that would have put myself at ease two years ago?
 
 ## Teams & projects
 
-_Note: When I say to "BBC News", I mean "BBC News and BBC World Service". The [30 or so World Service sites](http://www.bbc.co.uk/ws/languages) actually run on the same Responsive News codebase as BBC News. For this reason, World Service and News developers consider themselves to be part of the same big team._
+> Note: When I say "BBC News", I mean "BBC News and BBC World Service". The [30 or so World Service sites](http://www.bbc.co.uk/ws/languages) run on the same Responsive News codebase as BBC News. For this reason, the World Service and News teams consider themselves to be part of the same big team.
 
 There are about 6 BBC News development teams at any one time. Teams tend to form around projects which can last anywhere between a month (building a small routing service for the BBC's RSS feeds) to 6 months (rebuilding the BBC News front page on a new stack). As well as developers, each team typically also has their own tester(s), business analyst, project manager, and product owner. This structure is great because everybody is focused on supporting each other to achieve a common goal.
 
