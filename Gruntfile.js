@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-usemin');
@@ -80,6 +81,17 @@ module.exports = function(grunt) {
             }
         },
 
+        imagemin: {
+            assets: {
+              files: [{
+                expand: true,
+                cwd: 'assets/',
+                src: ['**/*.{png,jpg,gif}'],
+                dest: 'assets/'
+              }]
+            }
+        },
+
         filerev: {
             options: {
                 algorithm: 'sha1',
@@ -109,6 +121,7 @@ module.exports = function(grunt) {
         'filerev',
         'usemin',
         'htmlmin',
+        'imagemin'
     ]);
 
 };
