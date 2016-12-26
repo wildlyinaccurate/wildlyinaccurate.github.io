@@ -16,7 +16,7 @@ twitter_username: Joseph_Wynn
 github_username:  wildlyinaccurate
 
 gems:
-  - jekyll/responsive_image
+  - jekyll-responsive-image
   - jekyll-paginate
   - jekyll-last-modified-at
 
