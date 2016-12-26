@@ -23,7 +23,6 @@ module.exports = function(grunt) {
                 options: {
                     htmlroot: '_site',
                     timeout: 2000,
-                    ignoreSheets: [/fonts.googleapis/],
                     ignore: ['#carbonads', /\.carbon\-.+/, /\.search-results.+/]
                 },
                 files: {
