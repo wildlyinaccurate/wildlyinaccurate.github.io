@@ -5,9 +5,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-usemin');
+
+    grunt.loadTasks('grunt-tasks');
 
     grunt.initConfig({
         elm: {
@@ -39,20 +40,6 @@ module.exports = function(grunt) {
                         '_site/worst-fonts-for-programming/index.html'
                     ]
                 }
-            }
-        },
-
-        uglify: {
-            options: {
-                screwIE8: true
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '_site/js',
-                    src: '{**/,}*.js',
-                    dest: '_site/js'
-                }]
             }
         },
 
@@ -110,17 +97,27 @@ module.exports = function(grunt) {
                 assetsDirs: '_site',
             }
         },
+
+        inlinestyles: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '_site',
+                    src: '**/*.html',
+                    dest: '_site'
+                }]
+            }
+        }
     });
 
     grunt.registerTask('build', [
         'elm',
         'uncss',
         'cssmin',
-        'uglify',
         'filerev',
         'usemin',
-        'htmlmin',
-        'imagemin'
+        'inlinestyles',
+        'htmlmin'
     ]);
 
 };

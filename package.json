@@ -3,23 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "grunt build",
+    "build": "grunt build && webpack",
+    "webpack": "npm run webpack-search",
+    "webpack-search": "webpack -p js/search.js js/compiled/search.js",
     "spellcheck": "mdspell --ignore-numbers --ignore-acronyms --no-suggestions _posts/**/*.md"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "github:twbs/bootstrap#v4-dev",
+    "hogan.js": "^3.0.2",
+    "pygments": "^0.2.1"
+  },
   "devDependencies": {
     "bower": "^1.7.9",
+    "cheerio": "^0.22.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-htmlmin": "^2.0.0",
     "grunt-contrib-imagemin": "^1.0.1",
-    "grunt-contrib-uglify": "^2.0.0",
     "grunt-elm": "^1.3.0",
     "grunt-filerev": "^2.3.1",
     "grunt-uncss": "^0.6.1",
     "grunt-usemin": "^3.1.1",
-    "markdown-spellcheck": "^0.11.0"
+    "markdown-spellcheck": "^0.11.0",
+    "webpack": "^1.14.0"
   },
   "repository": {
     "type": "git",

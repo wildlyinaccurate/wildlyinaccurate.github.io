@@ -1,36 +1,28 @@
 ---
 layout: default
 ---
-
 {% capture post_meta %}
     {% include post-meta.html %}
 {% endcapture %}
 
 {% include content-page-header.html %}
 
-<article class="post-content">
+<article class="c">
     {{ content }}
 </article>
 
-<footer class="post-meta post-meta--footer">
-    <p>
-        This post was written by <strong>{{ page.author }}</strong> on <strong>{{ page.date | date: "%-d %B, %Y" }}</strong>, and last updated on <strong>{{ page.last_modified_at | date: "%-d %B, %Y" }}</strong>.
+<div class="c">
+    <small>
+        <i>This post was written by <b>{{ page.author }}</b> on <b>{{ page.date | date: "%-d %B, %Y" }}</b>, and last updated on <b>{{ page.last_modified_at | date: "%-d %B, %Y" }}</b>.
 
         {% if page.categories %}
-            It was posted in
-
-            <span class="post-meta__data">
-                [{% for category in page.categories %}<a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
-            </span>
+            It was posted in [{% for category in page.categories %}<a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
         {% endif %}
 
         {% if page.tags %}
-            {% if page.categories %}and{% else %}It was{% endif %}
-            tagged with
+            {% if page.categories %}and{% else %}It was{% endif %} tagged with
 
-            <span class="post-meta__data">
-                [{% for tag in page.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
-            </span>
-        {% endif %}
-    </p>
-</footer>
+            [{% for tag in page.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
+        {% endif %}</i>
+    </small>
+</div>

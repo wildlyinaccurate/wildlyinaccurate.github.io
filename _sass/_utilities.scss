@@ -1,0 +1,50 @@
+// Sizing
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+@include media-breakpoint-up(sm) {
+  .h-a\@sm {
+    height: auto;
+  }
+}
+
+// Floats
+.f-r {
+  float: right;
+}
+
+// Positioning
+.p-a {
+  position: absolute;
+}
+
+.b-0 {
+  bottom: 0;
+}
+
+// Spacing
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $size, $lengths in $spacers {
+    $length-x: map-get($lengths, x);
+    $length-y: map-get($lengths, y);
+
+    .#{$abbrev}-#{$size}  { #{$prop}:        $length-y $length-x; }
+    .#{$abbrev}t-#{$size} { #{$prop}-top:    $length-y; }
+    .#{$abbrev}r-#{$size} { #{$prop}-right:  $length-x; }
+    .#{$abbrev}b-#{$size} { #{$prop}-bottom: $length-y; }
+    .#{$abbrev}l-#{$size} { #{$prop}-left:   $length-x; }
+    .#{$abbrev}x-#{$size} {
+      #{$prop}-right: $length-x;
+      #{$prop}-left:  $length-x;
+    }
+    .#{$abbrev}y-#{$size} {
+      #{$prop}-top:    $length-y;
+      #{$prop}-bottom: $length-y;
+    }
+  }
+}

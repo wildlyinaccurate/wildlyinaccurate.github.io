@@ -1,15 +1,12 @@
 ---
 layout: default
 ---
-
 {% assign hide_description = true %}
 {% capture title %}Tag: {{ page.tag }}{% endcapture %}
 {% include index-page-header.html %}
 
-<section class="posts-index">
-
+<section class="c">
     {% for post in site.tags[page.tag] %}
         {% include post-summary.html %}
     {% endfor %}
-
 </section>

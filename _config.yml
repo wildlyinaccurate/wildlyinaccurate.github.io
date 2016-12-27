@@ -21,16 +21,16 @@ gems:
   - jekyll-last-modified-at
 
 responsive_image:
-  default_quality: 85
+  default_quality: 80
   template: _includes/thumbnail.html
   sizes:
     # 320px devices
     - width: 320
-      quality: 75
+      quality: 65
 
     # 360px devices
     - width: 360
-      quality: 75
+      quality: 65
 
     # Container width on S devices
     - width: 720

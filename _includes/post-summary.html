@@ -1,8 +1,8 @@
-<article class="post-summary">
-    <span class="post-summary__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+<article class="pb-3">
+    <span class="f-r">{{ post.date | date: "%b %-d, %Y" }}</span>
 
     <h3>
-        <a class="post-summary__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
     </h3>
 
     <p>{{ post.excerpt | sanitize }} <a href="{{ post.url | prepend: site.baseurl }}">(Read more)</a></p>

@@ -11,7 +11,7 @@ $font-family-sans-serif:    sans-serif;
 $font-family-serif:         serif;
 $font-family-base:          $font-family-serif;
 
-$font-size-base:            21px;
+$font-size-base:            1.4rem;
 $font-size-xs:              floor($font-size-base * 0.75);
 
 $font-size-h1:              floor($font-size-base * 2);
@@ -29,13 +29,13 @@ $paragraph-spacing:         24px;
 $headings-font-family:      $font-family-sans-serif;
 $headings-line-height:      1.15;
 
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../node_modules/bootstrap/scss/variables";
 
 // Don't go wider than 920px for maximum readability
-$container-desktop:         (920px + $grid-gutter-width);
+$container-desktop:         (920px + $grid-gutter-width-base);
 $container-md:              920px;
 
 $container-large-desktop:   $container-desktop;
 $container-lg:              $container-md;
 
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+@import "../node_modules/bootstrap/scss/mixins";
