@@ -12,6 +12,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 Initializing variables properly in JavaScript can have significant performance benefits. This can be shown with a simple synthetic benchmark.

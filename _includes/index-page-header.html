@@ -1,11 +1,11 @@
-<header class="page-header card mb-3">
+<header class="page-header card mb-4">
     {% responsive_image path: assets/default-featured-image.jpg template: _includes/featured-image.html cache: true %}
 
-    <div class="card-img-overlay c">
+    <div class="card-img-overlay wrap">
         {% if title %}<h1>{{ title }}</h1>{% endif %}
 
         {% unless hide_description == true %}
-            <p class="p-a b-0">
+            <p class="pos-a b-0">
                 <i>{{ site.description }}</i>
             </p>
         {% endunless %}

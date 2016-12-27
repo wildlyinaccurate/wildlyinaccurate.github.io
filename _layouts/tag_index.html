@@ -5,7 +5,7 @@ layout: default
 {% capture title %}Tag: {{ page.tag }}{% endcapture %}
 {% include index-page-header.html %}
 
-<section class="c">
+<section class="wrap">
     {% for post in site.tags[page.tag] %}
         {% include post-summary.html %}
     {% endfor %}

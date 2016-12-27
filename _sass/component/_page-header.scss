@@ -1,7 +1,10 @@
 .page-header {
-  color: #fff;
-  min-height: 260px;
+  color: $white;
+  min-height: 220px;
   overflow: hidden;
-  text-shadow: -1px 0 1px #000;
-  z-index: -1;
+  text-shadow: -1px 0 1px $black;
+
+  a {
+    color: $white;
+  }
 }

@@ -14,6 +14,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 Inspired by Eric Mann's post on [caching WordPress with Redis](http://eamann.com/tech/ludicrous-speed-wordpress-caching-with-redis/), I thought I'd experiment with a similar setup using Memcached. Any in-memory caching system should work just as well, but I've chosen Memcached because it's already running on my server and because PHP already has a [built-in libmemcached API](http://www.php.net/manual/en/class.memcached.php).

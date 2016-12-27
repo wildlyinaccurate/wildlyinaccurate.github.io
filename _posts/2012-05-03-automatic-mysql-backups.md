@@ -10,6 +10,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 It's really easy to set up automatic MySQL backups using `mysqldump`. First, you need to set up a user with `SELECT` and `LOCK TABLES` privileges. In this example the user doesn't have a password.

@@ -12,6 +12,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 I came across this recently while I was developing a module for PyroCMS. Some of the PyroCMS tables contain ENUM columns, which Doctrine doesn't support. You would think that this wouldn't be an issue since these tables are not mapped, but apparently when Doctrine builds the schema it includes all tables in the database - even if they are not mapped. This has been [reported as an issue](http://www.doctrine-project.org/jira/browse/DDC-1273), but the Doctrine team has given it a low priority.

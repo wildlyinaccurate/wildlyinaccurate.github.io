@@ -13,6 +13,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 If you've used Linode's LISH console to get remote access to your server, you're probably familiar with the way the console wraps everything to 60x20 (columns x rows) - even when you're connected via ssh in a much larger terminal.<!--more-->

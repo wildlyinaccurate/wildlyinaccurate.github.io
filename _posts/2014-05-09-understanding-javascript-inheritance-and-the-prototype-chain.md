@@ -13,6 +13,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 _This is the first post in a series on JavaScript. In this post I'm going to explain how JavaScript's prototype chain works, and how you can use it to achieve inheritance._

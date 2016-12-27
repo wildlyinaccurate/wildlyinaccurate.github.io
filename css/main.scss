@@ -13,7 +13,6 @@
 // Core CSS
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
-@import "../node_modules/bootstrap/scss/code";
 
 // Components
 @import "../node_modules/bootstrap/scss/card";
@@ -22,5 +21,7 @@
 @import "component/page-header";
 @import "component/layout";
 @import "component/button";
+@import "component/list";
+@import "component/code";
 @import "component/ads";
 @import "utilities";

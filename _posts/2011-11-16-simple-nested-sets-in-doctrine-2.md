@@ -16,6 +16,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 Unlike Doctrine 1 with it's NestedSet behaviour, there is no nested set functionality in the core of Doctrine 2. There are a few extensions available that offer nested set support:

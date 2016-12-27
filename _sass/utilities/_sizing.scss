@@ -1,0 +1,19 @@
+@each $prop, $abbrev in (height: h, width: w) {
+  @each $size, $lengths in $spacers {
+    $length: map-get($lengths, x);
+
+    .#{$abbrev}-#{$size}  {
+      #{$prop}: $length;
+    }
+  }
+
+  .#{$abbrev}-100  {
+    #{$prop}: 100%;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .h-a\@sm {
+    height: auto;
+  }
+}

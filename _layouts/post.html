@@ -7,11 +7,11 @@ layout: default
 
 {% include content-page-header.html %}
 
-<article class="c">
+<article class="wrap">
     {{ content }}
 </article>
 
-<div class="c">
+<div class="wrap">
     <small>
         <i>This post was written by <b>{{ page.author }}</b> on <b>{{ page.date | date: "%-d %B, %Y" }}</b>, and last updated on <b>{{ page.last_modified_at | date: "%-d %B, %Y" }}</b>.
 

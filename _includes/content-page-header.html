@@ -1,4 +1,4 @@
-<header class="page-header card mb-3">
+<header class="page-header card mb-4">
     {% if page.featured_image %}
         {% assign featured_image = page.featured_image %}
     {% else %}
@@ -11,8 +11,8 @@
         cache: true
     {% endresponsive_image_block %}
 
-    <div class="card-img-overlay c">
-        <h1>{{ page.title }}</h1>
+    <div class="card-img-overlay wrap">
+        <h1 class="mt-5">{{ page.title }}</h1>
         {{ post_meta }}
     </div>
 </header>

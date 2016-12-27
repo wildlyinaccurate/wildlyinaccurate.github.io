@@ -1,12 +1,12 @@
-<nav class="p-a w-100">
-    <div class="c">
-        <a href="{{ site.url }}" class="navbar__title navbar__link">Wildly Inaccurate</a>
+<nav class="pos-a w-100">
+    <div class="wrap">
+        <a class="btn p-3" href="{{ site.url }}" class="navbar__title navbar__link">Wildly Inaccurate</a>
 
-        <ul class="navbar-nav">
+        <ul class="ls-n p-0 f-r">
         {% for page in site.pages %}
             {% if page.title and page.navigation == 'main' %}
-            <li class="navbar-nav__item">
-                <a class="navbar-nav__item-link navbar__link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+            <li class="b-w d-ib">
+                <a class="p-2" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
             </li>
             {% endif %}
         {% endfor %}

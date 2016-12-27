@@ -14,6 +14,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 There are a two main things that tripped me up while I was writing functional tests for my Laravel controllers: POST requests, and session state.
