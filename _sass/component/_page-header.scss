@@ -1,7 +1,8 @@
 .page-header {
   color: $white;
-  min-height: 220px;
+  min-height: 240px;
   overflow: hidden;
+  position: relative;
   text-shadow: -1px 0 1px $black;
 
   a {

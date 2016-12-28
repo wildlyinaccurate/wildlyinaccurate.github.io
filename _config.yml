@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 paginate: 15
 
 email: joseph@wildlyinaccurate.com
-twitter_username: Joseph_Wynn
+twitter_username: joseph_wynn
 github_username:  wildlyinaccurate
 
 gems:
@@ -21,7 +21,7 @@ gems:
   - jekyll-last-modified-at
 
 responsive_image:
-  default_quality: 80
+  default_quality: 75
   template: _includes/thumbnail.html
   sizes:
     # 320px devices

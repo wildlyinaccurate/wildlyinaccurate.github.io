@@ -14,13 +14,11 @@
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
 
-// Components
-@import "../node_modules/bootstrap/scss/card";
-
 // WILDLY INACCURATE
 @import "component/page-header";
 @import "component/layout";
 @import "component/button";
+@import "component/image";
 @import "component/list";
 @import "component/code";
 @import "component/ads";

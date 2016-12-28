@@ -1,20 +1,26 @@
-@each $prop, $abbrev in (margin: m, padding: p) {
-  @each $size, $lengths in $spacers {
-    $length-x: map-get($lengths, x);
-    $length-y: map-get($lengths, y);
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    .#{$abbrev}-#{$size}  { #{$prop}:        $length-y $length-x; }
-    .#{$abbrev}t-#{$size} { #{$prop}-top:    $length-y; }
-    .#{$abbrev}r-#{$size} { #{$prop}-right:  $length-x; }
-    .#{$abbrev}b-#{$size} { #{$prop}-bottom: $length-y; }
-    .#{$abbrev}l-#{$size} { #{$prop}-left:   $length-x; }
-    .#{$abbrev}x-#{$size} {
-      #{$prop}-right: $length-x;
-      #{$prop}-left:  $length-x;
-    }
-    .#{$abbrev}y-#{$size} {
-      #{$prop}-top:    $length-y;
-      #{$prop}-bottom: $length-y;
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $lengths in $spacers {
+        $length-x: map-get($lengths, x);
+        $length-y: map-get($lengths, y);
+
+        .#{$abbrev}#{$infix}-#{$size}  { #{$prop}:        $length-y $length-x !important; }
+        .#{$abbrev}t#{$infix}-#{$size} { #{$prop}-top:    $length-y !important; }
+        .#{$abbrev}r#{$infix}-#{$size} { #{$prop}-right:  $length-x !important; }
+        .#{$abbrev}b#{$infix}-#{$size} { #{$prop}-bottom: $length-y !important; }
+        .#{$abbrev}l#{$infix}-#{$size} { #{$prop}-left:   $length-x !important; }
+        .#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-right: $length-x !important;
+          #{$prop}-left:  $length-x !important;
+        }
+        .#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-top:    $length-y !important;
+          #{$prop}-bottom: $length-y !important;
+        }
+      }
     }
   }
 }
