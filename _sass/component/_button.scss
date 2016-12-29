@@ -3,9 +3,20 @@
   color: $white;
   display: inline-block;
   font-family: $font-family-sans-serif;
+
+    &:hover,
+    &:focus {
+      background: rgba($brand-primary, 0.8);
+      color: $white;
+    }
 }
 
 .btn--inverse {
-  background: rgba(255, 255, 255, 0.67);
+  background: rgba($white, 0.67);
   color: $brand-primary;
+
+    &:hover,
+    &:focus {
+      background: rgba($white, 0.4);
+    }
 }

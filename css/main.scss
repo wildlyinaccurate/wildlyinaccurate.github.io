@@ -15,6 +15,10 @@
 @import "../node_modules/bootstrap/scss/type";
 
 // WILDLY INACCURATE
+a {
+  transition-duration: 0.3s;
+}
+
 @import "component/page-header";
 @import "component/layout";
 @import "component/button";

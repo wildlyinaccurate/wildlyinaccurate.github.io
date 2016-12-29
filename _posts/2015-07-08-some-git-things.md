@@ -7,6 +7,8 @@ tags:
 - git
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/toc.css">
 ---
 
 * Placeholder list item

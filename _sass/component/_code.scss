@@ -9,7 +9,8 @@ code {
 }
 
 pre {
-  padding: ($code-padding-y * 2) ($code-padding-x * 2);
+  border: $code-border;
+  padding: ($code-padding-x * 2);
 
   code {
     padding: 0;

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "grunt build && webpack",
+    "build": "npm run webpack && grunt build",
     "webpack": "npm run webpack-search",
     "webpack-search": "webpack -p js/search.js js/compiled/search.js",
     "spellcheck": "mdspell --ignore-numbers --ignore-acronyms --no-suggestions _posts/**/*.md"

@@ -2,6 +2,8 @@
     {{ page.date | date: "%b %-d, %Y" }}
 
     {% if page.categories %}
-        • posted in [{% for category in page.categories %}<a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
+        • posted in [{% for category in page.categories %}
+            <a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
+        {% endfor %}]
     {% endif %}
 </p>

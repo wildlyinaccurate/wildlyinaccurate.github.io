@@ -5,32 +5,28 @@ layout: default
 
 <article class="wrap">
     {{ content }}
-
-    <input class="search-input" placeholder="Search query">
-
-    <div class="search-results"></div>
+    <input id="query" class="w-100 p-2" placeholder="Search query">
+    <div id="results" class="mt-4"></div>
 </article>
 
 {% raw %}
-<script type="text/template" id="tmpl-search-results">
+<script type="text/template" id="search-tmpl">
     {{#results.length}}
-        <h2 class="search-results__title">Search results for '{{query}}'</h2>
+        <h2>{{results.length}} results for '{{query}}'</h2>
     {{/results.length}}
 
     {{^results.length}}
         {{#query}}
-            <h2 class="search-results__title">No results found for '{{query}}'</h2>
+            <h2>No results found for '{{query}}'</h2>
         {{/query}}
     {{/results.length}}
 
     {{#results.length}}
-        <ul class="search-results__results">
+        <ul class="ls-n p-0">
         {{#results}}
-            <li class="result-item">
-                <h4 class="result-item__title">
-                    <a class="result-item__link" href="{{url}}">
-                        {{#type}}{{type}}:{{/type}} {{title}}
-                    </a>
+            <li class="py-1">
+                <h4>
+                    <a href="{{url}}">{{#type}}{{type}}:{{/type}} {{title}}</a>
                 </h4>
             </li>
         {{/results}}

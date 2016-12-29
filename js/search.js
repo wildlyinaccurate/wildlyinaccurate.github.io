@@ -61,14 +61,21 @@ Search.prototype.query = function(query) {
     return this.cache[query]
 }
 
-var input = document.querySelector('.search-input')
-var resultsContainer = document.querySelector('.search-results')
+var input = document.getElementById('query')
+var resultsContainer = document.getElementById('results')
 var search
 var debounce
 
 var resultsTemplate = Hogan.compile(
-    document.getElementById('tmpl-search-results').innerHTML
+    document.getElementById('search-tmpl').innerHTML
 )
+
+// Populate the input from the 'query' parameter
+var matches = window.location.search.match(/query=([^&]+)/)
+
+if (matches) {
+    input.value = matches[1]
+}
 
 var xhr = new XMLHttpRequest()
 xhr.onload = onSearchDataLoaded
