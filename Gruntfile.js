@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         elm: {
             compile: {
                 files: {
-                    '_site/js/compiled/Collection.js': 'elm/Main.elm',
+                    'js/compiled/Collection.js': 'elm/Main.elm',
                 }
             }
         },
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                 options: {
                     htmlroot: '_site',
                     timeout: 2000,
-                    ignoreSheets: [/toc.css/, /highlight.css/],
+                    ignoreSheets: [/collection.css/, /toc.css/, /highlight.css/],
                     ignore: [
                         '#carbonads',
                         /\.carbon\-.+/,
@@ -55,6 +55,7 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     '_site/css/main.css': ['_site/css/main.css'],
+                    '_site/css/collection.css': ['_site/css/collection.css'],
                     '_site/css/highlight.css': ['_site/css/highlight.css'],
                     '_site/css/toc.css': ['_site/css/toc.css']
                 }
@@ -121,7 +122,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
-        'elm',
         'uncss',
         'cssmin',
         'filerev',

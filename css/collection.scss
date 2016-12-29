@@ -1,0 +1,32 @@
+---
+---
+@import "bootstrap-overrides";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/buttons";
+
+.filters {
+  list-style: none;
+  padding: 0;
+  margin-bottom: $navbar-padding-y;
+}
+
+.filter {
+  display: inline-block;
+  margin: 5px 5px 5px 0;
+
+  label {
+    padding-left: 0;
+  }
+
+  input[type="checkbox"] {
+    margin: 0 ($spacer / 2) 0;
+  }
+}
+
+.item-tag {
+  font-family: $font-family-sans-serif;
+  margin-left: ($spacer / 2);
+}

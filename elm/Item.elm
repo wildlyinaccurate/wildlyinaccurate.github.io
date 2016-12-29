@@ -37,5 +37,5 @@ view item =
 tagView : String -> Html msg
 tagView tag =
     span
-        [ class "item-tag label label-default" ]
+        [ class "item-tag badge badge-default" ]
         [ text tag ]
