@@ -24,6 +24,7 @@ module.exports = function(grunt) {
                 options: {
                     htmlroot: '_site',
                     timeout: 2000,
+                    ignoreSheets: [/toc.css/, /highlight.css/],
                     ignore: [
                         '#carbonads',
                         /\.carbon\-.+/,
@@ -53,7 +54,9 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    '_site/css/main.css': ['_site/css/main.css']
+                    '_site/css/main.css': ['_site/css/main.css'],
+                    '_site/css/highlight.css': ['_site/css/highlight.css'],
+                    '_site/css/toc.css': ['_site/css/toc.css']
                 }
             }
         },
@@ -91,7 +94,7 @@ module.exports = function(grunt) {
                 length: 7
             },
             styles: {
-                src: '_site/css/main.css'
+                src: '_site/css/*.css'
             },
             scripts: {
                 src: '_site/js/{**/,}*.js'
