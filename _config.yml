@@ -27,19 +27,24 @@ responsive_image:
     # 320px devices
     - width: 320
       quality: 65
+      progressive: true
 
     # 360px devices
     - width: 360
       quality: 65
+      progressive: true
 
     # Container width on S devices
     - width: 720
+      progressive: true
 
     # Container width on M devices
     - width: 940
+      progressive: true
 
     # Container width on L devices
     - width: 1140
+      progressive: true
 
     # Common device widths (minus ~80px allowance for UI) for full-width images
     - width: 1280
