@@ -14,10 +14,9 @@
 @import "../node_modules/bootstrap/scss/type";
 
 // WILDLY INACCURATE
-a {
-  transition-duration: 0.3s;
-}
+@import "global";
 
+@import "component/ads";
 @import "component/blockquote";
 @import "component/button";
 @import "component/code";
@@ -26,5 +25,5 @@ a {
 @import "component/layout";
 @import "component/list";
 @import "component/page-header";
+
 @import "utilities";
-@import "component/ads";

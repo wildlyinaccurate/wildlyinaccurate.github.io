@@ -1,0 +1,16 @@
+a {
+  transition-duration: 0.3s;
+}
+
+// Smaller screens don't need such a large font
+$small-screen-font-size-modifier: 0.9;
+
+@include media-breakpoint-down(xs) {
+  html {
+    font-size: $font-size-root * $small-screen-font-size-modifier;
+  }
+
+  h1 {
+    font-size: $font-size-h1 * $small-screen-font-size-modifier;
+  }
+}
