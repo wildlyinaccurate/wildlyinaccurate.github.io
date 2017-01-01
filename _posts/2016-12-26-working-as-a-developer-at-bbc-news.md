@@ -63,18 +63,26 @@ Overtime is actively discouraged. No project is more important than your wellbei
 
 Taking annual leave is never an issue, provided you give enough notice. If you work on a project with a "hard" deadline like an election or sporting event, your manager might ask you to avoid taking leave in the weeks leading up to the deadline, but this is not mandatory.
 
+## Working environment
+
+All BBC News engineering staff are located in [New Broadcasting House](http://www.bbc.co.uk/broadcastinghouse/). The entire building is accessible, and has the usual amenities including showers, toilets, and tea points, which are all also accessible.
+
+The engineering teams work in open plan spaces shared with a variety of other teams including journalists. They are currently spread out across two floors of the building which, if anything, acts as motivation to leave your desk and stretch your muscles out.
+
+If, like me, you find open spaces are detrimental to your productivity, then there are many quiet spaces available throughout the building which can be used at any time. Soundproof rooms can also be booked through an automated web system.
+
 ## Technologies
 
-Most of the software we write is written in Ruby, JavaScript, and PHP. Teams have the freedom to use whichever technologies they like, provided there is sufficient justification. Here's a sample of technologies I've worked with so far at BBC News:
+Most of our products are web-based and are written in Ruby, JavaScript, and PHP alongside the usual HTML & CSS (usually Sass). We also have some non-web projects which tend to be written in Java and Scala. Teams have the freedom to use whichever technologies they like, provided there is sufficient justification. Here's a sample of technologies which I've personally worked with so far at BBC News:
 
  * Responsive News is PHP application which uses [a range of interesting techniques](http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design) to support all of the World Service languages and scripts.
- * The BBC News [AMP project](https://www.ampproject.org/) and many of the worldwide elections components are powered by an open-source [broker-renderer](https://en.wikipedia.org/wiki/Broker_Pattern) framework called [Alephant](https://github.com/BBC-News/alephant).
- * The BBC News front page is being rebuilt using React on a [highly-scalable Node.js platform](https://www.youtube.com/watch?v=pxmXiKlh5OU) developed by BBC Sport.
+ * The BBC News [AMP project](https://www.ampproject.org/) and many of the worldwide elections components are powered by an open-source [broker-renderer](https://en.wikipedia.org/wiki/Broker_Pattern) Ruby framework called [Alephant](https://github.com/BBC-News/alephant).
+ * The BBC News front page is being rebuilt using React and Node.js on a platform developed by BBC Sport.
  * One of our page composition systems is powered by services written in Ruby and Go.
 
 ## Other perks & local discounts
 
-All BBC News engineering staff are located in [New Broadcasting House](http://www.bbc.co.uk/broadcastinghouse/), just down the road from Oxford Circus. This puts us somewhat dangerously close to dozens of really great shops, restaurants, cafés, and bars. Many of them offer a discount to BBC employees.
+Being just down the road from Oxford Circus puts us somewhat dangerously close to dozens of really great shops, restaurants, cafés, and bars. Many of them offer a discount to BBC employees.
 
 The BBC runs a centralised benefits scheme which offers things like:
 
@@ -83,3 +91,5 @@ The BBC runs a centralised benefits scheme which offers things like:
  * Childcare vouchers.
  * Access to [Cyclescheme](https://www.cyclescheme.co.uk/).
  * The ability to buy and sell annual leave.
+
+Secure bike storage is available, or you can just lock your bike to the railing outside the building.
