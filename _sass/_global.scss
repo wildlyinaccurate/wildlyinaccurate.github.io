@@ -1,5 +1,11 @@
+// Add a transition animation to all links
 a {
   transition-duration: 0.3s;
+}
+
+// Pad headings for readability
+h1, h2, h3, h4, h5, h6 {
+  padding-top: 1rem;
 }
 
 // Smaller screens don't need such a large font
