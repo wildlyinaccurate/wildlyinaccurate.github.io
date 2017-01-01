@@ -11,6 +11,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 Code readability is something that I often bring up during code reviews, but I often have trouble explaining _why_ I find a piece of code to be easy or difficult to read.

@@ -1,16 +1,13 @@
 ---
 layout: default
-extra_stylesheets:
-  - /css/collection.css
 ---
-
 {% capture post_meta %}
     {% include post-meta.html %}
 {% endcapture %}
 
 {% include content-page-header.html %}
 
-<article class="post-content">
+<article class="wrap">
     {{ page.excerpt }}<!--more-->
 
     <div class="collection-container">
@@ -18,5 +15,4 @@ extra_stylesheets:
     </div>
 </article>
 
-<script src="/js/compiled/Collection.js"></script>
-<script src="/js/collection-bootstrap.js"></script>
+<script async src="/js/compiled/collection-bootstrap.js"></script>

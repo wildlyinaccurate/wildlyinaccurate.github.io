@@ -4,22 +4,20 @@ layout: default
 
 {% include index-page-header.html %}
 
-<section class="posts-index">
-
+<section class="wrap">
     {% for post in paginator.posts %}
         {% include post-summary.html %}
     {% endfor %}
 
     {% if paginator.total_pages > 1 %}
-        <div class="pagination">
+        <div>
             {% if paginator.next_page %}
-                <a class="pagination__link pagination__link--next" href="{{ paginator.next_page_path | prepend: site.baseurl }}">&#8592; Older Posts</a>
+                <a class="btn p-3" href="{{ paginator.next_page_path | prepend: site.baseurl }}">&#8592; Older Posts</a>
             {% endif %}
 
             {% if paginator.previous_page %}
-                <a class="pagination__link pagination__link--previous" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '/index.html', '/' }}">Newer Posts &#8594;</a>
+                <a class="btn p-3" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '/index.html', '/' }}">Newer Posts &#8594;</a>
             {% endif %}
         </div>
     {% endif %}
-
 </section>

@@ -1,17 +1,12 @@
-<div class="thumbnail {% if bleed %}thumbnail--bleed{% endif %}">
+<div class="my-4 ta-c {% if bleed %}thumbnail--bleed{% endif %}">
     {% if url %}<a class="thumbnail__link" href="{{ url }}">{% endif %}
-
-    <img class="thumbnail__image"
-         alt="{{ alt }}"
-         src="/{{ path }}"
-         {% if original.width < 880 %}width="{{ original.width }}"{% endif %}
+    <img alt="{{ alt }}" src="/{{ path }}" {% if original.width < 880 %}width="{{ original.width }}"{% endif %}
          srcset="{% for i in resized %}/{{ i.path }} {{ i.width }}w, {% endfor %} /{{ original.path }} {{ original.width }}w">
-
     {% if url %}</a>{% endif %}
 
     {% if alt %}
-    <div class="thumbnail__caption">
-        {{ alt }}
+    <div class="c-gl">
+        <small><i>{{ alt }}</i></small>
     </div>
     {% endif %}
 </div>

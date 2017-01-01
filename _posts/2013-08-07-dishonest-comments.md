@@ -10,6 +10,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 One of my favourite Ruby Rogues episodes ([_What Makes Beautiful Code_](http://rubyrogues.com/what-makes-beautiful-code/)) has a short section where the Rogues talk about the concept of _dishonest code_. David Brady wrote a [really good piece](http://chalain.livejournal.com/39332.html) on this, which I highly recommend reading.

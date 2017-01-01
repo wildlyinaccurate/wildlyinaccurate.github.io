@@ -5,15 +5,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-filerev');
     grunt.loadNpmTasks('grunt-usemin');
+
+    grunt.loadTasks('grunt-tasks');
 
     grunt.initConfig({
         elm: {
             compile: {
                 files: {
-                    '_site/js/compiled/Collection.js': 'elm/Main.elm',
+                    'js/compiled/Collection.js': 'elm/Main.elm',
                 }
             }
         },
@@ -23,7 +24,15 @@ module.exports = function(grunt) {
                 options: {
                     htmlroot: '_site',
                     timeout: 2000,
-                    ignore: ['#carbonads', /\.carbon\-.+/, /\.search-results.+/]
+                    ignoreSheets: [/collection.css/, /toc.css/, /highlight.css/],
+                    ignore: [
+                        '#carbonads',
+                        /\.carbon\-.+/,
+
+                        // Can't get the search page working properly in UnCSS
+                        // so have to specify all selectors used on that page UGH
+                        '.mt-4', '.ls-n', '.p-0', '.py-1'
+                    ]
                 },
                 files: {
                     '_site/css/main.css': [
@@ -42,24 +51,13 @@ module.exports = function(grunt) {
             }
         },
 
-        uglify: {
-            options: {
-                screwIE8: true
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '_site/js',
-                    src: '{**/,}*.js',
-                    dest: '_site/js'
-                }]
-            }
-        },
-
         cssmin: {
             dist: {
                 files: {
-                    '_site/css/main.css': ['_site/css/main.css']
+                    '_site/css/main.css': ['_site/css/main.css'],
+                    '_site/css/collection.css': ['_site/css/collection.css'],
+                    '_site/css/highlight.css': ['_site/css/highlight.css'],
+                    '_site/css/toc.css': ['_site/css/toc.css']
                 }
             }
         },
@@ -97,7 +95,7 @@ module.exports = function(grunt) {
                 length: 7
             },
             styles: {
-                src: '_site/css/main.css'
+                src: '_site/css/*.css'
             },
             scripts: {
                 src: '_site/js/{**/,}*.js'
@@ -110,17 +108,26 @@ module.exports = function(grunt) {
                 assetsDirs: '_site',
             }
         },
+
+        inlinestyles: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '_site',
+                    src: '**/*.html',
+                    dest: '_site'
+                }]
+            }
+        }
     });
 
     grunt.registerTask('build', [
-        'elm',
         'uncss',
         'cssmin',
-        'uglify',
         'filerev',
         'usemin',
-        'htmlmin',
-        'imagemin'
+        'inlinestyles',
+        'htmlmin'
     ]);
 
 };

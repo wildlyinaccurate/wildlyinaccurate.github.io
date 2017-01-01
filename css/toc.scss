@@ -1,0 +1,23 @@
+---
+---
+@import "bootstrap-overrides";
+@import "../node_modules/bootstrap/scss/variables";
+
+#markdown-toc {
+  background: $code-bg;
+  border: $code-border;
+  display: table;
+  font-size: 1rem;
+  padding: $spacer $spacer $spacer ($spacer * 3);
+
+  &, ul {
+    list-style: outside decimal;
+  }
+
+  &:before {
+    content: 'Contents';
+    display: block;
+    margin-bottom: $spacer / 2;
+    margin-left: -($spacer * 2);
+  }
+}

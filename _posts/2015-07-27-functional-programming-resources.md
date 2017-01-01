@@ -9,6 +9,8 @@ tags:
 published: true
 author: Joseph Wynn
 excerpt: This post contains a collection of resources for learning about functional programming. These resources cover a range of levels from beginner-friendly introductions right through to more advanced concepts.
+extra_head:
+  - <link rel="stylesheet" href="/css/collection.css">
 ---
 
 ### Articles, Papers & Blog Posts

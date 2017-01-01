@@ -1,14 +1,9 @@
 <!doctype html>
 <html lang="en">
-
     {% include head.html %}
-
     <body>
-
         {% include header.html %}
-
         {{ content }}
-
         {% include footer.html %}
 
         <script defer>
@@ -30,10 +25,11 @@
                 s.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=wildlyinaccuratecom';
                 s.id = '_carbonads_js';
 
-                p = document.createElement('p');
+                p = document.createElement('small');
+                p.className = 'ta-c';
                 p.appendChild(s);
 
-                n = document.querySelector('.post-content > p:nth-of-type(3)');
+                n = document.querySelector('article > p:nth-of-type(3)');
 
                 if (n) {
                     n.parentNode.insertBefore(p, n.nextSibling);
@@ -43,7 +39,5 @@
                 }
             })();
         </script>
-
     </body>
-
 </html>

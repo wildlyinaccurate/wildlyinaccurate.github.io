@@ -1,17 +1,12 @@
 #carbonads {
-    max-width: 200px;
-    text-align: center;
-}
-
-#carbonads,
-.carbon-img > img {
-    margin: 0 auto;
+  display: block;
+  margin: $spacer auto;
+  max-width: 200px;
 }
 
 .carbon-text,
 .carbon-poweredby {
-    color: $color-secondary;
-    display: block;
-    font-size: $font-size-xs;
-    margin-top: ceil($font-size-xs / 2);
+  color: $gray-light;
+  display: block;
+  margin-top: ceil($font-size-xs / 2);
 }

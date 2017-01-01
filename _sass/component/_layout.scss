@@ -1,7 +1,4 @@
-.post-content,
-.post-meta--footer,
-.post-comments,
-.posts-index,
-.page-footer {
-    @extend .container;
+.wrap {
+  @include make-container();
+  @include make-container-max-widths();
 }

@@ -190,7 +190,7 @@ checkbox isChecked action name =
     label
         [ class "btn btn-default btn-sm" ]
         [ input
-            [ type' "checkbox"
+            [ type_ "checkbox"
             , checked isChecked
             , onCheck action
             ]

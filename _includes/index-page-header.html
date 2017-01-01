@@ -1,8 +1,13 @@
-<header class="page-header page-header--no-meta {% unless title %}page-header--no-title{% endunless %}">
+<header class="page-header mb-4">
     {% responsive_image path: assets/default-featured-image.jpg template: _includes/featured-image.html cache: true %}
 
-    <div class="container">
-        {% if title %}<h1 class="page-header__title">{{ title }}</h1>{% endif %}
-        {% unless hide_description == true %}<p class="site-description">{{ site.description }}</p>{% endunless %}
+    <div class="wrap pt-5">
+        {% if title %}<h1 class="mt-5">{{ title }}</h1>{% endif %}
+
+        {% unless hide_description == true %}
+            <p class="pt-5 mt-5">
+                <i>{{ site.description }}</i>
+            </p>
+        {% endunless %}
     </div>
 </header>
