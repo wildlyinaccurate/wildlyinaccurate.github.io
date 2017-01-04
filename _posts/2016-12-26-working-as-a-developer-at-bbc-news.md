@@ -29,7 +29,7 @@ In the past, teams were relatively static and people didn't move around much bet
 As well as collaboration between these BBC News teams, we also regularly collaborate with teams from all around the BBC. In the last 3 months alone, my team has worked with:
 
 - The Local News team in Cardiff.
-- The Sport and Live teams and the Accessibility Champions group in Manchester.
+- The Sport and Live teams, and the Accessibility Champions group in Manchester.
 - The Worldwide team in West London.
 - The Weather, Programmes, and Radio teams in Central London.
 
