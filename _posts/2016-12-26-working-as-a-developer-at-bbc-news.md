@@ -28,10 +28,10 @@ In the past, teams were relatively static and people didn't move around much bet
 
 As well as collaboration between these BBC News teams, we also regularly collaborate with teams from all around the BBC. In the last 3 months alone, my team has worked with:
 
- * The Local News team in Cardiff.
- * The Sport and Live teams and the Accessibility Champions group in Manchester.
- * The Worldwide team in West London.
- * The Weather, Programmes, and Radio teams in Central London.
+- The Local News team in Cardiff.
+- The Sport and Live teams and the Accessibility Champions group in Manchester.
+- The Worldwide team in West London.
+- The Weather, Programmes, and Radio teams in Central London.
 
 ## Learning & personal development
 
@@ -75,10 +75,10 @@ If, like me, you find open spaces are detrimental to your productivity, then the
 
 Most of our products are web-based and are written in Ruby, JavaScript, and PHP alongside the usual HTML & CSS (usually Sass). We also have some non-web projects which tend to be written in Java and Scala. Teams have the freedom to use whichever technologies they like, provided there is sufficient justification. Here's a sample of technologies which I've personally worked with so far at BBC News:
 
- * Responsive News is PHP application which uses [a range of interesting techniques](http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design) to support all of the World Service languages and scripts.
- * The BBC News [AMP project](https://www.ampproject.org/) and many of the worldwide elections components are powered by an open-source [broker-renderer](https://en.wikipedia.org/wiki/Broker_Pattern) Ruby framework called [Alephant](https://github.com/BBC-News/alephant).
- * The BBC News front page is being rebuilt using React and Node.js on a platform developed by BBC Sport.
- * One of our page composition systems is powered by services written in Ruby and Go.
+- Responsive News is PHP application which uses [a range of interesting techniques](http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design) to support all of the World Service languages and scripts.
+- The BBC News [AMP project](https://www.ampproject.org/) and many of the worldwide elections components are powered by an open-source [broker-renderer](https://en.wikipedia.org/wiki/Broker_Pattern) Ruby framework called [Alephant](https://github.com/BBC-News/alephant).
+- The BBC News front page is being rebuilt using React and Node.js on a platform developed by BBC Sport.
+- One of our page composition systems is powered by services written in Ruby and Go.
 
 ## Other perks & local discounts
 
@@ -86,10 +86,50 @@ Being just down the road from Oxford Circus puts us somewhat dangerously close t
 
 The BBC runs a centralised benefits scheme which offers things like:
 
- * A great pension plan.
- * Dental, health, and travel insurance.
- * Childcare vouchers.
- * Access to [Cyclescheme](https://www.cyclescheme.co.uk/).
- * The ability to buy and sell annual leave.
+- A great pension plan.
+- Dental, health, and travel insurance.
+- Childcare vouchers.
+- Access to [Cyclescheme](https://www.cyclescheme.co.uk/).
+- The ability to buy and sell annual leave.
 
 Secure bike storage is available, or you can just lock your bike to the railing outside the building.
+
+## The Joel Test
+
+Here's how BBC News scores on [The Joel Test](https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/):
+
+0. **Do you use source control?**<br>
+    Yes. We use Git for almost everything, and SVN for a small number of legacy systems.
+
+0. **Can you make a build in one step?**<br>
+    Yes, all applications can be built in one step. Older applications have a separate deployment process, while newer applications are deployed to integration environments automatically.
+
+0. **Do you make daily builds?**<br>
+    We practice continuous integration, so there are usually hundreds of builds happening every day.
+
+0. **Do you have a bug database?**<br>
+    Yes. We aim to keep the backlog tidy, and will often close minor bugs which are not likely to be fixed.
+
+0. **Do you fix bugs before writing new code?**<br>
+    Most teams prioritise bugs which affect more than 1% of users. Other bugs are prioritised on a case-by-case basis.
+
+0. **Do you have an up-to-date schedule?**<br>
+    Yes. Schedules range from broad 1-2 year goals to month-by-month feature delivery.
+
+0. **Do you have a spec?**<br>
+    We have Business Analysts who work within our teams to define specifications and acceptance criteria.
+
+0. **Do programmers have quiet working conditions?**<br>
+    Not by default, but quiet areas are available.
+
+0. **Do you use the best tools money can buy?**<br>
+    Yes.
+
+0. **Do you have testers?**<br>
+    Yes.
+
+0. **Do new candidates write code during their interview?**<br>
+    Yes.
+
+0. **Do you do hallway usability testing?**<br>
+    Yes. UI changes are reviewed by our UX teams, and _Accessibility Champions_ are embedded in each team.
