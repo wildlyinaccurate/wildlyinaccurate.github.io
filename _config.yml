@@ -23,34 +23,54 @@ gems:
 responsive_image:
   default_quality: 75
   template: _includes/thumbnail.html
+  output_path_format: assets/r/%{width}/%{basename}
   sizes:
-    # 320px devices
+    # Device widths for full-width images
     - width: 320
-      quality: 65
+      quality: 60
       progressive: true
 
-    # 360px devices
-    - width: 360
-      quality: 65
+    - width: 380
+      quality: 60
       progressive: true
 
-    # Container width on S devices
-    - width: 720
+    - width: 420
+      quality: 60
       progressive: true
 
-    # Container width on M devices
-    - width: 940
+    - width: 640
       progressive: true
 
-    # Container width on L devices
-    - width: 1140
+    - width: 768
       progressive: true
 
-    # Common device widths (minus ~80px allowance for UI) for full-width images
+    - width: 1024
+      progressive: true
+
     - width: 1280
-    - width: 1360
+      progressive: true
+
+    - width: 1366
+      progressive: true
+
+    - width: 1440
+      progressive: true
+
     - width: 1680
-    - width: 1840
+      progressive: true
+
+    # Breakpoint sizes for inline images
+    - width: 510
+      progressive: true
+
+    - width: 690
+      progressive: true
+
+    - width: 930
+      progressive: true
+
+    - width: 1110
+      progressive: true
 
 markdown: kramdown
 highlighter: rouge
