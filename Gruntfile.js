@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
                         // Can't get the search page working properly in UnCSS
                         // so have to specify all selectors used on that page UGH
-                        '.mt-4', '.ls-n', '.p-0', '.py-1'
+                        '.ls-n', '.p-0'
                     ]
                 },
                 files: {
