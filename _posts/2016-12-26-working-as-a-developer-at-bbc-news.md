@@ -59,7 +59,7 @@ The BBC has a "core hours" system where you are required to work between 10am an
 
 Working from home is common, and is done at your manager's discretion. Many people work from home one day each week.
 
-Overtime is actively discouraged. No project is more important than your wellbeing!
+Overtime is actively discouraged. No project is more important than your well-being!
 
 Taking annual leave is encouraged, with enough notice. If you work on a project with a hard deadline like an election or sporting event, your manager might ask you to avoid taking leave in the weeks leading up to the deadline, but this is not mandatory.
 
