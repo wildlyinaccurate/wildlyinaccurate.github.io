@@ -18,12 +18,13 @@ That was April 2016. Now, nearly a year later, we're ready to begin a phased rol
 
 * It is lighter and faster than the old one
   * First meaningful paint happens up to 35% sooner on emulated mobile devices and 50% sooner on desktops & laptops.
-  * On average, 60% fewer bytes are downloaded (**613KB** -> **383KB**).
-  * The new core experience (given to legacy browsers, users without JavaScript, and Opera Mini) renders twice as fast, and downloads 35% fewer bytes (**170KB** -> **114KB**).
+  * On average, 60% fewer bytes are downloaded (**383KB**, down from **613KB**).
+  * The new core experience (given to legacy browsers, users without JavaScript, and Opera Mini) renders twice as fast, and downloads 35% fewer bytes (**114KB**, down from **170KB**).
   * Performance has been monitored from the beginning, allowing us to address regressions as soon as they happen.
 * It is available over HTTPS, and we have plans to redirect insecure traffic to HTTPS in the not-so-distant future.
-* The layout is responsive up to 1280 pixels wide (the old layout is responsive up to 1080 pixels).
-* All of the page components are built with React and styled with the BBC's ITCSS framework, [Grandstand](https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66). The components are rendered by the BBC's React-component-as-an-API-endpoint service. React is _not_ used on the client.
+* All of the page components are built with React and styled with the BBC's ITCSS framework, [Grandstand](https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66).
+* The React components are rendered by the BBC's React-component-as-an-API-endpoint service. React is _not_ used on the client.
+* Each component is a self-contained horizontal "slice" of the page. Because components fetch their own data and are styled with the same framework, they can be easily dropped into any page.
 * The development team consists of 5 developers and 1 tester, but we have collaborated with over 60 other developers and testers from all around the BBC to build this page.
 
 ## What's next?
@@ -35,9 +36,9 @@ We consider this new front page to be an MVP, and we will be changing it conside
 While we have managed to improve the performance of the front page considerably, there is still a lot of work to do:
 
 * The first meaningful paint time is still too high. We can improve it by loading the core CSS sooner.
-* We still send too many bytes to the client, a lot of which is redundant CSS. I'm optimistic that we can cut the CSS size in half by improving the way we bootstrap styles.
+* We still send too many bytes to the client. A lot of this is redundant CSS, and I'm optimistic that we can cut the CSS size in half by improving our style loader.
 * Style recalculations and layouts take too long on low-powered devices. This still needs some investigation but as a starting point we will aim to reduce DOM node nesting and simplify CSS selectors.
-* We are essentially hamstrung by the "white BBC bar" at the top of the page. This bar contains components from other parts of the BBC like Search, Notifications, and BBC ID; all of which load their own CSS and JavaScript assets before any of the BBC News assets. While this loading strategy is unlikely to change, we're hoping to at least make start conversations around delaying loading these products' assets until after the onload event.
+* We are essentially hamstrung by the "white BBC bar" at the top of the page. This bar contains components from other parts of the BBC like Search, Notifications, and BBC ID. All of these components load their own blocking CSS & JavaScript before any of the BBC News assets. While this is unlikely to change in the short term, we're hoping to work with the teams that own these components to reduce their impact on the page.
 
 ### Design enhancements
 
@@ -45,17 +46,18 @@ In order to ship the new front page sooner, we made a lot of compromises with bo
 
 {% responsive_image path: assets/news-front-page-promo-current.png alt: "The plain promo design for the MVP launch" bleed: true %}
 
-And below is one of the proposals for how we might highlight other types of promo:
+And below is one of the proposals for how we might display other types of promo:
 
 {% responsive_image path: assets/news-front-page-promo-variation.png alt: "An example of potential visual treatments for special types of promo" bleed: true %}
 
 
+
 ## Acknowledgements
 
-Firstly, to everybody involved: **thank you**. Rarely have I had the chance to work with so many talented, patient, dedicated, and caring people. From documentation tweaks to requirements gathering, from bug fixes to building entire components; regardless of the size of your contribution, we wouldn't have reached this point without you. So again: thank you, and congratulations. Have a doughnut.
+Firstly, to everybody involved: **thank you**. Rarely have I had the chance to work with so many talented, patient, dedicated, and caring people. From documentation tweaks to requirements gathering, from bug fixes to building entire components; regardless of the size of your contribution, we wouldn't have reached this point without you. So again: thank you, and congratulations.
 
 To the design team and editorial staff: thank you for helping us find a balance between perfection and a fast launch.
 
 To the project managers, business analysts, and product owners: I don't think you get enough credit. Thank you for working extraordinarily hard to smooth out all of the bumps in this project, and for providing the development team with a clear path.
 
-And finally, to my team: you are amazing.
+And finally, to my team: You are amazing. I'm so proud of what we've built together. On a more personal level, you've made coming into work feel like coming home to a second family, and I'm eternally grateful for that. The doughnuts are on me 💜.
