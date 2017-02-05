@@ -10,13 +10,13 @@ author: Joseph Wynn
 status: draft
 ---
 
-Web performance is something I care deeply about both as a developer whose work affects millions of people around the world, and as a user who often accesses the web on slow & unreliable connections. I have regularly and loudly complained that [the BBC News website is unnecessarily slow](/redefining-the-bcc-news-core-experience/), so when I was given the opportunity to help rebuild one of the most-visited pages of BBC News —the front page— I jumped at the chance.
+Web performance is something I care deeply about both as a developer whose work affects millions of people around the world, and as a user who often accesses the web on slow & unreliable connections. I have regularly and loudly complained that [the BBC News website is unnecessarily slow](/redefining-the-bcc-news-core-experience/), so when I was given the opportunity to help rebuild one of the most visited pages of BBC News —the front page— I jumped at the chance.
 
 That was April 2016. Now, nearly a year later, we're ready to begin a phased rollout of the new front page. Starting with a small percentage of users in the UK, we will gradually move everybody to the new front page over the course of several weeks.
 
 ## Quick facts about the new front page
 
-* It is lighter and faster than the old one
+* It is lighter and faster than the old one:
   * First meaningful paint happens up to 35% sooner on emulated mobile devices and 50% sooner on desktops & laptops.
   * On average, 60% fewer bytes are downloaded (**383KB**, down from **613KB**).
   * The new core experience (given to legacy browsers, users without JavaScript, and Opera Mini) renders twice as fast, and downloads 35% fewer bytes (**114KB**, down from **170KB**).
@@ -29,9 +29,9 @@ That was April 2016. Now, nearly a year later, we're ready to begin a phased rol
 
 ## What's next?
 
-We consider this new front page to be an MVP, and we will be changing it considerably over the next several months.<!--more-->
+The version of the front page we're rolling out is an MVP, a _phase one_. We will be changing it considerably over the next several months. Here's an idea of what you can expect to see:<!--more-->
 
-### Performance
+### Performance improvements
 
 While we have managed to improve the performance of the front page considerably, there is still a lot of work to do:
 
@@ -58,7 +58,11 @@ We decided early on in the project that using React in the browser was overkill 
 
 {% responsive_image path: assets/news-front-page-timeline-react.png alt: "A timeline showing the impact of running React in the browser" %}
 
-Our current approach to running JavaScript in the browser is to build a good ol' fashioned bundle, completely separate from the React components. However, we realise that this isn't going to scale for very long, and that eventually we will have to find a way to run our React components in the browser without impacting the user experience.
+Our current approach to running JavaScript in the browser is to build a good ol' fashioned bundle, completely separate from the React components. However, we realise that this isn't going to scale for very long, and that eventually we will have to find a way to run our React components in the browser without impacting the user experience. Solutions that we're looking into include:
+
+* Using [Preact](https://preactjs.com/) in place of React.
+* Converting our components to [stateless functional components](https://preactjs.com/guide/types-of-components#stateless-functional-components) where possible to reduce their size.
+* Smarter [code splitting](https://webpack.js.org/guides/code-splitting/) so that we can load non-essential code on-demand.
 
 ## Acknowledgements
 
