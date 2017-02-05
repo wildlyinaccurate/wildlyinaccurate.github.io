@@ -50,7 +50,15 @@ And below is one of the proposals for how we might display other types of promo:
 
 {% responsive_image path: assets/news-front-page-promo-variation.png alt: "An example of potential visual treatments for special types of promo" bleed: true %}
 
+### React in the browser
 
+We decided early on in the project that using React in the browser was overkill for a page that is predominantly static text and images. The performance impact of bundling so much JavaScript and executing it in the browser is also unacceptably high: Even making use of server-side rendering, emulated mobile devices spend nearly 4 times as long executing scripts and performing layouts & paints when React was run on the page.
+
+{% responsive_image path: assets/news-front-page-timeline-static.png alt: "A timeline of the server side rendered page without React in the browser" %}
+
+{% responsive_image path: assets/news-front-page-timeline-react.png alt: "A timeline showing the impact of running React in the browser" %}
+
+Our current approach to running JavaScript in the browser is to build a good ol' fashioned bundle, completely separate from the React components. However, we realise that this isn't going to scale for very long, and that eventually we will have to find a way to run our React components in the browser without impacting the user experience.
 
 ## Acknowledgements
 
