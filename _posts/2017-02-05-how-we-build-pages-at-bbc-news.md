@@ -23,6 +23,7 @@ Because the solution is so simple, we never gave it a name. Informally, it is kn
 * Components as endpoints
 * The envelope contract
 * Page composition
+<!--more-->
 
 ## Components as endpoints
 
