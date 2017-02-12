@@ -7,6 +7,8 @@ tags:
 - bbc news
 author: Joseph Wynn
 status: draft
+extra_head:
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 At the beginning of 2015, a group of developers and technical architects from around the BBC got together with the goal of designing a system for sharing web page components between teams. This came from an acceptance that most of the BBC's public-facing web products have a similar look & feel, and a desire to improve efficiency through sharing rather than building similar things over and over again.
@@ -38,8 +40,8 @@ Every component is available at an HTTP endpoint. How that endpoint is built is 
 Having components as endpoints only works if all of the components are returned in the same format. To solve this, we designed the envelope format which imposes a contract on both the component endpoints and the consumers of those endpoints. The contract for component endpoints is this:
 
 * Component endpoints MAY accept parameters which vary the output.
-* Component endpoints MUST return a JSON object with the following fields:
-  * `head` — an array of strings intended to be inserted into the document `<head>`. Usually stylesheets, metadata, and blocking scripts.
+* Component endpoints MUST return a JSON object with the following properties:
+  * `head` — an array of strings intended to be inserted into the document `<head>` element. Usually stylesheets, metadata, and blocking scripts.
   * `bodyInline` — a string intended to be inserted somewhere in the document `<body>`.
   * `bodyLast` — an array of strings intended to be inserted at the end of the document `<body>`. Usually non-blocking scripts.
 * Component endpoints SHOULD atomise the `head` and `bodyLast` values as much as possible.
@@ -49,8 +51,8 @@ Here is an example envelope response:
 ```json
 {
     "head": [
-        "<style>.some-inline-styles { }</style>",
         "<link rel=\"stylesheet\" href=\"https://m.files.bbci.co.uk/framework.css\">"
+        "<style>.nw-c-top-stories{padding-bottom:2rem}</style>",
     ],
     "bodyInline": "<div class=\"nw-c-top-stories\">[... lots of markup ...]</div>",
     "bodyLast": [
