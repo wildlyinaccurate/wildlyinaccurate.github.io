@@ -13,14 +13,14 @@ At the beginning of 2015, a group of developers and technical architects from ar
 
 {% responsive_image path: assets/bbc-promo-similarities.png alt: "Cards or 'promos' from BBC Programmes, BBC Sport, BBC News, and CBBC." %}
 
-In some organisations, technologies are standardised which makes sharing components between teams a trivial task. At the BBC, teams are free to use whichever technologies they like. This means that a component-sharing solution can't be tied to any particular template languages, data structures, or build systems. It can't even be tied to a CSS preprocessor like Sass.
+In some organisations, technologies are standardised which makes sharing components between teams a trivial task. At the BBC, teams are free to use whichever technologies they like. This means that any component-sharing solution we come up with can't be tied to a template language, data structure, build system, or even a CSS preprocessor. This meant that building a component library like [Lonely Planet's Rizzo](http://rizzo.lonelyplanet.com/styleguide/ui-components) or [CloudFlare's CFUI](https://cloudflare.github.io/cf-ui/) was out of the picture. We also felt that something like [the FT's Origami](http://registry.origami.ft.com/components) would require too much effort on the users of the components.
 
-To get around this, we went back to basics and designed a solution that is based on two premises:
+We ended up going back to basics and designed a solution that is based on two premises:
 
-1. All web pages are built out of HTML, CSS, and JavaScript.
-2. Most web pages have three main parts: the head, the body, and _things that come after the body_.
+1. All of our web pages are built out of HTML, CSS, and JavaScript.
+2. Most pages have three main parts: the head, which contains metadata and styling; the body, which contains content; and the part at the end of the body, which contains JavaScript.
 
-With that in mind, we designed the WAF, or _Web Application Framework_. It's a surprisingly simple framework, and is built on top of three core principles:
+What we came up with is called the WAF, or _Web Application Framework_. It's a surprisingly simple framework, and is built on top of three core principles:
 
 * Components as endpoints
 * The envelope contract
