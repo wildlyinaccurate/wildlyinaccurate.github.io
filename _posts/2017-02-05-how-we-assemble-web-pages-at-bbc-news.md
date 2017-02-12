@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How we build web pages at BBC News
+title: How we assemble web pages at BBC News
 categories:
 - BBC News
 tags:
@@ -69,7 +69,7 @@ Now that we have web page components available in a standardised format over HTT
 
 The de-duplicating aspect of a page composition system is important, because page components may share many of the same dependencies. For example, if many components were built using the Bootstrap CSS framework, they would all return a reference to `bootstrap.css` in their `head`. Rather than render several redundant references to this CSS, the page composition system must ensure that it is rendered only once.
 
-Many BBC teams have implemented their own page composition systems within their existing web applications. BBC News have developed a page composition service called Mozart which provides a simple configuration-driven way to build pages while transparently handling the difficult problems like scaling, logging, and monitoring.
+Many BBC teams have implemented their own page composition systems within their existing web applications. BBC News have developed a page composition service called Mozart which provides a simple configuration-driven way to assemble pages while transparently handling the difficult problems like scaling, logging, and monitoring.
 
 ## Piecing it all together
 
