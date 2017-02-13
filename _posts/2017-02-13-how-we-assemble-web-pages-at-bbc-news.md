@@ -6,10 +6,11 @@ categories:
 tags:
 - bbc news
 author: Joseph Wynn
-status: draft
 extra_head:
   - <link rel="stylesheet" href="/css/highlight.css">
 ---
+
+> This post is about the Web Application Framework in use by some teams at the BBC. It is not strictly a framework in that specifies the contracts between components, rather than providing concrete implementations of the components. For this reason, I prefer to think of it as the Web Application _Specification_.
 
 At the beginning of 2015, a group of developers and technical architects from around the BBC got together with the goal of designing a system for sharing web page components between teams. This came from an acceptance that most of the BBC's public-facing web products have a similar look & feel, and a desire to improve efficiency through sharing rather than building similar things over and over again.
 
@@ -75,4 +76,6 @@ Many BBC teams have implemented their own page composition systems within their 
 
 ## Piecing it all together
 
-This method of assembling web pages is being used successfully in production by several teams at the BBC. The most-shared component is a live-updating stream, initially built for live coverage of sports events on BBC Sport, but now used for live reporting pages on [BBC News](http://www.bbc.co.uk/news/live/uk-england-manchester-38860956), and the [World Service](http://www.bbc.com/persian/live/institutional-38891510). It has also seen some use as a way to display long feeds of content like on the [BBC News topic pages](http://www.bbc.co.uk/news/topics/8abd564a-2b8e-401c-9916-34982cb67b55/womens-rights).
+This method of assembling web pages is being used successfully in production by several teams at the BBC. The most-used component is a live-updating news feed, initially built for live coverage of sports events on BBC Sport, but now used for live reporting pages on [BBC News](http://www.bbc.co.uk/news/live/uk-england-manchester-38860956), and the [World Service](http://www.bbc.com/persian/live/institutional-38891510). It has also seen some use as a way to display long feeds of content like on the [BBC News topic pages](http://www.bbc.co.uk/news/topics/8abd564a-2b8e-401c-9916-34982cb67b55/womens-rights). Soon BBC News will roll out their new front page using the WAF, which is a good opportunity for us to stress-test the framework and expand it if necessary.
+
+One of the expansions we're currently looking at is a mechanism for components to declare their cacheability. This will help to reduce the load on component endpoints and on page composition systems as well.
