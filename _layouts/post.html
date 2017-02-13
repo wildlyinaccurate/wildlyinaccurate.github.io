@@ -13,22 +13,22 @@ layout: default
 
 <div class="wrap pt-4">
     <p>
-        <small>
-            <i>This post was published on <b>{{ page.date | date: "%-d %B, %Y" }}</b> and last updated on <b>{{ page.last_modified_at | date: "%-d %B, %Y" }}</b>.
-
-            {% if page.categories %}
-                It was posted in [{% for category in page.categories %}<a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
-            {% endif %}
-
-            {% if page.tags %}
-                {% if page.categories %}and{% else %}It was{% endif %} tagged with
-
-                [{% for tag in page.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
-            {% endif %}</i>
-        </small>
-    </p>
-
-    <p>
         <i>Have any questions or comments? Feel free to reach out on Twitter: <a href="https://twitter.com/Joseph_Wynn">@Joseph_Wynn</a></i>
     </p>
+
+    <small>
+        <blockquote>
+            <p>This post was published on <b>{{ page.date | date: "%-d %B, %Y" }}</b> and last updated on <b>{{ page.last_modified_at | date: "%-d %B, %Y" }}</b>.
+
+                {% if page.categories %}
+                    It was posted in [{% for category in page.categories %}<a href="/category/{{ category }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
+                {% endif %}
+
+                {% if page.tags %}
+                    {% if page.categories %}and{% else %}It was{% endif %} tagged with
+
+                    [{% for tag in page.tags %}<a href="/tag/{{ tag }}/">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}{% endfor %}]
+                {% endif %}</p>
+        </blockquote>
+    </small>
 </div>
