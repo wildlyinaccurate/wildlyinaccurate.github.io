@@ -16,9 +16,9 @@ I started 2016 feeling quite overwhelmed by the sheer number of new technologies
 
 ### Preact — [preactjs.com](https://preactjs.com/)
 
-A fast 3kB alternative to React with the same ES6 API. For projects which use React's other APIs, [preact-compat](https://github.com/developit/preact-compat) exists as a compatibility layer allowing Preact to be a drop-in replacement for React in any project.
+A fast 3kB alternative to React with the same ES6 API. For projects that use React's other APIs, [preact-compat](https://github.com/developit/preact-compat) exists as a compatibility layer allowing Preact to be a complete drop-in replacement for React.
 
-As well as being smaller than React, Preact is also much faster. I measured the impact of migrating to Preact in three projects and saw a 3-4x reduction in JavaScript execution times in all of them.
+As well as being smaller than React, Preact is also much faster. I measured the impact of migrating to Preact in three projects and saw a 3-4x reduction in JavaScript execution times in all of them <small>([some data and profiler screenshots for one project](https://github.com/wildlyinaccurate/resume/pull/4))</small>.
 
 ### Webpack — [webpack.js.org](https://webpack.js.org/)
 
@@ -30,17 +30,17 @@ These days I recommend that people use Webpack even for trivial projects because
 
 A highly-configurable Webpack plugin that provides an offline experience for your application using ServiceWorker, with AppCache as a fallback.
 
-If there's one thing on this list that you consider adopting, it should be this. The number of people around the world whose sole means of accessing the Internet on a mobile phone is _increasing_. We can improve their experience on the web immeasurably by utilising technologies like ServiceWorker & AppCache, and this plugin is a ridiculously way to do that.
+If there's one thing on this list that you consider adopting, it should be this. The number of people around the world whose sole means of accessing the Internet on a mobile phone is _increasing_. We can improve their experience on the web immeasurably by utilising technologies like ServiceWorker & AppCache, and this plugin is a ridiculously easy way to do that.
 
 ### Tachyons — [tachyons.io](http://tachyons.io/)
 
-Functional CSS for humans. Tachyons is a mobile-first responsive CSS framework with a focus on accessibility. Its single-purpose class structure is very scalable and practically removes the need to write any custom CSS.
+Functional CSS for humans. Tachyons is a mobile-first responsive CSS framework with a focus on accessibility. Its single-purpose class structure is scalable and practically removes the need to write any custom CSS.
 
-Tachyons has a relatively small footprint, and is extremely modular so you can easily include only what you need.
+Tachyons has a relatively small footprint, and is extremely modular so you can easily include only what you need. It's a good, powerful alternative to heavier frameworks like Bootstrap or Foundation.
 
 ### Lighthouse — [github.com/GoogleChrome/lighthouse](https://github.com/GoogleChrome/lighthouse)
 
-Built by some of the industry's foremost web performance evangelists, Lighthouse is an automated tool that analyses your web application's performance and provides insights on developer best practices.
+Built by some of the industry's foremost web performance evangelists, Lighthouse is an automated tool for analysing your web application's performance and providing insights on developer best practices.
 
-While it's useful as a once-in-a-while test, I would recommend running Lighthouse on a regular basis — perhaps part of a daily build. Its insights are broad enough to cover a wide range of issues from accessibility to performance, but specific enough that any issues are easily actionable.
+As well as using it as a once-in-a-while test, I also recommend running Lighthouse on a regular basis — perhaps part of a daily build. Its insights are broad enough to cover a wide range of issues from accessibility to performance, but specific enough that any issues are easily actionable.
 
