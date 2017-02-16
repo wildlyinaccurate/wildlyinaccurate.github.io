@@ -10,7 +10,7 @@ extra_head:
   - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
-> This post is about the Web Application Framework in use by some teams at the BBC. It is not strictly a framework in that specifies the contracts between components, rather than providing concrete implementations of the components. For this reason, I prefer to think of it as the Web Application _Specification_.
+> This post is about the Web Application Framework in use by some teams at the BBC. It is not strictly a framework in that it specifies the contracts between components, rather than providing concrete implementations of the components. For this reason, I prefer to think of it as the Web Application _Specification_.
 
 At the beginning of 2015, a group of developers and technical architects from around the BBC got together with the goal of designing a system for sharing web page components between teams. This came from an acceptance that most of the BBC's public-facing web products have a similar look & feel, and a desire to improve efficiency through sharing rather than building similar things over and over again.
 
