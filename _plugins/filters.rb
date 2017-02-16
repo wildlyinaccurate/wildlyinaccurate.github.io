@@ -5,6 +5,7 @@ module Jekyll
     def sanitize(html)
       preserve_elements = %w[
         a
+        blockquote
         b strong i em
         p br
         h2 h3 h4 h5 h6
