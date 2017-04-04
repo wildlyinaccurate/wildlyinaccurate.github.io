@@ -12,9 +12,7 @@
       }
 
       // $spacers is concrete units (rems)
-      @each $size, $lengths in $spacers {
-        $length: map-get($lengths, x);
-
+      @each $size, $length in $spacers {
         .#{$abbrev}#{$infix}-#{$size}  {
           #{$prop}: $length;
         }
