@@ -17,7 +17,7 @@ That was April 2016. Now, a whole year later, we're ready to begin a phased roll
 ## Quick facts about the new front page
 
 * It is lighter and faster than the old one:
-  * First meaningful paint happens up to **50% sooner** on mobile devices<sup>1</sup>.
+  * First meaningful paint happens up to **50% sooner** on mobile devices<sup><a href="#footnotes">[1]</a></sup>.
   * "Enhanced" content like images is loaded **150% faster** on mobile, and **70% faster** on desktop.
   * **50% fewer bytes** are downloaded on mobile. **75% fewer bytes** are downloaded on desktop.
   * CPU busy time has been reduced by **30%** on mobile and by **50%** on desktop.
@@ -25,7 +25,7 @@ That was April 2016. Now, a whole year later, we're ready to begin a phased roll
 * It is available over HTTPS, and we have plans to redirect insecure traffic to HTTPS in the not-so-distant future.
 * The page is built from React components that are styled with the BBC's ITCSS framework, [Grandstand](https://github.com/bbc/grandstand).
 * The React components are rendered by the BBC's React-component-as-an-API-endpoint service.
-* React only used on the server. We do not load it in the browser<sup>2</sup>.
+* React only used on the server. We do not load it in the browser<sup><a href="#footnotes">[2]</a></sup>.
 * Each component is a self-contained horizontal "slice" of the page. Components fetch their own data and are styled with the same framework, allowing them to be easily dropped into any page.
 * The development team consists of 5 developers and 1 tester, but we have collaborated with over 60 other developers and testers from all around the BBC to build this page.
 
