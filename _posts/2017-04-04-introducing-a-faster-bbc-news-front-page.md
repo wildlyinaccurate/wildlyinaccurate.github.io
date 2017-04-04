@@ -74,7 +74,7 @@ To the design team and editorial staff: thank you for helping us find a balance 
 
 To the project managers, business analysts, and product owners: I don't think you get enough credit. Thank you for working extraordinarily hard to smooth out all of the bumps in this project, and for providing the development team with a clear path.
 
-And finally, to my team: You are amazing. I'm so proud of what we've built together. On a more personal level, you've made coming into work feel like coming home to a second family, and I'm eternally grateful for that. The doughnuts are on me 💜.
+And finally, to my team: You are amazing. I'm so proud of what we've built together. On a more personal level, you've made coming into work feel like coming home to a second family, and I'm eternally grateful for that. The donuts are on me 💜.
 
 <hr>
 
