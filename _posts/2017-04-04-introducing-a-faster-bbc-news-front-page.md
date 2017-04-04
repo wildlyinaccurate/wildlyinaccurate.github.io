@@ -1,31 +1,32 @@
 ---
 layout: post
-title: A faster BBC News
+title: Introducing a faster BBC News front page
 categories:
 - BBC News
 tags:
 - bbc news
 - performance
 author: Joseph Wynn
-status: draft
-published: false
+published: true
 ---
 
 Web performance is something I care deeply about both as a developer whose work affects millions of people around the world, and as a user who often accesses the web on slow & unreliable connections. I have regularly and loudly complained that [the BBC News website is unnecessarily slow](/redefining-the-bcc-news-core-experience/), so when I was given the opportunity to help rebuild one of the most visited pages of BBC News —the front page— I jumped at the chance.
 
-That was April 2016. Now, nearly a year later, we're ready to begin a phased rollout of the new front page. Starting with a small percentage of users in the UK, we will gradually move everybody to the new front page over the course of several weeks.
+That was April 2016. Now, a whole year later, we're ready to begin a phased rollout of the new front page. Starting with a small percentage of users in the UK, we will gradually move everybody to the new front page over the course of several weeks. If you're eager to see it before then, you can see it at [www.bbc.co.uk/news/0](http://www.bbc.co.uk/news/0).
 
 ## Quick facts about the new front page
 
 * It is lighter and faster than the old one:
-  * First meaningful paint happens up to 35% sooner on emulated mobile devices and 50% sooner on desktops & laptops.
-  * On average, 60% fewer bytes are downloaded (**383KB**, down from **613KB**).
-  * The new core experience (given to legacy browsers, users without JavaScript, and Opera Mini) renders twice as fast, and downloads 35% fewer bytes (**114KB**, down from **170KB**).
-  * Performance has been monitored from the beginning, allowing us to address regressions as soon as they happen.
+  * First meaningful paint happens up to **50% sooner** on mobile devices<sup>1</sup>.
+  * "Enhanced" content like images is loaded **150% faster** on mobile, and **70% faster** on desktop.
+  * **50% fewer bytes** are downloaded on mobile. **75% fewer bytes** are downloaded on desktop.
+  * CPU busy time has been reduced by **30%** on mobile and by **50%** on desktop.
+  * Performance monitoring has been automated with [SpeedCurve](https://speedcurve.com/) from the beginning of the project.
 * It is available over HTTPS, and we have plans to redirect insecure traffic to HTTPS in the not-so-distant future.
-* All of the page components are built with React and styled with the BBC's ITCSS framework, [Grandstand](https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66).
-* The React components are rendered by the BBC's React-component-as-an-API-endpoint service. React is _not_ used on the client.
-* Each component is a self-contained horizontal "slice" of the page. Because components fetch their own data and are styled with the same framework, they can be easily dropped into any page.
+* The page is built from React components that are styled with the BBC's ITCSS framework, [Grandstand](https://github.com/bbc/grandstand).
+* The React components are rendered by the BBC's React-component-as-an-API-endpoint service.
+* React only used on the server. We do not load it in the browser<sup>2</sup>.
+* Each component is a self-contained horizontal "slice" of the page. Components fetch their own data and are styled with the same framework, allowing them to be easily dropped into any page.
 * The development team consists of 5 developers and 1 tester, but we have collaborated with over 60 other developers and testers from all around the BBC to build this page.
 
 ## What's next?
@@ -37,9 +38,9 @@ The version of the front page we're rolling out is an MVP, a _phase one_. We wil
 While we have managed to improve the performance of the front page considerably, there is still a lot of work to do:
 
 * The first meaningful paint time is still too high. We can improve it by loading the core CSS sooner.
-* We still send too many bytes to the client. A lot of this is redundant CSS, and I'm optimistic that we can cut the CSS size in half by improving our style loader.
-* Style recalculations and layouts take too long on low-powered devices. This still needs some investigation but as a starting point we will aim to reduce DOM node nesting and simplify CSS selectors.
-* We are essentially hamstrung by the "white BBC bar" at the top of the page. This bar contains components from other parts of the BBC like Search, Notifications, and BBC ID. All of these components load their own blocking CSS & JavaScript before any of the BBC News assets. While this is unlikely to change in the short term, we're hoping to work with the teams that own these components to reduce their impact on the page.
+* We still send too many bytes to the client. A good portion of this is from inline styles that are only used on IE8. (Update: We already have a pull request open to drop the IE8-only styles, which should reduce the amount of inline styles by about a third).
+* Style recalculations and layouts take too long on low-powered devices. This still needs some investigation.
+* We are essentially hamstrung by the "white BBC bar" at the top of the page. This bar contains components from other parts of the BBC like Search, Notifications, and BBC ID. All of these components load their own blocking CSS & JavaScript before any of the BBC News assets. While this is unlikely to change in the short term, we're hoping to work with the teams that own these components to reduce their impact.
 
 ### Design enhancements
 
@@ -67,10 +68,17 @@ Our current approach to running JavaScript in the browser is to build a good ol'
 
 ## Acknowledgements
 
-Firstly, to everybody involved: **thank you**. Rarely have I had the chance to work with so many talented, patient, dedicated, and caring people. From documentation tweaks to requirements gathering, from bug fixes to building entire components; regardless of the size of your contribution, we wouldn't have reached this point without you. So again: thank you, and congratulations.
+Firstly, to everybody involved: **thank you**. Rarely have I had the chance to work with so many talented, patient, dedicated, and caring people. From documentation tweaks to requirements gathering, from bug fixes to building entire components; regardless of the size of your contribution, we wouldn't have reached this point without you. So again: thank you, and congratulations on reaching this milestone.
 
 To the design team and editorial staff: thank you for helping us find a balance between perfection and a fast launch.
 
 To the project managers, business analysts, and product owners: I don't think you get enough credit. Thank you for working extraordinarily hard to smooth out all of the bumps in this project, and for providing the development team with a clear path.
 
 And finally, to my team: You are amazing. I'm so proud of what we've built together. On a more personal level, you've made coming into work feel like coming home to a second family, and I'm eternally grateful for that. The doughnuts are on me 💜.
+
+<hr>
+
+### Footnotes
+
+1. Mobile device testing was performed using the "Mobile - Emerging Markets" setting on [WebPagetest](https://www.webpagetest.org/) (_Chrome Beta on a Motorola G (gen 4) tested from Dulles, Virginia on a 400 Kbps 3G connection with 400ms of latency_).
+2. BBC News does not load React in the browser, but some other page components (like the BBC-wide search bar in the top-right) do load React.
