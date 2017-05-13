@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "grunt elm && npm run webpack && grunt build",
+    "build": "grunt elm && npm run webpack && npm run babili && grunt build",
 
     "elm": "grunt elm && cp js/compiled/Collection.js _site/js/compiled/Collection.js",
+    "babili": "babili service-worker.js -o service-worker.js",
 
     "webpack": "npm run webpack-search && npm run webpack-collection",
     "webpack-search": "webpack -p js/search.js js/compiled/search.js",
@@ -19,6 +20,7 @@
     "pygments": "^0.2.1"
   },
   "devDependencies": {
+    "babili": "0.0.12",
     "bower": "^1.7.9",
     "cheerio": "^0.22.0",
     "grunt": "^1.0.1",
