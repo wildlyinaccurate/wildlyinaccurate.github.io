@@ -67,17 +67,17 @@ Taking annual leave is encouraged, with enough notice. If you work on a project 
 
 All BBC News engineering staff are located in [New Broadcasting House](http://www.bbc.co.uk/broadcastinghouse/). The entire building is accessible, and has the usual amenities including showers, toilets, and tea points, which are all also accessible.
 
-The engineering teams work in open plan spaces shared with a variety of other teams including journalists. They are currently spread out across two floors of the building which, if anything, acts as motivation to leave your desk and stretch your muscles out.
+Most of the web & apps engineering teams work in an open plan office space alongside the UX teams. There's plenty of natural light, and there are a few adjustable standing desks available. Everything is set up for hot desking, but in reality people tend to sit in the same area to work with their team.
 
-If you find open spaces are detrimental to your productivity, then there are many quiet spaces available throughout the building which can be used at any time. Private rooms can also be booked.
+If you find open spaces are detrimental to your productivity, there are plenty of high-backed sofas and (mostly) sound-proofed enclosures scattered around the area. There are also several semi-enclosed "train carriages" that seat up to 6 people which are great for collaborative working.
 
 ## Technologies
 
 Most of our products are web-based and are written in Ruby, JavaScript, and PHP alongside the usual HTML & CSS (usually Sass). We also have some non-web projects which tend to be written in Java and Scala. Teams have the freedom to use whichever technologies they like, provided there is sufficient justification. Here's a sample of technologies which I've personally worked with so far at BBC News:
 
-- Responsive News is PHP application which uses [a range of interesting techniques](http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design) to support all of the World Service languages and scripts.
+- Responsive News is a PHP application which uses [a range of interesting techniques](http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design) to support all of the World Service languages and scripts.
 - The BBC News [AMP project](https://www.ampproject.org/) and many of the worldwide elections components are powered by an open-source [broker-renderer](https://en.wikipedia.org/wiki/Broker_Pattern) Ruby framework called [Alephant](https://github.com/BBC-News/alephant).
-- The BBC News front page is being rebuilt using React and Node.js on a platform developed by BBC Sport.
+- The BBC News front page is built with React and Node.js on a platform developed by BBC Sport.
 - One of our page composition systems is powered by services written in Ruby and Go.
 
 ## Other perks & local discounts
@@ -99,7 +99,7 @@ Secure bike storage is available, or you can just lock your bike to the railing 
 Here's how BBC News scores on [The Joel Test](https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/):
 
 0. **Do you use source control?**<br>
-    Yes. We use Git for almost everything, and SVN for a small number of legacy systems.
+    Yes. We use Git for almost everything, and SVN for a very small number of legacy systems.
 
 0. **Can you make a build in one step?**<br>
     Yes, all applications can be built in one step. Older applications have a separate deployment process, while newer applications are deployed to integration environments automatically.
@@ -111,7 +111,7 @@ Here's how BBC News scores on [The Joel Test](https://www.joelonsoftware.com/200
     Yes. We aim to keep the backlog tidy, and will often close minor bugs which are not likely to be fixed.
 
 0. **Do you fix bugs before writing new code?**<br>
-    Most teams prioritise bugs which affect more than 1% of users. Other bugs are prioritised on a case-by-case basis.
+    Not always. Most teams will prioritise bugs which affect more than 1% of users. Other bugs are typically left at the bottom of the backlog and eventually closed.
 
 0. **Do you have an up-to-date schedule?**<br>
     Yes. Schedules range from broad 1-2 year goals to month-by-month feature delivery.
