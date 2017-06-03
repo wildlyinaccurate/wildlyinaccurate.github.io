@@ -44,7 +44,13 @@ While we have managed to improve the performance of the front page considerably,
 
 ### Design enhancements
 
-In order to ship the new front page sooner, we made a lot of compromises with both the UX and editorial teams around the design of the page. Once we're finished with the rollout, we will be improving the visual treatment of story cards (promos) to highlight different types of content.
+In order to ship the new front page sooner, we made a lot of compromises with both the UX and editorial teams around the design of the page. Once we're finished with the rollout, we will be improving the visual treatment of story cards (promos) to highlight correspondent stories and feature pieces. The current designs look something like this:
+
+{% responsive_image path: assets/news-front-page-promo-current.png alt: "The plain promo design for the MVP launch" bleed: true %}
+
+And below is one of the proposals for how we might display other types of promo:
+
+{% responsive_image path: assets/news-front-page-promo-variation.png alt: "An example of potential visual treatments for special types of promo" bleed: true %}
 
 ### React in the browser
 
