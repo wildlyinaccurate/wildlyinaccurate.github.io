@@ -4,14 +4,11 @@
   "description": "",
   "scripts": {
     "build": "grunt elm && npm run webpack && npm run babili && grunt build",
-
     "elm": "grunt elm && cp js/compiled/Collection.js _site/js/compiled/Collection.js",
     "babili": "babili service-worker.js -o service-worker.js",
-
     "webpack": "npm run webpack-search && npm run webpack-collection",
     "webpack-search": "webpack -p js/search.js js/compiled/search.js",
     "webpack-collection": "webpack -p js/collection-bootstrap.js js/compiled/collection-bootstrap.js",
-
     "spellcheck": "mdspell --ignore-numbers --ignore-acronyms --no-suggestions _posts/**/*.md"
   },
   "dependencies": {
@@ -26,14 +23,14 @@
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-cssmin": "^1.0.2",
-    "grunt-contrib-htmlmin": "^2.0.0",
+    "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-imagemin": "^1.0.1",
     "grunt-elm": "^2.0.0",
     "grunt-filerev": "^2.3.1",
     "grunt-uncss": "^0.6.1",
     "grunt-usemin": "^3.1.1",
     "markdown-spellcheck": "^0.11.0",
-    "webpack": "^2.2.0"
+    "webpack": "^2.6.1"
   },
   "repository": {
     "type": "git",

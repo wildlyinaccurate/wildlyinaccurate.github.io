@@ -15,7 +15,7 @@ email: joseph@wildlyinaccurate.com
 twitter_username: joseph_wynn
 github_username:  wildlyinaccurate
 
-gems:
+plugins:
   - jekyll-responsive-image
   - jekyll-paginate
   - jekyll-last-modified-at
