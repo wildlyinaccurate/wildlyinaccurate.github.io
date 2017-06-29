@@ -13,6 +13,7 @@
 // Core CSS
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/tables";
 
 // WILDLY INACCURATE
 @import "component/ads";
@@ -24,6 +25,7 @@
 @import "component/layout";
 @import "component/list";
 @import "component/type";
+@import "component/table";
 @import "component/page-header";
 
 @import "utilities";
