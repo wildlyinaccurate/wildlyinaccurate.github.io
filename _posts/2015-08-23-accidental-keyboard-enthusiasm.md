@@ -23,7 +23,7 @@ This was my first mechanical keyboard. The soft Cherry MX Brown switches make it
 
 I was really excited when Jeff Atwood [announced the CODE keyboard](http://blog.codinghorror.com/the-code-keyboard/). I already knew that I wanted my next keyboard to be compact and have backlit keys, so the CODE seemed to come at just the right time. Not long after buying the CODE, I purchased some [Keycool rainbow keycaps](https://www.massdrop.com/buy/keycool-rainbow-keycaps?mode=guest_open) so brighten things up.
 
-The CODE has Cherry MX Clear switches, which makes for a much firmer keyboard than the Das. I find the clears preferable for short bursts of typing, but over long periods they tire my hands out.
+The CODE has Cherry MX Clear switches, which makes for a much firmer keyboard than the Das. I find the clears preferable for short bursts of typing, but over long periods they tire my hands out.<!--more-->
 
 {% responsive_image path: assets/code-keyboard.jpg alt: "CODE keyboard with Keycool rainbow keycaps" bleed: true %}
 

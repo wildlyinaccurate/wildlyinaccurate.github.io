@@ -21,9 +21,9 @@ _This is the first post in a series on JavaScript. In this post I'm going to exp
 
 First, it's important to understand that while JavaScript is an object-oriented language, it is prototype-based and does not implement a traditional class system. Keep in mind that when I mention a _class_ in this post, I am simply referring to JavaScript objects and the prototype chain – more on this in a bit.
 
-Almost everything in JavaScript is an object, which you can think of as sort of like associative arrays - objects contain named properties which can be accessed with `obj.propName` or `obj['propName']`. Each object has an internal property called _prototype_, which links to another object. The prototype object has a prototype object of its own, and so on – this is referred to as the _prototype chain_. If you follow an object's prototype chain, you will eventually reach the core `Object` prototype whose prototype is `null`, signalling the end of the chain.
+Almost everything in JavaScript is an object, which you can think of as sort of like associative arrays - objects contain named properties which can be accessed with `obj.propName` or `obj['propName']`. Each object has an internal property called _prototype_, which links to another object. The prototype object has a prototype object of its own, and so on – this is referred to as the _prototype chain_. If you follow an object's prototype chain, you will eventually reach the core `Object` prototype whose prototype is `null`, signalling the end of the chain.<!--more-->
 
-So what is the prototype chain used for? When you request a property which the object does not contain, JavaScript will look down the prototype chain until it either finds the requested property, or until it reaches the end of the chain. This behaviour is what allows us to create "classes", and implement inheritance.<!--more-->
+So what is the prototype chain used for? When you request a property which the object does not contain, JavaScript will look down the prototype chain until it either finds the requested property, or until it reaches the end of the chain. This behaviour is what allows us to create "classes", and implement inheritance.
 
 Don't worry if this doesn't make sense yet. To see prototypes in action, let's take a look at the simplest example of a "class" within JavaScript, which is created with a function object:
 

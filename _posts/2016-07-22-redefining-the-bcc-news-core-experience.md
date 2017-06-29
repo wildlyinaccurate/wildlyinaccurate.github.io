@@ -16,7 +16,7 @@ author: Joseph Wynn
 >
 > I created a lightweight prototype of the BBC News core experience which demonstrates that focusing on the content first and foremost can result in an extremely fast page. I want the BBC and other websites to rethink what the core experience means, and experiment with giving users the power to define their own experience.
 
-In the beginning of 2012 the BBC Responsive News team wrote about how they provide a "core experience" for users by default, and then progressively enhance the page if the browser [cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). At the time, this was cutting edge. They were able to build pages that worked on practically any browser without compromising the experience for users on modern browsers. To quote directly from the Responsive News blog:
+In the beginning of 2012 the BBC Responsive News team wrote about how they provide a "core experience" for users by default, and then progressively enhance the page if the browser [cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard). At the time, this was cutting edge. They were able to build pages that worked on practically any browser without compromising the experience for users on modern browsers. To quote directly from the Responsive News blog:<!--more-->
 
 > The first tier of support we call the core experience. This works on everything. I’ve seen it work on a Nokia E65, a Blackberry OS4, Kindle 1, a HTC Touch 2 running Win Mobile 6.5, a Samsung U900 Soul, a Commodore Vic20, my nan’s slipper and a toaster just sellotaped to a TV. Likewise, GoogleBot, text-browsers like Lynx, folks that disable JavaScript and so on are all assured a good level of service.
 
@@ -26,7 +26,7 @@ It has been over 4 years since the BBC News core experience was first built, and
 
 The BBC News team is aware of their website's shortcomings. Back in May 2015 I conducted a huge performance review which I've spoken about extensively both [internally](http://slides.com/wildlyinaccurate/bbc-news-performance-review) and [externally](http://slides.com/wildlyinaccurate/bbc-news-performance) ([video](https://www.youtube.com/watch?v=nE4LTRfcr94)). A _lot_ of work has been done over the last year, and many of the issues mentioned in those slides have already been addressed. Despite this, the elephant in the room is still the core experience.
 
-That's why when BBC News ran an internal hack day (where people can form teams to work on whatever they like) I took the opportunity to totally redefine the BBC News core experience.<!--more-->
+That's why when BBC News ran an internal hack day (where people can form teams to work on whatever they like) I took the opportunity to totally redefine the BBC News core experience.
 
 ## Why have a core experience?
 

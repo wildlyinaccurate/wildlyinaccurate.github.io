@@ -12,7 +12,7 @@ tags:
 author: Joseph Wynn
 ---
 
-I started 2016 feeling quite overwhelmed by the sheer number of new technologies that were being introduced. This year I feel like many of those technologies have matured, so I have collated a list of the ones that I think deserve your attention. My focus for the last couple of years has been on performance, so I've made an effort to ensure that all of the technologies mentioned are either "performance-friendly" or are directly related to performance.
+I started 2016 feeling quite overwhelmed by the sheer number of new technologies that were being introduced. This year I feel like many of those technologies have matured, so I have collated a list of the ones that I think deserve your attention. My focus for the last couple of years has been on performance, so I've made an effort to ensure that all of the technologies mentioned are either "performance-friendly" or are directly related to performance.<!--more-->
 
 ### Preact — [preactjs.com](https://preactjs.com/)
 

@@ -23,11 +23,11 @@ When you ask programmers how to make code easier to read, many of them will ment
 
 {% responsive_image path: assets/legibility-readability-comprehension.png alt: "Legibility - Readability - Comprehension" %}
 
-At the lowest level is legibility. This is how easily individual characters can be distinguished from each other, and can usually be boiled down to the choice of font, as well as the foreground & background colours.
+At the lowest level is legibility. This is how easily individual characters can be distinguished from each other, and can usually be boiled down to the choice of font, as well as the foreground & background colours.<!--more-->
 
 At the highest level is comprehension, which is the ease in which a block of code can be fully understood. Decomposition, naming conventions and comments are just a few of the many ways to improve comprehension.
 
-Readability sits between these two. This level is a little harder to define, but I believe it comes down to two main factors: **structure** and **line density**.<!--more-->
+Readability sits between these two. This level is a little harder to define, but I believe it comes down to two main factors: **structure** and **line density**.
 
 ## Structure
 

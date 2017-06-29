@@ -12,7 +12,7 @@ published: true
 
 Web performance is something I care deeply about both as a developer whose work affects millions of people around the world, and as a user who often accesses the web on slow & unreliable connections. I have regularly and loudly complained that [the BBC News website is unnecessarily slow](/redefining-the-bcc-news-core-experience/), so when I was given the opportunity to help rebuild one of the most visited pages of BBC News —the front page— I jumped at the chance.
 
-That was April 2016. Now, a whole year later, we're ready to begin a phased rollout of the new front page. Starting with a small percentage of users in the UK, we will gradually move everybody to the new front page over the course of several weeks. If you're eager to see it before the rollout is complete, it is available at [www.bbc.co.uk/news/0](http://www.bbc.co.uk/news/0).
+That was April 2016. Now, a whole year later, we're ready to begin a phased rollout of the new front page. Starting with a small percentage of users in the UK, we will gradually move everybody to the new front page over the course of several weeks. (Update: as of June 2017, the new front page is rolled out to all users).
 
 ## Quick facts about the new front page
 
@@ -21,7 +21,7 @@ That was April 2016. Now, a whole year later, we're ready to begin a phased roll
   * Page enhancements like lazy-loaded images load **150% faster** on mobile, and **70% faster** on desktop.
   * The total bytes downloaded is **50% less** on mobile and **75% less** on desktop.
   * CPU busy time has been reduced by **30%** on mobile and by **50%** on desktop.
-  * Performance monitoring has been automated with [SpeedCurve](https://speedcurve.com/) from the beginning of the project.
+  * Performance monitoring has been automated with [SpeedCurve](https://speedcurve.com/) from the beginning of the project.<!--more-->
 * It is available over HTTPS, and we have plans to redirect insecure traffic to HTTPS in the not-so-distant future.
 * The page is built from React components that are styled with the BBC's CSS framework, [Grandstand](https://github.com/bbc/grandstand).
 * Each component is a horizontal "slice" of the page that fetches its own data. This makes it easy for us to reuse slices on any page.
@@ -31,7 +31,7 @@ That was April 2016. Now, a whole year later, we're ready to begin a phased roll
 
 ## What's next?
 
-The version of the front page we're rolling out is an MVP, a _phase one_. We will be changing it considerably over the next several months. Here's an idea of what you can expect to see:<!--more-->
+The version of the front page we're rolling out is an MVP, a _phase one_. We will be changing it considerably over the next several months. Here's an idea of what you can expect to see:
 
 ### Performance improvements
 

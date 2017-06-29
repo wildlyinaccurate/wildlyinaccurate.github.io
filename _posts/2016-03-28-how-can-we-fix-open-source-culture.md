@@ -12,7 +12,7 @@ author: Joseph Wynn
 
 The recent kerfuffle around the [NPM #unpublishgate](http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm) and the [Greenkeeper bot impersonation](https://medium.com/@boennemann/your-just-considered-harmful-679db7366b95) has got me thinking about the open source community and its culture.
 
-Sometimes the open source community feels like a wonderful, cooperative, welcoming place. There have been times when maintaining an open source project has given me an enormous sense of satisfaction and well-being. On the best days, complete strangers offer valuable feedback and even actively contribute to my projects.
+Sometimes the open source community feels like a wonderful, cooperative, welcoming place. There have been times when maintaining an open source project has given me an enormous sense of satisfaction and well-being. On the best days, complete strangers offer valuable feedback and even actively contribute to my projects.<!--more-->
 
 On the worst days I feel drained, unappreciated, and even abused. Stephan describes this more concisely than I could right at the bottom of [*Your "just" considered harmful*](https://medium.com/@boennemann/your-just-considered-harmful-679db7366b95):
 
