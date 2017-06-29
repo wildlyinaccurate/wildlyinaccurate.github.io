@@ -17,13 +17,13 @@ $border-radius:             0;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 36rem,
-  md: 48rem,
-  lg: 60rem
+  sm: 576px,
+  md: 768px,
+  lg: 960px
 );
 
 $container-max-widths: (
-  sm: 34rem,
-  md: 46rem,
-  lg: 58rem,
+  sm: 544px,
+  md: 736px,
+  lg: 928px,
 );
