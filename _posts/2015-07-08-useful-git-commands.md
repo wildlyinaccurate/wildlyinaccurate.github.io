@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Some Git Things'
+title: 'Useful Git Commands'
 categories:
 - Git
 tags:
