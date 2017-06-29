@@ -1,0 +1,1705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wildly Inaccurate</title>
+    <description>A collection of guides &amp;amp; opinions about programming and the state of the web.
+</description>
+    <link>https://wildlyinaccurate.com/</link>
+    <atom:link href="https://wildlyinaccurate.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 29 Aug 2018 14:49:48 +1200</pubDate>
+    <lastBuildDate>Wed, 29 Aug 2018 14:49:48 +1200</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Web performance review: TradeMe</title>
+        <description>&lt;p&gt;Most of the English-speaking world has Amazon and eBay. In New Zealand we have TradeMe - an online auction &amp;amp; classified advert website where Kiwis go to buy &amp;amp; sell general items, cars, and property. If the numbers are to be believed, then pretty much every Kiwi has a TradeMe account. I don’t think it’s an understatement to say that TradeMe is an itegral part of modern New Zealand culture.&lt;/p&gt;
+
+&lt;p&gt;Back in 2016, &lt;a href=&quot;https://investors.trademe.co.nz/media/75789/5-F16-Investor-presentation.pdf&quot;&gt;TradeMe announced&lt;/a&gt; that it was working on a new “smartphone-optimised” responsive website that will eventually also replace the desktop website. Then halfway through 2018, they announced that the new responsive website was being rolled out to real users.&lt;/p&gt;
+
+&lt;p&gt;Being the ever-curious developer, I wanted to give the new TradeMe website a try. After a couple of weeks using the new website on my phone (a Nokia 7 Plus), I became frustrated with how much time I spent staring at a loading spinner, and how sluggish the UI interactions were. So I went back to the old website.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The loading screen for the new TradeMe website&quot; src=&quot;/assets/trademe-preview-loading.png&quot; width=&quot;400&quot; srcset=&quot;/assets/r/330/trademe-preview-loading.png 330w, /assets/r/345/trademe-preview-loading.png 345w, /assets/r/381/trademe-preview-loading.png 381w, /assets/r/384/trademe-preview-loading.png 384w, /assets/trademe-preview-loading.png 400w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The loading screen for the new TradeMe website&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;This bothered me, because I know that the other TradeMe experiences are fast. Why should this new website be so slow? I wanted to dig deeper, so I’ve taken the opportunity to conduct a detailed performance review.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#defining-the-test-parameters&quot; id=&quot;markdown-toc-defining-the-test-parameters&quot;&gt;Defining the test parameters&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-benchmark&quot; id=&quot;markdown-toc-the-benchmark&quot;&gt;The benchmark&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#identifying-performance-bottlenecks&quot; id=&quot;markdown-toc-identifying-performance-bottlenecks&quot;&gt;Identifying performance bottlenecks&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#main-thread-activity&quot; id=&quot;markdown-toc-main-thread-activity&quot;&gt;Main thread activity&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#delayed-primary-image-request&quot; id=&quot;markdown-toc-delayed-primary-image-request&quot;&gt;Delayed primary image request&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#some-performance-experiments&quot; id=&quot;markdown-toc-some-performance-experiments&quot;&gt;Some performance experiments&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#prioritise-loading-the-primary-image&quot; id=&quot;markdown-toc-prioritise-loading-the-primary-image&quot;&gt;Prioritise loading the primary image&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#defer-loading-third-party-assets&quot; id=&quot;markdown-toc-defer-loading-third-party-assets&quot;&gt;Defer loading third party assets&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#render-page-content-on-the-server&quot; id=&quot;markdown-toc-render-page-content-on-the-server&quot;&gt;Render page content on the server&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#causes-for-celebration-&quot; id=&quot;markdown-toc-causes-for-celebration-&quot;&gt;Causes for celebration 🎉&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#caching-improves-the-experience-on-repeat-visits&quot; id=&quot;markdown-toc-caching-improves-the-experience-on-repeat-visits&quot;&gt;Caching improves the experience on repeat visits&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#code-splitting-is-already-implemented&quot; id=&quot;markdown-toc-code-splitting-is-already-implemented&quot;&gt;Code splitting is already implemented&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#recommendations&quot; id=&quot;markdown-toc-recommendations&quot;&gt;Recommendations&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#test-on-representative-devices-and-networks&quot; id=&quot;markdown-toc-test-on-representative-devices-and-networks&quot;&gt;Test on representative devices and networks&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#render-the-core-content-on-the-server&quot; id=&quot;markdown-toc-render-the-core-content-on-the-server&quot;&gt;Render the core content on the server&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#reduce-the-amount-of-javascript-you-ship&quot; id=&quot;markdown-toc-reduce-the-amount-of-javascript-you-ship&quot;&gt;Reduce the amount of JavaScript you ship&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#use-performance-budgets&quot; id=&quot;markdown-toc-use-performance-budgets&quot;&gt;Use performance budgets&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#wrapping-up&quot; id=&quot;markdown-toc-wrapping-up&quot;&gt;Wrapping up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;defining-the-test-parameters&quot;&gt;Defining the test parameters&lt;/h2&gt;
+
+&lt;p&gt;One of the first things I like to do when I’m assessing the performance of a website is set a benchmark – what do users &lt;em&gt;expect&lt;/em&gt; from this website? In most cases it makes sense to use a competing website as the benchmark. When we were &lt;a href=&quot;/introducing-a-faster-bbc-news-front-page/&quot;&gt;improving the performance of BBC News&lt;/a&gt;, we used The Guardian and Financial Times as our benchmark because they are two of the fastest websites in the industry. However, it isn’t fair to use eBay or Amazon as a benchmark for TradeMe because they are both multi-billion dollar companies with thousands of developers. Instead, I’m using the much older (but much faster) TradeMe Touch website as a benchmark.&lt;/p&gt;
+
+&lt;p&gt;The next thing I like to do is find some performance metrics that are representative of the user experience. Given that TradeMe is mostly used by buyers (as opposed to sellers), I focused on visual completeness (&lt;em&gt;when can I see the thing I’m trying to buy?&lt;/em&gt;) and interactivity (&lt;em&gt;when can I scroll and place a bid?&lt;/em&gt;). Both of these things are very easy to measure with &lt;a href=&quot;https://www.webpagetest.org/&quot;&gt;WebPageTest&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I measure visual completeness by looking for the point at which the primary image is loaded using &lt;a href=&quot;https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/HeroElements.md&quot;&gt;hero element times&lt;/a&gt; (which are currently hidden behind the &lt;a href=&quot;https://www.webpagetest.org/?heroElementTimes=1&quot;&gt;heroElementTimes flag&lt;/a&gt;).&lt;/li&gt;
+  &lt;li&gt;I measure interactivity by using &lt;a href=&quot;https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md&quot;&gt;WebPageTest’s Time to Interactive metric&lt;/a&gt;, which is calculated as the point when the main thread has not been blocked for 5 seconds.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The final parameter is the test configuration. I wanted to emulate the performance of a mid-range smartphone on a mobile data connection, so for all of these tests I used the following settings in WebPageTest:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Test Location:&lt;/strong&gt; Sydney, Australia - EC2&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Browser:&lt;/strong&gt; Chrome&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Connection:&lt;/strong&gt; 3G (1.6 Mbps/768 Kbps 300ms RTT)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Emulate Mobile Browser:&lt;/strong&gt; iPhone 6/7/8&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;CPU Throttling:&lt;/strong&gt; 2.6 (specified using the &lt;a href=&quot;https://www.webpagetest.org/?throttle_cpu=2.6&quot;&gt;throttle_cpu flag&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-benchmark&quot;&gt;The benchmark&lt;/h2&gt;
+
+&lt;p&gt;First up is the old TradeMe Touch website. In the screenshot below, you can see two metrics are highlighted: First Interactive and Largest Image Render. The page is considered interactive at &lt;strong&gt;7.2 seconds&lt;/strong&gt;, and the primary image is rendered at &lt;strong&gt;14.9 seconds&lt;/strong&gt;. The interactive time is not bad for a mid-range mobile device, but having to wait nearly 15 seconds to see the primary content is not something that most users will be happy about. I know I said that I wouldn’t compare TradeMe to its better-resourced international competitors, but just for reference: a similar page on eBay renders the primary image at &lt;strong&gt;5.3 seconds&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A waterfall chart showing the timeline of a TradeMe Touch listing page&quot; src=&quot;/assets/trademe-touch-iphone-6.png&quot; srcset=&quot;/assets/r/330/trademe-touch-iphone-6.png 330w, /assets/r/345/trademe-touch-iphone-6.png 345w, /assets/r/381/trademe-touch-iphone-6.png 381w, /assets/r/384/trademe-touch-iphone-6.png 384w, /assets/r/546/trademe-touch-iphone-6.png 546w, /assets/r/640/trademe-touch-iphone-6.png 640w, /assets/r/738/trademe-touch-iphone-6.png 738w, /assets/r/840/trademe-touch-iphone-6.png 840w, /assets/r/960/trademe-touch-iphone-6.png 960w, /assets/r/1250/trademe-touch-iphone-6.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A waterfall chart showing the timeline of a TradeMe Touch listing page&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;Now let’s see how the new website performs: interactive at &lt;strong&gt;11.6 seconds&lt;/strong&gt;, and the primary image is rendered at &lt;strong&gt;30.4 seconds&lt;/strong&gt;. No wonder I felt frustrated using this new website! On the bright side, there’s plenty of good performance lessons we can learn from this review. So let’s dig a bit deeper.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A waterfall chart showing the timeline of a TradeMe Preview listing page&quot; src=&quot;/assets/trademe-preview-iphone-6.png&quot; srcset=&quot;/assets/r/330/trademe-preview-iphone-6.png 330w, /assets/r/345/trademe-preview-iphone-6.png 345w, /assets/r/381/trademe-preview-iphone-6.png 381w, /assets/r/384/trademe-preview-iphone-6.png 384w, /assets/r/546/trademe-preview-iphone-6.png 546w, /assets/r/640/trademe-preview-iphone-6.png 640w, /assets/r/738/trademe-preview-iphone-6.png 738w, /assets/r/840/trademe-preview-iphone-6.png 840w, /assets/r/960/trademe-preview-iphone-6.png 960w, /assets/r/1250/trademe-preview-iphone-6.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A waterfall chart showing the timeline of a TradeMe Preview listing page&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;&lt;small&gt;(These screenshots are from the &lt;a href=&quot;https://speedcurve.com/&quot;&gt;SpeedCurve&lt;/a&gt; test detail page, which has an awesome timeline visualisation).&lt;/small&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;identifying-performance-bottlenecks&quot;&gt;Identifying performance bottlenecks&lt;/h2&gt;
+
+&lt;h3 id=&quot;main-thread-activity&quot;&gt;Main thread activity&lt;/h3&gt;
+
+&lt;p&gt;The first thing that draws my eye is this 2-second slice where the main thread is busy evaluating JavaScript. During these 2 seconds, the browser is doing nothing else. No layouts, no painting, not even any network requests.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;JavaScript is blocking the main thread for 2 seconds at this point in the timeline&quot; src=&quot;/assets/trademe-preview-iphone-6-main-thread.png&quot; width=&quot;657&quot; srcset=&quot;/assets/r/330/trademe-preview-iphone-6-main-thread.png 330w, /assets/r/345/trademe-preview-iphone-6-main-thread.png 345w, /assets/r/381/trademe-preview-iphone-6-main-thread.png 381w, /assets/r/384/trademe-preview-iphone-6-main-thread.png 384w, /assets/r/546/trademe-preview-iphone-6-main-thread.png 546w, /assets/r/640/trademe-preview-iphone-6-main-thread.png 640w, /assets/trademe-preview-iphone-6-main-thread.png 657w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;JavaScript is blocking the main thread for 2 seconds at this point in the timeline&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;When I open the network view, it’s obvious what’s causing this: the browser is evaluating the &lt;strong&gt;716KB of JavaScript&lt;/strong&gt; that it just downloaded. This number is the bytes that were sent over the network, and doesn’t represent the true cost of this JavaScript. Once uncompressed, these JavaScript files weigh in at over &lt;strong&gt;2.7MB&lt;/strong&gt;.  (Tip: in the Network tab of Firefox DevTools, you can choose to show both the “Transferred” and “Size” columns so that you can see both the bytes over the wire and the raw uncompressed resource size).&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Large JavaScript requests in the network view&quot; src=&quot;/assets/trademe-preview-iphone-6-network-js.png&quot; width=&quot;727&quot; srcset=&quot;/assets/r/330/trademe-preview-iphone-6-network-js.png 330w, /assets/r/345/trademe-preview-iphone-6-network-js.png 345w, /assets/r/381/trademe-preview-iphone-6-network-js.png 381w, /assets/r/384/trademe-preview-iphone-6-network-js.png 384w, /assets/r/546/trademe-preview-iphone-6-network-js.png 546w, /assets/r/640/trademe-preview-iphone-6-network-js.png 640w, /assets/trademe-preview-iphone-6-network-js.png 727w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Large JavaScript requests in the network view&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;This 2 second period is just the tip of the iceberg. By the time the page has finished loading, over &lt;strong&gt;2.2MB&lt;/strong&gt; of JavaScript has been downloaded. This expands to more than &lt;strong&gt;5.1MB&lt;/strong&gt; of uncompressed code that the browser must parse, compile, and execute. According to the Coverage tool in Chrome DevTools, 3MB of this code is never even executed during the page load.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Coverage report in Chrome DevTools&quot; src=&quot;/assets/trademe-preview-chrome-coverage.png&quot; srcset=&quot;/assets/r/330/trademe-preview-chrome-coverage.png 330w, /assets/r/345/trademe-preview-chrome-coverage.png 345w, /assets/r/381/trademe-preview-chrome-coverage.png 381w, /assets/r/384/trademe-preview-chrome-coverage.png 384w, /assets/r/546/trademe-preview-chrome-coverage.png 546w, /assets/r/640/trademe-preview-chrome-coverage.png 640w, /assets/r/738/trademe-preview-chrome-coverage.png 738w, /assets/r/840/trademe-preview-chrome-coverage.png 840w, /assets/r/960/trademe-preview-chrome-coverage.png 960w, /assets/r/1250/trademe-preview-chrome-coverage.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Coverage report in Chrome DevTools&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h3 id=&quot;delayed-primary-image-request&quot;&gt;Delayed primary image request&lt;/h3&gt;
+
+&lt;p&gt;The second thing that draws my attention is that the network request for the primary image does not even start until the 30 second mark. It’s request #107, out of 195 total requests. 17 other large images are downloaded before the primary image, which quickly uses up the limited bandwidth of this simulated mobile connection.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Waterfall chart showing the number of requests before the primary image is rendered&quot; src=&quot;/assets/trademe-preview-primary-image-requests.png&quot; srcset=&quot;/assets/r/330/trademe-preview-primary-image-requests.png 330w, /assets/r/345/trademe-preview-primary-image-requests.png 345w, /assets/r/381/trademe-preview-primary-image-requests.png 381w, /assets/r/384/trademe-preview-primary-image-requests.png 384w, /assets/r/546/trademe-preview-primary-image-requests.png 546w, /assets/r/640/trademe-preview-primary-image-requests.png 640w, /assets/r/738/trademe-preview-primary-image-requests.png 738w, /assets/r/840/trademe-preview-primary-image-requests.png 840w, /assets/r/960/trademe-preview-primary-image-requests.png 960w, /assets/r/1250/trademe-preview-primary-image-requests.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Waterfall chart showing the number of requests before the primary image is rendered&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h2 id=&quot;some-performance-experiments&quot;&gt;Some performance experiments&lt;/h2&gt;
+
+&lt;p&gt;Looking at waterfall charts and dissecting JavaScript bundles is interesting, but what we really want to get out of a performance review is a list of actionable tasks with a rough estimate of how each task will impact the performance of the website. One of my favourite ways to get this list is by running some &lt;a href=&quot;/using-ab-testing-to-prioritise-performance-optimisations/&quot;&gt;A/B performance tests&lt;/a&gt; by making some optimisations by hand and measuring their impact.&lt;/p&gt;
+
+&lt;h3 id=&quot;prioritise-loading-the-primary-image&quot;&gt;Prioritise loading the primary image&lt;/h3&gt;
+
+&lt;p&gt;One of the obvious bottlenecks is the primary image being downloaded so far through the page load. We can improve the user experience by prioritising the primary image. I simulated this optimisation in two steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Prime the cache for the primary image. While this is not strictly possible in the real world, the effect should be similar to using &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;link rel=preload&amp;gt;&lt;/code&gt; to request the primary image as soon as possible.&lt;/li&gt;
+  &lt;li&gt;Block all of the other image requests so that the primary image isn’t contending for network bandwidth.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here are the results:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Metric&lt;/th&gt;
+      &lt;th&gt;Original&lt;/th&gt;
+      &lt;th&gt;Optimised&lt;/th&gt;
+      &lt;th&gt;Difference&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Primary image render&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;30.4s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;21s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;9.4s&lt;/strong&gt; (30%)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Viewing the filmstrip of the original page versus the optimised page really shows how much faster this is:&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A filmstrip comparison of the original page (top) versus the optimised page (bottom). Frame interval: 2500ms&quot; src=&quot;/assets/trademe-preview-image-optimisation-filmstrip.png&quot; srcset=&quot;/assets/r/330/trademe-preview-image-optimisation-filmstrip.png 330w, /assets/r/345/trademe-preview-image-optimisation-filmstrip.png 345w, /assets/r/381/trademe-preview-image-optimisation-filmstrip.png 381w, /assets/r/384/trademe-preview-image-optimisation-filmstrip.png 384w, /assets/r/546/trademe-preview-image-optimisation-filmstrip.png 546w, /assets/r/640/trademe-preview-image-optimisation-filmstrip.png 640w, /assets/r/738/trademe-preview-image-optimisation-filmstrip.png 738w, /assets/r/840/trademe-preview-image-optimisation-filmstrip.png 840w, /assets/r/960/trademe-preview-image-optimisation-filmstrip.png 960w, /assets/r/1250/trademe-preview-image-optimisation-filmstrip.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A filmstrip comparison of the original page (top) versus the optimised page (bottom). Frame interval: 2500ms&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h3 id=&quot;defer-loading-third-party-assets&quot;&gt;Defer loading third party assets&lt;/h3&gt;
+
+&lt;p&gt;While the majority of the blocking assets belong to TradeMe, there is still a considerable amount of third party content being downloaded – about 350KB, most of which is JavaScript. Deferring this third party content until later in the page load could improve the user experience by prioritising the first party content.&lt;/p&gt;
+
+&lt;p&gt;I simulated this optimisation by blocking requests from all third party domains. Here are the results:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Metric&lt;/th&gt;
+      &lt;th&gt;Original&lt;/th&gt;
+      &lt;th&gt;Optimised&lt;/th&gt;
+      &lt;th&gt;Difference&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;First Interactive&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;11.6s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;9.5s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;2.1s&lt;/strong&gt; (18%)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;render-page-content-on-the-server&quot;&gt;Render page content on the server&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately the new TradeMe site neither works without JavaScript enabled, nor does it work offline despite utilising a caching service worker. One reason for this is that the page content is fetched and rendered by JavaScript rather than being contained in the initial document response. Rendering some basic content on the server not only enables the page to be used offline or without JavaScript, it also has significant performance benefits since the browser can begin to render content well before it has finished downloading the other page resources.&lt;/p&gt;
+
+&lt;p&gt;I simulated this optimisation by creating a static version of the page with the content pre-rendered. I also moved the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags to below the main content to prevent them from blocking rendering. Since this version ran in a different environment, I adjust the numbers to account for the difference in backend times. Here are the results:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Metric&lt;/th&gt;
+      &lt;th&gt;Original&lt;/th&gt;
+      &lt;th&gt;Optimised&lt;/th&gt;
+      &lt;th&gt;Difference&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Heading render&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;21.2s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;5.7s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;15.5s&lt;/strong&gt; (73%)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Primary image render&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;30.4s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;11.7s&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;18.7s&lt;/strong&gt; (61%)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Like the primary image optimisation test, viewing the filmstrip of the original page versus the optimised page shows how much impact this optimisation really has.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A filmstrip comparison of the original page (top) versus the optimised page (bottom). Frame interval: 2500ms.&quot; src=&quot;/assets/trademe-preview-server-render-filmstrip.png&quot; srcset=&quot;/assets/r/330/trademe-preview-server-render-filmstrip.png 330w, /assets/r/345/trademe-preview-server-render-filmstrip.png 345w, /assets/r/381/trademe-preview-server-render-filmstrip.png 381w, /assets/r/384/trademe-preview-server-render-filmstrip.png 384w, /assets/r/546/trademe-preview-server-render-filmstrip.png 546w, /assets/r/640/trademe-preview-server-render-filmstrip.png 640w, /assets/r/738/trademe-preview-server-render-filmstrip.png 738w, /assets/r/840/trademe-preview-server-render-filmstrip.png 840w, /assets/r/960/trademe-preview-server-render-filmstrip.png 960w, /assets/r/1250/trademe-preview-server-render-filmstrip.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A filmstrip comparison of the original page (top) versus the optimised page (bottom). Frame interval: 2500ms.&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;Note that First Interactive is not comparable for this test, since I changed the position of the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+
+&lt;h2 id=&quot;causes-for-celebration-&quot;&gt;Causes for celebration 🎉&lt;/h2&gt;
+
+&lt;p&gt;It’s far too easy in a performance review to focus on the things that a website gets wrong. I always like to try and find some things that a website is doing right.&lt;/p&gt;
+
+&lt;h3 id=&quot;caching-improves-the-experience-on-repeat-visits&quot;&gt;Caching improves the experience on repeat visits&lt;/h3&gt;
+
+&lt;p&gt;On the first page load, over 4.2MB of data is transferred. On subsequent page loads, that number is more like 570KB thanks to a caching service worker and sensible caching headers.&lt;/p&gt;
+
+&lt;h3 id=&quot;code-splitting-is-already-implemented&quot;&gt;Code splitting is already implemented&lt;/h3&gt;
+
+&lt;p&gt;Despite the massive bundle size, it looks like code splitting has already been implemented. &lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting/&quot;&gt;Code splitting is recommended&lt;/a&gt; to ensure that your users only download the code that they need. Code splitting can be hard, but the fact that it is already set up on TradeMe should reduce the amount of effort required to optimise the JavaScript delivery.&lt;/p&gt;
+
+&lt;h2 id=&quot;recommendations&quot;&gt;Recommendations&lt;/h2&gt;
+
+&lt;h3 id=&quot;test-on-representative-devices-and-networks&quot;&gt;Test on representative devices and networks&lt;/h3&gt;
+
+&lt;p&gt;Building great user experiences requires a large dose of empathy, and one of the easiest ways to get this empathy is by using your product in the same way that your users do. Pick up a mid-range Android phone or an Intel Celeron laptop and see how your product feels on those devices. The great thing about using the same devices as your users is that they are cheap - often 10-20x cheaper than the MacBook Pro used by many developers.&lt;/p&gt;
+
+&lt;h3 id=&quot;render-the-core-content-on-the-server&quot;&gt;Render the core content on the server&lt;/h3&gt;
+
+&lt;p&gt;I’ve always been an advocate for having a good &lt;a href=&quot;/redefining-the-bcc-news-core-experience/&quot;&gt;core experience&lt;/a&gt;. If you’re not familiar with the concept of a core experience, I define it as follows:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A core experience should be made up of these five things, in order of importance:&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;The page content.&lt;/li&gt;
+    &lt;li&gt;The markup required to make the page accessible.&lt;/li&gt;
+    &lt;li&gt;Minimal styling to make the content easily readable – grids, typography, etc.&lt;/li&gt;
+    &lt;li&gt;Minimal styling to brand the page – logo, colours.&lt;/li&gt;
+    &lt;li&gt;The means to enhance the page where appropriate.&lt;/li&gt;
+  &lt;/ol&gt;
+
+  &lt;p&gt;A core experience should be &lt;em&gt;just&lt;/em&gt; these things. Everything else is an enhancement.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This might sound familiar if you know about &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement&quot;&gt;progressive enhancement&lt;/a&gt;, since having a core experience is a prerequisite for doing any progressive enhancement.&lt;/p&gt;
+
+&lt;p&gt;Not only does a good core experience enable users to view your product on practically any device or browser, it can also be hugely beneficial to page performance. TradeMe is a perfect example of this, with my experiment showing a 15-19 second reduction in the time to render core content.&lt;/p&gt;
+
+&lt;h3 id=&quot;reduce-the-amount-of-javascript-you-ship&quot;&gt;Reduce the amount of JavaScript you ship&lt;/h3&gt;
+
+&lt;p&gt;JavaScript is a hot topic in 2018. It is by far the biggest contributor to slow user experiences on the web – if you haven’t already read Addy Osmani’s &lt;a href=&quot;https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4&quot;&gt;&lt;em&gt;The Cost Of JavaScript in 2018&lt;/em&gt;&lt;/a&gt; then I would recommend doing so.&lt;/p&gt;
+
+&lt;p&gt;In the last few years, the web developer ecosystem has come leaps and bounds. With tools like npm and Webpack, it’s easier than ever before to create interactive user experiences and bundle them up to be delivered on the web. An unfortunate downside to this is that it’s easier than ever before to create huge JavaScript bundles that don’t perform well.&lt;/p&gt;
+
+&lt;p&gt;Right now there are no easy answers to The JavaScript Problem. The best thing that developers can do today is to remain diligent and balance ease of development with user experience.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-performance-budgets&quot;&gt;Use performance budgets&lt;/h3&gt;
+
+&lt;p&gt;Before you even start working on a project, set yourself budgets on key user experience metrics like First Interactive, Hero Element Render Time, and JavaScript bundle size. Keep an eye on your budgets and &lt;strong&gt;always fix problems that break your budgets&lt;/strong&gt;. Performance budgets are becoming a de facto feature of performance monitoring tools. We used &lt;a href=&quot;https://speedcurve.com/blog/performance-budgets-in-action/&quot;&gt;SpeedCurve’s performance budgets&lt;/a&gt; at the BBC to set performance targets and receive alerts when we broke the budgets.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;/h2&gt;
+
+&lt;p&gt;I hope this has been a useful insight into how I conduct performance reviews. I’ll be doing more of these in the future, so if there’s a part of the review that you think I should focus on more, or a particular website that you’d like me to review, let me know!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 22 Aug 2018 00:00:00 +1200</pubDate>
+        <link>https://wildlyinaccurate.com/web-performance-review-trademe/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/web-performance-review-trademe/</guid>
+        
+        <category>javascript</category>
+        
+        <category>performance</category>
+        
+        <category>review</category>
+        
+        
+        <category>Performance</category>
+        
+        <category>Web Development</category>
+        
+      </item>
+    
+      <item>
+        <title>Becoming a team lead: a survival guide</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;&lt;small&gt;This post is a transposition of my Fluent talk &lt;em&gt;Becoming a team lead: a survival guide&lt;/em&gt;. It’s been edited to better fit a blog post format. If you prefer to see the original format, you can &lt;a href=&quot;https://www.youtube.com/watch?v=fBqmb3bCfbY&quot;&gt;watch the video&lt;/a&gt; (30 minutes + Q&amp;amp;A) or view &lt;a href=&quot;https://docs.google.com/presentation/d/1JroNufrqNu3W-HIq2r71WTfcaxJHzQL_8sfQmnhP7Kc/edit?usp=sharing&quot;&gt;the slides with speaker notes&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;A survival guide&lt;/em&gt; is a strange thing to call this post, since survival guides are usually very serious books that prepare you for extreme situations. Building shelter in the wilderness, foraging for food, avoiding being eaten by bears - that sort of thing. I’m never sure when is the right time to read a survival guide, since being lost in the wilderness or being hunted by bears is not something you really plan for. If you read the survival guide too early, you forget most of it. If you read it too late, it’s no use.&lt;/p&gt;
+
+&lt;p&gt;Anyway, the reason this is a survival guide is because after spending my entire career as a software engineer, I was thrown into a team lead role without much warning. I had no idea what I was doing and had very little support. This is the survival guide I wish I had. It documents my experiences as an inexperienced team lead –as an engineer transitioning to a team lead– and my learnings &amp;amp; mistakes along the way. Hopefully this can act as a survival guide for you, too.&lt;/p&gt;
+
+&lt;p&gt;This is a fairly long guide, so I’ve split it into sections. Feel free to skip sections that aren’t relevant to you.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#introduction-the-accidental-leader&quot; id=&quot;markdown-toc-introduction-the-accidental-leader&quot;&gt;Introduction: the accidental leader&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part-i-before-you-apply&quot; id=&quot;markdown-toc-part-i-before-you-apply&quot;&gt;Part I: Before you apply&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#understanding-the-team-lead-role&quot; id=&quot;markdown-toc-understanding-the-team-lead-role&quot;&gt;Understanding the team lead role&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#setting-yourself-up-for-the-role&quot; id=&quot;markdown-toc-setting-yourself-up-for-the-role&quot;&gt;Setting yourself up for the role&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part-ii-you-got-the-job&quot; id=&quot;markdown-toc-part-ii-you-got-the-job&quot;&gt;Part II: You got the job!&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#avoid-being-overwhelmed&quot; id=&quot;markdown-toc-avoid-being-overwhelmed&quot;&gt;Avoid being overwhelmed&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#conducting-effective-one-on-one-meetings&quot; id=&quot;markdown-toc-conducting-effective-one-on-one-meetings&quot;&gt;Conducting effective one-on-one meetings&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dealing-with-pressure-from-stakeholders&quot; id=&quot;markdown-toc-dealing-with-pressure-from-stakeholders&quot;&gt;Dealing with pressure from stakeholders&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#grow--support-your-team&quot; id=&quot;markdown-toc-grow--support-your-team&quot;&gt;Grow &amp;amp; support your team&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#remember-you-are-a-team&quot; id=&quot;markdown-toc-remember-you-are-a-team&quot;&gt;Remember: you are a team!&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#further-reading&quot; id=&quot;markdown-toc-further-reading&quot;&gt;Further reading&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;introduction-the-accidental-leader&quot;&gt;Introduction: the accidental leader&lt;/h2&gt;
+
+&lt;p&gt;In 2014 I was lucky enough to be offered a job at the BBC in London. The team I ended up working on was made up of 10 people, 7 of whom were software engineers. We had a fantastic team lead (Hi, Pete!) who kept things running smoothly and –more importantly– kept the team happy. I learned a lot from Pete.&lt;/p&gt;
+
+&lt;p&gt;Then, disaster struck. Within the space of only a few months, most of the team leads in our department left. Including Pete. Up until this point, I had naïvely been trying to climb the career ladder and attain more power for myself within the department. So I had essentially already been digging my own grave (okay, I’m being a little dramatic here) and it only made sense that our head of engineering pushed me into it by asking if I would temporarily fill a team lead role.&lt;/p&gt;
+
+&lt;p&gt;Despite my desire for more decision-making power, I was apprehensive about taking a team lead role. I liked writing code, I didn’t like responsibility, and I really didn’t want to become a manager. I was assured, however, that my day-to-day work would hardly change, and that I wouldn’t have to do any management.&lt;/p&gt;
+
+&lt;p&gt;Looking back on this moment, I feel a bit stupid. Of course I took the role. It sounded perfect: all the power of a team lead with none of the responsibility. It was exactly what I wanted. If only I knew back then that things would not pan out like that at all. In hindsight I would say that the first few months of my new role as team lead were some of the most stressful and challenging months of my career.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;This is really common.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Having spoken to many other team leads since then, I’m amazed at just how common this scenario is. Almost all of the team leads that I’ve met in software development sort of “accidentally” fell into their leadership roles despite having no prior experience, and almost all of them found it difficult to get any support after taking the role – regardless of whether they worked for a small startup or a multinational organisation. It seemed like in contrast to their previous career progression, becoming a team lead was vastly more difficult and overwhelming.&lt;/p&gt;
+
+&lt;p&gt;I think that in general the team lead role is misunderstood, and it is also oversold. Our industry is really good at pretending that software delivery is all about writing code, but in all of my experiences this is never the case. Some of the hardest problems in software are either people problems, organisational problems, or cultural problems. Yet we continue to push technically brilliant software engineers into leadership roles, with no training in communication or management, and we wonder why they struggle to deliver or why they burn out.&lt;/p&gt;
+
+&lt;h2 id=&quot;part-i-before-you-apply&quot;&gt;Part I: Before you apply&lt;/h2&gt;
+
+&lt;h3 id=&quot;understanding-the-team-lead-role&quot;&gt;Understanding the team lead role&lt;/h3&gt;
+
+&lt;p&gt;The best way to avoid becoming an overwhelmed, burnt-out team lead is to not become a team lead. No, seriously. It’s important to be able to recognise when you’re &lt;strong&gt;not&lt;/strong&gt; ready for a team lead role, or when to say &lt;strong&gt;no&lt;/strong&gt; if you find yourself being pushed into one.&lt;/p&gt;
+
+&lt;p&gt;There are a lot of myths about leadership, and one of the biggest is that you gain power simply by becoming a leader. I thought this. A lot of people think this. My reasons for wanting to become a team lead were along the lines of:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;I love writing code.&lt;/strong&gt; Team leads should be strong coders, since they’ll be taking on all the hard problems.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I’m an experienced developer.&lt;/strong&gt; I should be the one to steer things in the right direction.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I know what’s best for the project.&lt;/strong&gt; Things would go so much smoother if we would just switch to this framework, or work on these features first.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;My team will self-manage.&lt;/strong&gt; Everyone on the team is so easygoing and chilled out, there’s really no need for anybody to “manage” them.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I just need the power to make change.&lt;/strong&gt; I know exactly what to do, I just need the power and the authority to make all of the changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I learned pretty quickly that my reasons were all wrong. If you find yourself agreeing with any of them, then I seriously urge you to delay taking on a team lead role because it might not live up to your expectations.&lt;/p&gt;
+
+&lt;p&gt;But if those are the wrong reasons to become a team lead, then what are the &lt;em&gt;right&lt;/em&gt; reasons? I would sum them up like this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;I want to share my knowledge.&lt;/strong&gt; One of the core parts of your job as a team lead is to grow your team. You do this best by sharing your knowledge, rather than being someone who puts their knowledge into practice by writing code. Writing &lt;em&gt;some&lt;/em&gt; code is important, because it keeps you in touch with the team’s day-to-day work. But in general the more code you write, the more the team relies on you, and the bigger bottleneck you become.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I enjoy mentoring others.&lt;/strong&gt; Being one of the most experienced people on the team will put you in a prime position to be able to mentor others. Sharing your experiences with your team will help them learn and progress. It will also improve the quality of your team’s output.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I prefer to advise and mediate.&lt;/strong&gt; You might think you know what’s best for the project, but taking an authoritarian approach to leadership can completely undermine any trust the team has in you. It’s better to step back and let the team make decisions, acting only as a mediator or tie-breaker. (Sometimes it’s okay to make executive decisions, but these should be rare and not be taken lightly).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I’m ready to be a manager.&lt;/strong&gt; Not all team lead roles come with management responsibilities, but I don’t think it’s possible to completely avoid management. You will be the first person your team comes to when they have a problem. You should be ready to deal with conflicts, personal or private issues, as well as menial things like holiday and sick leave. On top of that, you should know how and when to deal out both praise and criticism.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;I know how to influence change.&lt;/strong&gt; Being a leader doesn’t enable you to force change. What it does is buy you a little bit of extra influence. Making change is all about learning how to use the influence you have to convince people to want the same change as you. Change happens easiest when everybody wants it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The good news is that if that sounds like you, then you might find that a team lead role suits you well!&lt;/p&gt;
+
+&lt;h3 id=&quot;setting-yourself-up-for-the-role&quot;&gt;Setting yourself up for the role&lt;/h3&gt;
+
+&lt;p&gt;Assuming you do want to become a team lead, how do you set yourself up for the role so that you’re prepared well in advance?&lt;/p&gt;
+
+&lt;p&gt;You likely already work in a contributor role, which will mean doing this preparation in your own time. If you’re lucky enough, you might be able to prepare in your company’s time. Either way, this time will be a good investment because it will help you to hit the ground running and become a more effective team lead.&lt;/p&gt;
+
+&lt;h4 id=&quot;do-some-research&quot;&gt;Do some research&lt;/h4&gt;
+
+&lt;p&gt;You’ll save yourself many headaches by researching the team lead role in advance. Learn what to expect from the role, and what skills you need to sharpen. The fact that you’re reading this is a great start (there’s a &lt;strong&gt;further reading&lt;/strong&gt; section at the end of this post too). I would recommend investing time in improving your communication skills and learning about different leadership techniques.&lt;/p&gt;
+
+&lt;p&gt;I also recommend learning how to identify and deal with mental health issues because they are extremely prevalent in our industry. Being able to identify issues early on in yourself and the people around you can make a huge difference in preventing burnout.&lt;/p&gt;
+
+&lt;h4 id=&quot;fix-things-that-cause-pain-for-the-team&quot;&gt;Fix things that cause pain for the team&lt;/h4&gt;
+
+&lt;p&gt;The aim of this is simple: get used to the idea of being someone who removes roadblocks for the team rather than being a core contributor. Start by volunteering to attend boring meetings, or optimise people’s workflow by making the build faster. Removing pain from the rest of your team will keep them happier and allow them to work with fewer interruptions. I like to think of this part of the role as being a sort of team janitor.&lt;/p&gt;
+
+&lt;h4 id=&quot;take-every-opportunity-to-mentor&quot;&gt;Take every opportunity to mentor&lt;/h4&gt;
+
+&lt;p&gt;Mentorship is a great way to transfer knowledge and grow your team. It also helps to reduce the team’s reliance on you. You should pair program with junior team members to help them get through their workload, and regularly invite other people to sit with you whenever you are working through a problem.&lt;/p&gt;
+
+&lt;p&gt;Being a good mentor is something that I believe really only comes with experience. Getting the experience early on will make you a much better mentor when you move into a lead role.&lt;/p&gt;
+
+&lt;h4 id=&quot;focus-on-the-bigger-picture&quot;&gt;Focus on the bigger picture&lt;/h4&gt;
+
+&lt;p&gt;You’ll likely be at least partly responsible for delivery as a team lead. It’s good practice to zoom out and think about the optimal way to get to the end of the project. In particular, think about how to avoid roadblocks in your upcoming work. Sometimes it’s better to have one person work on something totally unrelated to your current sprint so that the rest of the team can work unimpeded in the next sprint.&lt;/p&gt;
+
+&lt;h4 id=&quot;be-present&quot;&gt;Be present&lt;/h4&gt;
+
+&lt;p&gt;Software folk are very good at putting their headphones on and living in their own little bubbles. This reinforces the idea that software development is some sort of mythical or sacred practice that should never be interrupted, and it makes people second guess whether they should ask for help. This isn’t what you want in a team. You want people to be comfortable asking for help – that can be the difference between a successful &amp;amp; productive team who ask for help as soon as they’re stuck, and an unproductive team who struggle with their work in silence.&lt;/p&gt;
+
+&lt;h2 id=&quot;part-ii-you-got-the-job&quot;&gt;Part II: You got the job!&lt;/h2&gt;
+
+&lt;p&gt;So, you’re a new team lead - congratulations! The following sections are your handbook to being an effective team lead in your daily work.&lt;/p&gt;
+
+&lt;h3 id=&quot;avoid-being-overwhelmed&quot;&gt;Avoid being overwhelmed&lt;/h3&gt;
+
+&lt;p&gt;Being a team lead can be overwhelming at times, especially during the first few months while you’re still getting a grasp of everything. If you feel yourself becoming overwhelmed at any point, don’t ignore it. Humans are quite good at picking up on each other’s emotions, and as the team lead you are likely to pass your own stress on to the rest of the team.&lt;/p&gt;
+
+&lt;h4 id=&quot;stop-writing-code&quot;&gt;Stop writing code&lt;/h4&gt;
+
+&lt;p&gt;My number one tip for dealing with being overwhelmed is to stop writing code. It’s strange for me to suggest this because for me, coding is quite cathartic - it’s a form of stress relief. But coding takes a lot of your time, and it puts you in a mindset that makes you unavailable to the rest of the team.&lt;/p&gt;
+
+&lt;p&gt;If you’re working on something important, see if you can pass it onto a team member. Otherwise just put it to one side for a few days.&lt;/p&gt;
+
+&lt;h4 id=&quot;learn-to-delegate&quot;&gt;Learn to delegate&lt;/h4&gt;
+
+&lt;p&gt;Learning how to delegate can be difficult, especially for team leads who are transitioning from a full-time contributor role. Often the problem is that the team lead is still considered to be (or considers &lt;em&gt;themselves&lt;/em&gt; to be) the de facto owner of certain parts of a codebase. Explicitly passing this ownership on to somebody else can help make it easier to ask other people to work on that code.&lt;/p&gt;
+
+&lt;p&gt;Delegation is easier said than done, but doing it correctly can be an extremely effective way of reducing your stress levels. Pick a member of the team you know is capable, make sure they have low stress levels, and (politely!) ask them to complete a task for you.&lt;/p&gt;
+
+&lt;h4 id=&quot;say-no&quot;&gt;Say no&lt;/h4&gt;
+
+&lt;p&gt;This is a personal favourite of mine, and it made a few of my senior stakeholders very unhappy at times. Saying “no” when you or your team is asked to take on more work is a totally valid way of dealing with being overwhelmed. Of course there are more polite ways to say “no”, like “can you ask me again next week” or “is there anybody else available to do that”. However you say it, it’s always better to say no than to disappoint someone by being too busy to fulfil their request.&lt;/p&gt;
+
+&lt;p&gt;Saying no has this other benefit which is that it signals to your boss or stakeholders that you or your team have too much to do.&lt;/p&gt;
+
+&lt;p&gt;The best case scenario for saying “no” is that your team is given some extra help to deal with the workload. The worst case scenario is that you’re told to do the work anyway, in which case…&lt;/p&gt;
+
+&lt;h4 id=&quot;ask-for-help&quot;&gt;Ask for help&lt;/h4&gt;
+
+&lt;p&gt;We’re not very good at this in the software development industry. It’s as if there’s a bizarre sense of achievement or credibility in struggling through a problem for days when it could have been trivially solved by someone else in minutes. “Help” can come in many forms: someone helping you get through your work, mentorship from your boss or another team lead, or just someone to talk to over lunch. Whatever form it comes in, don’t be afraid to put your hand up and ask for help when you’re feeling the pressure. You’ll thank yourself later.&lt;/p&gt;
+
+&lt;p&gt;Similarly to saying “no”, asking for help sends a clear signal upwards that your team isn’t coping. This doesn’t indicate any failure on your part! If anything, it indicates a failure with your stakeholders or upper management – they’re not managing their people (“resources”) well enough.&lt;/p&gt;
+
+&lt;h3 id=&quot;conducting-effective-one-on-one-meetings&quot;&gt;Conducting effective one-on-one meetings&lt;/h3&gt;
+
+&lt;p&gt;It feels strange to have a section in this guide about meetings. If you’ve ever had the (dis)pleasure of working with me, then you might know that I’m not very fond of meetings. I think I wrote &lt;code class=&quot;highlighter-rouge&quot;&gt;too many meetings :(&lt;/code&gt; on a post-it note in pretty much every team retrospective I attended.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, this dislike of meetings carried over when I became a team lead. And since I spent the first few months of the role just panicking and stressing about my workload, I had the genius idea of saving time by avoiding one-on-one meetings. I assumed that if anyone needed anything, they would just approach me.&lt;/p&gt;
+
+&lt;p&gt;This was a really big mistake. One-on-one meetings are one of the best ways to keep in touch with your team because they offer a private &amp;amp; safe space in which to have open &amp;amp; honest conversations that you would not normally have in front of the rest of the team. They might feel awkward at first, but eventually these meetings should feel as natural and casual as a daily stand-up.&lt;/p&gt;
+
+&lt;h4 id=&quot;have-them-regularly&quot;&gt;Have them regularly&lt;/h4&gt;
+
+&lt;p&gt;The first piece of advice I have around one-on-one meetings is to have them, and have them regularly. I only mention this because I know from experience how easy it is to avoid them. It doesn’t matter how tight your deadlines are, or how much fun your current workload is, meeting with your team should be at the top of your priority list.&lt;/p&gt;
+
+&lt;p&gt;Having them every 2 weeks is a good place to start. If 2 weeks feels too regular, you can slowly increase the time between meetings until they feel just right. Remember to set up recurring calendar events and treat them like you would any other important meeting. Never skip them!&lt;/p&gt;
+
+&lt;h4 id=&quot;use-a-template&quot;&gt;Use a template&lt;/h4&gt;
+
+&lt;p&gt;I found it really useful to have a template for my one-on-one meetings. I took Lara Hogan’s &lt;a href=&quot;https://larahogan.me/blog/first-one-on-one-questions/&quot;&gt;&lt;em&gt;Questions for our first 1:1&lt;/em&gt;&lt;/a&gt; template and modified it to suit my team.&lt;/p&gt;
+
+&lt;p&gt;A template gives your meeting some structure and ensures that you don’t miss out anything important. You can stray from the template and adjust it as you go along - it’s just there as a guide.&lt;/p&gt;
+
+&lt;h4 id=&quot;take-notes&quot;&gt;Take notes&lt;/h4&gt;
+
+&lt;p&gt;Take notes of everything that’s discussed, because you’ll want to refer to them later. Get the consent of the person that you’re meeting with first, and reassure them that the notes are completely confidential, and only used for your own reference. I usually start every meeting by showing the other person my notes from last time, to make sure we’re on the same page.&lt;/p&gt;
+
+&lt;h4 id=&quot;prepare-beforehand&quot;&gt;Prepare beforehand&lt;/h4&gt;
+
+&lt;p&gt;Give yourself 10 minutes before each of your one-on-ones to prepare yourself. Think about what you want to say. Remind yourself what each person has been working on recently. Go over your notes from the last meeting and make sure you’ve done everything you said you would. If you haven’t, well, you’ve got 10 minutes to think of some good excuses.&lt;/p&gt;
+
+&lt;h4 id=&quot;ask-and-listen&quot;&gt;Ask and listen&lt;/h4&gt;
+
+&lt;p&gt;Probably the most important bit of advice regarding one-on-one meetings is to remember that your role in these meetings is to listen. After you ask a question, just sit back and listen. Long stretches of silence are okay - they give you both a chance to think.&lt;/p&gt;
+
+&lt;p&gt;Don’t just &lt;em&gt;listen&lt;/em&gt;, either. Really &lt;em&gt;take in&lt;/em&gt; what the other person is saying – regardless of how important you think the matter is, or whether you agree or not. This person is telling you something because they think it’s important, and it’s your job to take everything they say very seriously.&lt;/p&gt;
+
+&lt;h4 id=&quot;dont-over-promise&quot;&gt;Don’t over-promise&lt;/h4&gt;
+
+&lt;p&gt;Remember how I said that you should do everything that you said you would in the last meeting? It helps if you don’t put yourself in an awkward position in the first place by promising things that you can’t deliver. It’s fine to promise that you’ll order a new keyboard, or that you’ll raise an issue to your manager’s attention. But don’t ever promise things like promotions or pay rises. Over-promising will only lead to disappointment and dissatisfaction.&lt;/p&gt;
+
+&lt;h3 id=&quot;dealing-with-pressure-from-stakeholders&quot;&gt;Dealing with pressure from stakeholders&lt;/h3&gt;
+
+&lt;p&gt;Let’s talk about stakeholders. No matter the size of your company, you probably have at least a few. They’re the people who are interested in the outcome of your project, and they probably set the overall direction of your work by coming up with the project requirements and various tweaks along the way.&lt;/p&gt;
+
+&lt;p&gt;At some point you will find yourself in a position where your stakeholders are asking your team to do too much, and with too little time. How you handle these situations can have a tremendous impact on the happiness and productivity of your team, so approach them with caution.&lt;/p&gt;
+
+&lt;h4 id=&quot;always-be-honest&quot;&gt;Always be honest&lt;/h4&gt;
+
+&lt;p&gt;Always be honest about how your project is going. Especially if you’re behind schedule. In business-speak, this is called “managing expectations”, and it’s vital that you and your stakeholders have the same expectations.&lt;/p&gt;
+
+&lt;h4 id=&quot;-unless-youre-ahead-of-schedule&quot;&gt;… Unless you’re ahead of schedule&lt;/h4&gt;
+
+&lt;p&gt;There is one exception to the “always be honest” rule, which is that you should not tell anyone that you’re ahead of schedule. The only time you’re really ahead of schedule is when you finish the entire project early. Until that point, you’re just one unexpected delay away from being behind schedule.&lt;/p&gt;
+
+&lt;h4 id=&quot;compromise-early--often&quot;&gt;Compromise early &amp;amp; often&lt;/h4&gt;
+
+&lt;p&gt;Since you’re going to be telling your stakeholders when you’re behind schedule, it’s useful to learn how to compromise. Compromising can be an awkward and painful process where you basically ask your stakeholders to either cut back features or give you more time. You should try to compromise as soon as you know the deadline is tight, and you should do it as often as you need to. Compromise until the deadline feels truly achievable. Just remember that there is no “us vs. them” – everybody wants the same outcome, which is a high quality product delivered in a timely manner.&lt;/p&gt;
+
+&lt;h4 id=&quot;dont-pass-the-pressure-onto-your-team&quot;&gt;Don’t pass the pressure onto your team&lt;/h4&gt;
+
+&lt;p&gt;There will be times where you truly are behind schedule and there are no compromises to be made. During these times, a good team lead will shield their team from any pressure, and generally protect them from the harsh realities of the world. When the pressure is on, the last thing you want to do is stress the team out. Even teams that work well under pressure will eventually burn out and become unproductive.&lt;/p&gt;
+
+&lt;h4 id=&quot;ask-for-help-1&quot;&gt;Ask for help&lt;/h4&gt;
+
+&lt;p&gt;A common theme in this guide is to ask for help. A strategy I’ve used successfully in the past when I’ve been really close to a deadline is to borrow some time from another team. Then I can return the favour when that team needs help in the future. This is effective because having somebody else work on little things like bug fixes can really take the pressure off everybody else while they focus on finishing major features.&lt;/p&gt;
+
+&lt;h3 id=&quot;grow--support-your-team&quot;&gt;Grow &amp;amp; support your team&lt;/h3&gt;
+
+&lt;p&gt;I said before that a core part of the team lead role is growing the people on your team. I think it’s actually the most important part. I’ve heard people say that delivering value to the business is the most important part of your role. I disagree with this. To be fair, growing your team and delivering value are two things that go hand-in-hand. You’ll find that as people grow, they learn new skills, and they become happier &amp;amp; more productive. The more skilled your teams are, the more value they end up delivering (and the more they should be paid).&lt;/p&gt;
+
+&lt;p&gt;People grow in different ways, and part of your role is to identify how everyone on your team grows best. Some people like to be mentored, and told what to do. Some like to be given reading material or tutorials to follow. One thing that is common to most people I’ve worked with is that they grow when they’re challenged.&lt;/p&gt;
+
+&lt;h4 id=&quot;allow-pet-projects&quot;&gt;Allow pet projects&lt;/h4&gt;
+
+&lt;p&gt;Sometimes your team’s day-to-day work isn’t challenging enough to stimulate growth. This is why I’m quite fond of pet projects. You don’t have to set aside dedicated time for pet projects, like Google’s now-defunct 20% time. Instead you can allocate time for pet projects when they’re most appropriate. For example, someone on your team wants to learn about React. Wait until you have some downtime, and then ask them to spend a day or two building a simple clone of something they worked on recently using React. Afterwards, have them report back to you (and the team, if they’re comfortable with that) on the pros and cons.&lt;/p&gt;
+
+&lt;h4 id=&quot;encourage-pairing&quot;&gt;Encourage pairing&lt;/h4&gt;
+
+&lt;p&gt;For the times when the day-to-day work &lt;em&gt;is&lt;/em&gt; challenging enough, you want to make sure that everyone on the team is actually progressing with their work enough to really learn and grow from it. I was given a tip to help with this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Nobody is allowed to work on a task by themselves for more than one day.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I think this is a fantastic tip. It ensures that people spend less time being stuck on simple problems, and more time progressing with their work in a way that challenges them and allows them to grow. It also works really well for tasks that you know will take longer than a day, because you end up with more than one person having knowledge about these complex tasks. This reduces your reliance on your more senior team members who would normally take on these complex tasks by themselves.&lt;/p&gt;
+
+&lt;h4 id=&quot;run-knowledge-sharing-sessions&quot;&gt;Run knowledge sharing sessions&lt;/h4&gt;
+
+&lt;p&gt;Getting together on a regular basis to talk about things you’ve all learned recently can be a good way to keep everybody up-to-date on the whole project. You can even use these sessions as a way to talk about non-work things, like what you’re all planning to do over the weekend. This “not-work” sharing might not be appropriate for every team, but I think it’s a nice way to make the meetings less formal and get everyone to know each other as &lt;em&gt;people&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;These sessions are also the perfect opportunity to invite other teams along to encourage cross-pollination of ideas.&lt;/p&gt;
+
+&lt;h4 id=&quot;spend-time-together&quot;&gt;Spend time together&lt;/h4&gt;
+
+&lt;p&gt;I’m not a particularly social person. I used to be the person who would skip team lunches because I’d rather eat by myself. Everybody relaxes and has fun in different ways, which is why it’s so important to enable the team to spend time together in a variety of settings. Have lunch together in a restaurant, or in the office, or in a park. Go to meetups or conferences together. Start a book club. Use techniques like swarming –where you all work together on the same task– to bring everyone together.&lt;/p&gt;
+
+&lt;p&gt;Swarming is a particular favourite of mine. Firstly because it’s a great way to trick people into spending time together (they all think they’re doing &lt;em&gt;work&lt;/em&gt; but in fact they’re &lt;em&gt;bonding&lt;/em&gt; and being &lt;em&gt;social&lt;/em&gt; – ha, punk’d!) and also because it’s just a genuinely good way of getting work done. I’ve found that swarming works particularly well for tasks that are big but easy &amp;amp; monotonous – things like testing a single feature on many configurations, or writing documentation.&lt;/p&gt;
+
+&lt;h3 id=&quot;remember-you-are-a-team&quot;&gt;Remember: you are a team!&lt;/h3&gt;
+
+&lt;p&gt;Every team is different. As the team lead, your job is to celebrate everyone’s differences and make every effort to ensure that each person on the team has an equal opportunity to grow and achieve their goals. I promise you that focussing on the growth and happiness of your team will not only make you a better team lead, it will make your team happier and proud to work together. It will make your team more productive and more successful. If you’re lucky, it will even inspire members of your team to become great teams leads in the future – just like you.&lt;/p&gt;
+
+&lt;h2 id=&quot;further-reading&quot;&gt;Further reading&lt;/h2&gt;
+
+&lt;p&gt;Here are some other resources to help you become a better team lead.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://larahogan.me/blog/first-one-on-one-questions/&quot;&gt;&lt;strong&gt;Lara Hogan: Questions for our first 1:1&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.devmynd.com/blog/2015-11-30-managers-developers-and-the-in-between-p1/&quot;&gt;&lt;strong&gt;Sarah Mei: Managers, Developers, &amp;amp; the In Between&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Notes to a Software Team Leader: Growing Self Organizing Teams&lt;/strong&gt; by Roy Osherove&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Manager’s Path: A Guide for Tech Leaders Navigating Growth and Change&lt;/strong&gt; by Camille Fournier&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://theleaddeveloper.com/&quot;&gt;&lt;strong&gt;The Lead Developer conference (UK &amp;amp; USA)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 14 Jun 2018 00:00:00 +1200</pubDate>
+        <link>https://wildlyinaccurate.com/becoming-a-team-lead-a-survival-guide/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/becoming-a-team-lead-a-survival-guide/</guid>
+        
+        <category>team lead</category>
+        
+        <category>tech lead</category>
+        
+        <category>survival guide</category>
+        
+        
+        <category>Career</category>
+        
+        <category>Leadership</category>
+        
+        <category>Talks</category>
+        
+      </item>
+    
+      <item>
+        <title>Introducing Second: a framework for mostly-static React applications</title>
+        <description>&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/wildlyinaccurate/second&quot;&gt;Second&lt;/a&gt; is a framework for building React applications where the data is fetched on the server and most of the components do not change after the first render.&lt;/li&gt;
+  &lt;li&gt;Components can declare their data dependencies using a container similar to Facebook’s &lt;a href=&quot;https://facebook.github.io/relay/&quot;&gt;Relay&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;By default components are only rendered on the server; client-side rendering is opt-in by using the component dehydrator.&lt;/li&gt;
+  &lt;li&gt;Second works with any React-like library including &lt;a href=&quot;https://preactjs.com/&quot;&gt;Preact&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why-build-this-framework&quot;&gt;Why build this framework?&lt;/h2&gt;
+
+&lt;p&gt;While using React to build the &lt;a href=&quot;/introducing-a-faster-bbc-news-front-page/&quot;&gt;BBC News front page&lt;/a&gt; and several other mostly-static pages, a common theme emerged: only a small number of components on these pages require client-side JavaScript to function. Rendering every component in the browser does not provide an optimal experience — especially for users on low-powered devices or low-speed connections. Instead, selectively bundling components for the browser reduces bundle sizes and minimizes CPU overhead without sacrificing React’s event system and stateful components.&lt;/p&gt;
+
+&lt;p&gt;Second is not a large or complex framework. It is the result of combining several simple and well-tested techniques—&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Server-side rendering&lt;/li&gt;
+  &lt;li&gt;Container components for declarative data requirements&lt;/li&gt;
+  &lt;li&gt;Selective client-side rendering&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;—and combining them into a single package that can be easily reused across multiple applications.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
+
+&lt;h3 id=&quot;server-side-rendering&quot;&gt;Server-side rendering&lt;/h3&gt;
+
+&lt;p&gt;At its simplest, Second is just a wrapper around server-side rendering:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VDom&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VDomServer&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-dom/server'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'second'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./components/my-component'&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;second&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VDom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VDomServer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;second&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Rendered HTML:'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;data-driven-components&quot;&gt;Data-driven components&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/wildlyinaccurate/second/tree/master/packages/second-container&quot;&gt;second-container&lt;/a&gt; is a higher-order container component inspired by Facebook’s &lt;a href=&quot;https://facebook.github.io/relay/&quot;&gt;Relay&lt;/a&gt; that allows components to declare their data requirements. Unlike Relay which works only with GraphQL, second-container works with regular HTTP requests out of the box and supports custom data fetchers as well.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ComponentWithData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;second&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createContainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Each key is provided to the wrapped component as a prop&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;queryResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// Props can be used to dynamically build API endpoints&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`http://api.duckduckgo.com/?q=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;format=json`&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+    &lt;span class=&quot;na&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// Requests can be marked as optional to avoid failing&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// the entire render when one request fails&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;mustSucceed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`https://api.github.com/users/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/events`&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Containers can be used at any level of the render tree, allowing leaf nodes to fetch their own data. For static render trees, this typically scales better than fetching data at the root and passing it as a prop down through the entire tree.&lt;/p&gt;
+
+&lt;p&gt;Second’s renderer integrates seamlessly with the containers. By keeping track of outgoing requests, it ensures every mandatory request has returned successfully before fulfilling the rendered tree.&lt;/p&gt;
+
+&lt;h2 id=&quot;partial-opt-in-browser-rendering&quot;&gt;Partial, opt-in browser rendering&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/wildlyinaccurate/second/tree/master/packages/second-dehydrator&quot;&gt;second-dehydrator&lt;/a&gt; is a higher-order component that serialises (“dehydrates”) a component’s props and renders them into an inline &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag. The component can then be hydrated in the browser with its original props, and rendered as a regular interactive React component.&lt;/p&gt;
+
+&lt;p&gt;Take this “top stories” BBC News component, for example. It is static except for the live-updating promo in the bottom-right corner.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;BBC News top stories component, containing a live-updating promo&quot; src=&quot;/assets/bbc-news-top-stories-live-component.png&quot; width=&quot;1004&quot; srcset=&quot;/assets/r/330/bbc-news-top-stories-live-component.png 330w, /assets/r/345/bbc-news-top-stories-live-component.png 345w, /assets/r/381/bbc-news-top-stories-live-component.png 381w, /assets/r/384/bbc-news-top-stories-live-component.png 384w, /assets/r/546/bbc-news-top-stories-live-component.png 546w, /assets/r/640/bbc-news-top-stories-live-component.png 640w, /assets/r/738/bbc-news-top-stories-live-component.png 738w, /assets/r/840/bbc-news-top-stories-live-component.png 840w, /assets/r/960/bbc-news-top-stories-live-component.png 960w, /assets/bbc-news-top-stories-live-component.png 1004w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;BBC News top stories component, containing a live-updating promo&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;This component can be bundled efficiently by dehydrating just the live promo:&lt;/p&gt;
+
+&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createDehydrator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'second-dehydrator'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;StaticPromo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./components/static-promo'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;LivePromo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./components/live-promo'&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dehydrate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createDehydrator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DehydratedLivePromo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dehydrate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;LivePromo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TopStories&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;className=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;nw-c-top-stories&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StaticPromo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StaticPromo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StaticPromo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StaticPromo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StaticPromo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DehydratedLivePromo&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To hydrate this component in the browser, second-dehydrator takes a component map and a callback. The hydrator scans the DOM for dehydrated components and their corresponding props. It hydrates each component with its props and passes them to the callback function, where they can be rendered with React.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-dom'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hydrate&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'second-dehydrator'&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;renderComponent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;HydratedComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;containerElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;HydratedComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;containerElement&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;componentMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;LivePromo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/* webpackMode: &quot;eager&quot; */&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./components/live-promo'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;hydrate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;renderComponent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;componentMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;what-next&quot;&gt;What next?&lt;/h2&gt;
+
+&lt;p&gt;Second has worked well for some of the projects that I’ve worked on this year. These projects have mostly been content-driven pages, with a couple of interactive form-based applications. I’d like to use Second in a wider range of projects to get a feel for whether the abstractions are at the right level and whether the APIs are flexible enough.&lt;/p&gt;
+
+&lt;p&gt;By opening up the framework, I’m hoping that the wider React community can have some discussions about whether selective client-side rendering is a useful pattern, and if it is, whether a framework like Second is the right way to implement the pattern.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 05 Aug 2017 00:00:00 +1200</pubDate>
+        <link>https://wildlyinaccurate.com/introducing-second-a-framework-for-mostly-static-react-applications/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/introducing-second-a-framework-for-mostly-static-react-applications/</guid>
+        
+        <category>react</category>
+        
+        <category>preact</category>
+        
+        <category>static</category>
+        
+        <category>server-rendering</category>
+        
+        
+        <category>Web Development</category>
+        
+        <category>React</category>
+        
+      </item>
+    
+      <item>
+        <title>Introducing a faster BBC News front page</title>
+        <description>&lt;p&gt;Web performance is something I care deeply about both as a developer whose work affects millions of people around the world, and as a user who often accesses the web on slow &amp;amp; unreliable connections. I have regularly and loudly complained that &lt;a href=&quot;/redefining-the-bcc-news-core-experience/&quot;&gt;the BBC News website is unnecessarily slow&lt;/a&gt;, so when I was given the opportunity to help rebuild one of the most visited pages of BBC News—the front page—I jumped at the chance.&lt;/p&gt;
+
+&lt;p&gt;That was April 2016. Now, a whole year later, we’re ready to begin a phased rollout of the new front page. Starting with a small percentage of users in the UK, we will gradually move everybody to the new front page over the course of several weeks. (Update: as of June 2017, the new front page is rolled out to all users).&lt;/p&gt;
+
+&lt;h2 id=&quot;quick-facts-about-the-new-front-page&quot;&gt;Quick facts about the new front page&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It is lighter and faster than the old one:
+    &lt;ul&gt;
+      &lt;li&gt;First meaningful paint happens up to &lt;strong&gt;50% sooner&lt;/strong&gt; on mobile devices&lt;sup&gt;&lt;a href=&quot;#footnotes&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
+      &lt;li&gt;Page enhancements like lazy-loaded images load &lt;strong&gt;150% faster&lt;/strong&gt; on mobile, and &lt;strong&gt;70% faster&lt;/strong&gt; on desktop.&lt;/li&gt;
+      &lt;li&gt;The total bytes downloaded is &lt;strong&gt;50% less&lt;/strong&gt; on mobile and &lt;strong&gt;75% less&lt;/strong&gt; on desktop.&lt;/li&gt;
+      &lt;li&gt;CPU busy time has been reduced by &lt;strong&gt;30%&lt;/strong&gt; on mobile and by &lt;strong&gt;50%&lt;/strong&gt; on desktop.&lt;/li&gt;
+      &lt;li&gt;Performance monitoring has been automated with &lt;a href=&quot;https://speedcurve.com/&quot;&gt;SpeedCurve&lt;/a&gt; from the beginning of the project.&lt;!--more--&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;It is available over HTTPS, and we have plans to redirect insecure traffic to HTTPS in the not-so-distant future.&lt;/li&gt;
+  &lt;li&gt;The page is built from React components that are styled with the BBC’s CSS framework, &lt;a href=&quot;https://github.com/bbc/grandstand&quot;&gt;Grandstand&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Each component is a horizontal “slice” of the page that fetches its own data. This makes it easy for us to reuse slices on any page.&lt;/li&gt;
+  &lt;li&gt;The React components are individually rendered by the BBC’s React-component-as-an-API-endpoint service and assembled into a page by our &lt;a href=&quot;/how-we-assemble-web-pages-at-bbc-news/&quot;&gt;page-assembly-as-a-service system&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;React is only used on the server. We do not load it in the browser&lt;sup&gt;&lt;a href=&quot;#footnotes&quot;&gt;[2]&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
+  &lt;li&gt;The development team consists of 5 developers and 1 tester, but we have collaborated with over 60 other developers and testers from all around the BBC to build this page.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
+
+&lt;p&gt;The version of the front page we’re rolling out is an MVP, a &lt;em&gt;phase one&lt;/em&gt;. We will be changing it considerably over the next several months. Here’s an idea of what you can expect to see:&lt;/p&gt;
+
+&lt;h3 id=&quot;performance-improvements&quot;&gt;Performance improvements&lt;/h3&gt;
+
+&lt;p&gt;While we have managed to improve the performance of the front page considerably, there is still a lot of work to do:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The first meaningful paint time is still too high. We can improve it by loading the core CSS sooner.&lt;/li&gt;
+  &lt;li&gt;We still send too many bytes to the client. A good portion of this is from inline styles that are only used on IE8. (Update: We already have a pull request open to drop the IE8-only styles, which should reduce the amount of inline styles by about a third).&lt;/li&gt;
+  &lt;li&gt;Style recalculations and layouts take too long on low-powered devices. This still needs some investigation.&lt;/li&gt;
+  &lt;li&gt;We are essentially hamstrung by the “white BBC bar” at the top of the page. This bar contains components from other parts of the BBC like Search, Notifications, and BBC ID. All of these components load their own blocking CSS &amp;amp; JavaScript before any of the BBC News assets. While this is unlikely to change in the short term, we’re hoping to work with the teams that own these components to reduce their impact.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;design-enhancements&quot;&gt;Design enhancements&lt;/h3&gt;
+
+&lt;p&gt;In order to ship the new front page sooner, we made a lot of compromises with both the UX and editorial teams around the design of the page. Once we’re finished with the rollout, we will be improving the visual treatment of story cards (promos) to highlight correspondent stories and feature pieces. The current designs look something like this:&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The plain promo design for the MVP launch&quot; src=&quot;/assets/news-front-page-promo-current.png&quot; srcset=&quot;/assets/r/330/news-front-page-promo-current.png 330w, /assets/r/345/news-front-page-promo-current.png 345w, /assets/r/381/news-front-page-promo-current.png 381w, /assets/r/384/news-front-page-promo-current.png 384w, /assets/r/546/news-front-page-promo-current.png 546w, /assets/r/640/news-front-page-promo-current.png 640w, /assets/r/738/news-front-page-promo-current.png 738w, /assets/r/840/news-front-page-promo-current.png 840w, /assets/r/960/news-front-page-promo-current.png 960w, /assets/r/1250/news-front-page-promo-current.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The plain promo design for the MVP launch&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;And below is one of the proposals for how we might display other types of promo:&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;An example of potential visual treatments for special types of promo&quot; src=&quot;/assets/news-front-page-promo-variation.png&quot; srcset=&quot;/assets/r/330/news-front-page-promo-variation.png 330w, /assets/r/345/news-front-page-promo-variation.png 345w, /assets/r/381/news-front-page-promo-variation.png 381w, /assets/r/384/news-front-page-promo-variation.png 384w, /assets/r/546/news-front-page-promo-variation.png 546w, /assets/r/640/news-front-page-promo-variation.png 640w, /assets/r/738/news-front-page-promo-variation.png 738w, /assets/r/840/news-front-page-promo-variation.png 840w, /assets/r/960/news-front-page-promo-variation.png 960w, /assets/r/1250/news-front-page-promo-variation.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;An example of potential visual treatments for special types of promo&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h3 id=&quot;react-in-the-browser&quot;&gt;React in the browser&lt;/h3&gt;
+
+&lt;p&gt;We decided early on in the project that using React in the browser was overkill for a page that is predominantly static text and images. The performance impact of bundling so much JavaScript and executing it in the browser is also unacceptably high: Even making use of server-side rendering, emulated mobile devices spend nearly 4 times as long executing scripts and performing layouts &amp;amp; paints when React was run on the page.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A timeline of the server side rendered page without React in the browser&quot; src=&quot;/assets/news-front-page-timeline-static.png&quot; width=&quot;636&quot; srcset=&quot;/assets/r/330/news-front-page-timeline-static.png 330w, /assets/r/345/news-front-page-timeline-static.png 345w, /assets/r/381/news-front-page-timeline-static.png 381w, /assets/r/384/news-front-page-timeline-static.png 384w, /assets/r/546/news-front-page-timeline-static.png 546w, /assets/news-front-page-timeline-static.png 636w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A timeline of the server side rendered page without React in the browser&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A timeline showing the impact of running React in the browser&quot; src=&quot;/assets/news-front-page-timeline-react.png&quot; width=&quot;636&quot; srcset=&quot;/assets/r/330/news-front-page-timeline-react.png 330w, /assets/r/345/news-front-page-timeline-react.png 345w, /assets/r/381/news-front-page-timeline-react.png 381w, /assets/r/384/news-front-page-timeline-react.png 384w, /assets/r/546/news-front-page-timeline-react.png 546w, /assets/news-front-page-timeline-react.png 636w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A timeline showing the impact of running React in the browser&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;Our current approach to running JavaScript in the browser is to build a good ol’ fashioned bundle, completely separate from the React components. However, we realise that this isn’t going to scale for very long, and that eventually we will have to find a way to run our React components in the browser without impacting the user experience. Solutions that we’re looking into include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Using &lt;a href=&quot;https://preactjs.com/&quot;&gt;Preact&lt;/a&gt; in place of React.&lt;/li&gt;
+  &lt;li&gt;Converting our components to &lt;a href=&quot;https://preactjs.com/guide/types-of-components#stateless-functional-components&quot;&gt;stateless functional components&lt;/a&gt; where possible to reduce their size.&lt;/li&gt;
+  &lt;li&gt;Smarter &lt;a href=&quot;https://webpack.js.org/guides/code-splitting/&quot;&gt;code splitting&lt;/a&gt; so that we can load non-essential code on-demand.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;/h2&gt;
+
+&lt;p&gt;Firstly, to everybody involved: &lt;strong&gt;thank you&lt;/strong&gt;. Rarely have I had the chance to work with so many talented, patient, dedicated, and caring people. From documentation tweaks to requirements gathering, from bug fixes to building entire components; regardless of the size of your contribution, we wouldn’t have reached this point without you. So again: thank you, and congratulations on reaching this milestone.&lt;/p&gt;
+
+&lt;p&gt;To the design team and editorial staff: thank you for helping us find a balance between perfection and a fast launch.&lt;/p&gt;
+
+&lt;p&gt;To the project managers, business analysts, and product owners: I don’t think you get enough credit. Thank you for working extraordinarily hard to smooth out all of the bumps in this project, and for providing the development team with a clear path.&lt;/p&gt;
+
+&lt;p&gt;And finally, to my team: You are amazing. I’m so proud of what we’ve built together. On a more personal level, you’ve made coming into work feel like coming home to a second family, and I’m eternally grateful for that. The donuts are on me 💜.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Mobile device testing was performed using the “Mobile - Emerging Markets” setting on &lt;a href=&quot;https://www.webpagetest.org/&quot;&gt;WebPagetest&lt;/a&gt; (&lt;em&gt;Chrome Beta on a Motorola G (gen 4) tested from Dulles, Virginia on a 400 Kbps 3G connection with 400ms of latency&lt;/em&gt;).&lt;/li&gt;
+  &lt;li&gt;BBC News does not load React in the browser, but some other page components (like the BBC-wide search bar in the top-right) do load React.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 04 Apr 2017 00:00:00 +1200</pubDate>
+        <link>https://wildlyinaccurate.com/introducing-a-faster-bbc-news-front-page/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/introducing-a-faster-bbc-news-front-page/</guid>
+        
+        <category>bbc news</category>
+        
+        <category>performance</category>
+        
+        
+        <category>BBC News</category>
+        
+        <category>Performance</category>
+        
+      </item>
+    
+      <item>
+        <title>Web development technologies to adopt in 2017</title>
+        <description>&lt;p&gt;I started 2016 feeling quite overwhelmed by the sheer number of new technologies that were being introduced. This year I feel like many of those technologies have matured, so I have collated a list of the ones that I think deserve your attention. My focus for the last couple of years has been on performance, so I’ve made an effort to ensure that all of the technologies mentioned are either “performance-friendly” or are directly related to performance.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;preact--preactjscom&quot;&gt;Preact — &lt;a href=&quot;https://preactjs.com/&quot;&gt;preactjs.com&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;A fast 3kB alternative to React with the same ES6 API. For projects that use React’s other APIs, &lt;a href=&quot;https://github.com/developit/preact-compat&quot;&gt;preact-compat&lt;/a&gt; exists as a compatibility layer allowing Preact to be a complete drop-in replacement for React.&lt;/p&gt;
+
+&lt;p&gt;As well as being smaller than React, Preact is also much faster. I measured the impact of migrating to Preact in three projects and saw a 3-4x reduction in JavaScript execution times in all of them &lt;small&gt;(&lt;a href=&quot;https://github.com/wildlyinaccurate/resume/pull/4&quot;&gt;some data and profiler screenshots for one project&lt;/a&gt;)&lt;/small&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;webpack--webpackjsorg&quot;&gt;Webpack — &lt;a href=&quot;https://webpack.js.org/&quot;&gt;webpack.js.org&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Bundle your scripts, images, styles, assets… I was initially put off Webpack because I thought it did too much. With the help of &lt;a href=&quot;https://github.com/petehunt/webpack-howto&quot;&gt;Pete Hunt’s webpack-howto&lt;/a&gt; I realised that Webpack can be as simple or as complex as you want it to be.&lt;/p&gt;
+
+&lt;p&gt;These days I recommend that people use Webpack even for trivial projects because it’s easy to set up, the defaults are good, and it opens up a huge number of possibilities for optimising your application.&lt;/p&gt;
+
+&lt;h3 id=&quot;offline-plugin--githubcomnekroffline-plugin&quot;&gt;offline-plugin — &lt;a href=&quot;https://github.com/NekR/offline-plugin&quot;&gt;github.com/NekR/offline-plugin&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;A highly-configurable Webpack plugin that provides an offline experience for your application using ServiceWorker, with AppCache as a fallback.&lt;/p&gt;
+
+&lt;p&gt;If there’s one thing on this list that you consider adopting, it should be this. The number of people around the world whose sole means of accessing the Internet on a mobile phone is &lt;em&gt;increasing&lt;/em&gt;. We can improve their experience on the web immeasurably by utilising technologies like ServiceWorker &amp;amp; AppCache, and this plugin is a ridiculously easy way to do that.&lt;/p&gt;
+
+&lt;h3 id=&quot;tachyons--tachyonsio&quot;&gt;Tachyons — &lt;a href=&quot;http://tachyons.io/&quot;&gt;tachyons.io&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Functional CSS for humans. Tachyons is a mobile-first responsive CSS framework with a focus on accessibility. Its single-purpose class structure is scalable and practically removes the need to write any custom CSS.&lt;/p&gt;
+
+&lt;p&gt;Tachyons has a relatively small footprint, and is extremely modular so you can easily include only what you need. It’s a good, powerful alternative to heavier frameworks like Bootstrap or Foundation.&lt;/p&gt;
+
+&lt;h3 id=&quot;lighthouse--githubcomgooglechromelighthouse&quot;&gt;Lighthouse — &lt;a href=&quot;https://github.com/GoogleChrome/lighthouse&quot;&gt;github.com/GoogleChrome/lighthouse&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Built by some of the industry’s foremost web performance evangelists, Lighthouse is an automated tool for analysing your web application’s performance and providing insights on developer best practices.&lt;/p&gt;
+
+&lt;p&gt;As well as using it as a once-in-a-while test, I also recommend running Lighthouse on a regular basis — perhaps part of a daily build. Its insights are broad enough to cover a wide range of issues from accessibility to performance, but specific enough that any issues are easily actionable.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 +1300</pubDate>
+        <link>https://wildlyinaccurate.com/web-development-technologies-to-adopt-in-2017/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/web-development-technologies-to-adopt-in-2017/</guid>
+        
+        <category>preact</category>
+        
+        <category>react</category>
+        
+        <category>webpack</category>
+        
+        <category>service worker</category>
+        
+        <category>performance</category>
+        
+        
+        <category>Web Development</category>
+        
+      </item>
+    
+      <item>
+        <title>How we assemble web pages at BBC News</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;This post is about the Web Application Framework in use by some teams at the BBC. It is not strictly a framework in that it specifies the contracts between components, rather than providing concrete implementations of the components. For this reason, I prefer to think of it as the Web Application &lt;em&gt;Specification&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;At the beginning of 2015, a group of developers and technical architects from around the BBC got together with the goal of designing a system for sharing web page components between teams. This came from an acceptance that most of the BBC’s public-facing web products have a similar look &amp;amp; feel, and a desire to improve efficiency through sharing rather than building similar things over and over again.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Cards or 'promos' from BBC Programmes, BBC Sport, BBC News, and CBBC.&quot; src=&quot;/assets/bbc-promo-similarities.png&quot; width=&quot;961&quot; srcset=&quot;/assets/r/330/bbc-promo-similarities.png 330w, /assets/r/345/bbc-promo-similarities.png 345w, /assets/r/381/bbc-promo-similarities.png 381w, /assets/r/384/bbc-promo-similarities.png 384w, /assets/r/546/bbc-promo-similarities.png 546w, /assets/r/640/bbc-promo-similarities.png 640w, /assets/r/738/bbc-promo-similarities.png 738w, /assets/r/840/bbc-promo-similarities.png 840w, /assets/r/960/bbc-promo-similarities.png 960w, /assets/bbc-promo-similarities.png 961w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Cards or 'promos' from BBC Programmes, BBC Sport, BBC News, and CBBC.&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;In some organisations, technologies are standardised which makes sharing components between teams a trivial task. At the BBC, teams are free to use whichever technologies they like. This means that any component-sharing solution we come up with can’t be tied to a template language, data structure, build system, or even a CSS preprocessor. This meant that building a component library like &lt;a href=&quot;http://rizzo.lonelyplanet.com/styleguide/ui-components&quot;&gt;Lonely Planet’s Rizzo&lt;/a&gt; or &lt;a href=&quot;https://cloudflare.github.io/cf-ui/&quot;&gt;CloudFlare’s CFUI&lt;/a&gt; was out of the picture. We also felt that something like &lt;a href=&quot;http://registry.origami.ft.com/components&quot;&gt;the FT’s Origami&lt;/a&gt; would require too much effort on the users of the components.&lt;/p&gt;
+
+&lt;p&gt;We ended up going back to basics and designed a solution that is based on two premises:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;All of our web pages are built out of HTML, CSS, and JavaScript.&lt;/li&gt;
+  &lt;li&gt;Most pages have three main parts: the head, which contains metadata and styling; the body, which contains content; and the part at the end of the body, which contains JavaScript.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;What we came up with is called the WAF, or &lt;em&gt;Web Application Framework&lt;/em&gt;. It’s a surprisingly simple framework, and is built on top of three core principles:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Components as endpoints&lt;/li&gt;
+  &lt;li&gt;The envelope contract&lt;/li&gt;
+  &lt;li&gt;Page composition&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;components-as-endpoints&quot;&gt;Components as endpoints&lt;/h2&gt;
+
+&lt;p&gt;For components to be shared successfully, they need to be easy to distribute, easy to install, and easy to use. For this, we turned to a delivery mechanism that most developers are familiar with: the web.&lt;/p&gt;
+
+&lt;p&gt;Every component is available at an HTTP endpoint. How that endpoint is built is unimportant, and varies from team to team. Some teams deploy dedicated applications that render specific components. Others make use of an internal component-as-an-endpoint service. Regardless of the implementation, to integrate successfully into the WAF, every component endpoint must to respond to an HTTP GET request with a rendered component that is ready to be inserted into a page.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-envelope-contract&quot;&gt;The envelope contract&lt;/h2&gt;
+
+&lt;p&gt;Having components as endpoints only works if all of the components are returned in the same format. To solve this, we designed the envelope format which imposes a contract on both the component endpoints and the consumers of those endpoints. The contract for component endpoints is this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Component endpoints MAY accept parameters which vary the output.&lt;/li&gt;
+  &lt;li&gt;Component endpoints MUST return a JSON object with the following properties:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; — an array of strings intended to be inserted into the document &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; element. Usually stylesheets, metadata, and blocking scripts.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bodyInline&lt;/code&gt; — a string intended to be inserted somewhere in the document &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bodyLast&lt;/code&gt; — an array of strings intended to be inserted at the end of the document &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt;. Usually non-blocking scripts.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Component endpoints SHOULD atomise the &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;bodyLast&lt;/code&gt; values as much as possible.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is an example envelope response:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;head&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;link rel=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;stylesheet&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; href=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://m.files.bbci.co.uk/framework.css&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;style&amp;gt;.nw-c-top-stories{padding-bottom:2rem}&amp;lt;/style&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bodyInline&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;div class=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;nw-c-top-stories&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;gt;[... lots of markup ...]&amp;lt;/div&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bodyLast&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;script async defer src=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://m.files.bbci.co.uk/modules/bbc-news-front-page/2.0.8/init.js&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;page-composition&quot;&gt;Page composition&lt;/h2&gt;
+
+&lt;p&gt;Now that we have web page components available in a standardised format over HTTP, we need a way to assemble the components into a page. To this end, there is a contract for systems that receive envelopes, which we call &lt;em&gt;page composition&lt;/em&gt; systems:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Page composition systems MUST render components in the order they are specified.&lt;/li&gt;
+  &lt;li&gt;Page composition systems MUST de-duplicate all &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;bodyLast&lt;/code&gt; values.&lt;/li&gt;
+  &lt;li&gt;Page composition systems SHOULD fetch components in parallel.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The de-duplicating aspect of a page composition system is important, because page components may share many of the same dependencies. For example, if many components were built using the Bootstrap CSS framework, they would all return a reference to &lt;code class=&quot;highlighter-rouge&quot;&gt;bootstrap.css&lt;/code&gt; in their &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt;. Rather than render several redundant references to this CSS, the page composition system must ensure that it is rendered only once.&lt;/p&gt;
+
+&lt;p&gt;Many BBC teams have implemented their own page composition systems within their existing web applications. BBC News have developed a page composition service called Mozart which provides a simple configuration-driven way to assemble pages while transparently handling the difficult problems like scaling, logging, and monitoring.&lt;/p&gt;
+
+&lt;h2 id=&quot;piecing-it-all-together&quot;&gt;Piecing it all together&lt;/h2&gt;
+
+&lt;p&gt;This method of assembling web pages is being used successfully in production by several teams at the BBC. The most-used component is a live-updating news feed, initially built for live coverage of sports events on BBC Sport, but now used for live reporting pages on &lt;a href=&quot;http://www.bbc.co.uk/news/live/uk-england-manchester-38860956&quot;&gt;BBC News&lt;/a&gt;, and the &lt;a href=&quot;http://www.bbc.com/persian/live/institutional-38891510&quot;&gt;World Service&lt;/a&gt;. It has also seen some use as a way to display long feeds of content like on the &lt;a href=&quot;http://www.bbc.co.uk/news/topics/8abd564a-2b8e-401c-9916-34982cb67b55/womens-rights&quot;&gt;BBC News topic pages&lt;/a&gt;. Soon BBC News will roll out their new front page using the WAF, which is a good opportunity for us to stress-test the framework and expand it if necessary.&lt;/p&gt;
+
+&lt;p&gt;One of the expansions we’re currently looking at is a mechanism for components to declare their cacheability. This will help to reduce the load on component endpoints and on page composition systems as well.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 13 Feb 2017 00:00:00 +1300</pubDate>
+        <link>https://wildlyinaccurate.com/how-we-assemble-web-pages-at-bbc-news/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/how-we-assemble-web-pages-at-bbc-news/</guid>
+        
+        <category>bbc news</category>
+        
+        
+        <category>BBC News</category>
+        
+      </item>
+    
+      <item>
+        <title>What it's like to work as a developer at BBC News</title>
+        <description>&lt;p&gt;The BBC is a pretty large organisation. Today it employs around 20,000 people (actually around 35,000 when you include part-time and fixed-term contract employees) across a huge number of divisions. The &lt;a href=&quot;http://careerssearch.bbc.co.uk/&quot;&gt;BBC Careers website&lt;/a&gt; typically has over 100 vacancies posted on any given day. Before I joined the BBC, I found the sheer scale of it a bit intimidating. Usually I can get an idea of what it’s like to work for a company by reading their job advertisements and their engineering blogs, but with the BBC I was almost completely clueless. In this post I hope to shed some light on what it’s like to work as a developer or tester for BBC News.&lt;/p&gt;
+
+&lt;p&gt;Just a small disclaimer first: from an engineering perspective, the BBC is not like most other companies — it’s more like dozens of smaller companies, each with their own engineering department, working towards a common goal. &lt;a href=&quot;http://www.bbc.com/news&quot;&gt;News&lt;/a&gt;, &lt;a href=&quot;http://www.bbc.com/sport&quot;&gt;Sport&lt;/a&gt;, &lt;a href=&quot;http://www.bbc.co.uk/programmes&quot;&gt;Programmes&lt;/a&gt;, &lt;a href=&quot;http://www.bbc.co.uk/iplayer&quot;&gt;iPlayer&lt;/a&gt;, &lt;a href=&quot;http://www.bbc.co.uk/radio&quot;&gt;Radio&lt;/a&gt;… As digital products, these are all built mostly independently of each other. I work for BBC News, so a lot of what I’ve written may not apply outside of BBC News.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#teams--projects&quot; id=&quot;markdown-toc-teams--projects&quot;&gt;Teams &amp;amp; projects&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#learning--personal-development&quot; id=&quot;markdown-toc-learning--personal-development&quot;&gt;Learning &amp;amp; personal development&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#working-hours--annual-leave&quot; id=&quot;markdown-toc-working-hours--annual-leave&quot;&gt;Working hours &amp;amp; annual leave&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#working-environment&quot; id=&quot;markdown-toc-working-environment&quot;&gt;Working environment&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#technologies&quot; id=&quot;markdown-toc-technologies&quot;&gt;Technologies&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#other-perks--local-discounts&quot; id=&quot;markdown-toc-other-perks--local-discounts&quot;&gt;Other perks &amp;amp; local discounts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-joel-test&quot; id=&quot;markdown-toc-the-joel-test&quot;&gt;The Joel Test&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;teams--projects&quot;&gt;Teams &amp;amp; projects&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: When I say “BBC News”, I mean “BBC News and BBC World Service”. The &lt;a href=&quot;http://www.bbc.co.uk/ws/languages&quot;&gt;30 or so World Service sites&lt;/a&gt; run on the same &lt;strong&gt;Responsive News&lt;/strong&gt; codebase as BBC News. For this reason, the World Service and News teams consider themselves to be part of the same overarching team.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There are about 6 BBC News development teams at any one time. Teams tend to form around projects which can last anywhere between a month (building a small routing service for the BBC’s RSS feeds) to 9 months (rebuilding the BBC News front page with a new technology stack). As well as developers, each team typically also has a dedicated tester, business analyst, project manager, and product owner.&lt;/p&gt;
+
+&lt;p&gt;In the past, teams were relatively static and people didn’t move around much between projects. More recently though, the teams have been shuffling a lot more. We don’t have a formal team rotation system in place at the moment, but it’s easy to move between teams if you want to work on something new. I’ve worked on 3 different teams over the last two years.&lt;/p&gt;
+
+&lt;p&gt;As well as collaboration between these BBC News teams, we also regularly collaborate with teams from all around the BBC. In the last 3 months alone, my team has worked with:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The Local News team in Cardiff.&lt;/li&gt;
+  &lt;li&gt;The Sport and Live teams, and the Accessibility Champions group in Manchester.&lt;/li&gt;
+  &lt;li&gt;The Worldwide team in West London.&lt;/li&gt;
+  &lt;li&gt;The Weather, Programmes, and Radio teams in Central London.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;learning--personal-development&quot;&gt;Learning &amp;amp; personal development&lt;/h2&gt;
+
+&lt;p&gt;BBC staff can attend &lt;a href=&quot;http://www.bbc.co.uk/academy&quot;&gt;BBC Academy&lt;/a&gt; courses for free. There are &lt;em&gt;so many&lt;/em&gt; courses available covering subjects across journalism, broadcasting, technology, management, and personal development — just to name a few. You can even earn a MSCS (Masters of Science in Computer Science) by completing Academy courses over a 22-month period.&lt;/p&gt;
+
+&lt;p&gt;We give a &lt;a href=&quot;https://www.pluralsight.com/&quot;&gt;Pluralsight&lt;/a&gt; license to every new starter.&lt;/p&gt;
+
+&lt;p&gt;We have an office library, and an annual budget for purchasing new books.&lt;/p&gt;
+
+&lt;p&gt;We run a &lt;em&gt;developer gathering&lt;/em&gt; every month where developers and testers from BBC News and other teams around the BBC give technical talks and open the floor to discussions.&lt;/p&gt;
+
+&lt;p&gt;We run a similar but less technical &lt;em&gt;town hall&lt;/em&gt; every fortnight where people from all around BBC News (including editorial staff) give 5 minute lightning talks about what’s going on in their world.&lt;/p&gt;
+
+&lt;p&gt;There is a budget for attending external events &amp;amp; conferences.&lt;/p&gt;
+
+&lt;p&gt;Most teams have at least one dedicated &lt;em&gt;learning day&lt;/em&gt; every two weeks where everybody is encouraged to spend their time learning something new.&lt;/p&gt;
+
+&lt;p&gt;On top of learning days, we encourage everybody to dedicate a couple of days each month to personal development.&lt;/p&gt;
+
+&lt;p&gt;We have regular personal development reviews to make sure everybody has what they need to achieve their personal goals.&lt;/p&gt;
+
+&lt;h2 id=&quot;working-hours--annual-leave&quot;&gt;Working hours &amp;amp; annual leave&lt;/h2&gt;
+
+&lt;p&gt;The BBC has a “core hours” system where you are required to work between 10am and 4pm. Other than that, you can pretty much work whichever hours you like so long as you work all of your contracted hours (usually 35 hours per week). I come in at 8am every day and leave at 4pm. Some of my colleagues come in at 10am and leave at 6pm.&lt;/p&gt;
+
+&lt;p&gt;Working from home is common, and is done at your manager’s discretion. Many people work from home one day each week.&lt;/p&gt;
+
+&lt;p&gt;Overtime is actively discouraged. No project is more important than your well-being!&lt;/p&gt;
+
+&lt;p&gt;Taking annual leave is encouraged, with enough notice. If you work on a project with a hard deadline like an election or sporting event, your manager might ask you to avoid taking leave in the weeks leading up to the deadline, but this is not mandatory.&lt;/p&gt;
+
+&lt;h2 id=&quot;working-environment&quot;&gt;Working environment&lt;/h2&gt;
+
+&lt;p&gt;All BBC News engineering staff are located in &lt;a href=&quot;http://www.bbc.co.uk/broadcastinghouse/&quot;&gt;New Broadcasting House&lt;/a&gt;. The entire building is accessible, and has the usual amenities including showers, toilets, and tea points, which are all also accessible.&lt;/p&gt;
+
+&lt;p&gt;Most of the web &amp;amp; apps engineering teams work in an open plan office space alongside the UX teams. There’s plenty of natural light, and there are a few adjustable standing desks available. Everything is set up for hot desking, but in reality people tend to sit in the same area to work with their team.&lt;/p&gt;
+
+&lt;p&gt;If you find open spaces are detrimental to your productivity, there are plenty of high-backed sofas and (mostly) sound-proofed enclosures scattered around the area. There are also several semi-enclosed “train carriages” that seat up to 6 people which are great for collaborative working.&lt;/p&gt;
+
+&lt;h2 id=&quot;technologies&quot;&gt;Technologies&lt;/h2&gt;
+
+&lt;p&gt;Most of our products are web-based and are written in Ruby, JavaScript, and PHP alongside the usual HTML &amp;amp; CSS (usually Sass). We also have some non-web projects which tend to be written in Java and Scala. Teams have the freedom to use whichever technologies they like, provided there is sufficient justification. Here’s a sample of technologies which I’ve personally worked with so far at BBC News:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Responsive News is a PHP application which uses &lt;a href=&quot;http://responsivenews.co.uk/post/123104512468/13-tips-for-making-responsive-web-design&quot;&gt;a range of interesting techniques&lt;/a&gt; to support all of the World Service languages and scripts.&lt;/li&gt;
+  &lt;li&gt;The BBC News &lt;a href=&quot;https://www.ampproject.org/&quot;&gt;AMP project&lt;/a&gt; and many of the worldwide elections components are powered by an open-source &lt;a href=&quot;https://en.wikipedia.org/wiki/Broker_Pattern&quot;&gt;broker-renderer&lt;/a&gt; Ruby framework called &lt;a href=&quot;https://github.com/BBC-News/alephant&quot;&gt;Alephant&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;The BBC News front page is built with React and Node.js on a platform developed by BBC Sport.&lt;/li&gt;
+  &lt;li&gt;One of our page composition systems is powered by services written in Ruby and Go.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;other-perks--local-discounts&quot;&gt;Other perks &amp;amp; local discounts&lt;/h2&gt;
+
+&lt;p&gt;Being just down the road from Oxford Circus puts us somewhat dangerously close to dozens of really great shops, restaurants, cafés, and bars. Many of them offer a discount to BBC employees.&lt;/p&gt;
+
+&lt;p&gt;The BBC runs a centralised benefits scheme which offers things like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A great pension plan.&lt;/li&gt;
+  &lt;li&gt;Dental, health, and travel insurance.&lt;/li&gt;
+  &lt;li&gt;Childcare vouchers.&lt;/li&gt;
+  &lt;li&gt;Access to &lt;a href=&quot;https://www.cyclescheme.co.uk/&quot;&gt;Cyclescheme&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;The ability to buy and sell annual leave.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Secure bike storage is available, or you can just lock your bike to the railing outside the building.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-joel-test&quot;&gt;The Joel Test&lt;/h2&gt;
+
+&lt;p&gt;Here’s how BBC News scores on &lt;a href=&quot;https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/&quot;&gt;The Joel Test&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you use source control?&lt;/strong&gt;&lt;br /&gt;
+ Yes. We use Git for almost everything, and SVN for a very small number of legacy systems.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Can you make a build in one step?&lt;/strong&gt;&lt;br /&gt;
+ Yes, all applications can be built in one step. Older applications have a separate deployment process, while newer applications are deployed to integration environments automatically.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you make daily builds?&lt;/strong&gt;&lt;br /&gt;
+ We practice continuous integration, so there are usually hundreds of builds happening every day.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you have a bug database?&lt;/strong&gt;&lt;br /&gt;
+ Yes. We aim to keep the backlog tidy, and will often close minor bugs which are not likely to be fixed.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you fix bugs before writing new code?&lt;/strong&gt;&lt;br /&gt;
+ Not always. Most teams will prioritise bugs which affect more than 1% of users. Other bugs are typically left at the bottom of the backlog and eventually closed.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you have an up-to-date schedule?&lt;/strong&gt;&lt;br /&gt;
+ Yes. Schedules range from broad 1-2 year goals to month-by-month feature delivery.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you have a spec?&lt;/strong&gt;&lt;br /&gt;
+ We have Business Analysts who work within our teams to define specifications and acceptance criteria.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do programmers have quiet working conditions?&lt;/strong&gt;&lt;br /&gt;
+ Not by default, but quiet areas are available.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you use the best tools money can buy?&lt;/strong&gt;&lt;br /&gt;
+ Yes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you have testers?&lt;/strong&gt;&lt;br /&gt;
+ Yes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do new candidates write code during their interview?&lt;/strong&gt;&lt;br /&gt;
+ Yes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Do you do hallway usability testing?&lt;/strong&gt;&lt;br /&gt;
+ Yes. UI changes are reviewed by our UX teams, and &lt;em&gt;Accessibility Champions&lt;/em&gt; are embedded in each team.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Mon, 26 Dec 2016 00:00:00 +1300</pubDate>
+        <link>https://wildlyinaccurate.com/working-as-a-developer-at-bbc-news/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/working-as-a-developer-at-bbc-news/</guid>
+        
+        <category>bbc news</category>
+        
+        <category>culture</category>
+        
+        
+        <category>BBC News</category>
+        
+      </item>
+    
+      <item>
+        <title>Redefining the BBC News core experience</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; Over the last 4 years, the BBC News core experience has been transformed from a speedy 21KB page into a slow &amp;amp; bloated 685KB monster. This was in part due to a lack of performance monitoring and 4 years of feature creep, but also due to a lack of performance-oriented culture throughout the business.&lt;/p&gt;
+
+  &lt;p&gt;I created a lightweight prototype of the BBC News core experience which demonstrates that focusing on the content first and foremost can result in an extremely fast page. I want the BBC and other websites to rethink what the core experience means, and experiment with giving users the power to define their own experience.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In the beginning of 2012 the BBC Responsive News team wrote about how they provide a “core experience” for users by default, and then progressively enhance the page if the browser &lt;a href=&quot;http://responsivenews.co.uk/post/18948466399/cutting-the-mustard&quot;&gt;cuts the mustard&lt;/a&gt;. At the time, this was cutting edge. They were able to build pages that worked on practically any browser without compromising the experience for users on modern browsers. To quote directly from the Responsive News blog:&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The first tier of support we call the core experience. This works on everything. I’ve seen it work on a Nokia E65, a Blackberry OS4, Kindle 1, a HTC Touch 2 running Win Mobile 6.5, a Samsung U900 Soul, a Commodore Vic20, my nan’s slipper and a toaster just sellotaped to a TV. Likewise, GoogleBot, text-browsers like Lynx, folks that disable JavaScript and so on are all assured a good level of service.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This technique is still in use today, and is an integral part of the front-end strategy for all modern BBC News pages. In 2012 it allowed the team to provide a fast and lightweight experience for users on low-end devices. 7 HTTP requests totalling 21KB was all it took to load the core experience of the BBC News front page. All users benefited from this fast initial page load, with modern browsers progressively enhancing the rest of the page after the content was loaded.&lt;/p&gt;
+
+&lt;p&gt;It has been over 4 years since the BBC News core experience was first built, and a lot has changed since then. Today, the core experience consists of 91 HTTP requests totalling 685KB – over 32x heavier than the original core experience. With JavaScript disabled this can be reduced to 137KB – still over 6x heavier.&lt;/p&gt;
+
+&lt;p&gt;The BBC News team is aware of their website’s shortcomings. Back in May 2015 I conducted a huge performance review which I’ve spoken about extensively both &lt;a href=&quot;http://slides.com/wildlyinaccurate/bbc-news-performance-review&quot;&gt;internally&lt;/a&gt; and &lt;a href=&quot;http://slides.com/wildlyinaccurate/bbc-news-performance&quot;&gt;externally&lt;/a&gt; (&lt;a href=&quot;https://www.youtube.com/watch?v=nE4LTRfcr94&quot;&gt;video&lt;/a&gt;). A &lt;em&gt;lot&lt;/em&gt; of work has been done over the last year, and many of the issues mentioned in those slides have already been addressed. Despite this, the elephant in the room is still the core experience.&lt;/p&gt;
+
+&lt;p&gt;That’s why when BBC News ran an internal hack day (where people can form teams to work on whatever they like) I took the opportunity to totally redefine the BBC News core experience.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-have-a-core-experience&quot;&gt;Why have a core experience?&lt;/h2&gt;
+
+&lt;p&gt;If you’re not already convinced that having a core experience is a good idea, I’ll attempt to sell it to you now.&lt;/p&gt;
+
+&lt;p&gt;Of the 3.6 billion Internet users today, over 2 billion (65%) are accessing the web from developing countries. This percentage will continue to increase over the coming years, as Internet usage in developing countries is growing over 100x faster than the rest of the world. Yes, you read that right – 100x! In India alone, over 108 million people accessed the Internet for the first time in the last year. That was a 30% increase over the year before.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Internet growth in India is accelerating at an enormous rate&quot; src=&quot;/assets/internet-growth-in-india.png&quot; width=&quot;800&quot; srcset=&quot;/assets/r/330/internet-growth-in-india.png 330w, /assets/r/345/internet-growth-in-india.png 345w, /assets/r/381/internet-growth-in-india.png 381w, /assets/r/384/internet-growth-in-india.png 384w, /assets/r/546/internet-growth-in-india.png 546w, /assets/r/640/internet-growth-in-india.png 640w, /assets/r/738/internet-growth-in-india.png 738w, /assets/internet-growth-in-india.png 800w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Internet growth in India is accelerating at an enormous rate&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;Despite huge Internet growth in developing countries, device capabilities and connection speeds are not improving. A typical smartphone sold in India in 2016 has 512MB of RAM, or about one sixth of a typical 2016 smartphone sold in developed countries. Fast connections are still a precious commodity, with nearly 70% of users in developing countries relying on cellular data to access the Internet. What’s interesting is that while this number is much lower in developed countries (10-20%), it has actually been &lt;em&gt;increasing&lt;/em&gt; –not decreasing– over the last few years.&lt;/p&gt;
+
+&lt;p&gt;So what does all of this have to do with a core experience?&lt;/p&gt;
+
+&lt;p&gt;If the majority of your users access the Internet on a mobile connection, then (hopefully) the last thing you want to do is send them bytes they don’t need. Not only can this be costly for your users (it takes 17 hours of minimum wage work in India to purchase 500MB of mobile data), it can also be costly for your business. At BBC News, the difference between a page loading in 4 seconds versus the same page loading in 8 seconds correlates to a 30% increase in users abandoning the page. This is a big deal for content providers like the BBC, and an even bigger deal for online stores.&lt;/p&gt;
+
+&lt;p&gt;Providing a core experience is about being able to reach users all around the world, regardless of connection speed and device capabilities. It’s about thinking beyond the USA &amp;amp; Europe, and welcoming the other 65% of the Internet to your website.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-definition-of-a-core-experience&quot;&gt;The definition of a core experience&lt;/h2&gt;
+
+&lt;p&gt;A core experience should be made up of these five things, in order of importance:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The page content.&lt;/li&gt;
+  &lt;li&gt;The markup required to make the page accessible.&lt;/li&gt;
+  &lt;li&gt;Minimal styling to make the content easily readable – grids, typography, etc.&lt;/li&gt;
+  &lt;li&gt;Minimal styling to brand the page – logo, colours.&lt;/li&gt;
+  &lt;li&gt;The means to enhance the page where appropriate.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A core experience should be &lt;em&gt;just&lt;/em&gt; these things. Everything else is an enhancement.&lt;/p&gt;
+
+&lt;p&gt;The way this has been achieved so far at the BBC has been to create a small &lt;code class=&quot;highlighter-rouge&quot;&gt;core.css&lt;/code&gt; stylesheet containing just the styles for points 3 and 4. Then, provided the browser cuts the mustard, some JavaScript inserts an &lt;code class=&quot;highlighter-rouge&quot;&gt;enhanced.css&lt;/code&gt; stylesheet into the page that contains the rest of the styling. This JavaScript is also responsible for downloading and initialising other JavaScript enhancements, like live updates and localisation services.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem-with-the-bbc-news-core-experience&quot;&gt;The problem with the BBC News core experience&lt;/h2&gt;
+
+&lt;p&gt;Cutting the mustard to provide an enhanced experience is great from a web developer’s point of view: browsers that use &lt;code class=&quot;highlighter-rouge&quot;&gt;enhanced.css&lt;/code&gt; can use modern (in browser terms) standards like CSS3. Likewise, modern JavaScript can be used without the need for polyfills or compatibility libraries. But there’s a problem with this approach: the user has no say in which experience they get.&lt;/p&gt;
+
+&lt;p&gt;The fact that a user has a modern browser does not mean that they have a fast or reliable connection. Providing a core experience is useless if users are going to be forced onto the enhanced experience anyway. Loading the enhanced BBC News front page on a mobile device will cost about 500KB. Opening an article page from there will cost another 370KB. That’s a cost of nearly 1MB of data (or 20 minutes of minimum wage work) just to read a single article.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The BBC News core experience on a wide screen&quot; src=&quot;/assets/bbc-news-core.png&quot; width=&quot;640&quot; srcset=&quot;/assets/r/330/bbc-news-core.png 330w, /assets/r/345/bbc-news-core.png 345w, /assets/r/381/bbc-news-core.png 381w, /assets/r/384/bbc-news-core.png 384w, /assets/r/546/bbc-news-core.png 546w, /assets/bbc-news-core.png 640w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The BBC News core experience on a wide screen&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;As well as being relatively heavy, the BBC News core experience was designed with small screens in mind. The content is forced into a single column layout, and the width of the primary image is hard-coded to 200px. It looks fine on low-resolution smartphones and feature phones, but on anything larger it starts to look stretched and at the same time somewhat empty.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-did-we-get-here&quot;&gt;How did we get here?&lt;/h2&gt;
+
+&lt;p&gt;The BBC is a relatively unique organisation in that its digital divisions don’t always act like a cohesive unit. The various digital “products” within the BBC (like News, Sport, and Weather) are developed independently and share very little in the way of code or overall vision. If you look closely at what makes up the BBC News core experience, you might notice that a large portion of the CSS, the JavaScript, and the images on the page come from BBC products that are &lt;em&gt;not&lt;/em&gt; BBC News.&lt;/p&gt;
+
+&lt;p&gt;Most of these products live in the “white BBC bar” at the top of the page. This is an area of the page which used to have a very good core experience, but has become bloated over the last year or so in order to accommodate new features. When I look through the network requests of a core page load, there are three products that stand out from the crowd:&lt;/p&gt;
+
+&lt;h4 id=&quot;bbc-id&quot;&gt;BBC iD&lt;/h4&gt;
+
+&lt;p&gt;The ID service allows you to sign in so that you can do things like post comments and receive notifications. It adds 13 HTTP requests to the page –8 of which are scripts– totalling 25KB.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The BBC iD button&quot; src=&quot;/assets/bbc-id.png&quot; width=&quot;617&quot; srcset=&quot;/assets/r/330/bbc-id.png 330w, /assets/r/345/bbc-id.png 345w, /assets/r/381/bbc-id.png 381w, /assets/r/384/bbc-id.png 384w, /assets/r/546/bbc-id.png 546w, /assets/bbc-id.png 617w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The BBC iD button&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h4 id=&quot;notifications&quot;&gt;Notifications&lt;/h4&gt;
+
+&lt;p&gt;The notifications service is the little bell icon at the top. When you’re signed in, it will notify you when your favourite TV shows and radio programmes are updated. Notifications adds 7 HTTP requests to the page, with a weight of 37KB. 2 of these requests are scripts, and 4 are individual SVG icons.&lt;/p&gt;
+
+&lt;p&gt;Clicking the icon results in another 2 requests being made, including a 47KB font.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The BBC Notifications popover&quot; src=&quot;/assets/bbc-notifications.png&quot; width=&quot;617&quot; srcset=&quot;/assets/r/330/bbc-notifications.png 330w, /assets/r/345/bbc-notifications.png 345w, /assets/r/381/bbc-notifications.png 381w, /assets/r/384/bbc-notifications.png 384w, /assets/r/546/bbc-notifications.png 546w, /assets/bbc-notifications.png 617w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The BBC Notifications popover&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h4 id=&quot;search&quot;&gt;Search&lt;/h4&gt;
+
+&lt;p&gt;Search is the simple text input at the top-right of the page. Only, it’s not simple. When you start to type into the input, you’re presented with a lookahead-esque search interface. The BBC Search interface adds 4 HTTP requests to the page, totalling 14KB.&lt;/p&gt;
+
+&lt;p&gt;Beginning to type into the search input triggers &lt;code class=&quot;highlighter-rouge&quot;&gt;app.min.js&lt;/code&gt; to be loaded in the page, weighing in at a hefty 86KB – or 320KB without compression! Furthermore, two HTTP requests at 4KB each are made on the (debounced) &lt;code class=&quot;highlighter-rouge&quot;&gt;onchange&lt;/code&gt; event. Simply typing the word &lt;em&gt;“bears”&lt;/em&gt; resulted in my browser making 10 additional requests totalling 43KB.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The BBC Search interface&quot; src=&quot;/assets/bbc-search.png&quot; width=&quot;617&quot; srcset=&quot;/assets/r/330/bbc-search.png 330w, /assets/r/345/bbc-search.png 345w, /assets/r/381/bbc-search.png 381w, /assets/r/384/bbc-search.png 384w, /assets/r/546/bbc-search.png 546w, /assets/bbc-search.png 617w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The BBC Search interface&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;Perhaps I’m trivialising it, but the answer to how the core experience became so bloated really boils down to this: feature creep, and a lack of monitoring. 4 years ago we set the standard for performance on BBC News, but we never put the controls in place to ensure that the standard stayed the same. Without proper performance monitoring, the BBC News team were completely blind to the deterioration of the website’s performance. The standard has been slipping for years, and we didn’t even know.&lt;/p&gt;
+
+&lt;p&gt;I cannot stress enough how important monitoring is for performance. Good monitoring enables realistic performance budgets, which in turn enable automated warnings and performance alarms. Provided there is a good culture around performance, these things can be used as leverage to prioritise performance and user experience over features and deadlines.&lt;/p&gt;
+
+&lt;p&gt;Good performance monitoring needs to include both synthetic testing and real user monitoring. Today the BBC uses &lt;a href=&quot;https://speedcurve.com/&quot;&gt;SpeedCurve&lt;/a&gt; to run over 22,000 synthetic performance tests each month. We mostly use these to provide a high-level “state of performance”, and to track whether releases have any affect on page performance. We have also previously used &lt;a href=&quot;https://www.soasta.com/performance-monitoring/&quot;&gt;mPulse real user monitoring&lt;/a&gt;, which allowed us to get a much more detailed view of how our pages were performing in the real world.&lt;/p&gt;
+
+&lt;h2 id=&quot;starting-from-scratch&quot;&gt;Starting from scratch&lt;/h2&gt;
+
+&lt;p&gt;Making a slow website fast again is really hard. Sometimes there are easy pickings, like removing unused styles and scripts. Usually though, the problems are like a metastatic cancer: they are spread out far and thin, and you can’t remove them without risking damage to the rest of the system.&lt;/p&gt;
+
+&lt;p&gt;That’s why earlier this week, I started thinking about how I would approach the core experience for BBC News if I were given the opportunity to build it from scratch. No overhead, no requirements, no third-party products on the page.&lt;/p&gt;
+
+&lt;p&gt;What I came up with was a hand-rolled CSS framework using Sass mixins from &lt;a href=&quot;https://github.com/twbs/bootstrap/tree/v4-dev&quot;&gt;Bootstrap v4&lt;/a&gt;. This produces about 3.5KB of CSS (1.5KB gzipped), which is small enough to inline. It also enables the markup to be fairly concise, with very few extraneous elements. From a performance perspective, I think the prototype is a success:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A 7KB HTML document containing all the core content and inlined styles – 80% smaller than the current 36KB core experience document.&lt;/li&gt;
+  &lt;li&gt;3 HTTP requests totalling 39KB – 88 fewer requests and 95% fewer bytes.&lt;/li&gt;
+  &lt;li&gt;100ms first paint time – 150ms faster (60%) than the current core experience.&lt;/li&gt;
+  &lt;li&gt;460ms first paint time – 440ms faster (50%).&lt;/li&gt;
+  &lt;li&gt;A much better CPU profile.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The CPU profile of the lightweight prototype&quot; src=&quot;/assets/lightweight-cpu-profile.png&quot; width=&quot;619&quot; srcset=&quot;/assets/r/330/lightweight-cpu-profile.png 330w, /assets/r/345/lightweight-cpu-profile.png 345w, /assets/r/381/lightweight-cpu-profile.png 381w, /assets/r/384/lightweight-cpu-profile.png 384w, /assets/r/546/lightweight-cpu-profile.png 546w, /assets/lightweight-cpu-profile.png 619w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The CPU profile of the lightweight prototype&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The CPU profile of the current BBC News core experience&quot; src=&quot;/assets/bbc-news-core-cpu-profile.png&quot; width=&quot;999&quot; srcset=&quot;/assets/r/330/bbc-news-core-cpu-profile.png 330w, /assets/r/345/bbc-news-core-cpu-profile.png 345w, /assets/r/381/bbc-news-core-cpu-profile.png 381w, /assets/r/384/bbc-news-core-cpu-profile.png 384w, /assets/r/546/bbc-news-core-cpu-profile.png 546w, /assets/r/640/bbc-news-core-cpu-profile.png 640w, /assets/r/738/bbc-news-core-cpu-profile.png 738w, /assets/r/840/bbc-news-core-cpu-profile.png 840w, /assets/r/960/bbc-news-core-cpu-profile.png 960w, /assets/bbc-news-core-cpu-profile.png 999w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The CPU profile of the current BBC News core experience&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;While these metrics are interesting, the real proof is in how the prototype performs on a simulated 2G connection: the first paint time is &lt;strong&gt;4.5 seconds&lt;/strong&gt;, and it is fully loaded at &lt;strong&gt;8.5 seconds&lt;/strong&gt;. For comparison, the BBC News core experience has a first paint time of &lt;strong&gt;19.5 seconds&lt;/strong&gt;, and is fully loaded at &lt;strong&gt;52 seconds&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I think the prototype is also an improvement on the user experience. The layout is fully responsive and works at all device widths. It also supports responsive images through the use of &lt;code class=&quot;highlighter-rouge&quot;&gt;srcset&lt;/code&gt;, with a sensible medium-quality &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; fallback.&lt;/p&gt;
+
+&lt;p&gt;Here is the finished product on a wide screen:&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The lightweight core experience prototype&quot; src=&quot;/assets/redefining-core-prototype.png&quot; width=&quot;900&quot; srcset=&quot;/assets/r/330/redefining-core-prototype.png 330w, /assets/r/345/redefining-core-prototype.png 345w, /assets/r/381/redefining-core-prototype.png 381w, /assets/r/384/redefining-core-prototype.png 384w, /assets/r/546/redefining-core-prototype.png 546w, /assets/r/640/redefining-core-prototype.png 640w, /assets/r/738/redefining-core-prototype.png 738w, /assets/r/840/redefining-core-prototype.png 840w, /assets/redefining-core-prototype.png 900w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The lightweight core experience prototype&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;As well as creating a truly lightweight core experience, I also wanted to think about how we can put people back in control of their own web experience. We can give people a core experience when we think they need it –for example by detecting screen width or connection speed– and then give them the power to enhance the experience for themselves, should they want to.&lt;/p&gt;
+
+&lt;p&gt;I’ve started to explore these ideas by implementing two controls:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A button that (lazily) loads the remaining images on the page. This requires basic JavaScript support, so can be used by most users.&lt;/li&gt;
+  &lt;li&gt;Buttons to prefetch article content. This requires a relatively modern browser with service worker support.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I think there’s certainly more to explore in this area, especially around minimising the amount of interaction required to receive the optimal or desired experience.&lt;/p&gt;
+
+&lt;p&gt;If you’d like to inspect it further, the code for this prototype is &lt;a href=&quot;https://github.com/wildlyinaccurate/news-core-experience&quot;&gt;on GitHub&lt;/a&gt;, and a live demo is available at &lt;a href=&quot;https://wildlyinaccurate.com/news-core-experience/&quot;&gt;https://wildlyinaccurate.com/news-core-experience/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;where-to-from-here&quot;&gt;Where to from here?&lt;/h2&gt;
+
+&lt;p&gt;After all of that, the point I really want to make is this: for a website like BBC News, &lt;strong&gt;content is the only thing that matters&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;With current trends, very soon the majority of Internet users will be browsing the web on a mobile connection. The lucky ones will have 3G-like speeds, and the others will be lucky to even get 2G-like speeds. As website producers, we need to make it easier for these people to get to the content that they want. By far, the easiest way for us to do that is to give them &lt;em&gt;just the content&lt;/em&gt;. Nothing else.&lt;/p&gt;
+
+&lt;p&gt;BBC World Service is expanding to reach a wider audience by 2020, and most of the users in that audience will come from developing countries. This is a fantastic opportunity to reinvent the BBC’s web experience and tailor it for the users we &lt;em&gt;have&lt;/em&gt; (people using underpowered phones on mobile connections), rather than the users we &lt;em&gt;want&lt;/em&gt; (people using MacBooks on cable connections).&lt;/p&gt;
+
+&lt;p&gt;At BBC News we understand this, and we’re in the middle of building our front page from the ground up with performance at the front of our minds. We’re using the small &amp;amp; efficient &lt;a href=&quot;https://medium.com/@shaunbent/css-at-bbc-sport-part-1-bab546184e66&quot;&gt;Grandstand&lt;/a&gt; CSS framework developed by our colleagues in BBC Sport. We’re also investing in performance monitoring up-front, and trying to drive performance as a key feature rather then an afterthought.&lt;/p&gt;
+
+&lt;p&gt;With HTTPS everywhere being &lt;a href=&quot;http://www.bbc.co.uk/blogs/internet/entries/f6f50d1f-a879-4999-bc6d-6634a71e2e60&quot;&gt;rolled out across the BBC&lt;/a&gt; later this year, the BBC’s web teams have a whole new set of opportunities before them. One of the things I’m most excited about is the ability to start using the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API&quot;&gt;service worker API&lt;/a&gt; to provide a better and more resilient web experience.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 22 Jul 2016 00:00:00 +1200</pubDate>
+        <link>https://wildlyinaccurate.com/redefining-the-bcc-news-core-experience/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/redefining-the-bcc-news-core-experience/</guid>
+        
+        <category>performance</category>
+        
+        <category>bbc news</category>
+        
+        <category>core experience</category>
+        
+        <category>cut the mustard</category>
+        
+        
+        <category>BBC News</category>
+        
+      </item>
+    
+      <item>
+        <title>Using A/B testing to prioritise performance optimisations</title>
+        <description>&lt;p&gt;Back in December 2015 I spoke at LDNWebPerf alongside Peter Chamberlin about how &lt;a href=&quot;https://www.youtube.com/watch?v=nE4LTRfcr94&quot;&gt;web performance is not a technical problem&lt;/a&gt; &lt;small&gt;(&lt;a href=&quot;http://slides.com/wildlyinaccurate/bbc-news-performance#/&quot;&gt;slides with speaker notes&lt;/a&gt;)&lt;/small&gt;. One of the things I talked about was how we used multivariate testing (MVT) at BBC News to prioritise performance optimisations. The gist of it was that our stakeholders had already bought into the idea that performance has a strong correlation to business metrics, and they wanted to dedicate some development time to improving performance. The catch was that they didn’t want to spent &lt;em&gt;too much&lt;/em&gt; time on it.&lt;/p&gt;
+
+&lt;p&gt;Our predicament, then, was that we needed to know which optimisations had the biggest impact on performance without actually spending the time to make the optimisations. For example, we had a hunch that inlining the &lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/critical-rendering-path/&quot;&gt;critical rendering path&lt;/a&gt; CSS would improve our start render time, but with over 1MB of CSS and a complicated application architecture, implementing this was much easier said than done.&lt;/p&gt;
+
+&lt;p&gt;This is where the idea to A/B test performance came from: we could easily make the performance optimisations by hand on a single page, and then benchmark each of the optimisations to find out which had the biggest impact.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-method&quot;&gt;The method&lt;/h2&gt;
+
+&lt;p&gt;Setting up A/B tests for performance is much simpler than you might think — all you need is a page to use as the baseline, a page for each optimisation, and a consistent way to measure performance.&lt;/p&gt;
+
+&lt;p&gt;We took a snapshot of the BBC News front page to use as the baseline, and made a variation of that snapshot by hand for each performance optimisation. The focus of this post isn’t the optimisations themselves, but to give some context, they were things like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Lazy loading images below the fold.&lt;/li&gt;
+  &lt;li&gt;Delaying JavaScript execution until after the content has rendered.&lt;/li&gt;
+  &lt;li&gt;Removing unused CSS.&lt;/li&gt;
+  &lt;li&gt;Loading adverts asynchronously.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Some of the hand-made performance optimisations&quot; src=&quot;/assets/bbc-news-performance-mvt.png&quot; width=&quot;778&quot; srcset=&quot;/assets/r/330/bbc-news-performance-mvt.png 330w, /assets/r/345/bbc-news-performance-mvt.png 345w, /assets/r/381/bbc-news-performance-mvt.png 381w, /assets/r/384/bbc-news-performance-mvt.png 384w, /assets/r/546/bbc-news-performance-mvt.png 546w, /assets/r/640/bbc-news-performance-mvt.png 640w, /assets/r/738/bbc-news-performance-mvt.png 738w, /assets/bbc-news-performance-mvt.png 778w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Some of the hand-made performance optimisations&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;We deployed these optimised variations alongside the baseline, and used &lt;a href=&quot;https://www.webpagetest.org/&quot;&gt;WebPagetest&lt;/a&gt; to benchmark their performance. If you’re not familiar with WebPagetest, it’s a really useful tool to have in your web performance toolkit. It loads a page in real web browsers and records information about its performance. It has a bunch of useful features like connection throttling, video capture, and also lets you script interaction with the page.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;The WebPagetest interface&quot; src=&quot;/assets/webpagetest.png&quot; width=&quot;995&quot; srcset=&quot;/assets/r/330/webpagetest.png 330w, /assets/r/345/webpagetest.png 345w, /assets/r/381/webpagetest.png 381w, /assets/r/384/webpagetest.png 384w, /assets/r/546/webpagetest.png 546w, /assets/r/640/webpagetest.png 640w, /assets/r/738/webpagetest.png 738w, /assets/r/840/webpagetest.png 840w, /assets/r/960/webpagetest.png 960w, /assets/webpagetest.png 995w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;The WebPagetest interface&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;One of the other features that WebPagetest offers is the ability to visually compare two pages. We used this a lot while we were benchmarking the variations because it’s great way to show the impact of optimisations to non-technical stakeholders.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;Visual comparison of the baseline snapshot against an optimised variation&quot; src=&quot;/assets/bbc-news-mvt-optimised-css.png&quot; srcset=&quot;/assets/r/330/bbc-news-mvt-optimised-css.png 330w, /assets/r/345/bbc-news-mvt-optimised-css.png 345w, /assets/r/381/bbc-news-mvt-optimised-css.png 381w, /assets/r/384/bbc-news-mvt-optimised-css.png 384w, /assets/r/546/bbc-news-mvt-optimised-css.png 546w, /assets/r/640/bbc-news-mvt-optimised-css.png 640w, /assets/r/738/bbc-news-mvt-optimised-css.png 738w, /assets/r/840/bbc-news-mvt-optimised-css.png 840w, /assets/r/960/bbc-news-mvt-optimised-css.png 960w, /assets/r/1250/bbc-news-mvt-optimised-css.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;Visual comparison of the baseline snapshot against an optimised variation&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h2 id=&quot;interpreting-the-results&quot;&gt;Interpreting the results&lt;/h2&gt;
+
+&lt;p&gt;Interpreting the results of A/B tests is usually very circumstantial and requires some forethought about your own goals and circumstances. Our goal was to identify which performance optimisations gave us the largest improvement to start render time relative to how long they took to implement. We chose this goal because data from our real user monitoring (RUM) suggested there was a strong correlation between start render time and business metrics like bounce rate, session length, and pages per session. Your goal will likely be completely different.&lt;/p&gt;
+
+&lt;p&gt;To simplify the decision making process, we came up with a scoring system that works by multiplying the improvement to start render time by a difficulty rating:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Optimisation&lt;/th&gt;
+      &lt;th&gt;SR improvement (ms)&lt;/th&gt;
+      &lt;th&gt;Difficulty&lt;br /&gt;(1 = hardest; 10 = easiest)&lt;/th&gt;
+      &lt;th&gt;Score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Only load JS required for page&lt;/td&gt;
+      &lt;td&gt;250&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;2000&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Only load CSS required for page&lt;/td&gt;
+      &lt;td&gt;1000&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;2000&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Remove blocking scripts from &amp;lt;head&amp;gt;&lt;/td&gt;
+      &lt;td&gt;1500&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;1500&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Lazy load images below the fold&lt;/td&gt;
+      &lt;td&gt;80&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;800&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;It’s by no means a perfect system, but it did help us to prioritise the optimisations. There are many other factors that come into play, for example lazy loading images is one of the first optimisations we made, despite it having a low score. The rationale behind this was that it was very easy to do and had a noticeable real-world benefit: it reduced the amount of data for users on mobile connections.&lt;/p&gt;
+
+&lt;h2 id=&quot;validating-the-results&quot;&gt;Validating the results&lt;/h2&gt;
+
+&lt;p&gt;The final part of an A/B test is to validate whether the variants had the predicted impact in real world conditions. For performance optimisations, this is best done using real user monitoring like &lt;a href=&quot;https://speedcurve.com/features/lux/&quot;&gt;SpeedCurve LUX&lt;/a&gt; or &lt;a href=&quot;https://www.soasta.com/performance-monitoring/&quot;&gt;SOASTA mPulse&lt;/a&gt;. However synthetic testing tools like WebPagetest can also work to validate your optimisations.&lt;/p&gt;
+
+&lt;p&gt;We plotted our performance and business metrics around the time that our optimisations were deployed, and (thankfully) saw the results that we expected.&lt;/p&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A chart showing a reduction in page load time and an increase in session length&quot; src=&quot;/assets/bbc-news-mvt-session-length-vs-load-time.png&quot; width=&quot;830&quot; srcset=&quot;/assets/r/330/bbc-news-mvt-session-length-vs-load-time.png 330w, /assets/r/345/bbc-news-mvt-session-length-vs-load-time.png 345w, /assets/r/381/bbc-news-mvt-session-length-vs-load-time.png 381w, /assets/r/384/bbc-news-mvt-session-length-vs-load-time.png 384w, /assets/r/546/bbc-news-mvt-session-length-vs-load-time.png 546w, /assets/r/640/bbc-news-mvt-session-length-vs-load-time.png 640w, /assets/r/738/bbc-news-mvt-session-length-vs-load-time.png 738w, /assets/bbc-news-mvt-session-length-vs-load-time.png 830w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A chart showing a reduction in page load time and an increase in session length&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;div class=&quot;my-4 ta-c outset&quot;&gt;
+    
+        &lt;img alt=&quot;A chart showing a reduction in load time, DOM ready time, and DOM content loaded time&quot; src=&quot;/assets/bbc-news-mvt-dom-metrics.png&quot; srcset=&quot;/assets/r/330/bbc-news-mvt-dom-metrics.png 330w, /assets/r/345/bbc-news-mvt-dom-metrics.png 345w, /assets/r/381/bbc-news-mvt-dom-metrics.png 381w, /assets/r/384/bbc-news-mvt-dom-metrics.png 384w, /assets/r/546/bbc-news-mvt-dom-metrics.png 546w, /assets/r/640/bbc-news-mvt-dom-metrics.png 640w, /assets/r/738/bbc-news-mvt-dom-metrics.png 738w, /assets/r/840/bbc-news-mvt-dom-metrics.png 840w, /assets/r/960/bbc-news-mvt-dom-metrics.png 960w, /assets/r/1250/bbc-news-mvt-dom-metrics.png 1250w&quot; /&gt;
+    
+
+    
+    &lt;div class=&quot;c-gl caption&quot;&gt;
+        &lt;small&gt;&lt;i&gt;A chart showing a reduction in load time, DOM ready time, and DOM content loaded time&lt;/i&gt;&lt;/small&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;h2 id=&quot;wrapping-up&quot;&gt;Wrapping up&lt;/h2&gt;
+
+&lt;p&gt;Taking the time to A/B test performance optimisations can help your team prioritise work and ensure that you don’t waste time making optimisations that have no impact. You don’t need to use complex or expensive software to get meaningful results from your tests — it’s probably sufficient to make optimisations by hand and measure the results using free software like WebPagetest or your browser developer tools.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 20 May 2016 00:00:00 +1200</pubDate>
+        <link>https://wildlyinaccurate.com/using-ab-testing-to-prioritise-performance-optimisations/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/using-ab-testing-to-prioritise-performance-optimisations/</guid>
+        
+        <category>performance</category>
+        
+        <category>bbc news</category>
+        
+        <category>ab testing</category>
+        
+        <category>mvt</category>
+        
+        
+        <category>BBC News</category>
+        
+        <category>Performance</category>
+        
+      </item>
+    
+      <item>
+        <title>How can we fix open source culture?</title>
+        <description>&lt;p&gt;The recent kerfuffle around the &lt;a href=&quot;http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm&quot;&gt;NPM #unpublishgate&lt;/a&gt; and the &lt;a href=&quot;https://medium.com/@boennemann/your-just-considered-harmful-679db7366b95&quot;&gt;Greenkeeper bot impersonation&lt;/a&gt; has got me thinking about the open source community and its culture.&lt;/p&gt;
+
+&lt;p&gt;Sometimes the open source community feels like a wonderful, cooperative, welcoming place. There have been times when maintaining an open source project has given me an enormous sense of satisfaction and well-being. On the best days, complete strangers offer valuable feedback and even actively contribute to my projects.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;On the worst days I feel drained, unappreciated, and even abused. Stephan describes this more concisely than I could right at the bottom of &lt;a href=&quot;https://medium.com/@boennemann/your-just-considered-harmful-679db7366b95&quot;&gt;&lt;em&gt;Your “just” considered harmful&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The reactions to the npm #unpublishgate showed me once more just how far spread entitled and toxic behaviour is in our community. This has to change and being silent or accepting won’t help.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is the part of the open source culture that we need to fix. &lt;em&gt;Entitled&lt;/em&gt; and &lt;em&gt;toxic&lt;/em&gt; are not words that I associate with welcoming and inclusive communities. Yet they are completely apt descriptions of behaviour which is common within the open source community.&lt;/p&gt;
+
+&lt;p&gt;I don’t have any solutions to offer. I’m merely venting some frustrations which have been building up for quite some time. But &lt;strong&gt;we need to fix this&lt;/strong&gt;. I don’t want to see this toxic behaviour cause another friend, colleague, or community member to suffer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How can we fix open source culture?&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Mar 2016 00:00:00 +1300</pubDate>
+        <link>https://wildlyinaccurate.com/how-can-we-fix-open-source-culture/</link>
+        <guid isPermaLink="true">https://wildlyinaccurate.com/how-can-we-fix-open-source-culture/</guid>
+        
+        <category>open source</category>
+        
+        <category>culture</category>
+        
+        
+        <category>Open Source</category>
+        
+      </item>
+    
+  </channel>
+</rss>
