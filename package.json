@@ -9,7 +9,8 @@
     "webpack": "npm run webpack-search && npm run webpack-collection",
     "webpack-search": "webpack -p js/search.js js/compiled/search.js",
     "webpack-collection": "webpack -p js/collection-bootstrap.js js/compiled/collection-bootstrap.js",
-    "spellcheck": "mdspell --ignore-numbers --ignore-acronyms --no-suggestions _posts/**/*.md"
+    "spellcheck": "mdspell --ignore-numbers --ignore-acronyms --no-suggestions _posts/**/*.md",
+    "imagemin": "grunt imagemin"
   },
   "dependencies": {
     "bootstrap": "github:twbs/bootstrap#v4-dev",
