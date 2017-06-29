@@ -25,28 +25,35 @@ responsive_image:
   template: _includes/thumbnail.html
   output_path_format: assets/r/%{width}/%{basename}
   sizes:
-    # Device widths for full-width images
-    - width: 320
+    # Widths that match the image size at various device widths and breakpoints
+
+    # iPhone 6 (375px)
+    - width: 345
       quality: 60
       progressive: true
 
-    - width: 380
+    # iPhone 6 plus (414px)
+    - width: 384
       quality: 60
       progressive: true
 
-    - width: 420
-      quality: 60
+    # SM breakpoint (576px)
+    - width: 514
       progressive: true
 
-    - width: 640
+    # XS breakpoint (<576px; larger than SM because gutters shrink)
+    - width: 545
       progressive: true
 
-    - width: 768
+    # MD breakpoint (768px)
+    - width: 706
       progressive: true
 
-    - width: 1024
+    # LG breakpoint (960px)
+    - width: 898
       progressive: true
 
+    # Everything else is pretty much for featured images
     - width: 1280
       progressive: true
 
@@ -57,19 +64,6 @@ responsive_image:
       progressive: true
 
     - width: 1680
-      progressive: true
-
-    # Breakpoint sizes for inline images
-    - width: 510
-      progressive: true
-
-    - width: 690
-      progressive: true
-
-    - width: 930
-      progressive: true
-
-    - width: 1110
       progressive: true
 
   extra_images:
