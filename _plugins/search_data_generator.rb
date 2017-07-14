@@ -7,6 +7,9 @@ module Jekyll
     safe true
 
     def generate(site)
+      # Listener will enter a loop if search.json is modified on every build
+      return if site.config['watch']
+
       post_json = lambda do |post|
         {
           title:      post.data['title'],
