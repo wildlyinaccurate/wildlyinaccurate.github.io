@@ -32,11 +32,7 @@ Inspired by Facebook's [Relay](https://facebook.github.io/relay/), second-contai
 ```jsx
 class Result extends React.Component {
   render () {
-    return (
-      <li>
-        {this.props.item.Text}
-      </li>
-    )
+    return <li>{this.props.item.Text}</li>
   }
 }
 
@@ -60,4 +56,29 @@ const SearchResults = second.createContainer(ResultList, {
     }
   })
 })
+```
+
+## Partial, opt-in browser rendering with second-dehydrator
+
+```jsx
+import { createDehydrator } from 'second-dehydrator'
+import LargeComponent from './components/large-component'
+import SmallComponent from './components/small-component'
+
+const dehydrate = createDehydrator(React.createElement)
+const DehydratedSmallComponent = dehydrate(SmallComponent)
+
+class Page extends React.Component {
+  render () {
+    return (
+      <div>
+        <LargeComponent>
+          <SmallComponent {...props} />
+          <DehydratedSmallComponent {...props} />
+          <SmallComponent {...props} />
+        </LargeComponent>
+      </div>
+    )
+  }
+}
 ```
