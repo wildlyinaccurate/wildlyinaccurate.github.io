@@ -21,6 +21,7 @@ plugins:
   - jekyll-last-modified-at
 
 responsive_image:
+  cache: true
   default_quality: 75
   template: _includes/thumbnail.html
   output_path_format: assets/r/%{width}/%{basename}
