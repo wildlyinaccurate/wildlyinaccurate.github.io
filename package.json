@@ -5,7 +5,7 @@
   "scripts": {
     "build": "grunt elm && npm run webpack && npm run babili && grunt build",
     "elm": "grunt elm && cp js/compiled/Collection.js _site/js/compiled/Collection.js",
-    "babili": "babili service-worker.js -o service-worker.js",
+    "babili": "babili service-worker.js -o _site/service-worker.js",
     "webpack": "npm run webpack-search && npm run webpack-collection",
     "webpack-search": "webpack -p js/search.js js/compiled/search.js",
     "webpack-collection": "webpack -p js/collection-bootstrap.js js/compiled/collection-bootstrap.js",

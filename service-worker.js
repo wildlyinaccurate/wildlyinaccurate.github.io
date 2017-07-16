@@ -1,1 +1,28 @@
-const RESOURCE_CACHE='wildlyinaccurate-resources',baseUrl=new URL('./',self.location);self.addEventListener('fetch',(a)=>{const b=new URL(a.request.url);b.origin===baseUrl.origin&&a.respondWith(staleWhileRevalidate(a.request))});function staleWhileRevalidate(a){return caches.open(RESOURCE_CACHE).then((b)=>b.match(a).then((c)=>{const d=fetch(a).then((e)=>{return b.put(a,e.clone()),console.debug('Cache updated for',a.url),e}).catch(()=>{console.debug('Using stale cache for',a.url)});return c||d}))}
+const RESOURCE_CACHE = 'wildlyinaccurate-resources'
+const baseUrl = new URL('./', self.location)
+
+self.addEventListener('fetch', event => {
+  const requestUrl = new URL(event.request.url)
+
+  if (requestUrl.origin === baseUrl.origin) {
+    event.respondWith(staleWhileRevalidate(event.request))
+  }
+})
+
+function staleWhileRevalidate (request) {
+  return caches.open(RESOURCE_CACHE).then(cache =>
+    cache.match(request).then(response => {
+      const fetchPromise = fetch(request).then(networkResponse => {
+        cache.put(request, networkResponse.clone())
+
+        console.debug('Cache updated for', request.url)
+
+        return networkResponse
+      }).catch(() => {
+        console.debug('Using stale cache for', request.url)
+      })
+
+      return response || fetchPromise
+    })
+  )
+}
