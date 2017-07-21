@@ -23,8 +23,8 @@ GRANT SELECT, LOCK TABLES ON *.* TO 'autobackup'@'localhost';
 
 Next create the cron job with `crontab -e`. This job is set to run every day at 5:20am.
 
-```
-20 5 * * * mysqldump --user=autobackup **dbname** | gzip -c > /var/backups/**dbname**-`/bin/date +\%Y\%m\%d`.sql.gz
-```
+<pre>
+20 5 * * * mysqldump --user=autobackup <strong>dbname</strong> | gzip -c > /var/backups/<strong>dbname</strong>-$(date +\%Y\%m\%d).sql.gz
+</pre>
 
-Don't forget to change `dbname` to the name of the database that you want to backup. And that's it - you're done! This cron job will create a backup of your database and save it to `/var/backups` with a filename based on the current date, e.g. `/var/backups/**dbname**-20120503.sql.gz`
+Don't forget to change `dbname` to the name of the database that you want to backup. And that's it - you're done! This cron job will create a backup of your database and save it to `/var/backups` with a filename based on the current date, e.g. <code>/var/backups/<strong>dbname</strong>-20120503.sql.gz</code>
