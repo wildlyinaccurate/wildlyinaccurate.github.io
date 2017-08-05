@@ -7,3 +7,4 @@ elm-stuff
 js/compiled
 node_modules
 search.json
+package-lock.json
