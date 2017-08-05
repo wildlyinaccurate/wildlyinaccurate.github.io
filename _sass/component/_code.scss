@@ -1,18 +1,26 @@
-code,
+pre, code {
+  background: $gray-200;
+  font-size: $code-font-size;
+}
+
 pre {
-  background: $code-bg;
   font-size: $code-font-size;
 }
 
 code {
-  padding: $code-padding-y $code-padding-x;
+  padding: ($spacer / 3) ($spacer / 2);
 }
 
 pre {
-  border: $code-border;
-  padding: ($code-padding-x * 2);
+  padding: $spacer;
 
   code {
     padding: 0;
+  }
+}
+
+[class*="language-"] pre {
+  &, code {
+    background: $gray-800;
   }
 }

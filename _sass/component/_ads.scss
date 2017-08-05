@@ -6,7 +6,7 @@
 
 .carbon-text,
 .carbon-poweredby {
-  color: $gray-light;
+  color: $gray-700;
   display: block;
-  margin-top: ceil($font-size-xs / 2);
+  margin-top: $spacer / 2;
 }
