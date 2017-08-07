@@ -133,3 +133,9 @@ const componentMap = {
 
 hydrate(renderComponent, componentMap)
 ```
+
+## What next?
+
+Second has worked well for some of the projects that I've worked on this year. These projects have mostly been content-driven pages, with a couple of interactive form-based applications. I'd like to use Second in a wider range of projects to get a feel for whether the abstractions are at the right level and whether the APIs are flexible enough.
+
+By opening up the framework, I'm hoping that the wider React community can have some discussions about whether selective client-side rendering is a useful pattern, and if it is, whether a framework like Second is the right way to implement the pattern.
