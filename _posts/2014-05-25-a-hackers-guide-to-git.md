@@ -247,6 +247,13 @@ $ cat .git/refs/heads/test-branch
 
 Later on we'll look at the difference between **local branches** and **remote-tracking branches**.
 
+Before we look at how tags work, let's switch back to the master branch.
+
+```
+$ git checkout master
+Switched to branch 'master'
+```
+
 ## Tags
 
 There are two types of tags in Git -- **lightweight tags** and **annotated tags**.
