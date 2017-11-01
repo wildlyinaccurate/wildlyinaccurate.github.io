@@ -3,6 +3,7 @@ layout: post
 title: Introducing a faster BBC News front page
 categories:
 - BBC News
+- Performance
 tags:
 - bbc news
 - performance
