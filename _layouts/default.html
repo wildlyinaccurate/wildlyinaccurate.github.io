@@ -8,8 +8,22 @@
 
         <script>
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/service-worker.js');
+                navigator.serviceWorker.register('/service-worker.js')
             }
+
+            {% if page.page_label %}
+            window.LUX = {
+                label: '{{page.page_label}}'
+            }
+            {% elsif layout.page_label %}
+            window.LUX = {
+                label: '{{layout.page_label}}'
+            }
+            {% elsif page.layout %}
+            window.LUX = {
+                label: '{{page.layout}}'
+            }
+            {% endif %}
         </script>
 
         <script src="https://cdn.speedcurve.com/js/lux.js?id=73376842" async defer></script>
