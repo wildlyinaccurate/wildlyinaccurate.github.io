@@ -28,7 +28,6 @@ What we came up with is called the WAF, or _Web Application Framework_. It's a s
 * Components as endpoints
 * The envelope contract
 * Page composition
-<!--more-->
 
 ## Components as endpoints
 
