@@ -5,6 +5,10 @@ permalink: /projects/
 navigation: main
 ---
 
+### Second
+
+An experimental performance-oriented framework for server-rendered React apps with declarative data fetching and opt-in client side rendering. Too many buzzwords? Read [the full blog post](https://wildlyinaccurate.com/introducing-second-a-framework-for-mostly-static-react-applications/) or take a look at [the source code](https://github.com/wildlyinaccurate/second).
+
 ### Plait
 
 Based on the Elm architecture, [Plait](https://wildlyinaccurate.com/plait/) is a minimal JavaScript framework for creating reactive web applications.
