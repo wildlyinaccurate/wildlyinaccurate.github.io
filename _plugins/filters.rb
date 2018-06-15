@@ -6,7 +6,7 @@ module Jekyll
       preserve_elements = %w[
         a
         blockquote
-        b strong i em
+        b strong i em small
         p br
         h2 h3 h4 h5 h6
         pre code
