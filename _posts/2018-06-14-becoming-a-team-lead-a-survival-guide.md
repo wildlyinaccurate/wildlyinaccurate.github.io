@@ -64,7 +64,7 @@ Then what _are_ the right reasons to become a team lead? I would sum them up lik
  - **I enjoy mentoring others.** Being one of the most experienced people on the team will put you in a prime position to be able to mentor others. Sharing your experience will improve the quality of your team's output.
  - **I prefer to advise and mediate.** You might think you know what's best for the project, but taking an authoritarian approach to leadership can completely undermine any trust the team has in you. It's better to step back and let the team make decisions, acting only as a mediator or tie-breaker. (Sometimes it's okay to make executive decisions, but these should be rare and not be taken lightly).
  - **I'm ready to be a manager.** Not all team lead roles come with management responsibilities, but I don't think it's possible to completely avoid management. You will be the first person your team comes to when they have a problem. You should be ready to deal with conflicts, personal or private issues, as well as menial things like holiday and sick leave. On top of that, you should know how and when to deal out both praise and criticism.
- - **I know how to influence change.** Being a leader doesn't enable you to force change. It _does_ buy you a little bit of influence. Learning how to use that influence to bring people over to your side is what will enable you to make change.
+ - **I know how to influence change.** Being a leader doesn't enable you to force change. It _does_ buy you a little bit of influence, and making change is all about learning how to use the influence you have to convince people to want the same change as you. Change happens easiest when everybody wants it.
 
 If that sounds like you, then you might find that a team lead role suits you well!
 
@@ -72,7 +72,7 @@ If that sounds like you, then you might find that a team lead role suits you wel
 
 Assuming you do want to become a team lead, how do you set yourself up for the role so that you're prepared well in advance?
 
-You likely already work in a contributor role, which will likely mean doing this preparation in your own time. If you're lucky enough, you might be able to prepare in your company's time. Either way, this time will be a good investment because it will help you to hit the ground running and become a more effective team lead.
+You likely already work in a contributor role, which will mean doing this preparation in your own time. If you're lucky enough, you might be able to prepare in your company's time. Either way, this time will be a good investment because it will help you to hit the ground running and become a more effective team lead.
 
 #### Do some research
 
@@ -82,11 +82,13 @@ I also recommend learning how to identify and deal with mental health issues bec
 
 #### Fix things that cause pain for the team
 
-The aim of this is simple: get used to the idea of being someone who removes roadblocks for the team rather than being a core contributor. Start by volunteering to attend boring meetings, or optimise people's workflow by making the build faster. Removing pain from the rest of your team will keep them happier and allow them to work faster.
+The aim of this is simple: get used to the idea of being someone who removes roadblocks for the team rather than being a core contributor. Start by volunteering to attend boring meetings, or optimise people's workflow by making the build faster. Removing pain from the rest of your team will keep them happier and allow them to work with fewer interruptions.
 
 #### Take every opportunity to mentor
 
 Mentorship is a great way to transfer knowledge and grow your team. It also helps to reduce the team's reliance on you. You should pair program with junior team members to help them get through their workload, and regularly invite other people to sit with you whenever you are working through a problem.
+
+Being a good mentor is something that I believe really only comes with experience. Getting the experience early on will make you a much better mentor when you move into a lead role.
 
 #### Focus on the bigger picture
 
@@ -112,7 +114,7 @@ If you're working on something important, see if you can pass it onto a team mem
 
 #### Learn to delegate
 
-Another way to stop writing code is by delegating the coding work to other members of your team. Learning how to delegate can be difficult, especially for team leads who are transitioning from a role where they were a full-time developer. Often the problem is that the team lead is still considered to be (or considers _themselves_ to be) the de facto owner of certain parts of a codebase. Explicitly passing this ownership on to somebody else can help make it easier to ask other people to work on that code.
+Learning how to delegate can be difficult, especially for team leads who are transitioning from a full-time contributor role. Often the problem is that the team lead is still considered to be (or considers _themselves_ to be) the de facto owner of certain parts of a codebase. Explicitly passing this ownership on to somebody else can help make it easier to ask other people to work on that code.
 
 Delegation is easier said than done, but doing it correctly can be an extremely effective way of reducing your stress levels. Pick a member of the team you know is capable, make sure they have low stress levels, and (politely!) ask them to complete a task for you.
 
@@ -120,9 +122,15 @@ Delegation is easier said than done, but doing it correctly can be an extremely 
 
 This is a personal favourite of mine, and it made a few of my senior stakeholders very unhappy at times. Saying "no" when you or your team is asked to take on more work is a totally valid way of dealing with being overwhelmed. Of course there are more polite ways to say "no", like "can you ask me again next week" or "is there anybody else available to do that". However you say it, it's always better to say no than to disappoint someone by being too busy to fulfil their request.
 
+Saying no has this other benefit which is that it signals to your boss or stakeholders that you or your team have too much to do.
+
+The best case scenario for saying "no" is that your team is given some extra help to deal with the workload. The worst case scenario is that you're told to do the work anyway, in which case...
+
 #### Ask for help
 
 We're not very good at this in the software development industry. It's as if there's a bizarre sense of achievement or credibility in struggling through a problem for days when it could have been trivially solved by someone else in minutes. "Help" can come in many forms: someone helping you get through your work, mentorship from your boss or another team lead, or just be someone to talk to over lunch. Whatever form it comes in, don't be afraid to put your hand up and ask for help when you're feeling the pressure. You'll thank yourself later.
+
+Similarly to saying "no", asking for help sends a clear signal upwards that your team isn't coping. This doesn't indicate any failure on your part! If anything it indicates a failure with your stakeholders or upper management -- they're not managing their people ("resources") well enough.
 
 ### Conducting effective one-on-one meetings
 
