@@ -162,7 +162,7 @@ Let's talk about stakeholders. No matter the size of your company, you probably 
 
 Always be honest about how your project is going. Especially if you're behind schedule. In business-speak, this is called "managing expectations", and it's vital that you and your stakeholders have the same expectations.
 
-#### ... Unless you're behind schedule
+#### ... Unless you're ahead of schedule
 
 There is one exception to the "always be honest" rule, which is that you should not tell anyone that you're ahead of schedule. The only time you're really ahead of schedule is when you finish the entire project early. Until that point, you're just one unexpected delay away from being behind schedule.
 
