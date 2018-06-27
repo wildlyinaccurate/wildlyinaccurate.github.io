@@ -40,7 +40,7 @@ Looking back on this moment, I feel a bit stupid. Of course I took the role. It 
 
 Having spoken to many other team leads since then, I'm amazed at just how common this scenario is. Almost all of the team leads that I've met in software development sort of "accidentally" fell into their leadership roles despite having no prior experience, and almost all of them found it difficult to get any support after taking the role -- regardless of whether they worked for a small startup or a multinational organisation. It seemed like in contrast to their previous career progression, becoming a team lead was vastly more difficult and overwhelming.
 
-I think that in general the team lead role is misunderstood, and it is also oversold. Our industry is really good at pretending that software delivery is all about writing code, but in all of my experiences this is never the case. Some of the hardest problems in software are either people problems, organisational problems, or cultural problems. Yet we continue push technically brilliant software engineers into leadership roles, with no training in communication or management, and we wonder why they struggle to deliver or why they burn out.
+I think that in general the team lead role is misunderstood, and it is also oversold. Our industry is really good at pretending that software delivery is all about writing code, but in all of my experiences this is never the case. Some of the hardest problems in software are either people problems, organisational problems, or cultural problems. Yet we continue to push technically brilliant software engineers into leadership roles, with no training in communication or management, and we wonder why they struggle to deliver or why they burn out.
 
 ## Part I: Before you apply
 
@@ -58,15 +58,15 @@ There are a lot of myths about leadership, and one of the biggest is that you ga
 
 I learned pretty quickly that my reasons were all wrong. If you find yourself agreeing with any of them, then I seriously urge you to delay taking on a team lead role because it might not live up to your expectations.
 
-Then what _are_ the right reasons to become a team lead? I would sum them up like this:
+But if those are the wrong reasons to become a team lead, then what are the _right_ reasons? I would sum them up like this:
 
- - **I want to share my knowledge.** One of the core parts of your job as a team lead is to grow your team. You do this best by sharing your knowledge, rather than being the one who puts knowledge into practice. Writing some code is important because it keeps you in touch with the team's day-to-day work. But in general the more code you write, the more the team relies on you, and the bigger bottleneck you become.
- - **I enjoy mentoring others.** Being one of the most experienced people on the team will put you in a prime position to be able to mentor others. Sharing your experience will improve the quality of your team's output.
+ - **I want to share my knowledge.** One of the core parts of your job as a team lead is to grow your team. You do this best by sharing your knowledge, rather than being someone who puts their knowledge into practice by writing code. Writing _some_ code is important, because it keeps you in touch with the team's day-to-day work. But in general the more code you write, the more the team relies on you, and the bigger bottleneck you become.
+ - **I enjoy mentoring others.** Being one of the most experienced people on the team will put you in a prime position to be able to mentor others. Sharing your experiences with your team will help them learn and progress. It will also improve the quality of your team's output.
  - **I prefer to advise and mediate.** You might think you know what's best for the project, but taking an authoritarian approach to leadership can completely undermine any trust the team has in you. It's better to step back and let the team make decisions, acting only as a mediator or tie-breaker. (Sometimes it's okay to make executive decisions, but these should be rare and not be taken lightly).
  - **I'm ready to be a manager.** Not all team lead roles come with management responsibilities, but I don't think it's possible to completely avoid management. You will be the first person your team comes to when they have a problem. You should be ready to deal with conflicts, personal or private issues, as well as menial things like holiday and sick leave. On top of that, you should know how and when to deal out both praise and criticism.
- - **I know how to influence change.** Being a leader doesn't enable you to force change. It _does_ buy you a little bit of influence, and making change is all about learning how to use the influence you have to convince people to want the same change as you. Change happens easiest when everybody wants it.
+ - **I know how to influence change.** Being a leader doesn't enable you to force change. What it does is buy you a little bit of extra influence. Making change is all about learning how to use the influence you have to convince people to want the same change as you. Change happens easiest when everybody wants it.
 
-If that sounds like you, then you might find that a team lead role suits you well!
+The good news is that if that sounds like you, then you might find that a team lead role suits you well!
 
 ### Setting yourself up for the role
 
@@ -82,7 +82,7 @@ I also recommend learning how to identify and deal with mental health issues bec
 
 #### Fix things that cause pain for the team
 
-The aim of this is simple: get used to the idea of being someone who removes roadblocks for the team rather than being a core contributor. Start by volunteering to attend boring meetings, or optimise people's workflow by making the build faster. Removing pain from the rest of your team will keep them happier and allow them to work with fewer interruptions.
+The aim of this is simple: get used to the idea of being someone who removes roadblocks for the team rather than being a core contributor. Start by volunteering to attend boring meetings, or optimise people's workflow by making the build faster. Removing pain from the rest of your team will keep them happier and allow them to work with fewer interruptions. I like to think of this part of the role as being a sort of team janitor.
 
 #### Take every opportunity to mentor
 
@@ -104,11 +104,11 @@ So, you're a new team lead - congratulations! The following sections are your ha
 
 ### Avoid being overwhelmed
 
-Being a team lead can be overwhelming at times, especially during the first few months while you're still getting a grasp of everything. If you feel yourself becoming overwhelmed at any point, don't ignore it. Humans are generally quite good at picking up on each other's emotions, so a stressed or overwhelmed team lead can inadvertently pass stress on to the rest of the team.
+Being a team lead can be overwhelming at times, especially during the first few months while you're still getting a grasp of everything. If you feel yourself becoming overwhelmed at any point, don't ignore it. Humans are quite good at picking up on each other's emotions, and as the team lead you are likely to pass your own stress on to the rest of the team.
 
 #### Stop writing code
 
-One of the first things you should do when you're feeling overwhelmed is stop writing code. Even though (for me) coding is one of the most enjoyable parts of the job, writing code takes a lot of time and it generally makes you unavailable to the rest of the team.
+My number one tip for dealing with being overwhelmed is to stop writing code. It's strange for me to suggest this because for me, coding is quite cathartic - it's a form of stress relief. But coding takes a lot of your time, and it puts you in a mindset that makes you unavailable to the rest of the team.
 
 If you're working on something important, see if you can pass it onto a team member. Otherwise just put it to one side for a few days.
 
@@ -128,13 +128,17 @@ The best case scenario for saying "no" is that your team is given some extra hel
 
 #### Ask for help
 
-We're not very good at this in the software development industry. It's as if there's a bizarre sense of achievement or credibility in struggling through a problem for days when it could have been trivially solved by someone else in minutes. "Help" can come in many forms: someone helping you get through your work, mentorship from your boss or another team lead, or just be someone to talk to over lunch. Whatever form it comes in, don't be afraid to put your hand up and ask for help when you're feeling the pressure. You'll thank yourself later.
+We're not very good at this in the software development industry. It's as if there's a bizarre sense of achievement or credibility in struggling through a problem for days when it could have been trivially solved by someone else in minutes. "Help" can come in many forms: someone helping you get through your work, mentorship from your boss or another team lead, or just someone to talk to over lunch. Whatever form it comes in, don't be afraid to put your hand up and ask for help when you're feeling the pressure. You'll thank yourself later.
 
-Similarly to saying "no", asking for help sends a clear signal upwards that your team isn't coping. This doesn't indicate any failure on your part! If anything it indicates a failure with your stakeholders or upper management -- they're not managing their people ("resources") well enough.
+Similarly to saying "no", asking for help sends a clear signal upwards that your team isn't coping. This doesn't indicate any failure on your part! If anything, it indicates a failure with your stakeholders or upper management -- they're not managing their people ("resources") well enough.
 
 ### Conducting effective one-on-one meetings
 
-I spent the first few months of being a team lead panicking and stressing about my workload, so I saved time by avoiding one-on-one meetings. I assumed that if anyone needed anything, they would just approach me. This was a really big mistake. One-on-one meetings are one of the best ways to keep in touch with your team because they offer a private & safe space in which to have open & honest conversations that you would not normally have in front of the rest of the team. They might feel awkward at first, but eventually these meetings should feel as natural and casual as a daily stand-up.
+It feels strange to have a section in this guide about meetings. If you've ever had the (dis)pleasure of working with me, then you might know that I'm not very fond of meetings. I think I wrote `too many meetings :(` on a post-it note in pretty much every team retrospective I attended.
+
+Unfortunately, this dislike of meetings carried over when I became a team lead. And since I spent the first few months of the role just panicking and stressing about my workload, I had the genius idea of saving time by avoiding one-on-one meetings. I assumed that if anyone needed anything, they would just approach me.
+
+This was a really big mistake. One-on-one meetings are one of the best ways to keep in touch with your team because they offer a private & safe space in which to have open & honest conversations that you would not normally have in front of the rest of the team. They might feel awkward at first, but eventually these meetings should feel as natural and casual as a daily stand-up.
 
 #### Have them regularly
 
@@ -144,11 +148,13 @@ Having them every 2 weeks is a good place to start. If 2 weeks feels too regular
 
 #### Use a template
 
-I found it really useful to have a template for my one-on-one meetings. A template gives your meeting some structure and ensures that you don't miss out anything important. You can stray from the template and adjust it as you go along - it's just there as a guide.
+I found it really useful to have a template for my one-on-one meetings. I took Lara Hogan's [_Questions for our first 1:1_](https://larahogan.me/blog/first-one-on-one-questions/) template and modified it to suit my team.
+
+A template gives your meeting some structure and ensures that you don't miss out anything important. You can stray from the template and adjust it as you go along - it's just there as a guide.
 
 #### Take notes
 
-Take notes of everything that's discussed, because you'll want to refer to them later. Get the consent of the person that you're meeting with first, and reassure them that you're only making notes for your own reference, and that they are completely confidential. I usually start every meeting by showing the other person my notes from last time, to make sure we're on the same page.
+Take notes of everything that's discussed, because you'll want to refer to them later. Get the consent of the person that you're meeting with first, and reassure them that the notes are completely confidential, and only used for your own reference. I usually start every meeting by showing the other person my notes from last time, to make sure we're on the same page.
 
 #### Prepare beforehand
 
@@ -156,7 +162,9 @@ Give yourself 10 minutes before each of your one-on-ones to prepare yourself. Th
 
 #### Ask and listen
 
-Probably the most important bit of advice regarding one-on-one meetings is to remember that your role in these meetings is to listen. After you ask a question, just sit back and listen. Long stretches of silence are okay - they give you both a chance to think. Don't just _listen_, either. Really _take in_ what the other person is saying -- regardless of how important you think the matter is, or whether you agree or not. This person is telling you something because they think it's important, and it's your job to take everything they say very seriously.
+Probably the most important bit of advice regarding one-on-one meetings is to remember that your role in these meetings is to listen. After you ask a question, just sit back and listen. Long stretches of silence are okay - they give you both a chance to think.
+
+Don't just _listen_, either. Really _take in_ what the other person is saying -- regardless of how important you think the matter is, or whether you agree or not. This person is telling you something because they think it's important, and it's your job to take everything they say very seriously.
 
 #### Don't over-promise
 
@@ -165,6 +173,8 @@ Remember how I said that you should do everything that you said you would in the
 ### Dealing with pressure from stakeholders
 
 Let's talk about stakeholders. No matter the size of your company, you probably have at least a few. They're the people who are interested in the outcome of your project, and they probably set the overall direction of your work by coming up with the project requirements and various tweaks along the way.
+
+At some point you will find yourself in a position where your stakeholders are asking your team to do too much, and with too little time. How you handle these situations can have a tremendous impact on the happiness and productivity of your team, so approach them with caution.
 
 #### Always be honest
 
@@ -176,7 +186,7 @@ There is one exception to the "always be honest" rule, which is that you should 
 
 #### Compromise early & often
 
-Since you're going to be telling your stakeholders when you're behind schedule, a useful skill to have is negotiating compromise. Compromising can be an awkward and painful process where you basically ask your stakeholders to either cut back features or give you more time. You should try to compromise as soon as you know the deadline is tight, and you should do it as often as you need to. Compromise until the deadline feels truly achievable. Just remember that there is no "us vs. them" -- everybody wants the same outcome, which is a high quality product delivered in a timely manner.
+Since you're going to be telling your stakeholders when you're behind schedule, it's useful to learn how to compromise. Compromising can be an awkward and painful process where you basically ask your stakeholders to either cut back features or give you more time. You should try to compromise as soon as you know the deadline is tight, and you should do it as often as you need to. Compromise until the deadline feels truly achievable. Just remember that there is no "us vs. them" -- everybody wants the same outcome, which is a high quality product delivered in a timely manner.
 
 #### Don't pass the pressure onto your team
 
@@ -188,7 +198,7 @@ A common theme in this guide is to ask for help. A strategy I've used successful
 
 ### Grow & support your team
 
-I said before that a core part of the team lead role is growing the people on your team. I think it's actually the most important part. You might be tempted to say that delivering value to the business is the most important part of your role, but you'll find that as people grow, they learn new skills and they become happier and more productive. The more skilled your teams are, the more value they deliver (and the more you should pay them).
+I said before that a core part of the team lead role is growing the people on your team. I think it's actually the most important part. I've heard people say that delivering value to the business is the most important part of your role. I disagree with this. To be fair, growing your team and delivering value are two things that go hand-in-hand. You'll find that as people grow, they learn new skills, and they become happier & more productive. The more skilled your teams are, the more value they end up delivering (and the more they should be paid).
 
 People grow in different ways, and part of your role is to identify how everyone on your team grows best. Some people like to be mentored, and told what to do. Some like to be given reading material or tutorials to follow. One thing that is common to most people I've worked with is that they grow when they're challenged.
 
@@ -202,11 +212,11 @@ For the times when the day-to-day work _is_ challenging enough, you want to make
 
 > Nobody is allowed to work on a task by themselves for more than one day.
 
-I think this is a fantastic tip. It ensures that people spend less time being stuck on simple problems, and more time progressing with their work in a way that challenges them and allows them to grow. It also works really well for tasks that you know will take longer than a day, because you end up with more than one person having knowledge about these complex tasks. This reduces your reliance on a couple of key people that normally take on the complex tasks.
+I think this is a fantastic tip. It ensures that people spend less time being stuck on simple problems, and more time progressing with their work in a way that challenges them and allows them to grow. It also works really well for tasks that you know will take longer than a day, because you end up with more than one person having knowledge about these complex tasks. This reduces your reliance on your more senior team members who would normally take on these complex tasks by themselves.
 
 #### Run knowledge sharing sessions
 
-Getting together on a regular basis to talk about things you've all learned recently can be a good way to keep everybody up-to-date on the whole project. You can even use these sessions as a way to talk about non-work things, like what you're all planning to do over the weekend. This doesn't work for all teams, but it's a nice way to make the meetings more informal and get everyone to know each other as _people_.
+Getting together on a regular basis to talk about things you've all learned recently can be a good way to keep everybody up-to-date on the whole project. You can even use these sessions as a way to talk about non-work things, like what you're all planning to do over the weekend. This "not-work" sharing might not be appropriate for every team, but I think it's a nice way to make the meetings less formal and get everyone to know each other as _people_.
 
 These sessions are also the perfect opportunity to invite other teams along to encourage cross-pollination of ideas.
 
