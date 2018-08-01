@@ -15,7 +15,7 @@ extra_head:
   - <link rel="stylesheet" href="/css/toc.css">
 ---
 
-> <small>This post is a transposition of my Fluent talk _Becoming a team lead: a survival guide_. It's been edited to better fit a blog post format. If you prefer to see the original format, you can view [the slides with speaker notes](https://docs.google.com/presentation/d/1JroNufrqNu3W-HIq2r71WTfcaxJHzQL_8sfQmnhP7Kc/edit?usp=sharing) instead. A video of the talk will be up some time in July 2018.</small>
+> <small>This post is a transposition of my Fluent talk _Becoming a team lead: a survival guide_. It's been edited to better fit a blog post format. If you prefer to see the original format, you can [watch the video](https://www.youtube.com/watch?v=fBqmb3bCfbY) (30 minutes + Q&A) or view [the slides with speaker notes](https://docs.google.com/presentation/d/1JroNufrqNu3W-HIq2r71WTfcaxJHzQL_8sfQmnhP7Kc/edit?usp=sharing).</small>
 
 _A survival guide_ is a strange thing to call this post, since survival guides are usually very serious books that prepare you for extreme situations. Building shelter in the wilderness, foraging for food, avoiding being eaten by bears - that sort of thing. I'm never sure when is the right time to read a survival guide, since being lost in the wilderness or being hunted by bears is not something you really plan for. If you read the survival guide too early, you forget most of it. If you read it too late, it's no use.
 
