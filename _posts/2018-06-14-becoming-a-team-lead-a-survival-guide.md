@@ -21,7 +21,7 @@ _A survival guide_ is a strange thing to call this post, since survival guides a
 
 Anyway, the reason this is a survival guide is because after spending my entire career as a software engineer, I was thrown into a team lead role without much warning. I had no idea what I was doing and had very little support. This is the survival guide I wish I had. It documents my experiences as an inexperienced team lead --as an engineer transitioning to a team lead-- and my learnings & mistakes along the way. Hopefully this can act as a survival guide for you, too.
 
-This is a fairly long guide, so I've split it into sections. Feel free to skip sections that aren't relevant to you.<!-- more -->
+This is a fairly long guide, so I've split it into sections. Feel free to skip sections that aren't relevant to you.<!--more-->
 
 * Placeholder list item
 {:toc}
