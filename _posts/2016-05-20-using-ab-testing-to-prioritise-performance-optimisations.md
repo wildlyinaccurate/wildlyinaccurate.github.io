@@ -23,10 +23,10 @@ This is where the idea to A/B test performance came from: we could easily make t
 
 Setting up A/B tests for performance is much simpler than you might think — all you need is a page to use as the baseline, a page for each optimisation, and a consistent way to measure performance.
 
-We took a snapshot of the BBC News front page to use as the baseline, and made a variation of that snapshot for each performance optimisation. The focus of this post isn't the optimisations themselves, but to give some context, they were things like:
+We took a snapshot of the BBC News front page to use as the baseline, and made a variation of that snapshot by hand for each performance optimisation. The focus of this post isn't the optimisations themselves, but to give some context, they were things like:
 
 - Lazy loading images below the fold.
-- Delaying JavaScript execution until the content hass rendered.
+- Delaying JavaScript execution until after the content has rendered.
 - Removing unused CSS.
 - Loading adverts asynchronously.
 
