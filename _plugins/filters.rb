@@ -32,10 +32,19 @@ module Jekyll
         env[:node].replace(env[:node].content)
       end
 
+      caption_remover = lambda do |env|
+        node = env[:node]
+        className = node['class']
+
+        if className && className.split.include?('caption') then
+          node.unlink
+        end
+      end
+
       Sanitize.fragment(html,
         :remove_contents => true,
         :elements        => preserve_elements,
-        :transformers    => [toc_remover, span_transformer],
+        :transformers    => [toc_remover, span_transformer, caption_remover],
         :attributes      => {
           'a' => ['href'],
         }
