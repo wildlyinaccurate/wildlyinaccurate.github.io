@@ -10,7 +10,12 @@ tags:
 - teardown
 author: Joseph Wynn
 published: false
+extra_head:
+  - <link rel="stylesheet" href="/css/toc.css">
 ---
+
+* Placeholder list item
+{:toc}
 
 Most of the English-speaking world has Amazon and eBay. In New Zealand we have TradeMe - an online auction & classified advert website where Kiwis go to buy & sell general items, cars, and property. If the numbers are to be believed, then pretty much every Kiwi has a TradeMe account. I don't think it's an understatement to say that TradeMe is an itegral part of modern New Zealand culture.
 
@@ -22,7 +27,7 @@ Being the ever-curious developer, I wanted to give the new TradeMe website a try
 
 This bothered me, because I know that the other TradeMe experiences are fast. Why should this new website be so slow? I wanted to dig deeper, so I've taken the opportunity to conduct a detailed performance teardown.<!--more-->
 
-## Step 0: Defining the test parameters
+## Defining the test parameters
 
 One of the first things I like to do when I'm assessing the performance of a website is set a benchmark -- what do users _expect_ from this website? In most cases it makes sense to use a competing website as the benchmark. When we were [improving the performance of BBC News](/introducing-a-faster-bbc-news-front-page/), we used The Guardian and Financial Times as our benchmark because they are two of the fastest websites in the industry. However, it isn't fair to use eBay or Amazon as a benchmark for TradeMe because they are both multi-billion dollar companies with thousands of developers. Instead, I'm using the much older (but much faster) TradeMe Touch website as a benchmark.
 
@@ -39,7 +44,7 @@ The final parameter is the test configuration. I wanted to emulate the performan
 - **Emulate Mobile Browser:** iPhone 6/7/8
 - **CPU Throttling:** 2.6 (specified using the [throttle_cpu flag](https://www.webpagetest.org/?throttle_cpu=2.6))
 
-## Step 1: The benchmark
+## The benchmark
 
 First up is the old TradeMe Touch website. In the screenshot below, you can see two metrics are highlighted: First Interactive and Largest Image Render. The page is considered interactive at **7.2 seconds**, and the primary image is rendered at **14.9 seconds**. The interactive time is not bad for a mid-range mobile device, but having to wait nearly 15 seconds to see the primary content is not something that most users will be happy about. I know I said that I wouldn't compare TradeMe to its better-resourced international competitors, but just for reference: a similar page on eBay renders the primary image at **5.3 seconds**.
 
@@ -51,7 +56,7 @@ Now let's see how the new website performs: interactive at **11.6 seconds**, and
 
 <small>(These screenshots are from the [SpeedCurve](https://speedcurve.com/) test detail page, which has an awesome timeline visualisation).</small>
 
-## Step 2: Identifying performance bottlenecks
+## Identifying performance bottlenecks
 
 ### Main thread activity
 
@@ -80,38 +85,51 @@ One of the obvious bottlenecks is the primary image being downloaded so far thro
 1. Prime the cache for the primary image. While this is not strictly possible in the real world, the effect should be similar to using `<link rel=preload>` to request the primary image as soon as possible.
 2. Block all of the other image requests so that the primary image isn't contending for network bandwidth.
 
-The result of this experiment is that the primary image is rendered at **21 seconds** -- **9.4 seconds faster** than the original page.
+Here are the results:
+
+| Metric               | Original  | Optimised | Difference     |
+|----------------------|-----------|-----------|----------------|
+| Primary image render | **30.4s** | **21s**   | **9.4s** (30%) |
 
 ### Defer loading third party assets
 
 While the majority of the blocking assets belong to TradeMe, there is still a considerable amount of third party content being downloaded -- about 350KB, most of which is JavaScript. Deferring this third party content until later in the page load could improve the user experience by prioritising the first party content.
 
-I simulated this optimisation by blocking requests from all third party domains. The result is a First Interactive time of **9.5 seconds** -- **2.1 seconds faster** than the original page.
+I simulated this optimisation by blocking requests from all third party domains. Here are the results:
+
+| Metric               | Original  | Optimised | Difference     |
+|----------------------|-----------|-----------|----------------|
+| First Interactive    | **11.6s** | **9.5s**  | **2.1s** (18%) |
 
 ### Render page content on the server
 
 Unfortunately the new TradeMe site neither works without JavaScript enabled, nor does it work offline despite utilising a caching service worker. One reason for this is that the page content is fetched and rendered by JavaScript rather than being contained in the initial document response. Rendering some basic content on the server not only enables the page to be used offline or without JavaScript, it also has significant performance benefits since the browser can begin to render content well before it has finished downloading the other page resources.
 
-I simulated this optimisation by creating a static version of the page with the content pre-rendered. I also moved the `<script>` tags to below the main content to prevent them from blocking rendering. Since this version ran in a different environment, I adjust the numbers to account for the difference in backend times. The results were:
+I simulated this optimisation by creating a static version of the page with the content pre-rendered. I also moved the `<script>` tags to below the main content to prevent them from blocking rendering. Since this version ran in a different environment, I adjust the numbers to account for the difference in backend times. Here are the results:
 
-- The headline was rendered in **5.7 seconds** -- **15.5 seconds faster** than the original page.
-- The primary image was rendered in **11.7 seconds** -- **18.7 seconds faster** than the original page.
-- First Interactive is not comparable, since I changed the position of the `<script>` tags.
+| Metric               | Original  | Optimised | Difference      |
+|----------------------|-----------|-----------|-----------------|
+| Heading render       | **21.2s** | **5.7s**  | **15.5s** (73%) |
+| Primary image render | **30.4s** | **11.7s** | **18.7s** (61%) |
+
+Note that First Interactive is not comparable for this test, since I changed the position of the `<script>` tags.
 
 ## Causes for celebration
 
 It's far too easy in a performance teardown to focus on the things that a website gets wrong. I always like to try and find some things that a website is doing right.
 
-#### 1. Caching improve the experience on repeat visits
+### Caching improves the experience on repeat visits
 
 On the first page load, over 4.2MB of data is transferred. On subsequent page loads, that number is more like 570KB thanks to a caching service worker and sensible caching headers.
 
 ## Recommendations
 
-### 1. Test on representative devices and networks
+### Test on representative devices and networks
 
 Building great user experiences requires a large dose of empathy, and one of the easiest ways to get this empathy is by using your product in the same way that your "average" user does. Pick up a mid-range Android phone or an Intel Celeron laptop and see how your product feels on those devices. The great thing about "average" devices is that they are cheap - 10-20x cheaper than the MacBook Pro used by the "average" developer.
 
-### 2. Render
+### Render the core content on the server
 
-### 3. Reduce the amount of JavaScript you ship
+
+
+### Reduce the amount of JavaScript you ship
