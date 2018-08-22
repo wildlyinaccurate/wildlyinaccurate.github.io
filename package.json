@@ -13,15 +13,14 @@
     "imagemin": "grunt imagemin"
   },
   "dependencies": {
-    "bootstrap": "github:twbs/bootstrap#v4-dev",
+    "bootstrap": "^4.0.0",
     "hogan.js": "^3.0.2"
   },
   "devDependencies": {
     "babili": "0.0.12",
-    "bower": "^1.7.9",
     "cheerio": "^0.22.0",
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
+    "grunt": "^1.0.3",
+    "grunt-cli": "^1.3.1",
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-imagemin": "^2.0.1",
@@ -30,10 +29,10 @@
     "grunt-uncss": "^0.6.2",
     "grunt-usemin": "^3.1.1",
     "imagemin-jpegtran": "^5.0.2",
-    "imagemin-pngquant": "^5.0.1",
-    "markdown-spellcheck": "^1.0.0",
+    "imagemin-pngquant": "^5.1.0",
+    "markdown-spellcheck": "^1.3.1",
     "pygments-rouge-css": "^0.1.0",
-    "webpack": "^3.4.1"
+    "webpack": "^3.12.0"
   },
   "repository": {
     "type": "git",

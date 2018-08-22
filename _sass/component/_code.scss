@@ -1,5 +1,5 @@
 pre, code {
-  background: $gray-200;
+  background: $gray-100;
   font-size: $code-font-size;
 }
 
@@ -21,6 +21,6 @@ pre {
 
 [class*="language-"] pre {
   &, code {
-    background: $gray-800;
+    background: $gray-900;
   }
 }
