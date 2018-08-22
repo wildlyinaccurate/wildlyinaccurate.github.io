@@ -64,11 +64,13 @@ The first thing that draws my eye is this 2-second slice where the main thread i
 
 {% responsive_image path: assets/trademe-preview-iphone-6-main-thread.png alt: "JavaScript is blocking the main thread for 2 seconds at this point in the timeline" %}
 
-When I open the network view, it's obvious what's causing this: the browser is evaluating the 716KB of JavaScript that it just downloaded. This number is the bytes that were sent over the network, and doesn't represent the true cost of this JavaScript. Once uncompressed, these JavaScript files weigh in at over 2.7MB.  (Tip: in the Network tab of Firefox DevTools, you can choose to show both the "Transferred" and "Size" columns so that you can see both the bytes over the wire and the raw uncompressed resource size).
+When I open the network view, it's obvious what's causing this: the browser is evaluating the **716KB of JavaScript** that it just downloaded. This number is the bytes that were sent over the network, and doesn't represent the true cost of this JavaScript. Once uncompressed, these JavaScript files weigh in at over **2.7MB**.  (Tip: in the Network tab of Firefox DevTools, you can choose to show both the "Transferred" and "Size" columns so that you can see both the bytes over the wire and the raw uncompressed resource size).
 
 {% responsive_image path: assets/trademe-preview-iphone-6-network-js.png alt: "Large JavaScript requests in the network view" %}
 
-This 2 second period is just the tip of the iceberg. By the time the page has finished loading, over 2.2MB of JavaScript has been downloaded. This expands to more than 5.1MB of uncompressed code that the browser must parse, compile, and execute. According to the Coverage tool in Chrome DevTools, 3MB of that code is never even executed during the page load.
+This 2 second period is just the tip of the iceberg. By the time the page has finished loading, over **2.2MB** of JavaScript has been downloaded. This expands to more than **5.1MB** of uncompressed code that the browser must parse, compile, and execute. According to the Coverage tool in Chrome DevTools, 3MB of this code is never even executed during the page load.
+
+{% responsive_image path: assets/trademe-preview-chrome-coverage.png alt: "Coverage report in Chrome DevTools" %}
 
 ### Delayed primary image request
 
@@ -91,6 +93,10 @@ Here are the results:
 |----------------------|-----------|-----------|----------------|
 | Primary image render | **30.4s** | **21s**   | **9.4s** (30%) |
 
+Viewing the filmstrip of the original page versus the optimised page really shows how much faster this is:
+
+{% responsive_image path: assets/trademe-preview-image-optimisation-filmstrip.png alt: "A filmstrip comparison of the original page (top) versus the optimised page (bottom). Frame interval: 2500ms" %}
+
 ### Defer loading third party assets
 
 While the majority of the blocking assets belong to TradeMe, there is still a considerable amount of third party content being downloaded -- about 350KB, most of which is JavaScript. Deferring this third party content until later in the page load could improve the user experience by prioritising the first party content.
@@ -112,9 +118,13 @@ I simulated this optimisation by creating a static version of the page with the 
 | Heading render       | **21.2s** | **5.7s**  | **15.5s** (73%) |
 | Primary image render | **30.4s** | **11.7s** | **18.7s** (61%) |
 
+Like the primary image optimisation test, viewing the filmstrip of the original page versus the optimised page shows how much impact this optimisation really has.
+
+{% responsive_image path: assets/trademe-preview-server-render-filmstrip.png alt: "A filmstrip comparison of the original page (top) versus the optimised page (bottom). Frame interval: 2500ms." %}
+
 Note that First Interactive is not comparable for this test, since I changed the position of the `<script>` tags.
 
-## Causes for celebration
+## Causes for celebration 🎉
 
 It's far too easy in a performance teardown to focus on the things that a website gets wrong. I always like to try and find some things that a website is doing right.
 
@@ -122,14 +132,40 @@ It's far too easy in a performance teardown to focus on the things that a websit
 
 On the first page load, over 4.2MB of data is transferred. On subsequent page loads, that number is more like 570KB thanks to a caching service worker and sensible caching headers.
 
+### Code splitting is already implemented
+
+Despite the massive bundle size, it looks like code splitting has already been implemented. [Code splitting is recommended](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting/) to ensure that your users only download the code that they need. Code splitting can be hard, but the fact that it is already set up on TradeMe should reduce the amount of effort required to optimise the JavaScript delivery.
+
 ## Recommendations
 
 ### Test on representative devices and networks
 
-Building great user experiences requires a large dose of empathy, and one of the easiest ways to get this empathy is by using your product in the same way that your "average" user does. Pick up a mid-range Android phone or an Intel Celeron laptop and see how your product feels on those devices. The great thing about "average" devices is that they are cheap - 10-20x cheaper than the MacBook Pro used by the "average" developer.
+Building great user experiences requires a large dose of empathy, and one of the easiest ways to get this empathy is by using your product in the same way that your users do. Pick up a mid-range Android phone or an Intel Celeron laptop and see how your product feels on those devices. The great thing about using the same devices as your users is that they are cheap - often 10-20x cheaper than the MacBook Pro used by many developers.
 
 ### Render the core content on the server
 
+I've always been an advocate for having a good [core experience](/redefining-the-bcc-news-core-experience/). If you're not familiar with the concept of a core experience, I define it as follows:
 
+> A core experience should be made up of these five things, in order of importance:
+>
+> 0. The page content.
+> 0. The markup required to make the page accessible.
+> 0. Minimal styling to make the content easily readable – grids, typography, etc.
+> 0. Minimal styling to brand the page – logo, colours.
+> 0. The means to enhance the page where appropriate.
+>
+> A core experience should be _just_ these things. Everything else is an enhancement.
+
+This might sound familiar if you know about [progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement), since having a core experience is a prerequisite for doing any progressive enhancement.
 
 ### Reduce the amount of JavaScript you ship
+
+JavaScript is a hot topic in 2018. It is by far the biggest contributor to slow user experiences on the web -- if you haven't already read Addy Osmani's [_The Cost Of JavaScript in 2018_](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4) then I would recommend doing so.
+
+In the last few years, the web developer ecosystem has come leaps and bounds. With tools like npm and Webpack, it's easier than ever before to create interactive user experiences and bundle them up to be delivered on the web. An unfortunate downside to this is that it's easier than ever before to create huge JavaScript bundles that don't perform well.
+
+Right now there are no easy answers to The JavaScript Problem. The best thing that developers can do today is to remain diligent and balance ease of development with user experience.
+
+### Use performance budgets
+
+Before you even start working on a project, set yourself budgets on key user experience metrics like First Interactive, Hero Element Render Time, and JavaScript bundle size. Keep an eye on your budgets and **always fix problems that break your budgets**. Performance budgets are becoming a de facto feature of performance monitoring tools. We used [SpeedCurve's performance budgets](https://speedcurve.com/blog/performance-budgets-in-action/) at the BBC to set performance targets and receive alerts when we broke the budgets.
