@@ -26,38 +26,48 @@ responsive_image:
   template: _includes/thumbnail.html
   output_path_format: assets/r/%{width}/%{basename}
   sizes:
-    # Widths that match the image size at various device widths and breakpoints
+    # Widths that match the image size at various device widths and breakpoints.
+    # Phone sizes have higher quality because the screens are SO DAMN GOOD.
+    # In most cases, the image width is 30px smaller than the device width to
+    # account for the gutter.
 
-    # iPhone 6 (375px)
+    # Samsung Galaxy S7/8/9 (360px)
+    - width: 330
+      quality: 85
+
+    # iPhone 6/7/8/X (375px)
     - width: 345
-      quality: 60
-      progressive: true
+      quality: 85
 
-    # iPhone 6 plus (414px)
+    # Google Pixel 1/2/XL | Nexus 5X/6P (411px)
+    - width: 381
+      quality: 85
+
+    # iPhone 6/7/8 Plus (414px)
     - width: 384
-      quality: 60
-      progressive: true
+      quality: 85
 
     # SM breakpoint (576px)
-    - width: 514
-      progressive: true
+    - width: 546
 
-    # XS breakpoint (<576px; larger than SM because gutters shrink)
-    - width: 545
-      progressive: true
+    # Something in between because why tf not
+    - width: 640
 
     # MD breakpoint (768px)
-    - width: 706
+    - width: 738
+
+    # After this point the file size is large, so loading JPEGs progressively
+    # can help with the render times.
+    - width: 840
       progressive: true
 
-    # LG breakpoint (960px)
-    - width: 898
+    - width: 960
       progressive: true
 
-    # Everything else is pretty much for featured images
-    - width: 1280
+    - width: 1250
       progressive: true
 
+    # The only images this wide are the "featured" image in the header
     - width: 1366
       progressive: true
 
