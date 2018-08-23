@@ -1,9 +1,12 @@
 <article class="pb-3">
-    <small class="f-r c-gl pt-2">{{ post.date | date: "%b %-d, %Y" }}</small>
-
     <h3>
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
     </h3>
+
+    <small class="c-gl pt-2">
+        {{ post.date | date: "%b %-d, %Y" }}
+        • {{ post.content | split: " " | size | divided_by: 180 }} minute read
+    </small>
 
     <p>{{ post.excerpt | sanitize }} <a href="{{ post.url | prepend: site.baseurl }}">(Read more)</a></p>
 </article>
