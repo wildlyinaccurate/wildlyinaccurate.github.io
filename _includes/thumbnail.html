@@ -9,7 +9,7 @@
         <img
             alt="{{ alt }}"
             src="/{{ path }}"
-            {% if original.width <= 738 %}width="{{ original.width }}"{% endif %}
+            {% if original.width <= 1250 %}width="{{ original.width }}"{% endif %}
             srcset="{{ srcset | split: '|' | join: ', ' }}{% if original.width <= 1250 %}, /{{ path }} {{ original.width }}w{% endif %}">
     {% if url %}</a>{% endif %}
 
