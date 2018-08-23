@@ -9,13 +9,10 @@ tags:
 - performance
 - teardown
 author: Joseph Wynn
-published: false
+published: true
 extra_head:
   - <link rel="stylesheet" href="/css/toc.css">
 ---
-
-* Placeholder list item
-{:toc}
 
 Most of the English-speaking world has Amazon and eBay. In New Zealand we have TradeMe - an online auction & classified advert website where Kiwis go to buy & sell general items, cars, and property. If the numbers are to be believed, then pretty much every Kiwi has a TradeMe account. I don't think it's an understatement to say that TradeMe is an itegral part of modern New Zealand culture.
 
@@ -23,9 +20,12 @@ Back in 2016, [TradeMe announced](https://investors.trademe.co.nz/media/75789/5-
 
 Being the ever-curious developer, I wanted to give the new TradeMe website a try. After a couple of weeks using the new website on my phone (a Nokia 7 Plus), I became frustrated with how much time I spent staring at a loading spinner, and how sluggish the UI interactions were. So I went back to the old website.
 
-{% responsive_image path: assets/trademe-preview-loading.jpg alt: "The loading screen for the new TradeMe website" %}
+{% responsive_image path: assets/trademe-preview-loading.png alt: "The loading screen for the new TradeMe website" %}
 
 This bothered me, because I know that the other TradeMe experiences are fast. Why should this new website be so slow? I wanted to dig deeper, so I've taken the opportunity to conduct a detailed performance teardown.<!--more-->
+
+* Placeholder list item
+{:toc}
 
 ## Defining the test parameters
 
@@ -75,6 +75,8 @@ This 2 second period is just the tip of the iceberg. By the time the page has fi
 ### Delayed primary image request
 
 The second thing that draws my attention is that the network request for the primary image does not even start until the 30 second mark. It's request #107, out of 195 total requests. 17 other large images are downloaded before the primary image, which quickly uses up the limited bandwidth of this simulated mobile connection.
+
+{% responsive_image path: assets/trademe-preview-primary-image-requests.png alt: "Waterfall chart showing the number of requests before the primary image is rendered" %}
 
 ## Some performance experiments
 
@@ -157,6 +159,8 @@ I've always been an advocate for having a good [core experience](/redefining-the
 > A core experience should be _just_ these things. Everything else is an enhancement.
 
 This might sound familiar if you know about [progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement), since having a core experience is a prerequisite for doing any progressive enhancement.
+
+Not only does a good core experience enable users to view your product on practically any device or browser, it can also be hugely beneficial to page performance. TradeMe is a perfect example of this, with my experiment showing a 15-19 second reduction in the time to render core content.
 
 ### Reduce the amount of JavaScript you ship
 
