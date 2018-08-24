@@ -2,7 +2,6 @@ const imageminPngquant = require('imagemin-pngquant')
 const imageminJpegtran = require('imagemin-jpegtran')
 
 module.exports = function (grunt) {
-  grunt.loadNpmTasks('grunt-elm')
   grunt.loadNpmTasks('grunt-uncss')
   grunt.loadNpmTasks('grunt-contrib-cssmin')
   grunt.loadNpmTasks('grunt-contrib-htmlmin')
@@ -13,14 +12,6 @@ module.exports = function (grunt) {
   grunt.loadTasks('grunt-tasks')
 
   grunt.initConfig({
-    elm: {
-      compile: {
-        files: {
-          'js/compiled/Collection.js': 'elm/Main.elm',
-        }
-      }
-    },
-
     uncss: {
       dist: {
         options: {

@@ -1,12 +1,12 @@
 module Main exposing (..)
 
-import Collection exposing (Collection, model, subscriptions, update, view)
-import Html as App
+import Collection exposing (Collection, init, subscriptions, update, view)
+import Browser
 
 
 main =
-    App.programWithFlags
-        { init = model
+    Browser.element
+        { init = init
         , subscriptions = subscriptions
         , update = update
         , view = view

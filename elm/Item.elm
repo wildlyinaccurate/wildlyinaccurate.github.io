@@ -5,7 +5,7 @@ module Item
         )
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (class, href)
 import Json.Encode exposing (string)
 
 
@@ -29,7 +29,7 @@ view item =
                 [ text item.title ]
             ]
         , p [] <|
-            span [ property "innerHTML" (Json.Encode.string item.description) ] []
+            span [ Elm.Kernel.VirtualDom.property "innerHTML" (string item.description) ] []
                 :: (List.map tagView item.tags)
         ]
 
@@ -37,5 +37,5 @@ view item =
 tagView : String -> Html msg
 tagView tag =
     span
-        [ class "item-tag badge badge-default" ]
+        [ class "item-tag badge badge-primary" ]
         [ text tag ]

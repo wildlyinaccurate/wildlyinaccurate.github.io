@@ -1,12 +1,12 @@
-var Elm = require('./compiled/Collection')
+import { Elm } from './compiled/Collection'
 
 var mountPoint = document.createElement('div')
 var staticContainer = document.querySelector('.collection-container')
 
-Elm.Main.embed(
-    mountPoint,
-    getData()
-)
+Elm.Main.init({
+    node: mountPoint,
+    flags: getData()
+})
 
 staticContainer.innerHTML = ''
 staticContainer.parentNode.appendChild(mountPoint)

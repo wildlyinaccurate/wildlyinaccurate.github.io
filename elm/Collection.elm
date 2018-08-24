@@ -1,7 +1,7 @@
 module Collection
     exposing
         ( Collection
-        , model
+        , init
         , subscriptions
         , update
         , view
@@ -60,8 +60,8 @@ type alias FilterList =
     List String
 
 
-model : Maybe Collection -> ( Collection, Cmd msg )
-model fixtures =
+init : Maybe Collection -> ( Collection, Cmd msg )
+init fixtures =
     case fixtures of
         Just f ->
             ( { f | filters = allTags f }, Cmd.none )
@@ -188,7 +188,7 @@ tagFilter filters tag =
 checkbox : Bool -> (Bool -> Msg) -> String -> Html Msg
 checkbox isChecked action name =
     label
-        [ class "btn btn-default btn-sm" ]
+        [ class "btn btn-primary btn-sm" ]
         [ input
             [ type_ "checkbox"
             , checked isChecked
