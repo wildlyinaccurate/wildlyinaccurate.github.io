@@ -1,13 +1,13 @@
 ---
 layout: post
-title: 'Web performance teardown: TradeMe'
+title: 'Web performance review: TradeMe'
 categories:
 - Performance
 - Web Development
 tags:
 - javascript
 - performance
-- teardown
+- review
 author: Joseph Wynn
 published: true
 extra_head:
@@ -22,7 +22,7 @@ Being the ever-curious developer, I wanted to give the new TradeMe website a try
 
 {% responsive_image path: assets/trademe-preview-loading.png alt: "The loading screen for the new TradeMe website" %}
 
-This bothered me, because I know that the other TradeMe experiences are fast. Why should this new website be so slow? I wanted to dig deeper, so I've taken the opportunity to conduct a detailed performance teardown.<!--more-->
+This bothered me, because I know that the other TradeMe experiences are fast. Why should this new website be so slow? I wanted to dig deeper, so I've taken the opportunity to conduct a detailed performance review.<!--more-->
 
 * Placeholder list item
 {:toc}
@@ -50,7 +50,7 @@ First up is the old TradeMe Touch website. In the screenshot below, you can see 
 
 {% responsive_image path: assets/trademe-touch-iphone-6.png alt: "A waterfall chart showing the timeline of a TradeMe Touch listing page" %}
 
-Now let's see how the new website performs: interactive at **11.6 seconds**, and the primary image is rendered at **30.4 seconds**. No wonder I felt frustrated using this new website! On the bright side, there's plenty of good performance lessons we can learn from this teardown. So let's dig a bit deeper.
+Now let's see how the new website performs: interactive at **11.6 seconds**, and the primary image is rendered at **30.4 seconds**. No wonder I felt frustrated using this new website! On the bright side, there's plenty of good performance lessons we can learn from this review. So let's dig a bit deeper.
 
 {% responsive_image path: assets/trademe-preview-iphone-6.png alt: "A waterfall chart showing the timeline of a TradeMe Preview listing page" %}
 
@@ -80,7 +80,7 @@ The second thing that draws my attention is that the network request for the pri
 
 ## Some performance experiments
 
-Looking at waterfall charts and dissecting JavaScript bundles is interesting, but what we really want to get out of a performance teardown is a list of actionable tasks with a rough estimate of how each task will impact the performance of the website. One of my favourite ways to get this list is by running some [A/B performance tests](/using-ab-testing-to-prioritise-performance-optimisations/) by making some optimisations by hand and measuring their impact.
+Looking at waterfall charts and dissecting JavaScript bundles is interesting, but what we really want to get out of a performance review is a list of actionable tasks with a rough estimate of how each task will impact the performance of the website. One of my favourite ways to get this list is by running some [A/B performance tests](/using-ab-testing-to-prioritise-performance-optimisations/) by making some optimisations by hand and measuring their impact.
 
 ### Prioritise loading the primary image
 
@@ -128,7 +128,7 @@ Note that First Interactive is not comparable for this test, since I changed the
 
 ## Causes for celebration 🎉
 
-It's far too easy in a performance teardown to focus on the things that a website gets wrong. I always like to try and find some things that a website is doing right.
+It's far too easy in a performance review to focus on the things that a website gets wrong. I always like to try and find some things that a website is doing right.
 
 ### Caching improves the experience on repeat visits
 
@@ -173,3 +173,7 @@ Right now there are no easy answers to The JavaScript Problem. The best thing th
 ### Use performance budgets
 
 Before you even start working on a project, set yourself budgets on key user experience metrics like First Interactive, Hero Element Render Time, and JavaScript bundle size. Keep an eye on your budgets and **always fix problems that break your budgets**. Performance budgets are becoming a de facto feature of performance monitoring tools. We used [SpeedCurve's performance budgets](https://speedcurve.com/blog/performance-budgets-in-action/) at the BBC to set performance targets and receive alerts when we broke the budgets.
+
+## Wrapping up
+
+I hope this has been a useful insight into how I conduct performance reviews. I'll be doing more of these in the future, so if there's a part of the review that you think I should focus on more, or a particular website that you'd like me to review, let me know!
