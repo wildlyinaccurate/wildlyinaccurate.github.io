@@ -10,8 +10,12 @@
 }
 
 .outset {
-  $breakpoints-as-list: map-values($grid-breakpoints);
-  $last-breakpoint-width: nth($breakpoints-as-list, length($breakpoints-as-list));
+  width: 1280px;
+  max-width: 90%;
+}
 
-  max-width: 1280px;
+@include media-breakpoint-down(sm) {
+  .outset {
+    max-width: 100%;
+  }
 }

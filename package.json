@@ -27,7 +27,7 @@
     "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-imagemin": "^2.0.1",
     "grunt-filerev": "^2.3.1",
-    "grunt-uncss": "^0.6.2",
+    "grunt-uncss": "^0.8.0",
     "grunt-usemin": "^3.1.1",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-pngquant": "^6.0.0",

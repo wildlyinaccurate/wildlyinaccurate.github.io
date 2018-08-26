@@ -20,24 +20,19 @@ module.exports = function (grunt) {
           ignoreSheets: [/collection.css/, /toc.css/, /highlight.css/],
           ignore: [
             '#carbonads',
-            /\.carbon\-.+/,
-
-            // Can't get the search page working properly in UnCSS
-            // so have to specify all selectors used on that page UGH
-            '.ls-n', '.p-0'
+            /\.carbon\-.+/
           ]
         },
         files: {
           '_site/css/main.css': [
+            '_site/a-hackers-guide-to-git/index.html',
+            '_site/about/index.html',
             '_site/index.html',
             '_site/page2/index.html',
-            '_site/about/index.html',
             '_site/projects/index.html',
-            '_site/search/index.html',
-            '_site/a-hackers-guide-to-git/index.html',
             '_site/transitioning-to-a-new-keyboard-layout/index.html',
             '_site/understanding-javascript-inheritance-and-the-prototype-chain/index.html',
-            '_site/functional-programming-resources/index.html',
+            '_site/web-performance-teardown-trademe/index.html',
             '_site/worst-fonts-for-programming/index.html'
           ]
         }
