@@ -1,5 +1,5 @@
 // [1] Allows the margin-bottom value of inner <p> tags to be honoured
 blockquote {
-  border-left: 5px solid $gray-600;
+  border-left: 5px solid $primary;
   padding: $spacer ($spacer * 2) 1px/*[1]*/ ($spacer * 2);
 }
