@@ -36,13 +36,15 @@ The next thing I like to do is find some performance metrics that are representa
 - I measure visual completeness by looking for the point at which the primary image is loaded using [hero element times](https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/HeroElements.md) (which are currently hidden behind the [heroElementTimes flag](https://www.webpagetest.org/?heroElementTimes=1)).
 - I measure interactivity by using [WebPageTest's Time to Interactive metric](https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md), which is calculated as the point when the main thread has not been blocked for 5 seconds.
 
-The final parameter is the test configuration. I wanted to emulate the performance of a mid-range smartphone on a mobile data connection, so for all of these tests I used the following settings in WebPageTest:
+The final parameter is the test configuration. I wanted to emulate the performance of a mid-range smartphone on a mobile data connection, so for all of these tests I used the following WebPageTest configuration:
 
 - **Test Location:** Sydney, Australia - EC2
 - **Browser:** Chrome
 - **Connection:** 3G (1.6 Mbps/768 Kbps 300ms RTT)
 - **Emulate Mobile Browser:** iPhone 6/7/8
 - **CPU Throttling:** 2.6 (specified using the [throttle_cpu flag](https://www.webpagetest.org/?throttle_cpu=2.6))
+
+I ran all of these tests through [SpeedCurve](https://speedcurve.com/), which uses WebPageTest under the hood. I did this because SpeedCurve simplifies the process of running multiple tests and comparing data across different page variations. It also has some nice charts & views that make it easier to interpret the data.
 
 ## The benchmark
 
@@ -53,8 +55,6 @@ First up is the old TradeMe Touch website. In the screenshot below, you can see 
 Now let's see how the new website performs: interactive at **11.6 seconds**, and the primary image is rendered at **30.4 seconds**. No wonder I felt frustrated using this new website! On the bright side, there's plenty of good performance lessons we can learn from this review. So let's dig a bit deeper.
 
 {% responsive_image path: assets/trademe-preview-iphone-6.png alt: "A waterfall chart showing the timeline of a TradeMe Preview listing page" %}
-
-<small>(These screenshots are from the [SpeedCurve](https://speedcurve.com/) test detail page, which has an awesome timeline visualisation).</small>
 
 ## Identifying performance bottlenecks
 
