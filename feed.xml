@@ -6,8 +6,8 @@
 </description>
     <link>https://wildlyinaccurate.com/</link>
     <atom:link href="https://wildlyinaccurate.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 29 Aug 2018 14:49:48 +1200</pubDate>
-    <lastBuildDate>Wed, 29 Aug 2018 14:49:48 +1200</lastBuildDate>
+    <pubDate>Tue, 04 Sep 2018 12:07:33 +1200</pubDate>
+    <lastBuildDate>Tue, 04 Sep 2018 12:07:33 +1200</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -72,7 +72,7 @@
   &lt;li&gt;I measure interactivity by using &lt;a href=&quot;https://github.com/WPO-Foundation/webpagetest/blob/master/docs/Metrics/TimeToInteractive.md&quot;&gt;WebPageTest’s Time to Interactive metric&lt;/a&gt;, which is calculated as the point when the main thread has not been blocked for 5 seconds.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The final parameter is the test configuration. I wanted to emulate the performance of a mid-range smartphone on a mobile data connection, so for all of these tests I used the following settings in WebPageTest:&lt;/p&gt;
+&lt;p&gt;The final parameter is the test configuration. I wanted to emulate the performance of a mid-range smartphone on a mobile data connection, so for all of these tests I used the following WebPageTest configuration:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Test Location:&lt;/strong&gt; Sydney, Australia - EC2&lt;/li&gt;
@@ -81,6 +81,8 @@
   &lt;li&gt;&lt;strong&gt;Emulate Mobile Browser:&lt;/strong&gt; iPhone 6/7/8&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;CPU Throttling:&lt;/strong&gt; 2.6 (specified using the &lt;a href=&quot;https://www.webpagetest.org/?throttle_cpu=2.6&quot;&gt;throttle_cpu flag&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;I ran all of these tests through &lt;a href=&quot;https://speedcurve.com/&quot;&gt;SpeedCurve&lt;/a&gt;, which uses WebPageTest under the hood. I did this because SpeedCurve simplifies the process of running multiple tests and comparing data across different page variations. It also has some nice charts &amp;amp; views that make it easier to interpret the data.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-benchmark&quot;&gt;The benchmark&lt;/h2&gt;
 
@@ -111,8 +113,6 @@
     &lt;/div&gt;
     
 &lt;/div&gt;
-
-&lt;p&gt;&lt;small&gt;(These screenshots are from the &lt;a href=&quot;https://speedcurve.com/&quot;&gt;SpeedCurve&lt;/a&gt; test detail page, which has an awesome timeline visualisation).&lt;/small&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;identifying-performance-bottlenecks&quot;&gt;Identifying performance bottlenecks&lt;/h2&gt;
 
