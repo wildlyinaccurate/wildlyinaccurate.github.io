@@ -162,6 +162,10 @@ This might sound familiar if you know about [progressive enhancement](https://de
 
 Not only does a good core experience enable users to view your product on practically any device or browser, it can also be hugely beneficial to page performance. TradeMe is a perfect example of this, with my experiment showing a 15-19 second reduction in the time to render core content.
 
+### Preload important resources
+
+Even though browsers are becoming smarter and better at loading your page resources, they lack the context required to know which resources are the most important to your users. Thankfully, developers can give the browser some hints using [`<link rel="preload">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content) to kick-start the loading of certain resources. This is a great way to speed up the loading of primary images and dynamic content. As well as preloading resources, the upcoming [Priority Hints API](https://wicg.github.io/priority-hints/) will give developers the ability to set an `importance` flag on resources.
+
 ### Reduce the amount of JavaScript you ship
 
 JavaScript is a hot topic in 2018. It is by far the biggest contributor to slow user experiences on the web -- if you haven't already read Addy Osmani's [_The Cost Of JavaScript in 2018_](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4) then I would recommend doing so.
