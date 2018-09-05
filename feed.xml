@@ -6,8 +6,8 @@
 </description>
     <link>https://wildlyinaccurate.com/</link>
     <atom:link href="https://wildlyinaccurate.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 04 Sep 2018 12:07:33 +1200</pubDate>
-    <lastBuildDate>Tue, 04 Sep 2018 12:07:33 +1200</lastBuildDate>
+    <pubDate>Wed, 05 Sep 2018 12:51:53 +1200</pubDate>
+    <lastBuildDate>Wed, 05 Sep 2018 12:51:53 +1200</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -54,6 +54,7 @@
   &lt;li&gt;&lt;a href=&quot;#recommendations&quot; id=&quot;markdown-toc-recommendations&quot;&gt;Recommendations&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#test-on-representative-devices-and-networks&quot; id=&quot;markdown-toc-test-on-representative-devices-and-networks&quot;&gt;Test on representative devices and networks&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#render-the-core-content-on-the-server&quot; id=&quot;markdown-toc-render-the-core-content-on-the-server&quot;&gt;Render the core content on the server&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#preload-important-resources&quot; id=&quot;markdown-toc-preload-important-resources&quot;&gt;Preload important resources&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#reduce-the-amount-of-javascript-you-ship&quot; id=&quot;markdown-toc-reduce-the-amount-of-javascript-you-ship&quot;&gt;Reduce the amount of JavaScript you ship&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#use-performance-budgets&quot; id=&quot;markdown-toc-use-performance-budgets&quot;&gt;Use performance budgets&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
@@ -335,6 +336,10 @@
 &lt;p&gt;This might sound familiar if you know about &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement&quot;&gt;progressive enhancement&lt;/a&gt;, since having a core experience is a prerequisite for doing any progressive enhancement.&lt;/p&gt;
 
 &lt;p&gt;Not only does a good core experience enable users to view your product on practically any device or browser, it can also be hugely beneficial to page performance. TradeMe is a perfect example of this, with my experiment showing a 15-19 second reduction in the time to render core content.&lt;/p&gt;
+
+&lt;h3 id=&quot;preload-important-resources&quot;&gt;Preload important resources&lt;/h3&gt;
+
+&lt;p&gt;Even though browsers are becoming smarter and better at loading your page resources, they lack the context required to know which resources are the most important to your users. Thankfully, developers can give the browser some hints using &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;preload&quot;&amp;gt;&lt;/code&gt;&lt;/a&gt; to kick-start the loading of certain resources. This is a great way to speed up the loading of primary images and dynamic content. As well as preloading resources, the upcoming &lt;a href=&quot;https://wicg.github.io/priority-hints/&quot;&gt;Priority Hints API&lt;/a&gt; will give developers the ability to set an &lt;code class=&quot;highlighter-rouge&quot;&gt;importance&lt;/code&gt; flag on resources.&lt;/p&gt;
 
 &lt;h3 id=&quot;reduce-the-amount-of-javascript-you-ship&quot;&gt;Reduce the amount of JavaScript you ship&lt;/h3&gt;
 
