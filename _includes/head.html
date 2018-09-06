@@ -19,6 +19,8 @@
     <meta name="description" content="{{ description }}">
     <meta name="theme-color" content="#8e44ad">
     {% if page.excerpt %}
+    <meta property="og:title" content="{{ page.title | escape_once }}">
+    <meta property="og:description" content="{{ description }}">
     <meta property="og:image" content="{{ featured_image | prepend: site.baseurl | prepend: site.url }}">
     <meta name="twitter:card" content="summary">
     {% endif %}
