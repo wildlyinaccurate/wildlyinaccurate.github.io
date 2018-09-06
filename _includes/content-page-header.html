@@ -1,9 +1,5 @@
 <header class="page-header mb-4">
-    {% if page.featured_image %}
-        {% assign featured_image = page.featured_image %}
-    {% else %}
-        {% assign featured_image = 'assets/dfi.jpg' %}
-    {% endif %}
+    {% assign featured_image = page.featured_image | default: 'assets/dfi.jpg' %}
 
     {% responsive_image_block %}
         path: {{ featured_image }}

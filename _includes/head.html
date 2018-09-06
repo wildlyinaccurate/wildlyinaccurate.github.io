@@ -4,13 +4,24 @@
     {% capture canonicalUrl %}{{ page.url | append: '♥♥♥♥' | replace: '/index.html♥♥♥♥', '' | replace: '/404.html♥♥♥♥', '' | replace: '/♥♥♥♥', '' }}{% endcapture %}
 {% endif %}
 
+{% if page.excerpt %}
+    {% assign description = page.excerpt | sanitize | strip_html | escape_once | newline_to_br | strip_newlines | replace: '<br />', ' ' | truncate: 250 %}
+{% else %}
+    {% assign description = site.description %}
+{% endif %}
+
+{% assign featured_image = page.featured_image | default: 'assets/dfi.jpg' | prepend: '/' %}
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#8e44ad">
-
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 250 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description" content="{{ description }}">
+    <meta name="theme-color" content="#8e44ad">
+    {% if page.excerpt %}
+    <meta property="og:image" content="{{ featured_image | prepend: site.baseurl | prepend: site.url }}">
+    <meta name="twitter:card" content="summary">
+    {% endif %}
 
     <link rel="stylesheet" href="{{ '/css/main.css' | prepend: site.baseurl }}">
     <link rel="manifest" href="/manifest.json">
