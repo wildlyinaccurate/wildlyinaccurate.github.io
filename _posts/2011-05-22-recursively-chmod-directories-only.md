@@ -31,6 +31,4 @@ find . -type f -exec chmod 644 {} \;
 
 Similarly, this command finds all files and sets their permissions to 644 (rw-r--r--).
 
-&nbsp;
-
 Thanks to [moveabletripe](http://movabletripe.com/archive/recursively-chmod-directories-only/) for the info.

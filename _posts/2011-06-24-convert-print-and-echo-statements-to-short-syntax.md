@@ -25,6 +25,7 @@ The regular expression below will find all one-liner `print` and `echo` statemen
 Find:
 <\?php[\s]*(print|echo)[\s]*\(?([^>\)]+?)\)?[\s]*;?[\s]*\?>
 ```
+
 ```
 Replace:
 <?=$2?>

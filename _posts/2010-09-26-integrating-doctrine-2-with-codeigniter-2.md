@@ -16,6 +16,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+- <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 _If you're looking for a quick way to get Doctrine 2 running with CodeIgniter 2, you might want to download my [CodeIgniter 2/Doctrine 2 package](https://github.com/wildlyinaccurate/CodeIgniter-2-with-Doctrine-2)_

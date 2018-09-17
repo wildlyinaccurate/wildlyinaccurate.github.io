@@ -15,6 +15,8 @@ status: publish
 type: post
 published: true
 author: Joseph Wynn
+extra_head:
+- <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 _This post assumes you have set up [Doctrine 2 with CodeIgniter 2](http://eryr.wordpress.com/2010/09/26/integrating-doctrine-2-with-codeigniter-2/)._
@@ -37,13 +39,12 @@ Now create the following directories and files:
 
 {% responsive_image path: assets/capture.jpg alt: "Fixtures Directory Structure" %}
 
-`application/fixtures/`
-
-`application/fixtures/Commands.php`
-
-`application/fixtures/Command/`
-
-`application/fixtures/Command/LoadDataCommand.php`
+```
+application/fixtures/
+application/fixtures/Commands.php
+application/fixtures/Command/
+application/fixtures/Command/LoadDataCommand.php
+```
 
 `application/fixtures/Commands.php` is used to load our custom commands. For now, we only have one command - `LoadData`. To load this command, simply add the line `require_once 'Command/LoadDataCommand.php';`
 
