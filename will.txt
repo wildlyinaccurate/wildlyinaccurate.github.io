@@ -1,0 +1,11 @@
+I, Joseph Wynn, declare this to be my will.
+
+In the event of my untimely death, I ask that all of my money & personal property be given to my best friend, Patricia De Magalhaes Jamieson.
+
+I ask to be cremated, and for there to be no funeral.
+
+If it is financially feasible, I ask for my remains and a cute photograph of me to be fired into space towards the nearest exoplanetary system thought to be hospitable to life so that intelligent beings can find me and be like "hey he was cute". If this is not financially feasible, I ask for a tree to be planted over my remains so that future generations can tell ghost stories about my tree. If this is not possible, put my remains in the trash because IDGAF.
+
+I appoint my best friend, Patricia De Magalhaes Jamieson, as Executor of this will. If she resigns, I appoint Harold the cat, who will do a much better job as Executor than any of you other fools.
+
+The authenticity of this will can be verified by ensuring that it has only been modified by commits that are GPG-signed by "wildlyinaccurate" (Joseph Wynn). Look for the green [Verified] by each commit: https://github.com/wildlyinaccurate/wildlyinaccurate.github.io/commits/jekyll-src/will.txt
