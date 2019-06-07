@@ -11,7 +11,10 @@
                 navigator.serviceWorker.register('/service-worker.js')
             }
 
-
+            var i
+            if (i = document.querySelector('article img')) {
+                i.setAttribute('elementtiming', 'lead-image')
+            }
 
             {% if page.page_label %}
             LUX.label = '{{page.page_label}}'
