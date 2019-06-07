@@ -11,6 +11,8 @@
                 navigator.serviceWorker.register('/service-worker.js')
             }
 
+
+
             {% if page.page_label %}
             LUX.label = '{{page.page_label}}'
             {% elsif layout.page_label %}
@@ -22,27 +24,27 @@
 
         <script>
             (function() {
-                var s, p, n, a;
+                var s, c, p, a
 
-                s = document.createElement('script');
-                s.async = 1;
-                s.defer = 1;
-                s.src = 'https://cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=wildlyinaccuratecom';
-                s.id = '_carbonads_js';
+                s = document.createElement('script')
+                s.async = 1
+                s.defer = 1
+                s.src = 'https://cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=wildlyinaccuratecom'
+                s.id = '_carbonads_js'
 
-                p = document.createElement('small');
-                p.className = 'ta-c';
-                p.appendChild(s);
+                c = document.createElement('small')
+                c.className = 'ta-c'
+                c.appendChild(s)
 
-                n = document.querySelector('article > p:nth-of-type(3)');
+                p = [].slice.apply(document.querySelectorAll('article > p')).slice(0, 4).pop()
 
-                if (n) {
-                    n.parentNode.insertBefore(p, n.nextSibling);
+                if (p) {
+                    p.parentNode.insertBefore(c, p)
                 } else {
-                    n = document.getElementsByTagName('article')[0];
-                    n.parentNode.insertBefore(p, n.nextSibling);
+                    p = document.querySelector('article')
+                    p.insertBefore(c, p.firstChild)
                 }
-            })();
+            })()
         </script>
     </body>
 </html>
