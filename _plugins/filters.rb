@@ -29,7 +29,7 @@ module Jekyll
       span_transformer = lambda do |env|
         return unless env[:node_name] == 'span'
 
-        env[:node].replace(env[:node].content)
+        env[:node].replace(env[:node].inner_html)
       end
 
       caption_remover = lambda do |env|
