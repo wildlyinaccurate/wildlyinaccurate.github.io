@@ -9,6 +9,7 @@ published: true
 author: Joseph Wynn
 extra_head:
   - <link rel="stylesheet" href="/css/toc.css">
+  - <link rel="stylesheet" href="/css/highlight.css">
 ---
 
 * Placeholder list item
@@ -28,45 +29,58 @@ A reference in Git is a bit like a pointer, or a symlink. References are not obj
 
 You can learn about all of this and much more in my [Hacker's Guide to Git](/a-hackers-guide-to-git).<!--more-->
 
+### Show the contents of a file at a specific commit
+
+```shell
+# Show the contents of hello.txt at 0f64e9e
+$ git show 0f64e9e:hello.txt
+Hello, world!
+```
+
 ### Find which commit a reference points at
 
-```
-$ git rev-parse HEAD
+```shell
+# Show the full commit hash for "feature-branch-1"
+$ git rev-parse feature-branch-1
 0f64e9e759c904553309858070f444e5e64847c4
 
-$ git rev-parse --short HEAD
+$ git rev-parse --short feature-branch-1
 0f64e9e
 ```
 
 ### Find which branches a commit is in
 
-```
-$ git branch --contains HEAD
+```shell
+# Show the branches containing 0f64e9e
+$ git branch --contains 0f64e9e
   master
 * other-branch
 ```
 
-### Find commits which are in one branch but not another
+### Find commits that are in one branch but not another
 
-```
-$ git log --oneline --right-only master...hotfix-1
+```shell
+# Show commits that are in hotfix-1 but not master
+$ git log --right-only master...hotfix-1
 
 0f64e9e Apply hotfix patch from #2914 to hotfix-1
 bc3bff5 [Cherry-pick] Fix issue #2926
 ```
 
-##### Exclude commits which were cherry-picked
+##### Exclude commits that were cherry-picked
 
-```
-$ git log --oneline --cherry-pick --right-only master...hotfix-1
+```shell
+# Show non-cherry-picked commits that are in hotfix-1 but not master
+$ git log --cherry-pick --right-only master...hotfix-1
 
 0f64e9e Apply hotfix patch from #2914 to hotfix-1
 ```
 
 ### View details of an object
 
-```
-$ git cat-file -p HEAD
+```shell
+# Show the full details of the 0f64e9e commit
+$ git cat-file -p 0f64e9e
 tree af22d0482b89640c95986f3b4663026bcb7f764b
 parent bc3bff555f573ac76f0d3e71f0e54d63f50b8434
 author Foo Bar <foo@bar.com> 1436294582 +0100
@@ -77,21 +91,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 ##### Show an object's type
 
-```
-$ git cat-file -t HEAD
+```shell
+$ git cat-file -t 0f64e9e
 commit
 ```
 
 ##### Show an object's size
 
-```
-$ git cat-file -s HEAD
+```shell
+$ git cat-file -s 0f64e9e
 253
 ```
 
 ### Print the tree of a given reference
 
-```
+```shell
+# -t will show tree entries, and -r will recurse into sub-trees
 $ git ls-tree -t -r HEAD
 100644 blob 59e004af21a725c9b378001a1b231967f955b992    .gitignore
 100644 blob 9f5d366d261317d8ff881ee2945ef2c7960fa2ea    .travis.yml
@@ -117,14 +132,14 @@ $ git ls-tree -t -r HEAD
 
 ### Find the first tag which contains a reference
 
-```
+```shell
 $ git describe HEAD
 v1.6.1
 ```
 
 ### Find dangling or unreachable objects
 
-```
+```shell
 $ git fsck --lost-found
 Checking object directories: 100% (256/256), done.
 Checking objects: 100% (153/153), done.
