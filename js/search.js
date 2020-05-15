@@ -89,7 +89,7 @@ function onSearchDataLoaded() {
     // was being loaded
     performSearch(input)
 
-    input.addEventListener('keyup', performSearch.bind(this, input))
+    input.addEventListener('input', performSearch.bind(this, input))
 }
 
 function performSearch(input) {
