@@ -25,7 +25,7 @@ If you've used Linode's LISH console to get remote access to your server, you're
 
 <p>Luckily, the fix is easy. The LISH console is essentially emulating a raw serial port connected to the server. The serial port itself has no natural size, so the terminal gives it a default safe size (60x20). We can tell the terminal to change this size, using the [`stty`](http://unixhelp.ed.ac.uk/CGI/man-cgi?stty) command:
 
-```bash
+```shell
 stty cols 200 rows 75
 ```
 
