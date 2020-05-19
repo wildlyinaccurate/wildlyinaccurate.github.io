@@ -12,12 +12,12 @@ page_label: home
 
     {% if paginator.total_pages > 1 %}
         <div>
-            {% if paginator.next_page %}
-                <a class="btn p-3" href="{{ paginator.next_page_path | prepend: site.baseurl }}">&#8592; Older Posts</a>
+            {% if paginator.previous_page %}
+                <a class="btn p-3" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '/index.html', '/' }}">&#8592; Newer Posts</a>
             {% endif %}
 
-            {% if paginator.previous_page %}
-                <a class="btn p-3" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '/index.html', '/' }}">Newer Posts &#8594;</a>
+            {% if paginator.next_page %}
+                <a class="btn p-3" href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older Posts &#8594;</a>
             {% endif %}
         </div>
     {% endif %}
