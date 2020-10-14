@@ -1,5 +1,5 @@
 <p class="pt-2 pt-lg-4">
-    {{ page.date | date: "%b %-d, %Y" }}
+    {{ page.date | date: "%-d %B %Y" }}
     • {{ page.content | split: " " | size | divided_by: 180 }} minute read
 
     {% if page.categories %}
