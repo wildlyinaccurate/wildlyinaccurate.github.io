@@ -14,7 +14,7 @@
     "imagemin": "grunt imagemin"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^5.0.0",
     "hogan.js": "^3.0.2"
   },
   "devDependencies": {
